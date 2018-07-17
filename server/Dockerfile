@@ -93,8 +93,6 @@ RUN set -x \
 
 COPY wrapper.sh /usr/local/bin/
 
-VOLUME $BGBILLING_HOME
-
 EXPOSE 8080
 
 CMD ["/usr/local/bin/wrapper.sh"]
