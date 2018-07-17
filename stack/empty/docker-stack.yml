@@ -1,0 +1,69 @@
+version: '3.5'
+
+services:
+
+  db:
+    image: mysql/mysql-server:5.7
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    ports:
+      - "3306:3306"
+    networks:
+      - internal
+    volumes:
+      - ./mysql/etc/my.cnf:/etc/my.cnf
+      - ./mysql/initdb.d:/docker-entrypoint-initdb.d
+      - ./mysql/data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 180s
+
+  activemq:
+    image: bgbilling/activemq
+    ports:
+      - "61616:61616"
+      - "8161:8161"
+    networks:
+     - internal
+    healthcheck:
+      test: ["CMD", "curl" , "-f", "http://localhost:8161/"]
+      timeout: 20s
+      retries: 10
+
+  server:
+    image: bgbilling/server:7.2
+    ports:
+      - "8080:8080"
+    networks:
+      - internal
+    depends_on:
+      - db
+      - activemq
+    environment:
+      BGBILLING_SYSTEM_PROPERTIES: '-Dcontext.path=/bgbilling'
+    volumes:
+      - ./server/data/data.properties:/opt/bgbilling/BGBillingServer/data/data.properties
+      - ./server/data/log4j.xml:/opt/bgbilling/BGBillingServer/data/log4j.xml
+      - ./server/log/:/opt/bgbilling/BGBillingServer/log/
+    healthcheck:
+      test: ["CMD", "curl" , "-f", "http://localhost:8080/bgbilling/executer"]
+      timeout: 20s
+      retries: 10
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 5
+        window: 180s
+
+
+networks:
+  internal:
+
