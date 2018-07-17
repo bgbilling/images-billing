@@ -16,12 +16,14 @@ RUN set -x \
   && chown -h activemq:activemq $ACTIVEMQ_HOME \
   && rm -rf /var/cache/apk/* \
   && rm -fr /tmp/* /var/tmp/* \
-  && rm $ACTIVEMQ-bin.tar.gz
+  && rm $ACTIVEMQ-bin.tar.gz \
+  && rm $ACTIVEMQ_HOME/activemq-all-$ACTIVEMQ_VERSION.jar
 
-
+WORKDIR $ACTIVEMQ_HOME
 USER activemq
+
+COPY activemq.xml $ACTIVEMQ_HOME/conf/
 
 EXPOSE 61616 5672 8161
 
-WORKDIR $ACTIVEMQ_HOME
 CMD ["/bin/sh", "-c", "bin/activemq console"]
