@@ -1,0 +1,24 @@
+FROM openjdk:10-slim as packager
+
+RUN /usr/lib/jvm/java-10-openjdk-amd64/bin/jlink \
+    --module-path usr/lib/jvm/java-10-openjdk-amd64/jmods \
+    --verbose \
+    --add-modules java.base,java.compiler,java.instrument,java.management,java.naming,java.scripting,\
+        java.sql,java.xml.ws,java.xml.ws.annotation,jdk.unsupported,jdk.scripting.nashorn,java.security.jgss,jdk.management.agent \
+    --compress 2 \
+    --no-header-files \
+    --output /opt/jdk10-minimal
+
+
+FROM bgbilling/common:slim
+
+COPY --from=packager /opt/jdk10-minimal /opt/java/jdk10
+
+# Default to UTF-8 file.encoding
+ENV LANG C.UTF-8
+
+ENV JAVA_HOME /opt/java/jdk10
+
+# https://docs.oracle.com/javase/10/tools/jshell.htm
+# https://en.wikipedia.org/wiki/JShell
+CMD ["jshell"]
