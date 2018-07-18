@@ -9,13 +9,20 @@ trap "sigterm_handler; exit" TERM
 
 function entrypoint() {
 
-    if [ -z "$DEPLOY_WAIT_FOR" ]; then
-      DEPLOY_WAIT_FOR="db:3306 -t 180"
+    if [ -z "$DEPLOY_WAIT_FOR_DB" ]; then
+      DEPLOY_WAIT_FOR_DB="db:3306 -t 180"
+    fi
+
+    if [ -z "$DEPLOY_WAIT_FOR_MQ" ]; then
+      DEPLOY_WAIT_FOR_MQ="activemq:61616 -t 180"
     fi
 
     echo "wrapper.sh"
-    echo "Waiting for DB (${DEPLOY_WAIT_FOR})..."
-    /opt/bgbilling/BGBillingServer/script/wait-for.sh $DEPLOY_WAIT_FOR
+    echo "Waiting for DB (${DEPLOY_WAIT_FOR_DB})..."
+    /opt/bgbilling/BGBillingServer/script/wait-for.sh $DEPLOY_WAIT_FOR_DB
+
+    echo "Waiting for MQ (${DEPLOY_WAIT_FOR_MQ})..."
+    /opt/bgbilling/BGBillingServer/script/wait-for.sh $DEPLOY_WAIT_FOR_MQ
 
     echo "Installing modules and plugins"
     /opt/bgbilling/BGBillingServer/bg_installer.sh autoinstall "${BGBILLING_ASSETS}"

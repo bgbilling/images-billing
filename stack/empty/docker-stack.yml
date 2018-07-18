@@ -32,6 +32,8 @@ services:
       - "8161:8161"
     networks:
      - internal
+    volumes:
+      - ./activemq/activemq.xml:/opt/activemq/current/conf/activemq.xml
     healthcheck:
       test: ["CMD", "curl" , "-f", "http://localhost:8161/"]
       timeout: 20s
@@ -47,6 +49,7 @@ services:
       - db
       - activemq
     environment:
+      BGBILLING_MEMORY: '-Xmx512m'
       BGBILLING_SYSTEM_PROPERTIES: '-Dcontext.path=/bgbilling'
     volumes:
       - ./server/data/data.properties:/opt/bgbilling/BGBillingServer/data/data.properties
