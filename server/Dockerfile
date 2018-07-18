@@ -3,7 +3,6 @@ FROM bgbilling/jdk:10-mini
 ENV BGBILLING_DOCKER=yes
 ENV BGBILLING_HOME=/opt/bgbilling/BGBillingServer
 ENV BGBILLING_VERSION=7.2
-ENV BGBILLING_DATA=$BGBILLING_HOME/data
 
 ARG BGBILLING_FTP=ftp://bgbilling.ru/pub/bgbilling/$BGBILLING_VERSION
 
@@ -12,10 +11,10 @@ ARG BGBILLING_INSTALL=/opt/bgbilling/BGBillingServer/.install
 ENV BGBILLING_ASSETS=card,bill,inet,tv,voice,reports,documents,cashcheck,mps,sberbank,yamoney,assist
 
 RUN set -x \
-  && mkdir --parents /opt/bgbilling \
+  && mkdir -p /opt/bgbilling \
   && mkdir $BGBILLING_HOME && rm --force -r $BGBILLING_HOME \
   && rm -fr /tmp/bgb-install \
-  && mkdir --parents /tmp/bgb-install \
+  && mkdir -p /tmp/bgb-install \
   \
   && echo "Downloading BGBillingServer..." \
   && wget -nv $BGBILLING_FTP/BGBillingServer_$BGBILLING_VERSION_*.zip -O /tmp/bgb-install/BGBillingServer-tmp.zip \
@@ -26,7 +25,7 @@ RUN set -x \
   && chmod +x $BGBILLING_HOME/script/bgcommonrc \
   && chmod +x $BGBILLING_HOME/script/wait-for.sh \
   \
-  && mkdir --parents $BGBILLING_INSTALL \
+  && mkdir -p $BGBILLING_INSTALL \
   && mv /tmp/bgb-install/dump.sql $BGBILLING_INSTALL \
   && wget -q --directory $BGBILLING_INSTALL $BGBILLING_FTP/alfabank_$BGBILLING_VERSION_*.zip \
   && wget -q --directory $BGBILLING_INSTALL $BGBILLING_FTP/assist_$BGBILLING_VERSION_*.zip \

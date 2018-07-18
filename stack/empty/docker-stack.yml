@@ -6,8 +6,8 @@ services:
     image: mysql/mysql-server:5.7
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
-    ports:
-      - "3306:3306"
+#    ports:
+#      - "3306:3306"
     networks:
       - internal
     volumes:
@@ -27,9 +27,9 @@ services:
 
   activemq:
     image: bgbilling/activemq
-    ports:
-      - "61616:61616"
-      - "8161:8161"
+#    ports:
+#      - "61616:61616"
+#      - "8161:8161"
     networks:
      - internal
     volumes:
@@ -57,8 +57,8 @@ services:
       - ./server/log/:/opt/bgbilling/BGBillingServer/log/
     healthcheck:
       test: ["CMD", "curl" , "-f", "http://localhost:8080/bgbilling/executer"]
-      timeout: 20s
-      retries: 10
+      timeout: 10s
+      retries: 20
     deploy:
       restart_policy:
         condition: on-failure
