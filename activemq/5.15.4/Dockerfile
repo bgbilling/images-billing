@@ -1,4 +1,4 @@
-FROM bgbilling/jdk:10-mini
+FROM bgbilling/base-jdk:10-mini
 
 ENV ACTIVEMQ_VERSION 5.15.4
 ENV ACTIVEMQ=apache-activemq-$ACTIVEMQ_VERSION

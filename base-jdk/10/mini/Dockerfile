@@ -10,7 +10,7 @@ java.sql,java.xml.ws,java.xml.ws.annotation,jdk.unsupported,jdk.scripting.nashor
     --output /opt/jdk10-minimal
 
 
-FROM bgbilling/common:slim
+FROM bgbilling/base:slim
 
 COPY --from=packager /opt/jdk10-minimal /opt/java/jdk10
 
