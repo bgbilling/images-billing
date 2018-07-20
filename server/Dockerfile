@@ -1,4 +1,4 @@
-FROM bgbilling/base-jdk:10-mini
+FROM bgbilling/base-jdk:8
 
 ENV BGBILLING_DOCKER=yes
 ENV BGBILLING_HOME=/opt/bgbilling/BGBillingServer
