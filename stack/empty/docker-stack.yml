@@ -11,7 +11,7 @@ services:
     networks:
       - internal
     volumes:
-      - ./mysql/etc/my.cnf:/etc/my.cnf
+      - ./mysql/etc/my.cnf:/etc/my.cnf:ro
       - ./mysql/initdb.d:/docker-entrypoint-initdb.d
       - ./mysql/data:/var/lib/mysql
     healthcheck:
@@ -19,11 +19,7 @@ services:
       timeout: 20s
       retries: 10
     deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 5s
-        max_attempts: 3
-        window: 180s
+      restart_policy: { condition: on-failure, delay: 5s, max_attempts: 3, window: 180s}
 
   activemq:
     image: bgbilling/activemq
@@ -33,7 +29,8 @@ services:
     networks:
      - internal
     volumes:
-      - ./activemq/activemq.xml:/opt/activemq/current/conf/activemq.xml
+      - ./activemq/activemq.xml:/opt/activemq/current/conf/activemq.xml:ro
+      - ./activemq/data:/opt/activemq/current/data
     healthcheck:
       test: ["CMD", "curl" , "-f", "http://localhost:8161/"]
       timeout: 20s
@@ -52,19 +49,36 @@ services:
       BGBILLING_MEMORY: '-Xmx512m'
       BGBILLING_SYSTEM_PROPERTIES: '-Dcontext.path=/bgbilling'
     volumes:
-      - ./server/data/data.properties:/opt/bgbilling/BGBillingServer/data/data.properties
-      - ./server/data/log4j.xml:/opt/bgbilling/BGBillingServer/data/log4j.xml
+      - ./server/data/data.properties:/opt/bgbilling/BGBillingServer/data/data.properties:ro
+      - ./server/data/log4j.xml:/opt/bgbilling/BGBillingServer/data/log4j.xml:ro
       - ./server/log/:/opt/bgbilling/BGBillingServer/log/
     healthcheck:
       test: ["CMD", "curl" , "-f", "http://localhost:8080/bgbilling/executer"]
       timeout: 10s
       retries: 20
     deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 5s
-        max_attempts: 5
-        window: 180s
+      restart_policy: { condition: on-failure, delay: 5s, max_attempts: 5, window: 180s}
+        
+  scheduler:
+    image: bgbilling/server:7.2
+    networks:
+      - internal
+    depends_on:
+      - db
+      - activemq
+    environment:
+      BGBILLING_MEMORY: '-Xmx512m'
+      BGBILLING_SYSTEM_PROPERTIES: '-Dcontext.path=/bgbilling'
+    volumes:
+      - ./server/data/data.properties:/opt/bgbilling/BGBillingServer/data/data.properties:ro
+      - ./server/data/log4j.xml:/opt/bgbilling/BGBillingServer/data/log4j.xml:ro
+      - ./server/log/:/opt/bgbilling/BGBillingServer/log/
+    healthcheck:
+      test: ["CMD", "nc" , "-z", "127.0.0.1", "9066"]
+      timeout: 10s
+      retries: 20
+    deploy:
+      restart_policy: { condition: on-failure, delay: 5s, max_attempts: 5, window: 180s}
 
 
 networks:

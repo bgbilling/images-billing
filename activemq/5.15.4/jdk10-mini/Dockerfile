@@ -1,4 +1,4 @@
-FROM bgbilling/base-jdk:10-mini
+FROM bgbilling/base-jdk:8
 
 ENV ACTIVEMQ_VERSION 5.15.4
 ENV ACTIVEMQ=apache-activemq-$ACTIVEMQ_VERSION
@@ -21,9 +21,9 @@ RUN set -x \
 
 WORKDIR $ACTIVEMQ_HOME
 
-COPY activemq.xml $ACTIVEMQ_HOME/conf/
+COPY ../activemq.xml $ACTIVEMQ_HOME/conf/
 
-COPY entrypoint.sh /entrypoint.sh
+COPY ../entrypoint.sh /entrypoint.sh
 
 EXPOSE 61616 5672 8161
 

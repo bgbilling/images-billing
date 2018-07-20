@@ -3,7 +3,7 @@ FROM bgbilling/server:7.2 as packager
 RUN set -x \
   && mkdir -p /bgbilling-docker/mysql/data \
   && mkdir -p /bgbilling-docker/mysql/initdb.d \
-  && mkdir -p /bgbilling-docker/activemq \
+  && mkdir -p /bgbilling-docker/activemq/data \
   && mkdir -p /bgbilling-docker/server/data \
   && mkdir -p /bgbilling-docker/server/log \
   && cp /opt/bgbilling/BGBillingServer/data/data.properties /bgbilling-docker/server/data/ \
