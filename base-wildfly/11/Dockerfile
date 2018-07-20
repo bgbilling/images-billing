@@ -1,4 +1,4 @@
-FROM openjdk8
+FROM bgbilling/base-jdk:8
 
 # Set the WILDFLY_VERSION env variable
 ENV WILDFLY_VERSION 11.0.0.Final
@@ -28,7 +28,7 @@ COPY entrypoint.sh /entrypoint.sh
 # Ensure signals are forwarded to the JVM process correctly for graceful shutdown
 ENV LAUNCH_JBOSS_IN_BACKGROUND true
 
-USER jboss
+#USER jboss
 
 # Expose the ports we're interested in
 EXPOSE 8080

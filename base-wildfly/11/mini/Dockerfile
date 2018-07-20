@@ -28,7 +28,7 @@ COPY entrypoint.sh /entrypoint.sh
 # Ensure signals are forwarded to the JVM process correctly for graceful shutdown
 ENV LAUNCH_JBOSS_IN_BACKGROUND true
 
-USER jboss
+#USER jboss
 
 # Expose the ports we're interested in
 EXPOSE 8080
