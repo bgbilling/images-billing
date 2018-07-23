@@ -86,7 +86,7 @@ RUN set -x \
   \
   && sed -i 's@jdbc:mysql://127.0.0.1/@jdbc:mysql://db/@' $BGBILLING_HOME/data/data.properties \
   && sed -i 's@//127.0.0.1:61616@//activemq:61616@' $BGBILLING_HOME/data/data.properties \
-  && sed -i 's@JAVA_HOME=@#JAVA_HOME=' $BGBILLING_HOME/setenv.sh \
+  && sed -i 's@JAVA_HOME=@#JAVA_HOME=@' $BGBILLING_HOME/setenv.sh \
   && sed -i 's@BGBILLING_SERVER_DIR=.@BGBILLING_SERVER_DIR='"$BGBILLING_HOME"'@' $BGBILLING_HOME/setenv.sh \
   && sed -i 's@\/usr\/local\/BGBillingServer@'"$BGBILLING_HOME"'@' $BGBILLING_HOME/script/bgcommonrc \
   && rm -fr /tmp/* /var/tmp/*
