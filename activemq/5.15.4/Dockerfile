@@ -27,6 +27,9 @@ COPY entrypoint.sh /entrypoint.sh
 
 EXPOSE 61616 5672 8161
 
+HEALTHCHECK --start-period=3m --interval=30s --timeout=20s --retries=10 \
+  CMD curl -f http://localhost:8161/ || exit 1
+
 #ENTRYPOINT ["/bin/sh", "entrypoint.sh"]
 
 CMD ["/bin/sh", "-c", "bin/activemq console"]
