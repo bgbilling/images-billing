@@ -5,7 +5,7 @@ RUN set -x \
   && mkdir -p /bgbilling-docker/mysql/initdb.d \
   && mkdir -p /bgbilling-docker/activemq/data \
   && mkdir -p /bgbilling-docker/server/log \
-  && mkdir -p /bgbilling-docker/my/log \
+  && mkdir -p /bgbilling-docker/mybgbilling/log \
   && cp /opt/bgbilling/BGBillingServer/data/data.properties /bgbilling-docker/server/ \
   && cp /opt/bgbilling/BGBillingServer/data/log4j.xml /bgbilling-docker/server/ \
   && cp /opt/bgbilling/BGBillingServer/.install/dump.sql /bgbilling-docker/mysql/initdb.d/
@@ -20,13 +20,13 @@ ARG JBOSS_STANDALONE=/opt/jboss/wildfly/standalone
 
 RUN set -x \
   && mkdir -p /bgbilling-docker/my/configuration \
-  && cp ${JBOSS_STANDALONE}/configuration/standalone.xml /bgbilling-docker/my/configuration/ \
-  && cp ${JBOSS_STANDALONE}/deployments/MyBGBilling.war/WEB-INF/jboss-web.xml /bgbilling-docker/my/configuration/ \
-  && cp ${JBOSS_STANDALONE}/deployments/MyBGBilling.war/WEB-INF/*.groovy /bgbilling-docker/my/configuration/
+  && cp ${JBOSS_STANDALONE}/configuration/standalone.xml /bgbilling-docker/mybgbilling/configuration/ \
+  && cp ${JBOSS_STANDALONE}/deployments/MyBGBilling.war/WEB-INF/jboss-web.xml /bgbilling-docker/mybgbilling/configuration/ \
+  && cp ${JBOSS_STANDALONE}/deployments/MyBGBilling.war/WEB-INF/*.groovy /bgbilling-docker/mybgbilling/configuration/
 
 
 FROM frameloss/empty-container
 
 COPY --from=packager /bgbilling-docker /bgbilling-docker
-COPY --from=my /bgbilling-docker/my/configuration /bgbilling-docker/my/
+COPY --from=my /bgbilling-docker/mybgbilling/configuration /bgbilling-docker/mybgbilling/
 COPY docker-stack.yml init.sh /bgbilling-docker/
