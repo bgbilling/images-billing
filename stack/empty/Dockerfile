@@ -19,10 +19,10 @@ FROM bgbilling/my:7.2 as my
 ARG JBOSS_STANDALONE=/opt/jboss/wildfly/standalone
 
 RUN set -x \
-  && mkdir -p /bgbilling-docker/my/configuration \
-  && cp ${JBOSS_STANDALONE}/configuration/standalone.xml /bgbilling-docker/mybgbilling/configuration/ \
-  && cp ${JBOSS_STANDALONE}/deployments/MyBGBilling.war/WEB-INF/jboss-web.xml /bgbilling-docker/mybgbilling/configuration/ \
-  && cp ${JBOSS_STANDALONE}/deployments/MyBGBilling.war/WEB-INF/*.groovy /bgbilling-docker/mybgbilling/configuration/
+  && mkdir -p /bgbilling-docker/mybgbilling/ \
+  && cp ${JBOSS_STANDALONE}/configuration/standalone.xml /bgbilling-docker/mybgbilling// \
+  && cp ${JBOSS_STANDALONE}/deployments/MyBGBilling.war/WEB-INF/jboss-web.xml /bgbilling-docker/mybgbilling// \
+  && cp ${JBOSS_STANDALONE}/deployments/MyBGBilling.war/WEB-INF/*.groovy /bgbilling-docker/mybgbilling/
 
 
 FROM frameloss/empty-container
