@@ -17,4 +17,4 @@ COPY activemq /bgbilling-docker/activemq
 FROM frameloss/empty-container
 
 COPY --from=packager /bgbilling-docker /bgbilling-docker
-COPY docker-stack.yml /bgbilling-docker/
+COPY docker-stack.yml init.sh /bgbilling-docker/
