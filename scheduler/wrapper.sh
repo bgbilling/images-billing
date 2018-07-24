@@ -25,7 +25,7 @@ function entrypoint() {
     /opt/bgbilling/BGBillingServer/script/wait-for.sh $DEPLOY_WAIT_FOR_MQ
 
     echo "Installing modules and plugins"
-    /opt/bgbilling/BGBillingServer/bg_installer.sh autoinstall "${BGBILLING_ASSETS}"
+    /opt/bgbilling/BGBillingServer/bg_installer.sh autoinstall-libs "${BGBILLING_ASSETS}"
 
     if [ -z "$DEPLOY_WAIT_FOR_SERVER" ]; then
       DEPLOY_WAIT_FOR_SERVER="server:8080 -t 180"
