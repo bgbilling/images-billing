@@ -11,10 +11,13 @@ docker pull mysql/mysql-server:5.7
 echo "Init Docker Swarm"
 docker swarm init
 
-stackDir=$(dirname "$0")
+STACK_DIR=$(dirname "$0")
+if [ -z "$STACK_DIR" ]; then
+  STACK_DIR="."
+fi
 
 echo "Deploing bgbilling-docker"
-docker stack deploy -c ${stackDir}/docker-stack.yml bgbilling
+docker stack deploy -c ${STACK_DIR}/docker-stack.yml bgbilling
 
 # show logs
 timeout 180 docker service logs bgbilling_db --follow & timeout 180 docker service logs bgbilling_server --follow || docker ps
