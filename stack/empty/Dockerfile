@@ -28,5 +28,5 @@ RUN set -x \
 FROM frameloss/empty-container
 
 COPY --from=packager /bgbilling-docker /bgbilling-docker
-COPY --from=my /bgbilling-docker/mybgbilling/configuration /bgbilling-docker/mybgbilling/
+COPY --from=my /bgbilling-docker/mybgbilling/ /bgbilling-docker/mybgbilling/
 COPY docker-stack.yml init.sh /bgbilling-docker/
