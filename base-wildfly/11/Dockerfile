@@ -6,6 +6,8 @@ ENV WILDFLY_SHA1 0e89fe0860a87bfd6b09379ee38d743642edfcfb
 ENV JBOSS_HOME /opt/jboss/wildfly
 ENV WILDFLY_HOME /opt/jboss/wildfly
 
+ENV WILDFLY_MEMORY="-Xmx512m"
+
 USER root
 
 # Add the WildFly distribution to /opt, and make wildfly the owner of the extracted tar content
@@ -22,7 +24,8 @@ RUN set -x \
   && addgroup --system jboss && adduser --system --home $JBOSS_HOME --no-create-home --disabled-login --group jboss \
 #  && chown -R jboss:jboss ${JBOSS_HOME} \
 #  && chmod -R g+rw ${JBOSS_HOME} \
-  && ls $JBOSS_HOME
+  && ls $JBOSS_HOME \
+  && sed -i 's@-Xmx512m@$WILDFLY_MEMORY@' $JBOSS_HOME/wildfly/bin/standalone.conf
   
 COPY entrypoint.sh /entrypoint.sh
 
