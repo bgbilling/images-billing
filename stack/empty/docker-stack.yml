@@ -42,7 +42,7 @@ services:
       - db
       - activemq
     environment:
-      BGBILLING_MEMORY: '-Xmx512m'
+      BGBILLING_MEMORY: '-Xmx256m'
       BGBILLING_SYSTEM_PROPERTIES: '-Dcontext.path=/bgbilling'
     volumes:
       - ./server/data.properties:/opt/bgbilling/BGBillingServer/data/data.properties:ro
@@ -59,7 +59,7 @@ services:
       - db
       - activemq
     environment:
-      BGBILLING_MEMORY: '-Xmx512m'
+      BGBILLING_MEMORY: '-Xmx256m'
     volumes:
       - ./server/data.properties:/opt/bgbilling/BGBillingServer/data/data.properties:ro
       - ./server/log4j.xml:/opt/bgbilling/BGBillingServer/data/log4j.xml:ro
@@ -75,6 +75,8 @@ services:
       - internal
     depends_on:
       - server
+    environment:
+      WILDFLY_MEMORY: '-Xmx256m'
     volumes:
       - ./mybgbilling/log/:/opt/jboss/wildfly/standalone/log/
 
