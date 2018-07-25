@@ -6,7 +6,7 @@ docker pull bgbilling/scheduler:7.2
 echo "Downloading ActiveMQ image"
 docker pull bgbilling/activemq
 echo "Downloading MySQL image"
-docker pull mysql/mysql-server:5.7
+docker pull mysql:5.7
 
 echo "Init Docker Swarm"
 docker swarm init
