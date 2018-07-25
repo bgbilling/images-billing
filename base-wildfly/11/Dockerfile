@@ -27,7 +27,7 @@ RUN set -x \
 #  && chown -R jboss:jboss ${JBOSS_HOME} \
 #  && chmod -R g+rw ${JBOSS_HOME} \
   && ls $JBOSS_HOME \
-  && sed -i 's@-Xmx512m@$WILDFLY_MEMORY $WILDFLY_DIRECT_MEMORY@' $JBOSS_HOME/bin/standalone.conf
+  && sed -i 's@-Xmx512m@$WILDFLY_MEMORY $WILDFLY_DIRECT_MEMORY@' $JBOSS_HOME/bin/standalone.conf \
   && sed -i 's@-XX:MaxMetaspaceSize=256m@$WILDFLY_META_MEMORY@' $JBOSS_HOME/bin/standalone.conf
   
 COPY entrypoint.sh /entrypoint.sh
