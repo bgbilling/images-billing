@@ -20,12 +20,12 @@ RUN set -x \
   && tar xf wildfly-$WILDFLY_VERSION.tar.gz \
   && mv $HOME/wildfly-$WILDFLY_VERSION $JBOSS_HOME \
   && rm wildfly-$WILDFLY_VERSION.tar.gz \
-  && mkdir -p $JBOSS_HOME/wildfly/standalone/log \
+  && mkdir -p $JBOSS_HOME/standalone/log \
   && addgroup --system jboss && adduser --system --home $JBOSS_HOME --no-create-home --disabled-login --group jboss \
 #  && chown -R jboss:jboss ${JBOSS_HOME} \
 #  && chmod -R g+rw ${JBOSS_HOME} \
   && ls $JBOSS_HOME \
-  && sed -i 's@-Xmx512m@$WILDFLY_MEMORY@' $JBOSS_HOME/wildfly/bin/standalone.conf
+  && sed -i 's@-Xmx512m@$WILDFLY_MEMORY@' $JBOSS_HOME/bin/standalone.conf
   
 COPY entrypoint.sh /entrypoint.sh
 
