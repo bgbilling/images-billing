@@ -1,3 +1,14 @@
+FROM bgbilling/my:7.2 as my
+
+ARG JBOSS_STANDALONE=/opt/jboss/wildfly/standalone
+
+RUN set -x \
+  && mkdir -p /bgbilling-docker/mybgbilling/ \
+  && cp ${JBOSS_STANDALONE}/configuration/standalone.xml /bgbilling-docker/mybgbilling// \
+  && cp ${JBOSS_STANDALONE}/deployments/MyBGBilling.war/WEB-INF/jboss-web.xml /bgbilling-docker/mybgbilling// \
+  && cp ${JBOSS_STANDALONE}/deployments/MyBGBilling.war/WEB-INF/*.groovy /bgbilling-docker/mybgbilling/
+
+
 FROM bgbilling/server:7.2 as packager
 
 RUN set -x \
@@ -12,21 +23,11 @@ RUN set -x \
 
 COPY mysql /bgbilling-docker/mysql
 COPY activemq /bgbilling-docker/activemq
-
-
-FROM bgbilling/my:7.2 as my
-
-ARG JBOSS_STANDALONE=/opt/jboss/wildfly/standalone
-
-RUN set -x \
-  && mkdir -p /bgbilling-docker/mybgbilling/ \
-  && cp ${JBOSS_STANDALONE}/configuration/standalone.xml /bgbilling-docker/mybgbilling// \
-  && cp ${JBOSS_STANDALONE}/deployments/MyBGBilling.war/WEB-INF/jboss-web.xml /bgbilling-docker/mybgbilling// \
-  && cp ${JBOSS_STANDALONE}/deployments/MyBGBilling.war/WEB-INF/*.groovy /bgbilling-docker/mybgbilling/
+COPY docker-stack.yml init.sh /bgbilling-docker/
+COPY --from=my /bgbilling-docker/mybgbilling/ /bgbilling-docker/mybgbilling/
 
 
 FROM frameloss/empty-container
 
 COPY --from=packager /bgbilling-docker /bgbilling-docker
-COPY --from=my /bgbilling-docker/mybgbilling/ /bgbilling-docker/mybgbilling/
-COPY docker-stack.yml init.sh /bgbilling-docker/
+
