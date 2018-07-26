@@ -14,7 +14,7 @@ function entrypoint() {
     fi
     
     if [ -z "$DEPLOY_WAIT_FOR_DB" ]; then
-      DEPLOY_WAIT_FOR_DB="db:3306 -t 240"
+      DEPLOY_WAIT_FOR_DB="db:3306 -t 360"
     fi
 
     echo "wrapper.sh"
