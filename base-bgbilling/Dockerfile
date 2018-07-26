@@ -27,6 +27,7 @@ RUN set -x \
   \
   && mkdir -p $BGBILLING_INSTALL \
   && mv /tmp/bgb-install/dump.sql $BGBILLING_INSTALL \
+  && wget -q --directory $BGBILLING_INSTALL $BGBILLING_FTP/update_$BGBILLING_VERSION.zip \
   && wget -q --directory $BGBILLING_INSTALL $BGBILLING_FTP/alfabank_$BGBILLING_VERSION_*.zip \
   && wget -q --directory $BGBILLING_INSTALL $BGBILLING_FTP/assist_$BGBILLING_VERSION_*.zip \
   && wget -q --directory $BGBILLING_INSTALL $BGBILLING_FTP/bill_$BGBILLING_VERSION_*.zip \
