@@ -8,9 +8,6 @@ docker pull bgbilling/activemq
 echo "Downloading MySQL image"
 docker pull mysql:5.7
 
-echo "Init Docker Swarm"
-docker swarm init
-
 STACK_DIR=$(dirname "$0")
 if [ -z "$STACK_DIR" ]; then
   STACK_DIR="."
