@@ -11,7 +11,7 @@ function entrypoint() {
     echo "entrypoint.sh"
 
     if [ -z "$DEPLOY_WAIT_FOR_SERVER" ]; then
-      DEPLOY_WAIT_FOR_SERVER="server:8080 -t 360"
+      DEPLOY_WAIT_FOR_SERVER="server:8080 -t 600"
     fi
 
     # ожидаем старта BGBillingServer, т.к. в при deploy может происходить установка модулей

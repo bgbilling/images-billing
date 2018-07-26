@@ -14,7 +14,7 @@ function entrypoint() {
     fi
     
     if [ -z "$DEPLOY_WAIT_FOR_DB" ]; then
-      DEPLOY_WAIT_FOR_DB="db:3306 -t 360"
+      DEPLOY_WAIT_FOR_DB="db:3306 -t 600"
     fi
 
     echo "wrapper.sh"
@@ -25,7 +25,7 @@ function entrypoint() {
     /opt/bgbilling/BGBillingServer/script/wait-for.sh $DEPLOY_WAIT_FOR_DB
 
     echo "Installing modules and plugins"
-    /opt/bgbilling/BGBillingServer/bg_installer.sh autoinstall-libs "${BGBILLING_ASSETS}"
+    /opt/bgbilling/BGBillingServer/bg_installer.sh autoinstall-libs "update,${BGBILLING_ASSETS}"
 
     if [ -z "$DEPLOY_WAIT_FOR_SERVER" ]; then
       DEPLOY_WAIT_FOR_SERVER="server:8080 -t 180"
