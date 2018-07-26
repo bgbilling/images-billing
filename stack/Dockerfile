@@ -21,7 +21,8 @@ RUN set -x \
   && cp /opt/bgbilling/BGBillingServer/data/log4j.xml /bgbilling-docker/server/ \
   && cp /opt/bgbilling/BGBillingServer/.install/dump.sql /bgbilling-docker/mysql/initdb.d/
 
-COPY mysql /bgbilling-docker/mysql
+COPY mysql/my.cnf /bgbilling-docker/mysql
+COPY mysql/initdb.d/user.sql /bgbilling-docker/mysql/initdb.d
 COPY activemq /bgbilling-docker/activemq
 COPY docker-stack.yml init.sh /bgbilling-docker/
 COPY --from=my /bgbilling-docker/mybgbilling/ /bgbilling-docker/mybgbilling/
@@ -30,4 +31,3 @@ COPY --from=my /bgbilling-docker/mybgbilling/ /bgbilling-docker/mybgbilling/
 FROM frameloss/empty-container
 
 COPY --from=packager /bgbilling-docker /bgbilling-docker
-

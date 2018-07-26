@@ -83,4 +83,5 @@ services:
 
 networks:
   internal:
+    attachable: true
 
