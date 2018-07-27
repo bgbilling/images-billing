@@ -33,7 +33,7 @@ services:
       - ./activemq/data:/opt/activemq/current/data
 
   server:
-    image: bgbilling/server:7.2
+    image: bgbilling/server:7.1
     ports:
       - "8080:8080"
     networks:
@@ -52,7 +52,7 @@ services:
       restart_policy: { condition: on-failure, delay: 5s, max_attempts: 5, window: 180s}
 
   scheduler:
-    image: bgbilling/scheduler:7.2
+    image: bgbilling/scheduler:7.1
     networks:
       - internal
     depends_on:
@@ -68,7 +68,7 @@ services:
       restart_policy: { condition: on-failure, delay: 5s, max_attempts: 5, window: 180s}
 
   my:
-    image: bgbilling/my:7.2
+    image: bgbilling/my:7.1
     ports:
       - "8081:8080"
     networks:
