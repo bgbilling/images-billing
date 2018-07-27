@@ -1,4 +1,4 @@
-FROM bgbilling/my:7.2 as my
+FROM bgbilling/my:7.1 as my
 
 ARG JBOSS_STANDALONE=/opt/jboss/wildfly/standalone
 
@@ -9,7 +9,7 @@ RUN set -x \
   && cp ${JBOSS_STANDALONE}/deployments/MyBGBilling.war/WEB-INF/*.groovy /bgbilling-docker/mybgbilling/
 
 
-FROM bgbilling/server:7.2 as packager
+FROM bgbilling/server:7.1 as packager
 
 RUN set -x \
   && mkdir -p /bgbilling-docker/mysql/data \

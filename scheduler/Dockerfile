@@ -1,4 +1,4 @@
-FROM bgbilling/base-bgbilling:7.2
+FROM bgbilling/base-bgbilling:7.1
 
 COPY wrapper.sh /usr/local/bin/
 
