@@ -36,7 +36,9 @@ function entrypoint() {
     /opt/bgbilling/BGBillingServer/script/wait-for.sh $DEPLOY_WAIT_FOR_SERVER
 
     echo "Starting BGScheduler"
-    exec "$@"
+    exec "$@" &
+
+    wait $!
 }
 
 entrypoint "$@"
