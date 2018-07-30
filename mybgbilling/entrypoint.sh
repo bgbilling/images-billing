@@ -1,11 +1,5 @@
 #!/bin/bash
 
-function sigterm_handler() {
-    echo "SIGTERM signal received"
-}
-
-trap "sigterm_handler; exit" TERM
-
 function entrypoint() {
 
     echo "entrypoint.sh"
