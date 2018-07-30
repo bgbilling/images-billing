@@ -24,7 +24,8 @@ RUN set -x \
 COPY mysql/my.cnf /bgbilling-docker/mysql
 COPY mysql/initdb.d/user.sql /bgbilling-docker/mysql/initdb.d
 COPY activemq /bgbilling-docker/activemq
-COPY docker-stack.yml init.sh /bgbilling-docker/
+COPY docker-stack.yml /bgbilling-docker/
+COPY init.sh /bgbilling-docker/
 COPY --from=my /bgbilling-docker/mybgbilling/ /bgbilling-docker/mybgbilling/
 
 
