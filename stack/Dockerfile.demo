@@ -27,6 +27,7 @@ COPY activemq /bgbilling-docker/activemq
 COPY docker-stack.yml init.sh /bgbilling-docker/
 COPY --from=my /bgbilling-docker/mybgbilling/ /bgbilling-docker/mybgbilling/
 
+ADD mysql/data.tar.xz /bgbilling-docker/mysql/data
 
 FROM frameloss/empty-container
 
