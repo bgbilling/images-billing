@@ -2,7 +2,7 @@
 
 function sigterm_handler() {
     echo "SIGTERM signal received"
-    /opt/bgbilling/BGBillingServer/server_stop.sh
+    /opt/bgbilling/BGBillingServer/scheduler_stop.sh
 }
 
 trap "sigterm_handler; exit" TERM
@@ -36,7 +36,7 @@ function entrypoint() {
     /opt/bgbilling/BGBillingServer/script/wait-for.sh $DEPLOY_WAIT_FOR_SERVER
 
     echo "Starting BGScheduler"
-    /opt/bgbilling/BGBillingServer/scheduler.sh -estart
+    exec "$@"
 }
 
-entrypoint
+entrypoint "$@"

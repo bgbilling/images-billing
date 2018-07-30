@@ -28,7 +28,7 @@ function entrypoint() {
     /opt/bgbilling/BGBillingServer/bg_installer.sh autoinstall "update,${BGBILLING_ASSETS}"
 
     echo "Starting BGBillingServer"
-    /opt/bgbilling/BGBillingServer/server.sh start
+    exec "$@"
 }
 
-entrypoint
+entrypoint "$@"

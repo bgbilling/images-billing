@@ -7,4 +7,5 @@ EXPOSE 8080
 HEALTHCHECK --start-period=10m --interval=30s --timeout=10s --retries=20 \
   CMD curl -f http://localhost:8080/bgbilling/executer || curl -f http://localhost:8080/executer || exit 1
 
-CMD ["/usr/local/bin/wrapper.sh"]
+ENTRYPOINT ["/bin/bash", "entrypoint.sh"]
+CMD ["/opt/bgbilling/BGBillingServer/server.sh", "start"]
