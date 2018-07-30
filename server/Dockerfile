@@ -1,6 +1,6 @@
 FROM bgbilling/base-bgbilling:7.2
 
-COPY wrapper.sh /usr/local/bin/
+COPY entrypoint.sh /usr/local/bin/
 
 EXPOSE 8080
 
