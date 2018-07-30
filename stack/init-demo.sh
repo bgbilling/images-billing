@@ -17,7 +17,7 @@ echo "Deploing bgbilling-docker"
 docker stack deploy -c ${STACK_DIR}/docker-stack.yml bgbilling
 
 # show logs
-timeout 300 docker service logs bgbilling_db --follow & timeout 300 docker service logs bgbilling_server --follow || docker ps
+timeout 180 docker service logs bgbilling_db --follow & timeout 180 docker service logs bgbilling_server --follow || docker ps
 
 # remove
 #docker stack rm bgbilling
