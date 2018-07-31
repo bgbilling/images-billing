@@ -24,8 +24,7 @@ COPY mysql/my.cnf /bgbilling-docker/mysql
 COPY mysql/initdb.d/user.sql /bgbilling-docker/mysql/initdb.d
 COPY mysql/initdb.d/demo.sql /bgbilling-docker/mysql/initdb.d
 COPY activemq /bgbilling-docker/activemq
-COPY docker-stack.yml /bgbilling-docker/
-COPY init-demo.sh /bgbilling-docker/init.sh
+COPY docker-stack.yml init.sh start.sh stop.sh destroy.sh /bgbilling-docker/
 COPY --from=my /bgbilling-docker/mybgbilling/ /bgbilling-docker/mybgbilling/
 
 ADD mysql/data.tar.xz /bgbilling-docker/mysql/data
