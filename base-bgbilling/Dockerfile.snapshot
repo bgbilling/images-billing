@@ -4,7 +4,7 @@ ENV BGBILLING_DOCKER=yes
 ENV BGBILLING_HOME=/opt/bgbilling/BGBillingServer
 ENV BGBILLING_VERSION=7.2
 
-ARG BGBILLING_FTP=ftp://bgbilling.ru/pub/bgbilling/$BGBILLING_VERSION/sets/20180719144259
+ARG BGBILLING_FTP=ftp://bgbilling.ru/pub/bgbilling/$BGBILLING_VERSION/sets/20180730205938
 
 ARG BGBILLING_INSTALL=/opt/bgbilling/BGBillingServer/.install
 
