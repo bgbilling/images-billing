@@ -4,7 +4,7 @@
 #!/bin/sh
 
 echo "Downloading bgbilling-stack (compose)..."
-docker pull bgbilling/stack-empty && docker run --name tmp-bgbilling-docker -d bgbilling/stack-empty \
+docker pull bgbilling/stack-demo && docker run --name tmp-bgbilling-docker -d bgbilling/stack-demo \
   && docker cp tmp-bgbilling-docker:/bgbilling-docker . && docker rm -f tmp-bgbilling-docker
 
 echo "Init Docker Swarm"
