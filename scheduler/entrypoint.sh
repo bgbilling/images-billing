@@ -3,6 +3,8 @@
 function sigterm_handler() {
     echo "SIGTERM signal received"
     /opt/bgbilling/BGBillingServer/scheduler_stop.sh
+    
+    sleep 1
 }
 
 trap "sigterm_handler; exit" TERM

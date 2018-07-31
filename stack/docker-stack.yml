@@ -5,6 +5,8 @@ services:
   db:
     image: mysql:5.7
     environment:
+      TZ: 'Europe/Moscow'
+#      TZ: 'Asia/Yekaterinburg'
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
 #    ports:
 #      - "3306:3306"
@@ -20,9 +22,12 @@ services:
       retries: 10
     deploy:
       restart_policy: { condition: on-failure, delay: 5s, max_attempts: 3, window: 180s}
+    stop_grace_period: 1m
 
   activemq:
     image: bgbilling/activemq
+    environment:
+      TZ: 'Europe/Moscow'
 #    ports:
 #      - "61616:61616"
 #      - "8161:8161"
@@ -31,50 +36,49 @@ services:
     volumes:
       - ./activemq/activemq.xml:/opt/activemq/current/conf/activemq.xml:ro
       - ./activemq/data:/opt/activemq/current/data
+    stop_grace_period: 30s
 
   server:
     image: bgbilling/server:7.1
+    environment:
+      TZ: 'Europe/Moscow'
+      BGBILLING_MEMORY: '-Xmx256m'
+      BGBILLING_SYSTEM_PROPERTIES: '-Dcontext.path=/bgbilling'
     ports:
       - "8080:8080"
     networks:
       - internal
-    depends_on:
-      - db
-      - activemq
-    environment:
-      BGBILLING_MEMORY: '-Xmx256m'
-      BGBILLING_SYSTEM_PROPERTIES: '-Dcontext.path=/bgbilling'
     volumes:
       - ./server/data.properties:/opt/bgbilling/BGBillingServer/data/data.properties:ro
       - ./server/log4j.xml:/opt/bgbilling/BGBillingServer/data/log4j.xml:ro
       - ./server/log/:/opt/bgbilling/BGBillingServer/log/
     deploy:
       restart_policy: { condition: on-failure, delay: 5s, max_attempts: 5, window: 180s}
+    stop_grace_period: 30s
 
   scheduler:
     image: bgbilling/scheduler:7.1
+    environment:
+      TZ: 'Europe/Moscow'
+      BGBILLING_MEMORY: '-Xmx256m'
     networks:
       - internal
-    depends_on:
-      - db
-      - activemq
-    environment:
-      BGBILLING_MEMORY: '-Xmx256m'
     volumes:
       - ./server/data.properties:/opt/bgbilling/BGBillingServer/data/data.properties:ro
       - ./server/log4j.xml:/opt/bgbilling/BGBillingServer/data/log4j.xml:ro
       - ./server/log/:/opt/bgbilling/BGBillingServer/log/
     deploy:
       restart_policy: { condition: on-failure, delay: 5s, max_attempts: 5, window: 180s}
+    stop_grace_period: 30s
 
   my:
     image: bgbilling/my:7.1
+    environment:
+      TZ: 'Europe/Moscow'
     ports:
       - "8081:8080"
     networks:
       - internal
-    depends_on:
-      - server
     environment:
       WILDFLY_MEMORY: '-Xmx256m'
     volumes:
