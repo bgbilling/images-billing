@@ -1,6 +1,6 @@
 FROM bgbilling/server:7.2 as packager
 
-ENV MYBGBILLING_VERSION=7.1
+ENV MYBGBILLING_VERSION=7.2
 ARG MYBGBILLING_FTP=ftp://bgbilling.ru/pub/bgbilling/$MYBGBILLING_VERSION
 
 RUN set -x \
@@ -23,7 +23,7 @@ RUN set -x \
 
 FROM bgbilling/base-wildfly:11
 
-ENV MYBGBILLING_VERSION=7.1
+ENV MYBGBILLING_VERSION=7.2
 ENV MYBGBILLING_HOME=$JBOSS_HOME/standalone/deployments/MyBGBilling.war
 
 COPY --from=packager /tmp/bgb-install/MyBGBilling.war $MYBGBILLING_HOME
