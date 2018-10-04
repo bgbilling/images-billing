@@ -12,9 +12,6 @@ BGBILLING_INSTALL=/opt/bgbilling/BGBillingServer/.install
 BGBILLING_ASSETS=card,bill,inet,tv,voice,reports,documents,cashcheck,mps,sberbank,yamoney,assist
 
 
-rm -f ./*.bat && rm -f ./*.ini && rm -f ./*.exe
-chmod +x ./*.sh
-
 set -x \
   && mkdir -p /opt/bgbilling \
   && rm -fr /tmp/bgb-install && mkdir -p /tmp/bgb-install \
