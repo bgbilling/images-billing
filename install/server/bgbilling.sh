@@ -11,6 +11,10 @@ BGBILLING_INSTALL=/opt/bgbilling/BGBillingServer/.install
 
 BGBILLING_ASSETS=card,bill,inet,tv,voice,reports,documents,cashcheck,mps,sberbank,yamoney,assist
 
+
+rm -f ./*.bat && rm -f ./*.ini && rm -f ./*.exe
+chmod +x ./*.sh
+
 set -x \
   && mkdir -p /opt/bgbilling \
   && rm -fr /tmp/bgb-install && mkdir -p /tmp/bgb-install \
@@ -86,4 +90,8 @@ set -x \
   \
   && sed -i 's@JAVA_HOME=@#JAVA_HOME=@' $BGBILLING_HOME/setenv.sh \
   && sed -i 's@BGBILLING_SERVER_DIR=.@BGBILLING_SERVER_DIR='"$BGBILLING_HOME"'@' $BGBILLING_HOME/setenv.sh \
-  && sed -i 's@\/usr\/local\/BGBillingServer@'"$BGBILLING_HOME"'@' $BGBILLING_HOME/script/bgcommonrc
+  && sed -i 's@\/usr\/local\/BGBillingServer@'"$BGBILLING_HOME"'@' $BGBILLING_HOME/script/bgcommonrc \
+  \
+  && curl https://raw.githubusercontent.com/bgbilling/images-billing/7.1/install/server/bgbilling.service -o /lib/systemd/system/bgbilling.service \
+  && curl https://raw.githubusercontent.com/bgbilling/images-billing/7.1/install/server/bgscheduler.service -o /lib/systemd/system/bgscheduler.service
+  
