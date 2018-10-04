@@ -1,4 +1,4 @@
-FROM bgbilling/server:7.1 as packager
+FROM bgbilling/server:7.2 as packager
 
 ENV MYBGBILLING_VERSION=7.2
 ARG MYBGBILLING_FTP=ftp://bgbilling.ru/pub/bgbilling/$MYBGBILLING_VERSION

@@ -2,7 +2,7 @@ FROM bgbilling/base-jdk:8
 
 ENV BGBILLING_DOCKER=yes
 ENV BGBILLING_HOME=/opt/bgbilling/BGBillingServer
-ENV BGBILLING_VERSION=7.1
+ENV BGBILLING_VERSION=7.2
 
 ARG BGBILLING_FTP=ftp://bgbilling.ru/pub/bgbilling/$BGBILLING_VERSION
 
