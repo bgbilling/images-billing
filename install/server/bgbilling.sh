@@ -85,14 +85,11 @@ set -x \
   && wget -q --directory $BGBILLING_INSTALL $BGBILLING_FTP/wm_${BGBILLING_VERSION}_*.zip \
   && wget -q --directory $BGBILLING_INSTALL $BGBILLING_FTP/yamoney_${BGBILLING_VERSION}_*.zip \
   \
-  && sed -i 's@JAVA_HOME=@#JAVA_HOME=@' $BGBILLING_HOME/setenv.sh \
+  && sed -i 's@JAVA_HOME=@JAVA_HOME=/opt/java/jdk8@' $BGBILLING_HOME/setenv.sh \
   && sed -i 's@BGBILLING_SERVER_DIR=.@BGBILLING_SERVER_DIR='"$BGBILLING_HOME"'@' $BGBILLING_HOME/setenv.sh \
   && sed -i 's@\/usr\/local\/BGBillingServer@'"$BGBILLING_HOME"'@' $BGBILLING_HOME/script/bgcommonrc \
   \
   && cp $BGBILLING_HOME/script/bgbilling.service /lib/systemd/system/ \
   && cp $BGBILLING_HOME/script/bgscheduler.service /lib/systemd/system/ \
-  && mysql --default-character-set=utf8 << $BGBILLING_INSTALL/dump.sql \
-  && systemctl enable activemq \
-  && systemctl enable bgbilling \
-  && systemctl enable bgscheduler
+  && mysql --default-character-set=utf8 << $BGBILLING_INSTALL/dump.sql
 
