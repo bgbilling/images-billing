@@ -90,11 +90,11 @@ set -x \
   && sed -i 's@\/usr\/local\/BGBillingServer@'"$BGBILLING_HOME"'@' $BGBILLING_HOME/script/bgcommonrc \
   \
   && curl https://raw.githubusercontent.com/bgbilling/images-billing/7.1/install/server/bgbilling.service -o /lib/systemd/system/bgbilling.service \
-  && curl https://raw.githubusercontent.com/bgbilling/images-billing/7.1/install/server/bgscheduler.service -o /lib/systemd/system/bgscheduler.service
+  && curl https://raw.githubusercontent.com/bgbilling/images-billing/7.1/install/server/bgscheduler.service -o /lib/systemd/system/bgscheduler.service \
   && curl https://raw.githubusercontent.com/bgbilling/images-billing/7.1/install/server/user.sql -o /tmp/bgb-install/user.sql \
   && curl https://raw.githubusercontent.com/bgbilling/images-billing/7.1/install/server/demo.sql -o /tmp/bgb-install/demo.sql \
   && mysql --default-character-set=UTF-8 << $BGBILLING_INSTALL/dump.sql \
   && systemctl enable activemq \
   && systemctl enable bgbilling \
-  && systemctl enable bgscheduler \
+  && systemctl enable bgscheduler
 
