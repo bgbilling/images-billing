@@ -21,8 +21,8 @@ RUN set -x \
   && cp /opt/bgbilling/BGBillingServer/data/log4j.xml /bgbilling-docker/server/
 
 COPY mysql/my.cnf /bgbilling-docker/mysql
-COPY mysql/initdb.d/user.sql /bgbilling-docker/mysql/initdb.d
-COPY mysql/initdb.d/demo.sql /bgbilling-docker/mysql/initdb.d
+ADD https://raw.githubusercontent.com/bgbilling/images-billing/7.1/install/server/user.sql /bgbilling-docker/mysql/initdb.d
+ADD https://raw.githubusercontent.com/bgbilling/images-billing/7.1/install/server/demo.sql /bgbilling-docker/mysql/initdb.d
 COPY activemq /bgbilling-docker/activemq
 COPY docker-stack.yml init.sh start.sh stop.sh destroy.sh /bgbilling-docker/
 COPY --from=my /bgbilling-docker/mybgbilling/ /bgbilling-docker/mybgbilling/

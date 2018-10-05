@@ -22,7 +22,7 @@ RUN set -x \
   && cp /opt/bgbilling/BGBillingServer/.install/dump.sql /bgbilling-docker/mysql/initdb.d/
 
 COPY mysql/my.cnf /bgbilling-docker/mysql
-COPY mysql/initdb.d/user.sql /bgbilling-docker/mysql/initdb.d
+ADD https://raw.githubusercontent.com/bgbilling/images-billing/7.1/install/server/user.sql /bgbilling-docker/mysql/initdb.d
 COPY activemq /bgbilling-docker/activemq
 COPY docker-stack.yml init.sh start.sh stop.sh destroy.sh /bgbilling-docker/
 COPY init.sh /bgbilling-docker/
