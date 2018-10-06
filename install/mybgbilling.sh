@@ -7,7 +7,9 @@ WILDFLY_HOME=/opt/wildfly/current
 WILDFLY_DEPLOYMENTS=$WILDFLY_HOME/standalone/deployments
 
 
-[ -d /opt/wildfly/current ] \
+echo "Checking what directory /opt/wildfly/current exists" \
+  && [ -d /opt/wildfly/current ] \
+  && echo "Checking what directory $WILDFLY_DEPLOYMENTS/MyBGBilling.war does not exist"
   && [ ! -d $WILDFLY_DEPLOYMENTS/MyBGBilling.war ] \
   && rm -fr /tmp/bgb-install && mkdir -p /tmp/bgb-install \
   \
@@ -24,7 +26,7 @@ WILDFLY_DEPLOYMENTS=$WILDFLY_HOME/standalone/deployments
   && sed -i 's@MYBGBILLING_HOME=@#MYBGBILLING_HOME=@' /tmp/bgb-install/MyBGBilling.war/WEB-INF/script/files/setenv.sh \
   \
   && systemctl start wildfly \
-  && /opt/wildfly/current/bin/jboss-cli.sh --connect --commands=/socket-binding-group=standard-sockets/socket-binding=http:write-attribute(name=port,value=8085) \
+  && /opt/wildfly/current/bin/jboss-cli.sh --connect --commands="/socket-binding-group=standard-sockets/socket-binding=http:write-attribute(name=port,value=8085)" \
   && /opt/wildfly/current/bin/jboss-cli.sh --connect --file=/opt/wildfly/current/standalone/deployments/MyBGBilling.war/WEB-INF/defaults/configure-security-domain.cli \
   && systemctl stop wildfly \
   && mv /tmp/bgb-install/MyBGBilling.war $WILDFLY_DEPLOYMENTS/ \
