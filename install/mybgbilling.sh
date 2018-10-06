@@ -26,7 +26,7 @@ echo "Checking what directory /opt/wildfly/current exists" \
   && sed -i 's@MYBGBILLING_HOME=@#MYBGBILLING_HOME=@' /tmp/bgb-install/MyBGBilling.war/WEB-INF/script/files/setenv.sh \
   \
   && systemctl start wildfly \
-  && /opt/bgbilling/BGBillingServer/scripts/wait-for.sh 127.0.0.1 9990 120
+  && /opt/bgbilling/BGBillingServer/script/wait-for.sh 127.0.0.1 9990 120
   && /opt/wildfly/current/bin/jboss-cli.sh --connect --commands="/socket-binding-group=standard-sockets/socket-binding=http:write-attribute(name=port,value=8085)" \
   && /opt/wildfly/current/bin/jboss-cli.sh --connect --file=/opt/wildfly/current/standalone/deployments/MyBGBilling.war/WEB-INF/defaults/configure-security-domain.cli \
   && systemctl stop wildfly \
