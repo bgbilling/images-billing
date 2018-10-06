@@ -9,7 +9,7 @@ WILDFLY_DEPLOYMENTS=$WILDFLY_HOME/standalone/deployments
 
 echo "Checking what directory /opt/wildfly/current exists" \
   && [ -d /opt/wildfly/current ] \
-  && echo "Checking what directory $WILDFLY_DEPLOYMENTS/MyBGBilling.war does not exist"
+  && echo "Checking what directory $WILDFLY_DEPLOYMENTS/MyBGBilling.war does not exist" \
   && [ ! -d $WILDFLY_DEPLOYMENTS/MyBGBilling.war ] \
   && rm -fr /tmp/bgb-install && mkdir -p /tmp/bgb-install \
   \
