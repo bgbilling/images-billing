@@ -1,6 +1,5 @@
 #!/bin/sh -eux
 
-[ ! -f /opt/bgbilling ]
 
 BGBILLING_HOME=/opt/bgbilling/BGBillingServer
 BGBILLING_VERSION=7.1
@@ -13,6 +12,7 @@ BGBILLING_ASSETS=card,bill,inet,tv,voice,reports,documents,cashcheck,mps,sberban
 
 
 set -x \
+  && [ ! -f $BGBILLING_HOME ]
   && mkdir -p /opt/bgbilling \
   && rm -fr /tmp/bgb-install && mkdir -p /tmp/bgb-install \
   \

@@ -17,7 +17,7 @@ RUN set -x \
   \
   && echo "Downloading BGBillingServer..." \
   && wget -nv $BGBILLING_FTP/BGBillingServer_${BGBILLING_VERSION}_*.zip -O /tmp/bgb-install/BGBillingServer-tmp.zip \
-  && unzip /tmp/bgb-install/BGBillingServer-tmp.zip -d /tmp/bgb-install \
+  && unzip -q /tmp/bgb-install/BGBillingServer-tmp.zip -d /tmp/bgb-install \
   && mv /tmp/bgb-install/BGBillingServer $BGBILLING_HOME \
   && rm -f $BGBILLING_HOME/*.bat && rm -f $BGBILLING_HOME/*.ini && rm -f $BGBILLING_HOME/*.exe \
   && chmod +x $BGBILLING_HOME/*.sh \

@@ -3,13 +3,19 @@ FROM bgbilling/server:7.1 as packager
 ENV MYBGBILLING_VERSION=7.1
 ARG MYBGBILLING_FTP=ftp://bgbilling.ru/pub/bgbilling/$MYBGBILLING_VERSION
 
+WILDFLY_HOME=/opt/wildfly/current
+WILDFLY_DEPLOYMENTS=$WILDFLY_HOME/standalone/deployments
+
 RUN set -x \
-  && rm -fr /tmp/bgb-install \
-  && mkdir -p /tmp/bgb-install/MyBGBilling.war \
+  && echo "Checking what directory /opt/wildfly/current exists" \
+  && [ -d /opt/wildfly/current ] \
+  && echo "Checking what directory $WILDFLY_DEPLOYMENTS/MyBGBilling.war does not exist" \
+  && [ ! -d $WILDFLY_DEPLOYMENTS/MyBGBilling.war ] \
+  && rm -fr /tmp/bgb-install && mkdir -p /tmp/bgb-install \
   \
-  && echo "Downloading MyBGBilling.war..." \
-  && wget -nv $MYBGBILLING_FTP/MyBGBilling.war -O /tmp/bgb-install/MyBGBilling.zip \
-  && unzip /tmp/bgb-install/MyBGBilling.zip -d /tmp/bgb-install/MyBGBilling.war \
+  && echo "Downloading MyBGBilling.zip..." \
+  && wget -nv $MYBGBILLING_FTP/MyBGBilling_${MYBGBILLING_VERSION}_*.zip -O /tmp/bgb-install/MyBGBilling.zip \
+  && unzip -q /tmp/bgb-install/MyBGBilling.zip -d /tmp/bgb-install/ \
   \
   && cp /tmp/bgb-install/MyBGBilling.war/WEB-INF/defaults/*.groovy /tmp/bgb-install/MyBGBilling.war/WEB-INF/ \
   && sed -i "s@user = 'customer'@user = 'admin'@" /tmp/bgb-install/MyBGBilling.war/WEB-INF/mybgbilling-conf.groovy \
