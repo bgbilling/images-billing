@@ -18,7 +18,7 @@ if echo "$@" | grep -Eq '\bactivemq\b'; then
 fi
 
 
-if echo "$@" | grep -Eq '\b(wildfly)|(my)\b'; then
+if echo "$@" | grep -Eq '\bwildfly\b'; then
   echo "Installing Wildfly"
   curl -fsSL $URL/images-base/master/install/wildfly/11.0.0/wildfly-debian.sh -o /tmp/wildfly-debian.sh
   sh -eux /tmp/wildfly-debian.sh
