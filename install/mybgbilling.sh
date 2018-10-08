@@ -28,7 +28,7 @@ echo "Checking what directory /opt/wildfly/current exists" \
   && echo "Starting Wildfly" \
   && systemctl start wildfly \
   && echo "Waiting for port 9990" \
-  && /tmp/bgb-install/MyBGBilling.war/WEB-INF/script/files/wait-for.sh 127.0.0.1:9990 -t 120 \
+  && /tmp/bgb-install/MyBGBilling.war/WEB-INF/scripts/files/wait-for.sh 127.0.0.1:9990 -t 120 \
   && echo "Changing HTTP port to 8085" \
   && /opt/wildfly/current/bin/jboss-cli.sh --connect --commands="/socket-binding-group=standard-sockets/socket-binding=http:write-attribute(name=port,value=8085)" \
   && echo "Executing configure-security-domain.cli" \
