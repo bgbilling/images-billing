@@ -41,7 +41,8 @@ fi
 
 if echo "$@" | grep -Eq '\bnginx\b'; then
   echo "Installing Nginx"
-  apt-get -q -y install nginx
+  
+  if [ -n "`which apt-get`" ]; then apt-get -q -y install nginx ; else yum -y install nginx ; fi ;
   curl -fsSL $URL/images-billing/${VERSION}/install/nginx/bgbilling.local -o /etc/nginx/sites-available/bgbilling.local
   ln /etc/nginx/sites-available/bgbilling.local /etc/nginx/sites-enabled/bgbilling.local
   rm /etc/nginx/sites-enabled/default
