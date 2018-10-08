@@ -15,7 +15,7 @@ echo "Checking what directory /opt/wildfly/current exists" \
   \
   && echo "Downloading MyBGBilling.zip..." \
   && wget -nv $MYBGBILLING_FTP/MyBGBilling_${MYBGBILLING_VERSION}_*.zip -O /tmp/bgb-install/MyBGBilling.zip \
-  && unzip /tmp/bgb-install/MyBGBilling.zip -d /tmp/bgb-install/ \
+  && unzip -q /tmp/bgb-install/MyBGBilling.zip -d /tmp/bgb-install/ \
   \
   && cp /tmp/bgb-install/MyBGBilling.war/WEB-INF/defaults/*.groovy /tmp/bgb-install/MyBGBilling.war/WEB-INF/ \
   && sed -i "s@user = 'customer'@user = 'admin'@" /tmp/bgb-install/MyBGBilling.war/WEB-INF/mybgbilling-conf.groovy \
@@ -25,11 +25,17 @@ echo "Checking what directory /opt/wildfly/current exists" \
   && sed -i 's@JAVA_HOME=@#JAVA_HOME=@' /tmp/bgb-install/MyBGBilling.war/WEB-INF/script/files/setenv.sh \
   && sed -i 's@MYBGBILLING_HOME=@#MYBGBILLING_HOME=@' /tmp/bgb-install/MyBGBilling.war/WEB-INF/script/files/setenv.sh \
   \
+  && echo "Starting Wildfly" \
   && systemctl start wildfly \
-  && /opt/bgbilling/BGBillingServer/script/wait-for.sh 127.0.0.1:9990 -t 120
+  && echo "Waiting for port 9990" \
+  && /tmp/bgb-install/MyBGBilling.war/WEB-INF/script/files/wait-for.sh 127.0.0.1:9990 -t 120 \
+  && echo "Changing HTTP port to 8085" \
   && /opt/wildfly/current/bin/jboss-cli.sh --connect --commands="/socket-binding-group=standard-sockets/socket-binding=http:write-attribute(name=port,value=8085)" \
+  && echo "Executing configure-security-domain.cli" \
   && /opt/wildfly/current/bin/jboss-cli.sh --connect --file=/opt/wildfly/current/standalone/deployments/MyBGBilling.war/WEB-INF/defaults/configure-security-domain.cli \
+  && echo "Stopping Wildfly" \
   && systemctl stop wildfly \
+  && echo "Copying MyBGBilling.war" \
   && mv /tmp/bgb-install/MyBGBilling.war $WILDFLY_DEPLOYMENTS/ \
   && touch $WILDFLY_DEPLOYMENTS/MyBGBilling.war.dodeployment
 
