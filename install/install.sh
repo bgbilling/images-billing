@@ -19,7 +19,7 @@ if echo "$@" | grep -Eq '\bmariadb\b'; then
   
   systemctl stop mariadb
   
-  if [ -f /etc/my.cnf ] mv /etc/my.cnf /etc/my.cnf.bak
+  if [ -f /etc/my.cnf ]; then mv /etc/my.cnf /etc/my.cnf.bak; fi
   curl -fsSL https://raw.githubusercontent.com/bgbilling/images-base/master/install/mysql/5.7/my.cnf -o /etc/my.cnf
   
   mkdir -p /etc/systemd/system/mariadb.service.d/
