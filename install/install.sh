@@ -17,8 +17,9 @@ if echo "$@" | grep -Eq '\bmariadb\b'; then
     yum update && yum -y install mariadb-server
   fi
   
-  systemctl stop mysql
+  systemctl stop mariadb
   
+  if [ -f /etc/my.cnf ] mv /etc/my.cnf /etc/my.cnf.bak
   curl -fsSL https://raw.githubusercontent.com/bgbilling/images-base/master/install/mysql/5.7/my.cnf -o /etc/my.cnf
   
   mkdir -p /etc/systemd/system/mariadb.service.d/
