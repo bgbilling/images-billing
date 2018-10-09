@@ -32,7 +32,9 @@ set -x \
   && echo "Changing HTTP port to 8085" \
   && /opt/wildfly/current/bin/jboss-cli.sh --connect --commands="/socket-binding-group=standard-sockets/socket-binding=http:write-attribute(name=port,value=8085)" \
   && echo "Executing configure-security-domain.cli" \
-  && /opt/wildfly/current/bin/jboss-cli.sh --connect --file=/tmp/bgb-install/MyBGBilling.war/WEB-INF/defaults/configure-security-domain.cli \
+  && cp /tmp/bgb-install/MyBGBilling.war/WEB-INF/defaults/configure-security-domain.cli /tmp/bgb-install/ \
+  && sed -i "s@:reload@@" /tmp/bgb-install/configure-security-domain.cli \
+  && /opt/wildfly/current/bin/jboss-cli.sh --connect --file=/tmp/bgb-install/configure-security-domain.cli \
   && echo "Stopping Wildfly" \
   && systemctl stop wildfly \
   && echo "Copying MyBGBilling.war" \
