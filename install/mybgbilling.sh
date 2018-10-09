@@ -31,6 +31,7 @@ set -x \
   && /tmp/bgb-install/MyBGBilling.war/WEB-INF/script/files/wait-for.sh 127.0.0.1:9990 -t 120 \
   && echo "Changing HTTP port to 8085" \
   && /opt/wildfly/current/bin/jboss-cli.sh --connect --commands="/socket-binding-group=standard-sockets/socket-binding=http:write-attribute(name=port,value=8085)" \
+  && /opt/wildfly/current/bin/jboss-cli.sh --connect --commands="/socket-binding-group=standard-sockets/socket-binding=http:write-attribute(name=port,value=8448)" \
   && echo "Executing configure-security-domain.cli" \
   && cp /tmp/bgb-install/MyBGBilling.war/WEB-INF/defaults/configure-security-domain.cli /tmp/bgb-install/ \
   && sed -i "s@:reload@@" /tmp/bgb-install/configure-security-domain.cli \

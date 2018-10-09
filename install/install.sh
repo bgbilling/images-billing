@@ -42,8 +42,20 @@ fi
 if echo "$@" | grep -Eq '\bnginx\b'; then
   echo "Installing Nginx"
   
+  [ ! -f /etc/nginx/nginx.conf ]
+  
   if [ -n "`which apt-get`" ]; then apt-get -q -y install nginx ; else yum -y install epel-release; yum -y install nginx ; fi ;
-  curl -fsSL $URL/images-billing/${VERSION}/install/nginx/bgbilling.local -o /etc/nginx/sites-available/bgbilling.local
-  ln /etc/nginx/sites-available/bgbilling.local /etc/nginx/sites-enabled/bgbilling.local
-  rm /etc/nginx/sites-enabled/default
+  
+  if [ -d "/etc/nginx/sites-enabled/" ]; then 
+  
+    curl -fsSL $URL/images-billing/${VERSION}/install/nginx/bgbilling.local -o /etc/nginx/sites-available/bgbilling.local
+    ln /etc/nginx/sites-available/bgbilling.local /etc/nginx/sites-enabled/bgbilling.local
+    rm -f /etc/nginx/sites-enabled/default
+    
+  else
+  
+    curl -fsSL $URL/images-billing/${VERSION}/install/nginx/bgbilling.local -o /etc/nginx/conf.d/bgbilling.conf
+    sed -i "s@80 default_server;@80;@" /etc/nginx/nginx.conf
+    
+  fi
 fi
