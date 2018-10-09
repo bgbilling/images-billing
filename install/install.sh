@@ -14,7 +14,7 @@ if echo "$@" | grep -Eq '\bmariadb\b'; then
   if cat /etc/os-release | grep -Eq '\bDebian\b'; then
     apt-get update && apt-get -q -y install mysql-server mysql-client
   else
-    yum update && yum -y install mariadb-server
+    yum update && yum -y install mariadb-server mariadb-client
   fi
   
   systemctl stop mariadb
