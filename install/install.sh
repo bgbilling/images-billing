@@ -42,9 +42,9 @@ if echo "$@" | grep -Eq '\bjdk8\b'; then
 
   if cat /etc/os-release | grep -Eq '\bDebian\b'; then
 
-    mkdir -p /tmp/bgb-install-base
-    curl -fsSL $URL/images-base/master/install/jdk-8-debian.sh -o /tmp/bgb-install-base/jdk-8-debian.sh
-    sh -eux /tmp/bgb-install-base/jdk-8-debian.sh
+    mkdir -p /tmp/bgb-install-script
+    curl -fsSL $URL/images-base/master/install/jdk-8-debian.sh -o /tmp/bgb-install-script/jdk-8-debian.sh
+    sh -eux /tmp/bgb-install-script/jdk-8-debian.sh
   
   else
   
@@ -64,33 +64,33 @@ fi
 
 if echo "$@" | grep -Eq '\bactivemq\b'; then
   echo "Installing ActiveMQ"
-  mkdir -p /tmp/bgb-install-base
-  curl -fsSL $URL/images-base/master/install/activemq/5.15.5/activemq.sh -o /tmp/bgb-install-base/activemq.sh
-  sh -eux /tmp/bgb-install-base/activemq.sh
+  mkdir -p /tmp/bgb-install-script
+  curl -fsSL $URL/images-base/master/install/activemq/5.15.5/activemq.sh -o /tmp/bgb-install-script/activemq.sh
+  sh -eux /tmp/bgb-install-script/activemq.sh
 fi
 
 
 if echo "$@" | grep -Eq '\bwildfly\b'; then
   echo "Installing Wildfly"
-  mkdir -p /tmp/bgb-install-base
-  curl -fsSL $URL/images-base/master/install/wildfly/11.0.0/wildfly.sh -o /tmp/bgb-install-base/wildfly.sh
-  sh -eux /tmp/bgb-install-base/wildfly.sh
+  mkdir -p /tmp/bgb-install-script
+  curl -fsSL $URL/images-base/master/install/wildfly/11.0.0/wildfly.sh -o /tmp/bgb-install-script/wildfly.sh
+  sh -eux /tmp/bgb-install-script/wildfly.sh
 fi
 
 
 if echo "$@" | grep -Eq '\bbgbilling\b'; then
   echo "Installing BGBillingServer"
-  mkdir -p /tmp/bgb-install-base
-  curl -fsSL $URL/images-billing/${VERSION}/install/server/bgbilling.sh -o /tmp/bgb-install-base/bgbilling.sh
-  sh -eux /tmp/bgb-install-base/bgbilling.sh
+  mkdir -p /tmp/bgb-install-script
+  curl -fsSL $URL/images-billing/${VERSION}/install/server/bgbilling.sh -o /tmp/bgb-install-script/bgbilling.sh
+  sh -eux /tmp/bgb-install-script/bgbilling.sh
 fi
 
 
 if echo "$@" | grep -Eq '\bmy\b'; then
   echo "Installing MyBGBilling"
-  mkdir -p /tmp/bgb-install-base
-  curl -fsSL $URL/images-billing/${VERSION}/install/mybgbilling.sh -o /tmp/bgb-install-base/mybgbilling.sh
-  sh -eux /tmp/bgb-install-base/mybgbilling.sh
+  mkdir -p /tmp/bgb-install-script
+  curl -fsSL $URL/images-billing/${VERSION}/install/mybgbilling.sh -o /tmp/bgb-install-script/mybgbilling.sh
+  sh -eux /tmp/bgb-install-script/mybgbilling.sh
 fi
 
 
