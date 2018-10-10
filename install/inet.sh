@@ -25,9 +25,9 @@ set -x \
   && rm -f $TMP/BGInetAccess/*.bat && rm -f $TMP/BGInetAccess/*.ini && rm -f $TMP/BGInetAccess/*.exe \
   && rm -f $TMP/BGInetAccounting/*.bat && rm -f $TMP/BGInetAccounting/*.ini && rm -f $TMP/BGInetAccounting/*.exe \
   \
-  && sed -i 's@#JAVA_HOME=@JAVA_HOME=/opt/java/jdk8@' $TMP/BGInetAccess/setenv.sh \
+  && sed -i 's@#JAVA_HOME=@JAVA_HOME=@' $TMP/BGInetAccess/setenv.sh \
   && sed -i 's@JAVA_HOME=@JAVA_HOME=/opt/java/jdk8@' $TMP/BGInetAccess/setenv.sh \
-  && sed -i 's@#JAVA_HOME=@JAVA_HOME=/opt/java/jdk8@' $TMP/BGInetAccounting/setenv.sh \
+  && sed -i 's@#JAVA_HOME=@JAVA_HOME=@' $TMP/BGInetAccounting/setenv.sh \
   && sed -i 's@JAVA_HOME=@JAVA_HOME=/opt/java/jdk8@' $TMP/BGInetAccounting/setenv.sh \
   \
   && chmod +x $TMP/BGInetAccess/*.sh \
