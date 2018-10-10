@@ -92,5 +92,5 @@ set -x \
   \
   && cp $BGBILLING_HOME/script/bgbilling.service /lib/systemd/system/ \
   && cp $BGBILLING_HOME/script/bgscheduler.service /lib/systemd/system/ \
-  && mysql --default-character-set=utf8 < $BGBILLING_INSTALL/dump.sql
+  && mysql < $BGBILLING_INSTALL/dump.sql
 
