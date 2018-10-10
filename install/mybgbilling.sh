@@ -22,8 +22,9 @@ set -x \
   && sed -i "s@password = '123456'@password = 'admin'@" /tmp/bgb-install/MyBGBilling.war/WEB-INF/mybgbilling-conf.groovy \
   \
   && chmod +x /tmp/bgb-install/MyBGBilling.war/WEB-INF/script/files/*.sh \
+  && cp /tmp/bgb-install/MyBGBilling.war/WEB-INF/script/files/*.* $WILDFLY_HOME/bin
   && sed -i 's@JAVA_HOME=@#JAVA_HOME=@' /tmp/bgb-install/MyBGBilling.war/WEB-INF/script/files/setenv.sh \
-  && sed -i 's@MYBGBILLING_HOME=@#MYBGBILLING_HOME=@' /tmp/bgb-install/MyBGBilling.war/WEB-INF/script/files/setenv.sh \
+  && sed -i 's@MYBGBILLING_HOME=@MYBGBILLING_HOME=/opt/wildfly/current/standalone/deployments/MyBGBilling.war@' /tmp/bgb-install/MyBGBilling.war/WEB-INF/script/files/setenv.sh \
   \
   && echo "Starting Wildfly" \
   && systemctl start wildfly \
@@ -40,5 +41,7 @@ set -x \
   && systemctl stop wildfly \
   && echo "Copying MyBGBilling.war" \
   && mv /tmp/bgb-install/MyBGBilling.war $WILDFLY_DEPLOYMENTS/ \
+  && $WILDFLY_HOME/bin/wait-for.sh 127.0.0.1:8080 -t 30 \
+  && $WILDFLY_HOME/bin/mybgbilling-sync-libs.sh \
   && touch $WILDFLY_DEPLOYMENTS/MyBGBilling.war.dodeployment
 

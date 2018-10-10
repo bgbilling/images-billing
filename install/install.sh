@@ -90,6 +90,7 @@ if echo "$@" | grep -Eq '\bmy\b'; then
   echo "Installing MyBGBilling"
   mkdir -p /tmp/bgb-install-script
   curl -fsSL $URL/images-billing/${VERSION}/install/mybgbilling.sh -o /tmp/bgb-install-script/mybgbilling.sh
+  systemctl start bgbilling
   sh -eux /tmp/bgb-install-script/mybgbilling.sh
 fi
 
