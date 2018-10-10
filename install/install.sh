@@ -81,7 +81,7 @@ fi
 if echo "$@" | grep -Eq '\bbgbilling\b'; then
   echo "Installing BGBillingServer"
   mkdir -p /tmp/bgb-install-script
-  curl -fsSL $URL/images-billing/${VERSION}/install/server/bgbilling.sh -o /tmp/bgb-install-script/bgbilling.sh
+  curl -fsSL $URL/images-billing/${VERSION}/install/bgbilling.sh -o /tmp/bgb-install-script/bgbilling.sh
   sh -eux /tmp/bgb-install-script/bgbilling.sh
 fi
 
@@ -113,4 +113,12 @@ if echo "$@" | grep -Eq '\bnginx\b'; then
     sed -i "s@80 default_server;@80;@" /etc/nginx/nginx.conf
     
   fi
+fi
+
+
+if echo "$@" | grep -Eq '\binet\b'; then
+  echo "Installing BGInetAccess/BGInetAccounting"
+  mkdir -p /tmp/bgb-install-script
+  curl -fsSL $URL/images-billing/${VERSION}/install/inet.sh -o /tmp/bgb-install-script/inet.sh
+  sh -eux /tmp/bgb-install-script/inet.sh
 fi
