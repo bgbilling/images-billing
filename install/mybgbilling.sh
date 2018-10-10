@@ -22,9 +22,9 @@ set -x \
   && sed -i "s@password = '123456'@password = 'admin'@" /tmp/bgb-install/MyBGBilling.war/WEB-INF/mybgbilling-conf.groovy \
   \
   && chmod +x /tmp/bgb-install/MyBGBilling.war/WEB-INF/script/files/*.sh \
-  && cp /tmp/bgb-install/MyBGBilling.war/WEB-INF/script/files/*.* $WILDFLY_HOME/bin \
   && sed -i 's@JAVA_HOME=@#JAVA_HOME=@' /tmp/bgb-install/MyBGBilling.war/WEB-INF/script/files/setenv.sh \
   && sed -i 's@MYBGBILLING_HOME=@MYBGBILLING_HOME=/opt/wildfly/current/standalone/deployments/MyBGBilling.war@' /tmp/bgb-install/MyBGBilling.war/WEB-INF/script/files/setenv.sh \
+  && cp /tmp/bgb-install/MyBGBilling.war/WEB-INF/script/files/*.* $WILDFLY_HOME/bin \
   \
   && echo "Starting Wildfly" \
   && systemctl start wildfly \
