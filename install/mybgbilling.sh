@@ -41,7 +41,5 @@ set -x \
   && systemctl stop wildfly \
   && echo "Copying MyBGBilling.war" \
   && mv /tmp/bgb-install/MyBGBilling.war $WILDFLY_DEPLOYMENTS/ \
-  && $WILDFLY_HOME/bin/wait-for.sh 127.0.0.1:8080 -t 30 \
-  && $WILDFLY_HOME/bin/mybgbilling-sync-libs.sh \
   && touch $WILDFLY_DEPLOYMENTS/MyBGBilling.war.dodeployment
 
