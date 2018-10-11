@@ -1,5 +1,11 @@
 #!/bin/sh -eux
 
+echo "Checking prerequisite utilities (nc,wget,unzip,sed)"
+[ -n "`which nc`" ]
+[ -n "`which wget`" ]
+[ -n "`which unzip`" ]
+[ -n "`which sed`" ]
+
 
 BGBILLING_HOME=/opt/bgbilling/BGBillingServer
 BGBILLING_VERSION=7.1

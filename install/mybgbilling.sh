@@ -1,5 +1,13 @@
 #!/bin/sh -eux
 
+echo "Checking prerequisite utilities (nc,wget,unzip,sed,systemctl)"
+[ -n "`which nc`" ]
+[ -n "`which wget`" ]
+[ -n "`which unzip`" ]
+[ -n "`which sed`" ]
+[ -n "`which systemctl`" ]
+
+
 MYBGBILLING_VERSION=7.1
 MYBGBILLING_FTP=ftp://bgbilling.ru/pub/bgbilling/$MYBGBILLING_VERSION
 

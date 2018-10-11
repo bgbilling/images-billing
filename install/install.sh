@@ -1,8 +1,15 @@
 #!/bin/sh -eux
 
+echo "Checking prerequisite utilities (nc,wget,curl,unzip,sed)"
+[ -n "`which nc`" ]
+[ -n "`which wget`" ]
+[ -n "`which curl`" ]
+[ -n "`which unzip`" ]
+[ -n "`which sed`" ]
+
+
 URL=https://raw.githubusercontent.com/bgbilling
 VERSION=7.1
-
 
 
 if echo "$@" | grep -Eq '\bmariadb\b'; then
