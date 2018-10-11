@@ -1,6 +1,11 @@
 #!/bin/sh -eux
 
-[ ! -f /opt/bgbilling ]
+echo "Checking prerequisite utilities (nc,wget,unzip,sed)"
+[ -n "`which nc`" ]
+[ -n "`which wget`" ]
+[ -n "`which unzip`" ]
+[ -n "`which sed`" ]
+
 
 BGBILLING_HOME=/opt/bgbilling/BGBillingServer
 BGBILLING_VERSION=7.2
@@ -13,12 +18,13 @@ BGBILLING_ASSETS=card,bill,inet,tv,voice,reports,documents,cashcheck,mps,sberban
 
 
 set -x \
+  && [ ! -d $BGBILLING_HOME ] \
   && mkdir -p /opt/bgbilling \
   && rm -fr /tmp/bgb-install && mkdir -p /tmp/bgb-install \
   \
   && echo "Downloading BGBillingServer..." \
   && wget -nv $BGBILLING_FTP/BGBillingServer_${BGBILLING_VERSION}_*.zip -O /tmp/bgb-install/BGBillingServer-tmp.zip \
-  && unzip /tmp/bgb-install/BGBillingServer-tmp.zip -d /tmp/bgb-install \
+  && unzip -q /tmp/bgb-install/BGBillingServer-tmp.zip -d /tmp/bgb-install \
   && mv /tmp/bgb-install/BGBillingServer $BGBILLING_HOME \
   && rm -f $BGBILLING_HOME/*.bat && rm -f $BGBILLING_HOME/*.ini && rm -f $BGBILLING_HOME/*.exe \
   && chmod +x $BGBILLING_HOME/*.sh \
@@ -85,10 +91,12 @@ set -x \
   && wget -q --directory $BGBILLING_INSTALL $BGBILLING_FTP/wm_${BGBILLING_VERSION}_*.zip \
   && wget -q --directory $BGBILLING_INSTALL $BGBILLING_FTP/yamoney_${BGBILLING_VERSION}_*.zip \
   \
-  && sed -i 's@JAVA_HOME=@#JAVA_HOME=@' $BGBILLING_HOME/setenv.sh \
+  && sed -i 's@#JAVA_HOME=@JAVA_HOME=@' $BGBILLING_HOME/setenv.sh \
+  && sed -i 's@JAVA_HOME=@JAVA_HOME=/opt/java/jdk8@' $BGBILLING_HOME/setenv.sh \
   && sed -i 's@BGBILLING_SERVER_DIR=.@BGBILLING_SERVER_DIR='"$BGBILLING_HOME"'@' $BGBILLING_HOME/setenv.sh \
   && sed -i 's@\/usr\/local\/BGBillingServer@'"$BGBILLING_HOME"'@' $BGBILLING_HOME/script/bgcommonrc \
   \
-  && curl https://raw.githubusercontent.com/bgbilling/images-billing/7.2/install/server/bgbilling.service -o /lib/systemd/system/bgbilling.service \
-  && curl https://raw.githubusercontent.com/bgbilling/images-billing/7.2/install/server/bgscheduler.service -o /lib/systemd/system/bgscheduler.service
-  
+  && cp $BGBILLING_HOME/script/bgbilling.service /lib/systemd/system/ \
+  && cp $BGBILLING_HOME/script/bgscheduler.service /lib/systemd/system/ \
+  && mysql < $BGBILLING_INSTALL/dump.sql
+
