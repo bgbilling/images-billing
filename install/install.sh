@@ -108,7 +108,7 @@ if echo "$@" | grep -Eq '\bnginx\b'; then
   
   [ ! -f /etc/nginx/nginx.conf ]
   
-  if [ -n "`which apt-get`" ]; then apt-get -q -y install nginx ; else yum -y install epel-release; yum -y install nginx ; fi ;
+  if [ -n "`which apt-get`" ]; then apt-get update && apt-get -q -y install nginx ; else yum -y install epel-release; yum -y install nginx ; fi ;
   
   if [ -d "/etc/nginx/sites-enabled/" ]; then 
   
