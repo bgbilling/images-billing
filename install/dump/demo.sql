@@ -1,7 +1,7 @@
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -9,21 +9,22 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-CREATE DATABASE bgbilling DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CREATE DATABASE bgbilling DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE bgbilling;
+SET collation_connection = utf8mb4_unicode_ci;
 
 --
 -- Table structure for table `address_area`
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `address_area` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `title` varchar(150) NOT NULL DEFAULT '0',
   `cityid` int(11) NOT NULL DEFAULT '-1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,14 +42,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `address_city` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `country_id` int(11) NOT NULL DEFAULT '1',
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `title` varchar(150) NOT NULL DEFAULT '0',
   `pos` int(11) DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,14 +67,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `address_config` (
-  `table_id` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `table_id` varchar(50) NOT NULL,
   `record_id` int(11) NOT NULL,
-  `key` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `value` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `key` varchar(50) NOT NULL,
+  `value` mediumtext NOT NULL,
   PRIMARY KEY (`table_id`,`record_id`,`key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -90,12 +91,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `address_country` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -113,23 +114,23 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `address_house` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `streetid` int(11) NOT NULL DEFAULT '0',
   `house` int(11) NOT NULL DEFAULT '0',
-  `frac` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `frac` varchar(30) DEFAULT NULL,
   `amount` smallint(5) NOT NULL DEFAULT '0',
-  `comment` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `comment` varchar(100) DEFAULT NULL,
   `areaid` int(10) NOT NULL DEFAULT '0',
   `quarterid` int(10) NOT NULL DEFAULT '0',
-  `box_index` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `box_index` varchar(10) DEFAULT NULL,
   `dt` date DEFAULT NULL,
-  `pod_diapazon` text COLLATE utf8_unicode_ci NOT NULL,
-  `pod` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `pod_diapazon` text NOT NULL,
+  `pod` varchar(200) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   UNIQUE KEY `HouseU` (`streetid`,`house`,`frac`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147,14 +148,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `address_quarter` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `title` varchar(150) NOT NULL DEFAULT '0',
   `gid` int(11) DEFAULT NULL,
   `cityid` int(11) NOT NULL DEFAULT '-1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -171,14 +172,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `address_street` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
-  `p_index` varchar(6) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(150) NOT NULL DEFAULT '0',
+  `p_index` varchar(6) NOT NULL DEFAULT '',
   `cityid` int(11) NOT NULL DEFAULT '-1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -196,17 +197,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bgs_group` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(250) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `comment` varchar(250) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(250) NOT NULL DEFAULT '',
+  `comment` varchar(250) NOT NULL DEFAULT '',
   `cgr` bigint(20) NOT NULL DEFAULT '0',
-  `pids` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `opids` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `pids` varchar(120) DEFAULT NULL,
+  `opids` varchar(255) DEFAULT NULL,
   `cgr_mode` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -223,13 +224,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bgs_group_action` (
   `gid` int(11) NOT NULL DEFAULT '0',
-  `mid` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `mid` varchar(10) NOT NULL,
   `aid` int(11) NOT NULL DEFAULT '0',
   KEY `gid` (`gid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -246,13 +247,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bgs_group_menu` (
   `gid` int(11) NOT NULL,
-  `menu_id` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `menu_id` varchar(50) NOT NULL,
   `hidden` tinyint(2) NOT NULL,
   PRIMARY KEY (`gid`,`menu_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -269,12 +270,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bgs_module_action` (
-  `module` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `data` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `module` varchar(100) NOT NULL DEFAULT '',
+  `data` mediumtext NOT NULL,
   PRIMARY KEY (`module`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -291,13 +292,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bgs_user_action` (
   `uid` int(11) NOT NULL DEFAULT '0',
-  `mid` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `mid` varchar(10) NOT NULL,
   `aid` int(11) NOT NULL DEFAULT '0',
   KEY `uid` (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -314,13 +315,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bgs_user_group` (
   `uid` int(11) NOT NULL DEFAULT '0',
   `gid` int(11) NOT NULL DEFAULT '0',
   KEY `uid` (`uid`),
   KEY `gid` (`gid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -337,13 +338,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `gr` bigint(20) NOT NULL DEFAULT '0',
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(150) NOT NULL DEFAULT '',
   `title_pattern_id` int(11) NOT NULL DEFAULT '0',
-  `pswd` varchar(32) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `pswd` varchar(32) NOT NULL DEFAULT '',
   `date1` date DEFAULT NULL,
   `date2` date DEFAULT NULL,
   `mode` tinyint(4) NOT NULL DEFAULT '0',
@@ -351,10 +352,10 @@ CREATE TABLE `contract` (
   `pgid` int(11) NOT NULL DEFAULT '0',
   `pfid` int(11) NOT NULL DEFAULT '0',
   `fc` tinyint(1) NOT NULL DEFAULT '0',
-  `comment` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comment` varchar(100) NOT NULL DEFAULT '',
   `del` tinyint(1) NOT NULL DEFAULT '0',
   `scid` int(11) NOT NULL DEFAULT '0',
-  `sub_list` text COLLATE utf8_unicode_ci NOT NULL,
+  `sub_list` text NOT NULL,
   `sub_mode` tinyint(4) NOT NULL DEFAULT '0',
   `status` tinyint(4) NOT NULL DEFAULT '0',
   `status_date` date DEFAULT NULL,
@@ -366,7 +367,7 @@ CREATE TABLE `contract` (
   KEY `del` (`del`),
   KEY `scid` (`scid`),
   KEY `crm_customer_id` (`crm_customer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -384,7 +385,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_account` (
   `yy` smallint(5) unsigned NOT NULL DEFAULT '0',
   `mm` tinyint(3) unsigned NOT NULL DEFAULT '0',
@@ -393,7 +394,7 @@ CREATE TABLE `contract_account` (
   `summa` decimal(15,5) DEFAULT NULL,
   PRIMARY KEY (`yy`,`mm`,`cid`,`sid`),
   KEY `cid` (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -411,7 +412,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_balance` (
   `yy` smallint(5) unsigned NOT NULL DEFAULT '0',
   `mm` tinyint(3) unsigned NOT NULL DEFAULT '0',
@@ -422,7 +423,7 @@ CREATE TABLE `contract_balance` (
   `summa4` decimal(10,2) NOT NULL,
   PRIMARY KEY (`cid`,`yy`,`mm`),
   KEY `cid` (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -440,7 +441,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_charge` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `dt` date NOT NULL DEFAULT '0000-00-00',
@@ -448,7 +449,7 @@ CREATE TABLE `contract_charge` (
   `pt` int(11) NOT NULL DEFAULT '0',
   `uid` int(11) NOT NULL DEFAULT '0',
   `summa` decimal(10,2) NOT NULL,
-  `comment` char(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comment` char(200) NOT NULL DEFAULT '',
   `lm` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `payback` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
@@ -457,7 +458,7 @@ CREATE TABLE `contract_charge` (
   KEY `uid` (`uid`),
   KEY `cid_dt` (`cid`,`dt`),
   KEY `cid` (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -474,16 +475,16 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_charge_types` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` char(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` char(50) NOT NULL DEFAULT '',
   `flag` tinyint(2) NOT NULL DEFAULT '0',
   `type` tinyint(2) NOT NULL DEFAULT '0',
   `up` int(11) unsigned NOT NULL DEFAULT '0',
   `payback` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -501,18 +502,18 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_comment` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `cid` int(10) unsigned NOT NULL DEFAULT '0',
   `uid` int(10) unsigned NOT NULL DEFAULT '0',
-  `subject` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `comment` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `subject` varchar(255) NOT NULL DEFAULT '',
+  `comment` mediumtext NOT NULL,
   `dt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `visibled` bit(1) NOT NULL DEFAULT b'0',
   PRIMARY KEY (`id`),
   KEY `cid` (`cid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -530,13 +531,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_comment_patterns` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
-  `pat` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(25) NOT NULL,
+  `pat` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -554,18 +555,18 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_delete_money` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `name` varchar(255) NOT NULL DEFAULT '',
   `money` int(10) unsigned NOT NULL DEFAULT '0',
   `time` int(10) unsigned NOT NULL DEFAULT '0',
   `gr` bigint(20) NOT NULL DEFAULT '0',
   `date1` date DEFAULT NULL,
   `date2` date DEFAULT NULL,
-  `comment` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comment` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -582,17 +583,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_delete_time` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `name` varchar(255) NOT NULL DEFAULT '',
   `time` int(10) unsigned NOT NULL DEFAULT '0',
   `gr` bigint(20) NOT NULL DEFAULT '0',
   `date1` date DEFAULT NULL,
   `date2` date DEFAULT NULL,
-  `comment` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comment` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -609,17 +610,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_error` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `dt` date NOT NULL DEFAULT '0000-00-00',
   `hh` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `cid` int(10) unsigned NOT NULL DEFAULT '0',
-  `msg_title` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `msg_data` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `msg_title` varchar(100) NOT NULL DEFAULT '',
+  `msg_data` mediumtext NOT NULL,
   PRIMARY KEY (`id`),
   KEY `dt` (`dt`,`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -636,16 +637,16 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_group` (
   `id` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(100) NOT NULL DEFAULT '',
   `enable` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `editable` tinyint(3) NOT NULL DEFAULT '1',
-  `comment` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comment` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `enable` (`enable`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -663,7 +664,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_limit_manage` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cid` int(11) NOT NULL,
@@ -671,13 +672,13 @@ CREATE TABLE `contract_limit_manage` (
   `summ` decimal(10,2) NOT NULL,
   `date1` datetime NOT NULL,
   `date2` date DEFAULT NULL,
-  `pids` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `pids` varchar(100) DEFAULT NULL,
   `rest` float(10,2) NOT NULL DEFAULT '0.00',
   `status` int(11) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `cid` (`cid`),
   KEY `clp_id` (`clp_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -695,13 +696,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_limit_manage_mode` (
   `cid` int(11) NOT NULL,
   `mode` int(11) NOT NULL DEFAULT '0',
   `cnt` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -719,7 +720,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_limit_period` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `uid` int(11) NOT NULL DEFAULT '0',
@@ -728,7 +729,7 @@ CREATE TABLE `contract_limit_period` (
   `value` decimal(10,2) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `dt` (`dt`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -745,18 +746,18 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_logon_error` (
   `lu` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `cid` int(11) NOT NULL,
-  `login` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `login` varchar(255) NOT NULL,
   `dt` datetime NOT NULL,
-  `ip` varchar(40) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `ip` varchar(40) NOT NULL DEFAULT '',
   `error_code` int(11) NOT NULL,
-  `request_data` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `request_data` mediumtext NOT NULL,
   KEY `cid_dt` (`cid`,`dt`),
   KEY `login_dt` (`login`,`dt`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -774,15 +775,15 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_logon_last` (
   `lu` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `cid` int(11) NOT NULL,
   `dt` datetime NOT NULL,
   `n` int(11) NOT NULL,
-  `ip` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+  `ip` varchar(15) NOT NULL,
   PRIMARY KEY (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -800,16 +801,16 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_logon_ok` (
   `lu` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `cid` int(11) NOT NULL,
   `dt` datetime NOT NULL,
-  `ip` varchar(40) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `session_id` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `user` enum('p','c','a') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'c',
+  `ip` varchar(40) NOT NULL DEFAULT '',
+  `session_id` varchar(32) NOT NULL,
+  `user` enum('p','c','a') NOT NULL DEFAULT 'c',
   KEY `new_index` (`cid`,`dt`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -827,12 +828,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_module` (
   `cid` int(11) NOT NULL,
   `mid` int(11) NOT NULL,
   PRIMARY KEY (`cid`,`mid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -850,16 +851,16 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_notification` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `cid` int(10) unsigned NOT NULL DEFAULT '0',
-  `subject` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `message` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `subject` varchar(255) NOT NULL,
+  `message` mediumtext NOT NULL,
   `dt` datetime NOT NULL,
   `is_read` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'прочитано или нет',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -877,12 +878,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_group` (
   `gid` int(11) NOT NULL DEFAULT '0',
   `pid` int(11) NOT NULL DEFAULT '0',
   KEY `gid` (`gid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -900,12 +901,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_group_name` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `title` char(150) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `title` char(150) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -923,14 +924,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_1` (
   `cid` int(11) NOT NULL DEFAULT '0',
   `pid` int(11) NOT NULL DEFAULT '0',
-  `val` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `val` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`cid`,`pid`),
   KEY `val` (`val`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -948,15 +949,15 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_1_log` (
   `cid` int(11) NOT NULL DEFAULT '0',
   `pid` int(11) NOT NULL DEFAULT '0',
-  `val` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `val` varchar(255) DEFAULT NULL,
   `dt_change` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
   KEY `cid_pid` (`cid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -974,21 +975,21 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_2` (
   `cid` int(10) NOT NULL DEFAULT '0',
   `pid` int(11) NOT NULL DEFAULT '0',
   `hid` int(10) unsigned DEFAULT NULL,
-  `flat` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `room` varchar(5) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `flat` varchar(10) DEFAULT NULL,
+  `room` varchar(5) NOT NULL DEFAULT '',
   `pod` int(10) DEFAULT '0',
   `floor` int(10) DEFAULT '0',
-  `address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `comment` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `format_key` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `comment` varchar(255) DEFAULT NULL,
+  `format_key` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`cid`,`pid`),
   KEY `hid` (`hid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1006,15 +1007,15 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_2_log` (
   `cid` int(11) NOT NULL,
   `pid` int(11) NOT NULL,
-  `val` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `val` varchar(255) DEFAULT NULL,
   `dt_change` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
   KEY `cid_pid` (`cid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1032,17 +1033,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_3` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cid` int(11) NOT NULL DEFAULT '0',
   `pid` int(11) NOT NULL DEFAULT '0',
-  `email` varchar(400) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `comment` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(400) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `comment` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `cid_pid` (`cid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1059,15 +1060,15 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_3_log` (
   `cid` int(11) NOT NULL,
   `pid` int(11) NOT NULL,
-  `val` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `val` varchar(255) DEFAULT NULL,
   `dt_change` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
   KEY `cid_pid` (`cid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1084,13 +1085,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_3_mail` (
   `mailid` int(11) NOT NULL DEFAULT '0',
   `eid` int(11) NOT NULL DEFAULT '0',
   KEY `mailid` (`mailid`),
   KEY `eid` (`eid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1107,14 +1108,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_4` (
   `cid` int(11) NOT NULL DEFAULT '0',
   `pid` int(11) NOT NULL DEFAULT '0',
   `val1` int(11) NOT NULL DEFAULT '0',
   `val2` int(11) NOT NULL DEFAULT '0',
   UNIQUE KEY `cid_pid_val1` (`cid`,`pid`,`val1`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1131,12 +1132,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_4_directory` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(150) COLLATE utf8_unicode_ci DEFAULT '0',
+  `title` varchar(150) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1153,15 +1154,15 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_4_log` (
   `cid` int(11) NOT NULL,
   `pid` int(11) NOT NULL,
-  `val` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `val` varchar(255) DEFAULT NULL,
   `dt_change` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
   KEY `cid_pid` (`cid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1178,13 +1179,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_5` (
   `cid` int(11) NOT NULL DEFAULT '0',
   `pid` int(11) NOT NULL DEFAULT '0',
   `val` int(2) NOT NULL DEFAULT '0',
   PRIMARY KEY (`cid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1201,7 +1202,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_5_log` (
   `cid` int(11) NOT NULL DEFAULT '0',
   `pid` int(11) NOT NULL DEFAULT '0',
@@ -1209,7 +1210,7 @@ CREATE TABLE `contract_parameter_type_5_log` (
   `dt_change` datetime NOT NULL,
   `user_id` int(11) NOT NULL DEFAULT '0',
   KEY `cid_pid` (`cid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1226,13 +1227,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_6` (
   `cid` int(11) NOT NULL DEFAULT '0',
   `pid` int(11) NOT NULL DEFAULT '0',
   `val` date NOT NULL,
   PRIMARY KEY (`cid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1250,7 +1251,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_6_log` (
   `cid` int(11) NOT NULL DEFAULT '0',
   `pid` int(11) NOT NULL DEFAULT '0',
@@ -1258,7 +1259,7 @@ CREATE TABLE `contract_parameter_type_6_log` (
   `dt_change` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
   KEY `cid_pid` (`cid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1276,14 +1277,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_7` (
   `cid` int(11) NOT NULL DEFAULT '0',
   `pid` int(11) NOT NULL DEFAULT '0',
   `val` int(11) NOT NULL DEFAULT '0',
-  `custom_value` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `custom_value` varchar(100) NOT NULL,
   UNIQUE KEY `cid_pid` (`cid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1300,16 +1301,16 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_7_log` (
   `cid` int(11) NOT NULL DEFAULT '0',
   `pid` int(11) NOT NULL DEFAULT '0',
   `val` int(11) DEFAULT NULL,
-  `title` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `title` varchar(100) DEFAULT NULL,
   `dt_change` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
   KEY `cid_pid` (`cid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1326,14 +1327,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_7_values` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `pid` int(11) NOT NULL DEFAULT '0',
-  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(100) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `pid` (`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1350,13 +1351,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_8` (
   `cid` int(11) NOT NULL DEFAULT '0',
   `pid` int(11) NOT NULL DEFAULT '0',
   `val` int(11) NOT NULL DEFAULT '0',
   UNIQUE KEY `cid_pid` (`cid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1373,7 +1374,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_8_log` (
   `cid` int(11) NOT NULL DEFAULT '0',
   `pid` int(11) NOT NULL DEFAULT '0',
@@ -1381,7 +1382,7 @@ CREATE TABLE `contract_parameter_type_8_log` (
   `dt_change` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
   KEY `cid_pid` (`cid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1398,28 +1399,28 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_9` (
   `pid` int(11) NOT NULL,
-  `value` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone1` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_format1` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_comm1` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone2` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_format2` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_comm2` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone3` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_format3` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_comm3` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone4` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_format4` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_comm4` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone5` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_format5` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_comm5` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `value` varchar(255) DEFAULT NULL,
+  `phone1` varchar(11) DEFAULT NULL,
+  `phone_format1` varchar(2) DEFAULT NULL,
+  `phone_comm1` varchar(40) DEFAULT NULL,
+  `phone2` varchar(11) DEFAULT NULL,
+  `phone_format2` varchar(2) DEFAULT NULL,
+  `phone_comm2` varchar(40) DEFAULT NULL,
+  `phone3` varchar(11) DEFAULT NULL,
+  `phone_format3` varchar(2) DEFAULT NULL,
+  `phone_comm3` varchar(40) DEFAULT NULL,
+  `phone4` varchar(11) DEFAULT NULL,
+  `phone_format4` varchar(2) DEFAULT NULL,
+  `phone_comm4` varchar(40) DEFAULT NULL,
+  `phone5` varchar(11) DEFAULT NULL,
+  `phone_format5` varchar(2) DEFAULT NULL,
+  `phone_comm5` varchar(40) DEFAULT NULL,
   `cid` int(11) NOT NULL,
   KEY `cid_pid` (`cid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1436,30 +1437,30 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_9_log` (
   `cid` int(11) NOT NULL,
   `pid` int(11) NOT NULL,
-  `val` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone1` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_format1` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_comm1` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone2` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_format2` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_comm2` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone3` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_format3` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_comm3` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone4` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_format4` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_comm4` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone5` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_format5` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_comm5` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `val` varchar(255) DEFAULT NULL,
+  `phone1` varchar(11) DEFAULT NULL,
+  `phone_format1` varchar(2) DEFAULT NULL,
+  `phone_comm1` varchar(40) DEFAULT NULL,
+  `phone2` varchar(11) DEFAULT NULL,
+  `phone_format2` varchar(2) DEFAULT NULL,
+  `phone_comm2` varchar(40) DEFAULT NULL,
+  `phone3` varchar(11) DEFAULT NULL,
+  `phone_format3` varchar(2) DEFAULT NULL,
+  `phone_comm3` varchar(40) DEFAULT NULL,
+  `phone4` varchar(11) DEFAULT NULL,
+  `phone_format4` varchar(2) DEFAULT NULL,
+  `phone_comm4` varchar(40) DEFAULT NULL,
+  `phone5` varchar(11) DEFAULT NULL,
+  `phone_format5` varchar(2) DEFAULT NULL,
+  `phone_comm5` varchar(40) DEFAULT NULL,
   `dt_change` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
   KEY `cip_pid` (`cid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1476,13 +1477,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_multilist` (
   `cid` int(11) NOT NULL,
   `pid` int(11) NOT NULL,
-  `val` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `val` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`cid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1499,14 +1500,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_multilist_item` (
   `cid` int(11) NOT NULL,
   `pid` int(11) NOT NULL,
   `val` int(11) NOT NULL,
-  `custom_value` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `custom_value` varchar(100) NOT NULL DEFAULT '',
   PRIMARY KEY (`cid`,`pid`,`val`,`custom_value`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1523,15 +1524,15 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_multilist_log` (
   `cid` int(11) NOT NULL,
   `pid` int(11) NOT NULL,
-  `val` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `val` varchar(255) DEFAULT NULL,
   `dt_change` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
   KEY `cid_pid` (`cid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1548,13 +1549,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_multilist_values` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `pid` int(11) NOT NULL,
-  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1571,13 +1572,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_phone` (
   `pid` int(11) NOT NULL,
   `cid` int(11) NOT NULL,
-  `value` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `value` varchar(255) NOT NULL,
   PRIMARY KEY (`pid`,`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1595,17 +1596,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_phone_item` (
   `pid` int(11) NOT NULL,
   `cid` int(11) NOT NULL,
   `n` tinyint(4) NOT NULL,
-  `phone` varchar(14) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `format` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `comment` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `phone` varchar(14) DEFAULT NULL,
+  `format` varchar(2) DEFAULT NULL,
+  `comment` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`pid`,`cid`,`n`),
   KEY `phone` (`phone`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1623,16 +1624,16 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_phone_log` (
   `pid` int(11) NOT NULL,
   `cid` int(11) NOT NULL,
-  `val` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `val` varchar(255) DEFAULT NULL,
   `data` mediumtext COLLATE utf8_unicode_ci,
   `dt_change` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
   KEY `cid_pid` (`cid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1650,19 +1651,19 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameters_pref` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `pt` int(10) unsigned NOT NULL DEFAULT '0',
-  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(100) NOT NULL DEFAULT '',
   `sort` int(10) unsigned NOT NULL DEFAULT '0',
-  `script` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `script` mediumtext NOT NULL,
   `history` tinyint(1) NOT NULL,
   `flags` tinyint(3) NOT NULL DEFAULT '0',
   `lm` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
   KEY `sort` (`sort`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1680,14 +1681,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_password_once` (
   `lu` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `dt` datetime NOT NULL,
-  `contract_title` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `contract_title` varchar(150) NOT NULL,
+  `password` varchar(64) NOT NULL,
   UNIQUE KEY `password` (`password`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1704,26 +1705,26 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_pattern` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(150) NOT NULL DEFAULT '',
   `closesumma` float NOT NULL DEFAULT '0',
-  `tpid` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `tpid` varchar(250) NOT NULL,
   `groups` bigint(20) NOT NULL DEFAULT '0',
   `mode` int(11) NOT NULL DEFAULT '0',
   `pgid` int(11) NOT NULL DEFAULT '0',
   `pfid` int(11) NOT NULL DEFAULT '0',
   `fc` tinyint(2) NOT NULL DEFAULT '0',
   `dtl` int(10) unsigned NOT NULL DEFAULT '0',
-  `tgid` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
-  `scrid` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
-  `name_pattern` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `tgid` varchar(250) NOT NULL,
+  `scrid` varchar(250) NOT NULL,
+  `name_pattern` varchar(200) NOT NULL DEFAULT '',
   `data` blob,
   `patid` int(11) NOT NULL DEFAULT '0',
   `status` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1741,11 +1742,11 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_pattern_modules` (
   `pid` int(11) NOT NULL,
   `mid` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1762,16 +1763,16 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_pattern_named_numbers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(45) NOT NULL,
   `ln` int(10) unsigned NOT NULL,
   `count_number` int(11) DEFAULT '-1',
-  `comment` varchar(90) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `comment` varchar(90) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `title_UNIQUE` (`title`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1788,12 +1789,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_pattern_services` (
   `pid` int(11) NOT NULL DEFAULT '0',
   `sid` int(11) NOT NULL DEFAULT '0',
   KEY `pid` (`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1810,7 +1811,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_payment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `dt` date NOT NULL DEFAULT '0000-00-00',
@@ -1818,14 +1819,14 @@ CREATE TABLE `contract_payment` (
   `pt` int(10) unsigned NOT NULL DEFAULT '0',
   `uid` int(11) NOT NULL DEFAULT '0',
   `summa` decimal(10,2) NOT NULL,
-  `comment` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comment` varchar(200) NOT NULL DEFAULT '',
   `lm` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `pt_dt` (`pt`,`dt`),
   KEY `dt_cid` (`dt`,`cid`),
   KEY `uid` (`uid`),
   KEY `cid_dt` (`cid`,`dt`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1843,7 +1844,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_payment_deleted` (
   `id` int(11) NOT NULL DEFAULT '0',
   `dt` date NOT NULL DEFAULT '0000-00-00',
@@ -1851,14 +1852,14 @@ CREATE TABLE `contract_payment_deleted` (
   `pt` int(10) unsigned NOT NULL DEFAULT '0',
   `uid` int(11) NOT NULL DEFAULT '0',
   `summa` decimal(10,2) NOT NULL,
-  `comment` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comment` varchar(200) NOT NULL DEFAULT '',
   `lm` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `pt_dt` (`pt`,`dt`),
   KEY `dt_cid` (`dt`,`cid`),
   KEY `uid` (`uid`),
   KEY `cid_dt` (`cid`,`dt`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1876,10 +1877,10 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_payment_types` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `title` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(50) NOT NULL DEFAULT '',
   `up` int(11) NOT NULL DEFAULT '0',
   `type` tinyint(2) NOT NULL DEFAULT '0',
   `flag` tinyint(2) NOT NULL DEFAULT '0',
@@ -1887,7 +1888,7 @@ CREATE TABLE `contract_payment_types` (
   KEY `up` (`up`),
   KEY `type` (`type`),
   KEY `flag` (`flag`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1905,7 +1906,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_reserve` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `cid` int(10) NOT NULL,
@@ -1914,9 +1915,9 @@ CREATE TABLE `contract_reserve` (
   `dateCreate` datetime NOT NULL,
   `dateTo` datetime DEFAULT NULL,
   `dateClose` datetime DEFAULT NULL,
-  `comment` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `comment` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1933,12 +1934,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_reserve_total` (
   `cid` int(11) NOT NULL,
   `sum` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1955,13 +1956,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_reserve_types` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(45) NOT NULL,
   `used` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1978,17 +1979,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_script` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cid` int(11) NOT NULL DEFAULT '0',
   `date1` date DEFAULT NULL,
   `date2` date DEFAULT NULL,
   `script_id` int(11) NOT NULL DEFAULT '0',
-  `comment` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comment` varchar(200) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `cid` (`cid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2006,14 +2007,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_service` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `cid` int(10) unsigned NOT NULL DEFAULT '0',
   `sid` int(10) unsigned NOT NULL DEFAULT '0',
   `date1` date DEFAULT NULL,
   `date2` date DEFAULT NULL,
-  `comment` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comment` varchar(255) NOT NULL DEFAULT '',
   `lm` date NOT NULL DEFAULT '0000-00-00',
   `emid` int(11) NOT NULL DEFAULT '0',
   `eid` int(11) NOT NULL DEFAULT '0',
@@ -2022,7 +2023,7 @@ CREATE TABLE `contract_service` (
   KEY `date1` (`date1`),
   KEY `date2` (`date2`),
   KEY `cid` (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2039,17 +2040,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_status` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cid` int(11) NOT NULL,
   `status` tinyint(4) NOT NULL,
   `date1` date NOT NULL,
   `date2` date DEFAULT NULL,
-  `comment` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `comment` varchar(250) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `cid` (`cid`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2067,18 +2068,18 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_status_log` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `status` tinyint(4) NOT NULL,
   `uid` int(11) NOT NULL,
   `date` datetime NOT NULL,
-  `comment` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `comment` varchar(250) NOT NULL,
   `cid` int(11) NOT NULL DEFAULT '0',
   `date1` date NOT NULL,
   `date2` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2096,14 +2097,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_tariff` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `cid` int(10) unsigned NOT NULL DEFAULT '0',
   `tpid` int(10) unsigned NOT NULL DEFAULT '0',
   `date1` date DEFAULT NULL,
   `date2` date DEFAULT NULL,
-  `comment` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comment` varchar(255) NOT NULL DEFAULT '',
   `lm` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `pos` tinyint(4) NOT NULL DEFAULT '0',
   `emid` int(11) NOT NULL DEFAULT '0',
@@ -2111,7 +2112,7 @@ CREATE TABLE `contract_tariff` (
   `replaced_from` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `cid` (`cid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2129,17 +2130,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_tariff_group` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cid` int(11) NOT NULL DEFAULT '0',
   `date1` date DEFAULT NULL,
   `date2` date DEFAULT NULL,
   `gid` int(11) NOT NULL DEFAULT '0',
-  `comment` char(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comment` char(200) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `cid` (`cid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2157,7 +2158,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_tariff_option` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `uid` int(11) NOT NULL,
@@ -2172,7 +2173,7 @@ CREATE TABLE `contract_tariff_option` (
   `deactivated_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `cid` (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2189,12 +2190,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_tree_link` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cid` int(10) NOT NULL DEFAULT '0',
   `tree_id` int(10) NOT NULL DEFAULT '0',
-  `title` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(200) NOT NULL DEFAULT '',
   `date1` date DEFAULT NULL,
   `date2` date DEFAULT NULL,
   `pos` tinyint(4) NOT NULL DEFAULT '0',
@@ -2202,7 +2203,7 @@ CREATE TABLE `contract_tree_link` (
   `eid` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `cid` (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2219,13 +2220,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_web_menu` (
   `contract_id` int(11) NOT NULL DEFAULT '0',
   `web_menu_id` int(11) NOT NULL DEFAULT '0',
   KEY `contract_id` (`contract_id`),
   KEY `web_menu_id` (`web_menu_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2242,13 +2243,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `entity` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `entitySpecId` int(11) NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2266,20 +2267,20 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `entity_attr_address` (
   `entityId` int(11) NOT NULL,
   `entitySpecAttrId` int(11) NOT NULL,
   `houseId` int(10) unsigned DEFAULT NULL,
-  `flat` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `room` varchar(5) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `flat` varchar(10) DEFAULT NULL,
+  `room` varchar(5) NOT NULL DEFAULT '',
   `pod` int(10) DEFAULT '0',
   `floor` int(10) DEFAULT '0',
-  `value` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `comment` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `format_key` varchar(45) COLLATE utf8_unicode_ci DEFAULT '',
+  `value` varchar(255) DEFAULT NULL,
+  `comment` varchar(255) DEFAULT NULL,
+  `format_key` varchar(45) DEFAULT '',
   PRIMARY KEY (`entityId`,`entitySpecAttrId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2297,13 +2298,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `entity_attr_date` (
   `entityId` int(11) NOT NULL,
   `entitySpecAttrId` int(11) NOT NULL,
   `value` date NOT NULL,
   PRIMARY KEY (`entityId`,`entitySpecAttrId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2320,13 +2321,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `entity_attr_house` (
   `entityId` int(11) NOT NULL,
   `entitySpecAttrId` int(11) NOT NULL,
   `value` int(11) NOT NULL,
   PRIMARY KEY (`entityId`,`entitySpecAttrId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2343,13 +2344,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `entity_attr_int` (
   `entityId` int(11) NOT NULL,
   `entitySpecAttrId` int(11) NOT NULL,
   `value` int(11) NOT NULL,
   PRIMARY KEY (`entityId`,`entitySpecAttrId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2366,13 +2367,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `entity_attr_list` (
   `entityId` int(11) NOT NULL,
   `entitySpecAttrId` int(11) NOT NULL,
   `value` int(11) NOT NULL,
   PRIMARY KEY (`entityId`,`entitySpecAttrId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2389,13 +2390,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `entity_attr_text` (
   `entityId` int(11) NOT NULL,
   `entitySpecAttrId` int(11) NOT NULL,
-  `value` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `value` varchar(255) NOT NULL,
   PRIMARY KEY (`entityId`,`entitySpecAttrId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2412,17 +2413,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `entity_spec` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL,
   `entitySpecTypeId` int(11) NOT NULL,
-  `comment` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `comment` mediumtext NOT NULL,
   `hidden` int(11) NOT NULL DEFAULT '0',
-  `entityTitleMacros` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `entityTitleMacros` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `entity_type_id` (`entitySpecTypeId`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2440,14 +2441,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `entity_spec_attr` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL,
   `type` int(11) NOT NULL,
-  `comment` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `comment` mediumtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2465,13 +2466,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `entity_spec_attr_link` (
   `entitySpecId` int(11) NOT NULL,
   `entitySpecAttrId` int(11) NOT NULL,
   `pos` int(11) NOT NULL,
   KEY `entity_spec_id` (`entitySpecId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2489,14 +2490,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `entity_spec_attr_list` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `entitySpecAttrId` int(11) NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `entity_spec_attr_id` (`entitySpecAttrId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2513,13 +2514,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `entity_spec_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `type` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `type` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2536,15 +2537,15 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `event_script_link` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `class_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `event_key` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `class_name` varchar(255) NOT NULL,
+  `event_key` varchar(255) NOT NULL,
   `script_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2562,12 +2563,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `firm` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `title` varchar(150) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2584,15 +2585,15 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `global_script` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
   `script` mediumtext COLLATE utf8_unicode_ci,
   `user_id` int(11) NOT NULL,
   `change_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2609,13 +2610,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `global_script_link` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `class_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `class_name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2632,12 +2633,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `helpdesk_category_9` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2654,14 +2655,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `helpdesk_directory_link_9` (
   `group` int(11) NOT NULL,
   `category` int(11) NOT NULL,
   `subcategory` int(11) NOT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2678,12 +2679,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `helpdesk_group_9` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2700,20 +2701,20 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `helpdesk_message_9` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `topic_id` int(11) NOT NULL,
-  `body` text COLLATE utf8_unicode_ci NOT NULL,
+  `body` text NOT NULL,
   `date_from` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `user_from` int(11) NOT NULL,
   `date_to` datetime DEFAULT NULL,
   `user_to` int(11) NOT NULL,
-  `comment` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `comment` varchar(250) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `topic_id` (`topic_id`),
   KEY `from_to` (`user_from`,`user_to`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2730,18 +2731,18 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `helpdesk_package_9` (
   `lu` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'код пакета',
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'название пакета',
+  `title` varchar(255) NOT NULL COMMENT 'название пакета',
   `summa` decimal(12,2) NOT NULL DEFAULT '1.00' COMMENT 'стоимость пакета',
   `count` int(11) NOT NULL DEFAULT '1' COMMENT 'количество обращений в пакете',
   `period` int(11) NOT NULL DEFAULT '1' COMMENT 'на сколько дней пакет активируется',
   `status` int(11) NOT NULL DEFAULT '0' COMMENT 'статус пакета (вкл./выкл.)',
   `charge_id` int(11) NOT NULL DEFAULT '0' COMMENT 'код типа расхода',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2758,7 +2759,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `helpdesk_package_contract_9` (
   `lu` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'код экземпляра пакета',
@@ -2771,7 +2772,7 @@ CREATE TABLE `helpdesk_package_contract_9` (
   `count_use` int(11) NOT NULL COMMENT 'число использованных обращений',
   `user_id` int(11) NOT NULL COMMENT 'код администратора биллинга, активировавшего пакет или -1 если активировал сам пользователь',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2788,13 +2789,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `helpdesk_param_9` (
   `cid` int(11) NOT NULL,
-  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `value` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `value` varchar(255) NOT NULL,
   KEY `cid` (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2811,12 +2812,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `helpdesk_subcategory_9` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2833,10 +2834,10 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `helpdesk_topic_9` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL,
   `cid` int(11) NOT NULL,
   `charge_id` int(11) NOT NULL,
   `cost` decimal(7,2) NOT NULL,
@@ -2844,7 +2845,7 @@ CREATE TABLE `helpdesk_topic_9` (
   `date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `date_close` datetime DEFAULT NULL,
   `comm` tinyint(4) NOT NULL DEFAULT '0',
-  `comm_value` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comm_value` varchar(255) NOT NULL DEFAULT '',
   `user_id` int(11) NOT NULL DEFAULT '-1',
   `status` smallint(6) NOT NULL DEFAULT '0',
   `contract_package_id` int(11) NOT NULL DEFAULT '-1',
@@ -2852,7 +2853,7 @@ CREATE TABLE `helpdesk_topic_9` (
   `category_id` int(11) NOT NULL,
   `subcategory_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2869,13 +2870,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `helpdesk_topic_manager_change_9` (
   `topic_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `date` datetime NOT NULL,
   `comment` text COLLATE utf8_unicode_ci
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2892,7 +2893,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `helpdesk_topic_reserve` (
   `topicId` int(11) NOT NULL,
   `status` tinyint(1) DEFAULT NULL,
@@ -2901,7 +2902,7 @@ CREATE TABLE `helpdesk_topic_reserve` (
   KEY `reserveId` (`reserveId`),
   CONSTRAINT `helpdesk_topic_reserve_ibfk_1` FOREIGN KEY (`reserveId`) REFERENCES `contract_reserve` (`id`) ON UPDATE NO ACTION,
   CONSTRAINT `helpdesk_topic_reserve_ibfk_2` FOREIGN KEY (`topicId`) REFERENCES `helpdesk_topic_9` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2918,12 +2919,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `helpdesk_topic_statuses_9` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(128) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2940,7 +2941,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_accounting_period_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `contractId` int(11) NOT NULL,
@@ -2951,7 +2952,7 @@ CREATE TABLE `inet_accounting_period_1` (
   `userId` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `contract` (`contractId`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2969,7 +2970,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_accounting_period_1_bak_sec` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `contractId` int(11) NOT NULL,
@@ -2978,7 +2979,7 @@ CREATE TABLE `inet_accounting_period_1_bak_sec` (
   `userId` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `contract` (`contractId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2995,26 +2996,26 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_connection_1` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `parentId` bigint(20) NOT NULL,
   `deviceId` int(11) NOT NULL,
   `devicePort` int(11) NOT NULL,
   `agentDeviceId` int(11) NOT NULL DEFAULT '0',
-  `circuitId` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `acctSessionId` varchar(80) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `username` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `circuitId` varchar(45) DEFAULT NULL,
+  `acctSessionId` varchar(80) DEFAULT NULL,
+  `username` varchar(100) DEFAULT NULL,
   `type` int(11) NOT NULL,
   `accessCode` smallint(6) NOT NULL,
   `servId` int(11) NOT NULL,
-  `calledStationId` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `callingStationId` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `calledStationId` varchar(50) DEFAULT NULL,
+  `callingStationId` varchar(50) DEFAULT NULL,
   `ipResourceId` int(11) NOT NULL,
   `ipAddress` varbinary(24) DEFAULT NULL,
   `connectionStart` datetime NOT NULL,
   `deviceState` smallint(6) NOT NULL DEFAULT '1',
-  `deviceOptions` char(250) COLLATE utf8_unicode_ci NOT NULL,
+  `deviceOptions` char(250) NOT NULL,
   `status` smallint(6) NOT NULL,
   KEY `id` (`id`),
   KEY `nas` (`deviceId`,`devicePort`),
@@ -3022,7 +3023,7 @@ CREATE TABLE `inet_connection_1` (
   KEY `parent` (`parentId`),
   KEY `connectionStart` (`connectionStart`),
   KEY `ipAddress` (`ipAddress`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB AUTO_INCREMENT=3
 /*!50100 PARTITION BY HASH (deviceId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3042,11 +3043,11 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_connection_1_seq` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3064,7 +3065,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_connection_route_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `connectionId` bigint(20) NOT NULL,
@@ -3072,7 +3073,7 @@ CREATE TABLE `inet_connection_route_1` (
   `mask` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `connectionId` (`connectionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3089,27 +3090,27 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_device_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `entityId` int(11) NOT NULL,
   `parentId` int(11) NOT NULL,
   `deviceTypeId` int(11) NOT NULL,
-  `title` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
-  `identifier` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
-  `uptime` text COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(250) NOT NULL,
+  `identifier` varchar(150) NOT NULL,
+  `uptime` text NOT NULL,
   `uptimeTime` datetime DEFAULT NULL,
-  `host` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `host` varchar(150) NOT NULL,
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
   `orderManagerDisabled` tinyint(4) NOT NULL DEFAULT '0',
-  `username` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `secret` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `config` text COLLATE utf8_unicode_ci NOT NULL,
-  `comment` text COLLATE utf8_unicode_ci NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `secret` varchar(100) NOT NULL,
+  `config` text NOT NULL,
+  `comment` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3126,12 +3127,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_device_group_link_1` (
   `deviceId` int(11) NOT NULL,
   `deviceGroupId` int(11) NOT NULL,
   KEY `device_id` (`deviceId`,`deviceGroupId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3148,18 +3149,18 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_device_tree_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `invDeviceId` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `invDeviceId` varchar(45) NOT NULL,
   `parentId` int(11) NOT NULL,
-  `title` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(200) NOT NULL,
   `deviceTypeId` int(11) NOT NULL DEFAULT '-1',
-  `identifier` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `host` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `config` text COLLATE utf8_unicode_ci NOT NULL,
+  `identifier` varchar(150) DEFAULT NULL,
+  `host` varchar(100) DEFAULT NULL,
+  `config` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3177,24 +3178,24 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_device_type_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(250) NOT NULL,
   `configId` int(11) NOT NULL,
-  `config` text COLLATE utf8_unicode_ci NOT NULL,
-  `protocolHandlerClass` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `saHandlerClass` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `deviceManagerClass` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `config` text NOT NULL,
+  `protocolHandlerClass` varchar(250) DEFAULT NULL,
+  `saHandlerClass` varchar(250) DEFAULT NULL,
+  `deviceManagerClass` varchar(250) DEFAULT NULL,
   `uniqueInterfaces` tinyint(4) NOT NULL,
   `scriptId` int(11) NOT NULL,
   `saScript` text COLLATE utf8_unicode_ci,
   `eventScript` text COLLATE utf8_unicode_ci,
-  `comment` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `comment` varchar(250) NOT NULL,
   `source` tinyint(1) DEFAULT '0',
   `deviceEntitySpecId` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3212,14 +3213,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_interface_1` (
   `id` int(11) NOT NULL,
-  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(100) NOT NULL,
   `deviceTypeId` int(11) NOT NULL,
   PRIMARY KEY (`id`,`deviceTypeId`),
   KEY `deviceTypeId` (`deviceTypeId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3237,16 +3238,16 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_option_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parentId` int(11) NOT NULL,
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(150) NOT NULL,
   `groupIntersection` tinyint(4) NOT NULL,
-  `config` text COLLATE utf8_unicode_ci NOT NULL,
-  `comment` text COLLATE utf8_unicode_ci NOT NULL,
+  `config` text NOT NULL,
+  `comment` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3264,7 +3265,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_serv_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parentId` int(11) NOT NULL,
@@ -3273,14 +3274,14 @@ CREATE TABLE `inet_serv_1` (
   `deviceId` int(11) NOT NULL,
   `interfaceId` int(11) NOT NULL,
   `vlan` int(11) NOT NULL DEFAULT '-1',
-  `identifier` varchar(80) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `identifier` varchar(80) DEFAULT NULL,
   `macAddress` varbinary(64) DEFAULT NULL,
   `ipResourceId` int(11) DEFAULT NULL,
   `ipResourceSubscriptionId` int(11) NOT NULL,
   `addressFrom` varbinary(24) DEFAULT NULL,
   `addressTo` varbinary(24) DEFAULT NULL,
-  `login` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `password` char(30) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `login` varchar(100) NOT NULL,
+  `password` char(30) DEFAULT NULL,
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
   `contractObjectId` int(11) NOT NULL DEFAULT '0',
@@ -3288,17 +3289,17 @@ CREATE TABLE `inet_serv_1` (
   `sessionCountLimit` int(11) NOT NULL,
   `deviceState` int(11) NOT NULL,
   `accessCode` int(11) NOT NULL,
-  `config` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `deviceOptions` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `comment` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `config` varchar(255) DEFAULT NULL,
+  `deviceOptions` varchar(200) NOT NULL,
+  `comment` varchar(250) NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `parentId` (`parentId`),
   KEY `contractId` (`contractId`),
   KEY `deviceId` (`deviceId`),
   KEY `login` (`login`),
   KEY `contractObjectId` (`contractObjectId`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3316,14 +3317,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_serv_option_1` (
   `servId` int(11) NOT NULL,
   `optionId` int(11) NOT NULL,
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
   KEY `servOptIdx` (`servId`,`optionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3341,19 +3342,19 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_serv_restriction_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `servId` int(11) NOT NULL,
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
   `type` int(11) NOT NULL,
-  `serviceIds` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `serviceIds` varchar(255) NOT NULL DEFAULT '',
   `amount` decimal(20,5) NOT NULL DEFAULT '0.00000',
-  `comment` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comment` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `servId` (`servId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3370,11 +3371,11 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_serv_type_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
-  `parentTypeIds` varchar(45) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(150) NOT NULL,
+  `parentTypeIds` varchar(45) NOT NULL DEFAULT '',
   `sessionInitiationType` tinyint(4) NOT NULL,
   `sessionCountLimit` int(11) NOT NULL,
   `sessionCountLimitLock` tinyint(4) NOT NULL DEFAULT '0',
@@ -3394,7 +3395,7 @@ CREATE TABLE `inet_serv_type_1` (
   `personalVlan` tinyint(4) NOT NULL DEFAULT '1',
   `ipFromParentRange` tinyint(4) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3412,12 +3413,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_serv_type_device_group_link_1` (
   `inetServId` int(11) NOT NULL,
   `deviceGroupId` int(11) NOT NULL,
   KEY `inetServId` (`inetServId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3435,12 +3436,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_serv_type_device_type_link_1` (
   `inetServId` int(11) NOT NULL,
   `deviceTypeId` int(11) NOT NULL,
   KEY `inetServId` (`inetServId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3458,7 +3459,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_1` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `parentId` bigint(20) NOT NULL,
@@ -3475,7 +3476,7 @@ CREATE TABLE `inet_session_1` (
   KEY `id` (`id`),
   KEY `parentId` (`parentId`),
   KEY `connectionId` (`connectionId`)
-) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB AUTO_INCREMENT=104
 /*!50100 PARTITION BY HASH (connectionId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3495,11 +3496,11 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_1_seq` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=104;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3517,7 +3518,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_account_1` (
   `contractId` int(11) NOT NULL,
   `sessionId` bigint(20) NOT NULL,
@@ -3527,7 +3528,7 @@ CREATE TABLE `inet_session_account_1` (
   PRIMARY KEY (`contractId`,`sessionId`,`serviceId`),
   KEY `serviceId` (`serviceId`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3546,7 +3547,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_detail_1` (
   `sessionId` bigint(20) NOT NULL,
   `day` tinyint(4) NOT NULL,
@@ -3556,7 +3557,7 @@ CREATE TABLE `inet_session_detail_1` (
   `amount` bigint(20) NOT NULL,
   PRIMARY KEY (`sessionId`,`day`,`hour`,`trafficTypeId`,`deviceId`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( sessionId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3575,7 +3576,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_1_201505` (
   `id` bigint(20) NOT NULL,
   `parentId` bigint(20) NOT NULL,
@@ -3585,14 +3586,14 @@ CREATE TABLE `inet_session_log_1_201505` (
   `deviceId` int(11) NOT NULL,
   `devicePort` int(11) NOT NULL,
   `agentDeviceId` int(11) NOT NULL,
-  `acctSessionId` varchar(80) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `username` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `realm` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `acctSessionId` varchar(80) DEFAULT NULL,
+  `username` varchar(100) DEFAULT NULL,
+  `realm` varchar(20) DEFAULT NULL,
   `type` int(11) NOT NULL,
   `accessCode` smallint(6) NOT NULL,
   `servId` int(11) NOT NULL,
-  `calledStationId` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `callingStationId` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `calledStationId` varchar(60) DEFAULT NULL,
+  `callingStationId` varchar(60) DEFAULT NULL,
   `ipResourceId` int(11) NOT NULL,
   `ipAddress` varbinary(24) DEFAULT NULL,
   `connectionStart` datetime NOT NULL,
@@ -3600,7 +3601,7 @@ CREATE TABLE `inet_session_log_1_201505` (
   `sessionStop` datetime DEFAULT NULL,
   `lastActive` datetime NOT NULL,
   `deviceState` smallint(6) NOT NULL,
-  `deviceOptions` varchar(120) COLLATE utf8_unicode_ci NOT NULL,
+  `deviceOptions` varchar(120) NOT NULL,
   `sessionTime` int(11) NOT NULL,
   `sessionCost` decimal(10,5) NOT NULL,
   `status` smallint(6) NOT NULL,
@@ -3612,7 +3613,7 @@ CREATE TABLE `inet_session_log_1_201505` (
   KEY `connection` (`connectionId`),
   KEY `sessionStart` (`sessionStart`),
   KEY `ipAddress` (`ipAddress`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY RANGE (TO_DAYS(sessionStart))
 (PARTITION p20150501 VALUES LESS THAN (736085) ENGINE = InnoDB,
  PARTITION p20150502 VALUES LESS THAN (736086) ENGINE = InnoDB,
@@ -3661,7 +3662,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_1_201506` (
   `id` bigint(20) NOT NULL,
   `parentId` bigint(20) NOT NULL,
@@ -3671,14 +3672,14 @@ CREATE TABLE `inet_session_log_1_201506` (
   `deviceId` int(11) NOT NULL,
   `devicePort` int(11) NOT NULL,
   `agentDeviceId` int(11) NOT NULL,
-  `acctSessionId` varchar(80) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `username` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `realm` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `acctSessionId` varchar(80) DEFAULT NULL,
+  `username` varchar(100) DEFAULT NULL,
+  `realm` varchar(20) DEFAULT NULL,
   `type` int(11) NOT NULL,
   `accessCode` smallint(6) NOT NULL,
   `servId` int(11) NOT NULL,
-  `calledStationId` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `callingStationId` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `calledStationId` varchar(60) DEFAULT NULL,
+  `callingStationId` varchar(60) DEFAULT NULL,
   `ipResourceId` int(11) NOT NULL,
   `ipAddress` varbinary(24) DEFAULT NULL,
   `connectionStart` datetime NOT NULL,
@@ -3686,7 +3687,7 @@ CREATE TABLE `inet_session_log_1_201506` (
   `sessionStop` datetime DEFAULT NULL,
   `lastActive` datetime NOT NULL,
   `deviceState` smallint(6) NOT NULL,
-  `deviceOptions` varchar(120) COLLATE utf8_unicode_ci NOT NULL,
+  `deviceOptions` varchar(120) NOT NULL,
   `sessionTime` int(11) NOT NULL,
   `sessionCost` decimal(10,5) NOT NULL,
   `status` smallint(6) NOT NULL,
@@ -3698,7 +3699,7 @@ CREATE TABLE `inet_session_log_1_201506` (
   KEY `connection` (`connectionId`),
   KEY `sessionStart` (`sessionStart`),
   KEY `ipAddress` (`ipAddress`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY RANGE (TO_DAYS(sessionStart))
 (PARTITION p20150601 VALUES LESS THAN (736116) ENGINE = InnoDB,
  PARTITION p20150602 VALUES LESS THAN (736117) ENGINE = InnoDB,
@@ -3746,7 +3747,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_1_201507` (
   `id` bigint(20) NOT NULL,
   `parentId` bigint(20) NOT NULL,
@@ -3756,14 +3757,14 @@ CREATE TABLE `inet_session_log_1_201507` (
   `deviceId` int(11) NOT NULL,
   `devicePort` int(11) NOT NULL,
   `agentDeviceId` int(11) NOT NULL,
-  `acctSessionId` varchar(80) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `username` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `realm` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `acctSessionId` varchar(80) DEFAULT NULL,
+  `username` varchar(100) DEFAULT NULL,
+  `realm` varchar(20) DEFAULT NULL,
   `type` int(11) NOT NULL,
   `accessCode` smallint(6) NOT NULL,
   `servId` int(11) NOT NULL,
-  `calledStationId` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `callingStationId` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `calledStationId` varchar(60) DEFAULT NULL,
+  `callingStationId` varchar(60) DEFAULT NULL,
   `ipResourceId` int(11) NOT NULL,
   `ipAddress` varbinary(24) DEFAULT NULL,
   `connectionStart` datetime NOT NULL,
@@ -3771,7 +3772,7 @@ CREATE TABLE `inet_session_log_1_201507` (
   `sessionStop` datetime DEFAULT NULL,
   `lastActive` datetime NOT NULL,
   `deviceState` smallint(6) NOT NULL,
-  `deviceOptions` varchar(120) COLLATE utf8_unicode_ci NOT NULL,
+  `deviceOptions` varchar(120) NOT NULL,
   `sessionTime` int(11) NOT NULL,
   `sessionCost` decimal(10,5) NOT NULL,
   `status` smallint(6) NOT NULL,
@@ -3783,7 +3784,7 @@ CREATE TABLE `inet_session_log_1_201507` (
   KEY `connection` (`connectionId`),
   KEY `sessionStart` (`sessionStart`),
   KEY `ipAddress` (`ipAddress`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY RANGE (TO_DAYS(sessionStart))
 (PARTITION p20150701 VALUES LESS THAN (736146) ENGINE = InnoDB,
  PARTITION p20150702 VALUES LESS THAN (736147) ENGINE = InnoDB,
@@ -3832,7 +3833,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_1_201508` (
   `id` bigint(20) NOT NULL,
   `parentId` bigint(20) NOT NULL,
@@ -3842,14 +3843,14 @@ CREATE TABLE `inet_session_log_1_201508` (
   `deviceId` int(11) NOT NULL,
   `devicePort` int(11) NOT NULL,
   `agentDeviceId` int(11) NOT NULL,
-  `acctSessionId` varchar(80) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `username` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `realm` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `acctSessionId` varchar(80) DEFAULT NULL,
+  `username` varchar(100) DEFAULT NULL,
+  `realm` varchar(20) DEFAULT NULL,
   `type` int(11) NOT NULL,
   `accessCode` smallint(6) NOT NULL,
   `servId` int(11) NOT NULL,
-  `calledStationId` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `callingStationId` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `calledStationId` varchar(60) DEFAULT NULL,
+  `callingStationId` varchar(60) DEFAULT NULL,
   `ipResourceId` int(11) NOT NULL,
   `ipAddress` varbinary(24) DEFAULT NULL,
   `connectionStart` datetime NOT NULL,
@@ -3857,7 +3858,7 @@ CREATE TABLE `inet_session_log_1_201508` (
   `sessionStop` datetime DEFAULT NULL,
   `lastActive` datetime NOT NULL,
   `deviceState` smallint(6) NOT NULL,
-  `deviceOptions` varchar(120) COLLATE utf8_unicode_ci NOT NULL,
+  `deviceOptions` varchar(120) NOT NULL,
   `sessionTime` int(11) NOT NULL,
   `sessionCost` decimal(10,5) NOT NULL,
   `status` smallint(6) NOT NULL,
@@ -3869,7 +3870,7 @@ CREATE TABLE `inet_session_log_1_201508` (
   KEY `connection` (`connectionId`),
   KEY `sessionStart` (`sessionStart`),
   KEY `ipAddress` (`ipAddress`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY RANGE (TO_DAYS(sessionStart))
 (PARTITION p20150801 VALUES LESS THAN (736177) ENGINE = InnoDB,
  PARTITION p20150802 VALUES LESS THAN (736178) ENGINE = InnoDB,
@@ -3918,7 +3919,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_1_201509` (
   `id` bigint(20) NOT NULL,
   `parentId` bigint(20) NOT NULL,
@@ -3928,14 +3929,14 @@ CREATE TABLE `inet_session_log_1_201509` (
   `deviceId` int(11) NOT NULL,
   `devicePort` int(11) NOT NULL,
   `agentDeviceId` int(11) NOT NULL,
-  `acctSessionId` varchar(80) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `username` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `realm` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `acctSessionId` varchar(80) DEFAULT NULL,
+  `username` varchar(100) DEFAULT NULL,
+  `realm` varchar(20) DEFAULT NULL,
   `type` int(11) NOT NULL,
   `accessCode` smallint(6) NOT NULL,
   `servId` int(11) NOT NULL,
-  `calledStationId` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `callingStationId` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `calledStationId` varchar(60) DEFAULT NULL,
+  `callingStationId` varchar(60) DEFAULT NULL,
   `ipResourceId` int(11) NOT NULL,
   `ipAddress` varbinary(24) DEFAULT NULL,
   `connectionStart` datetime NOT NULL,
@@ -3943,7 +3944,7 @@ CREATE TABLE `inet_session_log_1_201509` (
   `sessionStop` datetime DEFAULT NULL,
   `lastActive` datetime NOT NULL,
   `deviceState` smallint(6) NOT NULL,
-  `deviceOptions` varchar(120) COLLATE utf8_unicode_ci NOT NULL,
+  `deviceOptions` varchar(120) NOT NULL,
   `sessionTime` int(11) NOT NULL,
   `sessionCost` decimal(10,5) NOT NULL,
   `status` smallint(6) NOT NULL,
@@ -3955,7 +3956,7 @@ CREATE TABLE `inet_session_log_1_201509` (
   KEY `connection` (`connectionId`),
   KEY `sessionStart` (`sessionStart`),
   KEY `ipAddress` (`ipAddress`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY RANGE (TO_DAYS(sessionStart))
 (PARTITION p20150901 VALUES LESS THAN (736208) ENGINE = InnoDB,
  PARTITION p20150902 VALUES LESS THAN (736209) ENGINE = InnoDB,
@@ -4003,7 +4004,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_1_201510` (
   `id` bigint(20) NOT NULL,
   `parentId` bigint(20) NOT NULL,
@@ -4013,14 +4014,14 @@ CREATE TABLE `inet_session_log_1_201510` (
   `deviceId` int(11) NOT NULL,
   `devicePort` int(11) NOT NULL,
   `agentDeviceId` int(11) NOT NULL,
-  `acctSessionId` varchar(80) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `username` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `realm` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `acctSessionId` varchar(80) DEFAULT NULL,
+  `username` varchar(100) DEFAULT NULL,
+  `realm` varchar(20) DEFAULT NULL,
   `type` int(11) NOT NULL,
   `accessCode` smallint(6) NOT NULL,
   `servId` int(11) NOT NULL,
-  `calledStationId` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `callingStationId` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `calledStationId` varchar(60) DEFAULT NULL,
+  `callingStationId` varchar(60) DEFAULT NULL,
   `ipResourceId` int(11) NOT NULL,
   `ipAddress` varbinary(24) DEFAULT NULL,
   `connectionStart` datetime NOT NULL,
@@ -4028,7 +4029,7 @@ CREATE TABLE `inet_session_log_1_201510` (
   `sessionStop` datetime DEFAULT NULL,
   `lastActive` datetime NOT NULL,
   `deviceState` smallint(6) NOT NULL,
-  `deviceOptions` varchar(120) COLLATE utf8_unicode_ci NOT NULL,
+  `deviceOptions` varchar(120) NOT NULL,
   `sessionTime` int(11) NOT NULL,
   `sessionCost` decimal(10,5) NOT NULL,
   `status` smallint(6) NOT NULL,
@@ -4040,7 +4041,7 @@ CREATE TABLE `inet_session_log_1_201510` (
   KEY `connection` (`connectionId`),
   KEY `sessionStart` (`sessionStart`),
   KEY `ipAddress` (`ipAddress`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY RANGE (TO_DAYS(sessionStart))
 (PARTITION p20151001 VALUES LESS THAN (736238) ENGINE = InnoDB,
  PARTITION p20151002 VALUES LESS THAN (736239) ENGINE = InnoDB,
@@ -4089,7 +4090,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_1_201606` (
   `id` bigint(20) NOT NULL,
   `parentId` bigint(20) NOT NULL,
@@ -4099,14 +4100,14 @@ CREATE TABLE `inet_session_log_1_201606` (
   `deviceId` int(11) NOT NULL,
   `devicePort` int(11) NOT NULL,
   `agentDeviceId` int(11) NOT NULL,
-  `acctSessionId` varchar(80) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `username` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `realm` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `acctSessionId` varchar(80) DEFAULT NULL,
+  `username` varchar(100) DEFAULT NULL,
+  `realm` varchar(20) DEFAULT NULL,
   `type` int(11) NOT NULL,
   `accessCode` smallint(6) NOT NULL,
   `servId` int(11) NOT NULL,
-  `calledStationId` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `callingStationId` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `calledStationId` varchar(60) DEFAULT NULL,
+  `callingStationId` varchar(60) DEFAULT NULL,
   `ipResourceId` int(11) NOT NULL,
   `ipAddress` varbinary(24) DEFAULT NULL,
   `connectionStart` datetime NOT NULL,
@@ -4114,7 +4115,7 @@ CREATE TABLE `inet_session_log_1_201606` (
   `sessionStop` datetime DEFAULT NULL,
   `lastActive` datetime NOT NULL,
   `deviceState` smallint(6) NOT NULL,
-  `deviceOptions` varchar(120) COLLATE utf8_unicode_ci NOT NULL,
+  `deviceOptions` varchar(120) NOT NULL,
   `sessionTime` int(11) NOT NULL,
   `sessionCost` decimal(10,5) NOT NULL,
   `status` smallint(6) NOT NULL,
@@ -4126,7 +4127,7 @@ CREATE TABLE `inet_session_log_1_201606` (
   KEY `connection` (`connectionId`),
   KEY `sessionStart` (`sessionStart`),
   KEY `ipAddress` (`ipAddress`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY RANGE (TO_DAYS(sessionStart))
 (PARTITION p20160601 VALUES LESS THAN (736482) ENGINE = InnoDB,
  PARTITION p20160602 VALUES LESS THAN (736483) ENGINE = InnoDB,
@@ -4173,7 +4174,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_account_1_201505` (
   `contractId` int(11) NOT NULL,
   `sessionId` bigint(20) NOT NULL,
@@ -4183,7 +4184,7 @@ CREATE TABLE `inet_session_log_account_1_201505` (
   PRIMARY KEY (`contractId`,`sessionId`,`serviceId`),
   KEY `serviceId` (`serviceId`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4203,7 +4204,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_account_1_201506` (
   `contractId` int(11) NOT NULL,
   `sessionId` bigint(20) NOT NULL,
@@ -4213,7 +4214,7 @@ CREATE TABLE `inet_session_log_account_1_201506` (
   PRIMARY KEY (`contractId`,`sessionId`,`serviceId`),
   KEY `serviceId` (`serviceId`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4233,7 +4234,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_account_1_201507` (
   `contractId` int(11) NOT NULL,
   `sessionId` bigint(20) NOT NULL,
@@ -4243,7 +4244,7 @@ CREATE TABLE `inet_session_log_account_1_201507` (
   PRIMARY KEY (`contractId`,`sessionId`,`serviceId`),
   KEY `serviceId` (`serviceId`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4263,7 +4264,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_account_1_201508` (
   `contractId` int(11) NOT NULL,
   `sessionId` bigint(20) NOT NULL,
@@ -4273,7 +4274,7 @@ CREATE TABLE `inet_session_log_account_1_201508` (
   PRIMARY KEY (`contractId`,`sessionId`,`serviceId`),
   KEY `serviceId` (`serviceId`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4293,7 +4294,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_account_1_201509` (
   `contractId` int(11) NOT NULL,
   `sessionId` bigint(20) NOT NULL,
@@ -4303,7 +4304,7 @@ CREATE TABLE `inet_session_log_account_1_201509` (
   PRIMARY KEY (`contractId`,`sessionId`,`serviceId`),
   KEY `serviceId` (`serviceId`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4323,7 +4324,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_account_1_201510` (
   `contractId` int(11) NOT NULL,
   `sessionId` bigint(20) NOT NULL,
@@ -4333,7 +4334,7 @@ CREATE TABLE `inet_session_log_account_1_201510` (
   PRIMARY KEY (`contractId`,`sessionId`,`serviceId`),
   KEY `serviceId` (`serviceId`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4353,7 +4354,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_account_1_201606` (
   `contractId` int(11) NOT NULL,
   `sessionId` bigint(20) NOT NULL,
@@ -4363,7 +4364,7 @@ CREATE TABLE `inet_session_log_account_1_201606` (
   PRIMARY KEY (`contractId`,`sessionId`,`serviceId`),
   KEY `serviceId` (`serviceId`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4382,7 +4383,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_detail_1_201505` (
   `sessionId` bigint(20) NOT NULL,
   `day` tinyint(4) NOT NULL,
@@ -4392,7 +4393,7 @@ CREATE TABLE `inet_session_log_detail_1_201505` (
   `amount` bigint(20) NOT NULL,
   PRIMARY KEY (`sessionId`,`day`,`hour`,`trafficTypeId`,`deviceId`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( sessionId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4412,7 +4413,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_detail_1_201506` (
   `sessionId` bigint(20) NOT NULL,
   `day` tinyint(4) NOT NULL,
@@ -4422,7 +4423,7 @@ CREATE TABLE `inet_session_log_detail_1_201506` (
   `amount` bigint(20) NOT NULL,
   PRIMARY KEY (`sessionId`,`day`,`hour`,`trafficTypeId`,`deviceId`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( sessionId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4442,7 +4443,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_detail_1_201507` (
   `sessionId` bigint(20) NOT NULL,
   `day` tinyint(4) NOT NULL,
@@ -4452,7 +4453,7 @@ CREATE TABLE `inet_session_log_detail_1_201507` (
   `amount` bigint(20) NOT NULL,
   PRIMARY KEY (`sessionId`,`day`,`hour`,`trafficTypeId`,`deviceId`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( sessionId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4472,7 +4473,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_detail_1_201508` (
   `sessionId` bigint(20) NOT NULL,
   `day` tinyint(4) NOT NULL,
@@ -4482,7 +4483,7 @@ CREATE TABLE `inet_session_log_detail_1_201508` (
   `amount` bigint(20) NOT NULL,
   PRIMARY KEY (`sessionId`,`day`,`hour`,`trafficTypeId`,`deviceId`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( sessionId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4502,7 +4503,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_detail_1_201509` (
   `sessionId` bigint(20) NOT NULL,
   `day` tinyint(4) NOT NULL,
@@ -4512,7 +4513,7 @@ CREATE TABLE `inet_session_log_detail_1_201509` (
   `amount` bigint(20) NOT NULL,
   PRIMARY KEY (`sessionId`,`day`,`hour`,`trafficTypeId`,`deviceId`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( sessionId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4532,7 +4533,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_detail_1_201510` (
   `sessionId` bigint(20) NOT NULL,
   `day` tinyint(4) NOT NULL,
@@ -4542,7 +4543,7 @@ CREATE TABLE `inet_session_log_detail_1_201510` (
   `amount` bigint(20) NOT NULL,
   PRIMARY KEY (`sessionId`,`day`,`hour`,`trafficTypeId`,`deviceId`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( sessionId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4562,7 +4563,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_detail_1_201606` (
   `sessionId` bigint(20) NOT NULL,
   `day` tinyint(4) NOT NULL,
@@ -4572,7 +4573,7 @@ CREATE TABLE `inet_session_log_detail_1_201606` (
   `amount` bigint(20) NOT NULL,
   PRIMARY KEY (`sessionId`,`day`,`hour`,`trafficTypeId`,`deviceId`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( sessionId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4591,7 +4592,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_route_1_201505` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `sessionId` bigint(20) NOT NULL,
@@ -4599,7 +4600,7 @@ CREATE TABLE `inet_session_log_route_1_201505` (
   `mask` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4616,7 +4617,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_route_1_201506` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `sessionId` bigint(20) NOT NULL,
@@ -4624,7 +4625,7 @@ CREATE TABLE `inet_session_log_route_1_201506` (
   `mask` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4641,7 +4642,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_route_1_201507` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `sessionId` bigint(20) NOT NULL,
@@ -4649,7 +4650,7 @@ CREATE TABLE `inet_session_log_route_1_201507` (
   `mask` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4666,7 +4667,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_route_1_201508` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `sessionId` bigint(20) NOT NULL,
@@ -4674,7 +4675,7 @@ CREATE TABLE `inet_session_log_route_1_201508` (
   `mask` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4691,7 +4692,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_route_1_201509` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `sessionId` bigint(20) NOT NULL,
@@ -4699,7 +4700,7 @@ CREATE TABLE `inet_session_log_route_1_201509` (
   `mask` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4716,7 +4717,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_route_1_201510` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `sessionId` bigint(20) NOT NULL,
@@ -4724,7 +4725,7 @@ CREATE TABLE `inet_session_log_route_1_201510` (
   `mask` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4741,7 +4742,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_route_1_201606` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `sessionId` bigint(20) NOT NULL,
@@ -4749,7 +4750,7 @@ CREATE TABLE `inet_session_log_route_1_201606` (
   `mask` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4766,7 +4767,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_tariff_traffic_max_1` (
   `contractId` int(11) NOT NULL,
   `treeNodeId` bigint(20) NOT NULL,
@@ -4778,7 +4779,7 @@ CREATE TABLE `inet_tariff_traffic_max_1` (
   `amount1` bigint(20) NOT NULL,
   `amount2` bigint(20) NOT NULL,
   PRIMARY KEY (`contractId`,`treeNodeId`,`maxKey`,`yy`,`mm`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4797,7 +4798,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_tariff_traffic_max_detail_1_201505` (
   `contractId` int(11) NOT NULL,
   `treeNodeId` bigint(20) NOT NULL,
@@ -4807,7 +4808,7 @@ CREATE TABLE `inet_tariff_traffic_max_detail_1_201505` (
   `amount1` bigint(20) NOT NULL,
   `amount2` bigint(20) NOT NULL,
   PRIMARY KEY (`contractId`,`treeNodeId`,`maxKey`,`day`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4826,7 +4827,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_tariff_traffic_max_detail_1_201506` (
   `contractId` int(11) NOT NULL,
   `treeNodeId` bigint(20) NOT NULL,
@@ -4836,7 +4837,7 @@ CREATE TABLE `inet_tariff_traffic_max_detail_1_201506` (
   `amount1` bigint(20) NOT NULL,
   `amount2` bigint(20) NOT NULL,
   PRIMARY KEY (`contractId`,`treeNodeId`,`maxKey`,`day`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4855,7 +4856,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_tariff_traffic_max_detail_1_201507` (
   `contractId` int(11) NOT NULL,
   `treeNodeId` bigint(20) NOT NULL,
@@ -4865,7 +4866,7 @@ CREATE TABLE `inet_tariff_traffic_max_detail_1_201507` (
   `amount1` bigint(20) NOT NULL,
   `amount2` bigint(20) NOT NULL,
   PRIMARY KEY (`contractId`,`treeNodeId`,`maxKey`,`day`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4884,7 +4885,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_tariff_traffic_max_detail_1_201508` (
   `contractId` int(11) NOT NULL,
   `treeNodeId` bigint(20) NOT NULL,
@@ -4894,7 +4895,7 @@ CREATE TABLE `inet_tariff_traffic_max_detail_1_201508` (
   `amount1` bigint(20) NOT NULL,
   `amount2` bigint(20) NOT NULL,
   PRIMARY KEY (`contractId`,`treeNodeId`,`maxKey`,`day`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4913,7 +4914,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_tariff_traffic_max_detail_1_201509` (
   `contractId` int(11) NOT NULL,
   `treeNodeId` bigint(20) NOT NULL,
@@ -4923,7 +4924,7 @@ CREATE TABLE `inet_tariff_traffic_max_detail_1_201509` (
   `amount1` bigint(20) NOT NULL,
   `amount2` bigint(20) NOT NULL,
   PRIMARY KEY (`contractId`,`treeNodeId`,`maxKey`,`day`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4942,7 +4943,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_tariff_traffic_max_detail_1_201510` (
   `contractId` int(11) NOT NULL,
   `treeNodeId` bigint(20) NOT NULL,
@@ -4952,7 +4953,7 @@ CREATE TABLE `inet_tariff_traffic_max_detail_1_201510` (
   `amount1` bigint(20) NOT NULL,
   `amount2` bigint(20) NOT NULL,
   PRIMARY KEY (`contractId`,`treeNodeId`,`maxKey`,`day`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4971,7 +4972,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_tariff_traffic_max_detail_1_201606` (
   `contractId` int(11) NOT NULL,
   `treeNodeId` bigint(20) NOT NULL,
@@ -4981,7 +4982,7 @@ CREATE TABLE `inet_tariff_traffic_max_detail_1_201606` (
   `amount1` bigint(20) NOT NULL,
   `amount2` bigint(20) NOT NULL,
   PRIMARY KEY (`contractId`,`treeNodeId`,`maxKey`,`day`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -5000,7 +5001,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_tariff_traffic_range_1` (
   `contractId` int(11) NOT NULL,
   `treeNodeId` bigint(20) NOT NULL,
@@ -5011,7 +5012,7 @@ CREATE TABLE `inet_tariff_traffic_range_1` (
   `yy` int(11) NOT NULL,
   `mm` int(11) NOT NULL,
   PRIMARY KEY (`contractId`,`treeNodeId`,`rangeKey`,`yy`,`mm`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -5031,7 +5032,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_tariff_traffic_range_detail_1_201505` (
   `contractId` int(11) NOT NULL,
   `treeNodeId` bigint(20) NOT NULL,
@@ -5039,7 +5040,7 @@ CREATE TABLE `inet_tariff_traffic_range_detail_1_201505` (
   `day` int(11) NOT NULL,
   `amount` bigint(20) NOT NULL,
   PRIMARY KEY (`contractId`,`treeNodeId`,`rangeKey`,`day`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -5059,7 +5060,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_tariff_traffic_range_detail_1_201506` (
   `contractId` int(11) NOT NULL,
   `treeNodeId` bigint(20) NOT NULL,
@@ -5067,7 +5068,7 @@ CREATE TABLE `inet_tariff_traffic_range_detail_1_201506` (
   `day` int(11) NOT NULL,
   `amount` bigint(20) NOT NULL,
   PRIMARY KEY (`contractId`,`treeNodeId`,`rangeKey`,`day`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -5087,7 +5088,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_tariff_traffic_range_detail_1_201507` (
   `contractId` int(11) NOT NULL,
   `treeNodeId` bigint(20) NOT NULL,
@@ -5095,7 +5096,7 @@ CREATE TABLE `inet_tariff_traffic_range_detail_1_201507` (
   `day` int(11) NOT NULL,
   `amount` bigint(20) NOT NULL,
   PRIMARY KEY (`contractId`,`treeNodeId`,`rangeKey`,`day`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -5115,7 +5116,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_tariff_traffic_range_detail_1_201508` (
   `contractId` int(11) NOT NULL,
   `treeNodeId` bigint(20) NOT NULL,
@@ -5123,7 +5124,7 @@ CREATE TABLE `inet_tariff_traffic_range_detail_1_201508` (
   `day` int(11) NOT NULL,
   `amount` bigint(20) NOT NULL,
   PRIMARY KEY (`contractId`,`treeNodeId`,`rangeKey`,`day`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -5143,7 +5144,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_tariff_traffic_range_detail_1_201509` (
   `contractId` int(11) NOT NULL,
   `treeNodeId` bigint(20) NOT NULL,
@@ -5151,7 +5152,7 @@ CREATE TABLE `inet_tariff_traffic_range_detail_1_201509` (
   `day` int(11) NOT NULL,
   `amount` bigint(20) NOT NULL,
   PRIMARY KEY (`contractId`,`treeNodeId`,`rangeKey`,`day`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -5171,7 +5172,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_tariff_traffic_range_detail_1_201510` (
   `contractId` int(11) NOT NULL,
   `treeNodeId` bigint(20) NOT NULL,
@@ -5179,7 +5180,7 @@ CREATE TABLE `inet_tariff_traffic_range_detail_1_201510` (
   `day` int(11) NOT NULL,
   `amount` bigint(20) NOT NULL,
   PRIMARY KEY (`contractId`,`treeNodeId`,`rangeKey`,`day`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -5199,7 +5200,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_tariff_traffic_range_detail_1_201606` (
   `contractId` int(11) NOT NULL,
   `treeNodeId` bigint(20) NOT NULL,
@@ -5207,7 +5208,7 @@ CREATE TABLE `inet_tariff_traffic_range_detail_1_201606` (
   `day` int(11) NOT NULL,
   `amount` bigint(20) NOT NULL,
   PRIMARY KEY (`contractId`,`treeNodeId`,`rangeKey`,`day`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -5226,7 +5227,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_task_process_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `deviceId` int(11) NOT NULL,
@@ -5235,7 +5236,7 @@ CREATE TABLE `inet_task_process_1` (
   `curentHour` int(11) NOT NULL,
   `type` tinyint(4) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5252,13 +5253,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_traffic_type_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(150) NOT NULL,
   `unit` int(11) NOT NULL DEFAULT '30000',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5276,12 +5277,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_traffic_type_link_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(150) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5299,7 +5300,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_traffic_type_link_rule_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `linkId` int(11) NOT NULL,
@@ -5314,16 +5315,16 @@ CREATE TABLE `inet_traffic_type_link_rule_1` (
   `addressTo` varbinary(24) DEFAULT NULL,
   `portFrom` int(11) NOT NULL,
   `portTo` int(11) NOT NULL,
-  `diffServ` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `counterRealm` varchar(35) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `counterService` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `diffServ` varchar(50) DEFAULT NULL,
+  `counterRealm` varchar(35) NOT NULL DEFAULT '',
+  `counterService` varchar(100) NOT NULL,
   `counterVendor` int(11) NOT NULL,
   `counterType` int(11) NOT NULL,
-  `counterPrefix` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `counterPrefix` varchar(50) DEFAULT NULL,
   `trafficTypeId` int(11) NOT NULL,
-  `comment` text COLLATE utf8_unicode_ci NOT NULL,
+  `comment` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=35;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5341,12 +5342,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_zone_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(150) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5363,22 +5364,22 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `installed_modules` (
-  `name` varchar(100) COLLATE utf8_unicode_ci DEFAULT '0',
-  `title` varchar(200) COLLATE utf8_unicode_ci DEFAULT '0',
-  `version` varchar(20) COLLATE utf8_unicode_ci DEFAULT '0',
-  `pack_server` varchar(200) COLLATE utf8_unicode_ci DEFAULT '0',
-  `pack_client` varchar(200) COLLATE utf8_unicode_ci DEFAULT '0',
-  `type` varchar(20) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `name` varchar(100) DEFAULT '0',
+  `title` varchar(200) DEFAULT '0',
+  `version` varchar(20) DEFAULT '0',
+  `pack_server` varchar(200) DEFAULT '0',
+  `pack_client` varchar(200) DEFAULT '0',
+  `type` varchar(20) NOT NULL DEFAULT '0',
   `client_zip` longblob NOT NULL,
-  `init` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `init` longtext NOT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `enabled` tinyint(1) NOT NULL DEFAULT '0',
   `uninstall` longtext COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5396,27 +5397,27 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_device_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `entityId` int(11) NOT NULL,
   `parentId` int(11) NOT NULL,
   `deviceTypeId` int(11) NOT NULL,
-  `title` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
-  `identifier` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
-  `uptime` text COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(250) NOT NULL,
+  `identifier` varchar(150) NOT NULL,
+  `uptime` text NOT NULL,
   `uptimeTime` datetime DEFAULT NULL,
-  `host` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `host` varchar(150) NOT NULL,
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
   `orderManagerDisabled` tinyint(4) NOT NULL DEFAULT '0',
-  `username` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `secret` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `config` text COLLATE utf8_unicode_ci NOT NULL,
-  `comment` text COLLATE utf8_unicode_ci NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `secret` varchar(100) NOT NULL,
+  `config` text NOT NULL,
+  `comment` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5434,17 +5435,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_device_group_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parentId` int(11) NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL,
   `cityId` int(11) NOT NULL,
-  `comment` text COLLATE utf8_unicode_ci NOT NULL,
+  `comment` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `parent_id` (`parentId`),
   KEY `city_id` (`cityId`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5462,17 +5463,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_device_group_4` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parentId` int(11) NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL,
   `cityId` int(11) NOT NULL,
-  `comment` text COLLATE utf8_unicode_ci NOT NULL,
+  `comment` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `parent_id` (`parentId`),
   KEY `city_id` (`cityId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5489,12 +5490,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_device_group_link_1` (
   `deviceId` int(11) NOT NULL,
   `deviceGroupId` int(11) NOT NULL,
   KEY `device_id` (`deviceId`,`deviceGroupId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5512,12 +5513,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_device_group_link_4` (
   `deviceId` int(11) NOT NULL,
   `deviceGroupId` int(11) NOT NULL,
   KEY `device_id` (`deviceId`,`deviceGroupId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5534,7 +5535,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_device_interface_index_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `deviceId` int(11) NOT NULL,
@@ -5544,7 +5545,7 @@ CREATE TABLE `inv_device_interface_index_1` (
   `ifIndex` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `iface` (`deviceId`,`interfaceId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5561,17 +5562,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_device_port_1` (
   `deviceId` int(11) NOT NULL,
   `port` int(11) NOT NULL,
-  `title` varchar(80) COLLATE utf8_unicode_ci NOT NULL DEFAULT '-',
+  `title` varchar(80) NOT NULL DEFAULT '-',
   `status` int(11) NOT NULL,
   `ipCategoryId` int(11) NOT NULL,
-  `comment` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comment` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`deviceId`,`port`),
   KEY `device_port` (`deviceId`,`port`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5589,7 +5590,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_device_port_subscription_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `deviceId` int(11) NOT NULL,
@@ -5597,10 +5598,10 @@ CREATE TABLE `inv_device_port_subscription_1` (
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
   `subscriberId` int(11) NOT NULL,
-  `subscriberTitle` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `subscriberTitle` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `devicePort` (`deviceId`,`port`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5618,14 +5619,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_ip_category_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parentId` int(11) NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `parent` (`parentId`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5643,7 +5644,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_ip_resource_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `categoryId` int(11) NOT NULL,
@@ -5651,16 +5652,16 @@ CREATE TABLE `inv_ip_resource_1` (
   `addressTo` varbinary(24) NOT NULL,
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
-  `router` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
-  `subnetMask` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
-  `dns` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
-  `comment` text COLLATE utf8_unicode_ci NOT NULL,
+  `router` varchar(150) NOT NULL,
+  `subnetMask` varchar(150) NOT NULL,
+  `dns` varchar(150) NOT NULL,
+  `comment` text NOT NULL,
   `dynamic` tinyint(1) DEFAULT NULL,
-  `config` text COLLATE utf8_unicode_ci NOT NULL,
+  `config` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `ip` (`categoryId`,`addressFrom`,`addressTo`),
   KEY `period` (`dateFrom`,`dateTo`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5678,13 +5679,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_ip_resource_dyn_reserve_1` (
   `address` varbinary(24) NOT NULL,
   `timeout` bigint(20) NOT NULL,
   `ipResourceId` int(11) NOT NULL,
   KEY `timeout` (`timeout`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5701,7 +5702,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_ip_resource_subscription_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `subscriberId` int(11) NOT NULL,
@@ -5710,9 +5711,9 @@ CREATE TABLE `inv_ip_resource_subscription_1` (
   `addressTo` varbinary(24) NOT NULL,
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
-  `subscriberTitle` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `subscriberTitle` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5729,7 +5730,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_ip_resource_subscription_dyn_1` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT,
   `ipResourceId` int(11) NOT NULL,
@@ -5739,13 +5740,13 @@ CREATE TABLE `inv_ip_resource_subscription_dyn_1` (
   `timeTo` datetime DEFAULT NULL,
   `subscriberId` int(11) NOT NULL,
   `subscriberType` int(11) NOT NULL,
-  `subscriberTitle` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `subscriberTitle` varchar(150) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `connectionId` (`connectionId`),
   KEY `ip` (`ipResourceId`,`address`),
   KEY `period` (`timeFrom`,`timeTo`),
   KEY `subscriber` (`subscriberId`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5763,17 +5764,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_ip_resource_subscription_real_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `subscriberId` int(11) NOT NULL,
-  `subscriberTitle` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `subscriberTitle` varchar(255) DEFAULT NULL,
   `addressFrom` varbinary(24) NOT NULL,
   `addressTo` varbinary(24) NOT NULL,
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5790,7 +5791,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_product` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `contractId` int(11) NOT NULL,
@@ -5803,12 +5804,12 @@ CREATE TABLE `inv_product` (
   `activationPrice` decimal(10,5) DEFAULT NULL,
   `deactivationTime` datetime DEFAULT NULL,
   `userId` int(11) NOT NULL,
-  `deviceProductId` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `deviceProductId` varchar(100) DEFAULT NULL,
   `deviceState` tinyint(4) NOT NULL,
-  `comment` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `description` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comment` varchar(255) NOT NULL,
+  `description` varchar(100) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5825,7 +5826,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_product_period` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `contractId` int(11) NOT NULL,
@@ -5843,7 +5844,7 @@ CREATE TABLE `inv_product_period` (
   KEY `account` (`accountId`),
   KEY `product` (`productId`),
   KEY `period` (`timeFrom`,`timeTo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH (contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -5862,7 +5863,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_product_spec` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `entityId` int(11) NOT NULL,
@@ -5871,13 +5872,13 @@ CREATE TABLE `inv_product_spec` (
   `periodic` tinyint(4) NOT NULL DEFAULT '1',
   `notRealtime` tinyint(4) NOT NULL DEFAULT '0',
   `priority` int(11) NOT NULL DEFAULT '0',
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `identifier` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `tariffIds` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `contractGroups` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `depends` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `incompatible` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `activationModeIds` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `title` varchar(255) NOT NULL,
+  `identifier` varchar(255) NOT NULL DEFAULT '',
+  `tariffIds` varchar(255) DEFAULT NULL,
+  `contractGroups` varchar(255) DEFAULT NULL,
+  `depends` varchar(255) DEFAULT NULL,
+  `incompatible` varchar(255) DEFAULT NULL,
+  `activationModeIds` varchar(255) DEFAULT NULL,
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
   `status` tinyint(4) NOT NULL,
@@ -5886,14 +5887,14 @@ CREATE TABLE `inv_product_spec` (
   `hideForContractGroupsMode` tinyint(4) NOT NULL DEFAULT '0',
   `activationByCustomer` tinyint(4) NOT NULL,
   `deactivationByCustomer` tinyint(4) NOT NULL,
-  `comment` mediumtext COLLATE utf8_unicode_ci NOT NULL,
-  `description` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `comment` mediumtext NOT NULL,
+  `description` mediumtext NOT NULL,
   PRIMARY KEY (`id`),
   KEY `moduleId` (`moduleId`),
   KEY `date` (`dateFrom`,`dateTo`),
   KEY `parent` (`parentId`),
   KEY `entity` (`entityId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5910,11 +5911,11 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_product_spec_activation_mode` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `productSpecId` int(11) NOT NULL,
-  `title` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `title` varchar(100) DEFAULT NULL,
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
   `periodMode` int(11) NOT NULL,
@@ -5926,7 +5927,7 @@ CREATE TABLE `inv_product_spec_activation_mode` (
   PRIMARY KEY (`id`),
   KEY `productSpec` (`productSpecId`),
   KEY `period` (`dateFrom`,`dateTo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5943,7 +5944,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_product_spec_service_link` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `productSpecId` int(11) NOT NULL,
@@ -5954,7 +5955,7 @@ CREATE TABLE `inv_product_spec_service_link` (
   PRIMARY KEY (`id`),
   KEY `product` (`productSpecId`),
   KEY `service` (`serviceSpecId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5971,7 +5972,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_service` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `contractId` int(11) NOT NULL,
@@ -5986,7 +5987,7 @@ CREATE TABLE `inv_service` (
   KEY `accountId` (`accountId`),
   KEY `productId` (`productId`),
   KEY `serviceSpecId` (`serviceSpecId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH (contractId)
 PARTITIONS 16 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -6005,24 +6006,24 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_service_spec` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `entityId` int(11) NOT NULL,
   `moduleId` int(11) NOT NULL,
   `parentId` int(11) NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `identifier` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `identifier` varchar(255) NOT NULL,
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
-  `comment` mediumtext COLLATE utf8_unicode_ci NOT NULL,
-  `description` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `comment` mediumtext NOT NULL,
+  `description` mediumtext NOT NULL,
   PRIMARY KEY (`id`),
   KEY `moduleId` (`moduleId`),
   KEY `date` (`dateFrom`,`dateTo`),
   KEY `parent` (`parentId`),
   KEY `entity` (`entityId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6039,14 +6040,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_vlan_category_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parentId` int(11) NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `parent` (`parentId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6063,18 +6064,18 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_vlan_resource_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL,
   `vlanFrom` int(11) NOT NULL,
   `vlanTo` int(11) NOT NULL,
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
-  `comment` text COLLATE utf8_unicode_ci NOT NULL,
+  `comment` text NOT NULL,
   `categoryId` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6091,7 +6092,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_vlan_resource_subscription_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `vlanResId` int(11) NOT NULL,
@@ -6099,12 +6100,12 @@ CREATE TABLE `inv_vlan_resource_subscription_1` (
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
   `subscriberId` int(11) NOT NULL,
-  `subscriberTitle` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `subscriberTitle` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `vlan` (`vlanResId`,`vlan`),
   KEY `period` (`dateFrom`,`dateTo`),
   KEY `subscriber` (`subscriberId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6121,13 +6122,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `log_contract_face` (
   `dt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `uid` int(11) NOT NULL DEFAULT '0',
   `value` int(11) NOT NULL DEFAULT '0',
   `cid` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6144,16 +6145,16 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `log_contract_limit` (
   `dt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `uid` int(11) NOT NULL DEFAULT '0',
   `nvalue` decimal(10,2) NOT NULL,
   `cid` int(11) NOT NULL DEFAULT '0',
-  `comment` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
-  `days` varchar(4) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `comment` varchar(250) NOT NULL,
+  `days` varchar(4) DEFAULT NULL,
   KEY `cid` (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6171,14 +6172,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `log_contract_limit_manage_mode` (
   `dt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `uid` int(11) NOT NULL DEFAULT '0',
   `mode` int(11) NOT NULL DEFAULT '0',
   `cid` int(11) NOT NULL DEFAULT '0',
   KEY `cid` (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6195,13 +6196,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `log_contract_mode` (
   `dt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `uid` int(11) NOT NULL DEFAULT '0',
   `value` int(11) NOT NULL DEFAULT '0',
   `cid` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6219,13 +6220,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `log_contract_pswd` (
   `dt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `uid` int(11) NOT NULL DEFAULT '0',
   `cid` int(11) NOT NULL DEFAULT '0',
   KEY `cid` (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6243,14 +6244,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `log_function_process_201506` (
   `cid` int(11) NOT NULL,
   `time` datetime NOT NULL,
-  `title` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
-  `data` text COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(250) NOT NULL,
+  `data` text NOT NULL,
   KEY `cid` (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6268,14 +6269,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `log_function_process_201508` (
   `cid` int(11) NOT NULL,
   `time` datetime NOT NULL,
-  `title` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
-  `data` text COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(250) NOT NULL,
+  `data` text NOT NULL,
   KEY `cid` (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6293,14 +6294,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `log_login_pswd` (
   `dt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `uid` int(11) NOT NULL DEFAULT '0',
   `mid` int(11) NOT NULL DEFAULT '0',
   `lid` int(11) NOT NULL DEFAULT '0',
   KEY `lid_mid` (`lid`,`mid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6317,16 +6318,16 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `mail_list` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(50) COLLATE utf8_unicode_ci DEFAULT '0',
+  `title` varchar(50) DEFAULT '0',
   `flag` int(1) unsigned DEFAULT '0',
   `type` tinyint(1) unsigned DEFAULT '0',
   `up` int(11) unsigned DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `up` (`up`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6343,13 +6344,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `mail_list_message` (
   `id` int(11) unsigned NOT NULL DEFAULT '0',
-  `subject` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `subject` varchar(255) DEFAULT NULL,
   `text` mediumtext COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6366,12 +6367,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `mail_temp` (
   `id` int(11) NOT NULL DEFAULT '0',
   `eid` int(11) DEFAULT NULL,
   `dt` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6388,17 +6389,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `message_for_users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `date_from` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `date_to` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `text` mediumtext COLLATE utf8_unicode_ci NOT NULL,
-  `gr` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `users` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `text` mediumtext NOT NULL,
+  `gr` varchar(100) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `users` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6415,15 +6416,15 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `module` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `name` varchar(16) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(150) NOT NULL DEFAULT '',
+  `name` varchar(16) NOT NULL DEFAULT '',
   `config_id` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6441,18 +6442,18 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `module_config` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `mid` int(3) unsigned DEFAULT '0',
   `dt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `title` varchar(150) NOT NULL DEFAULT '0',
   `active` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `uid` int(11) unsigned DEFAULT '0',
   `config` longtext COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `mid_active` (`mid`,`active`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6470,7 +6471,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `module_tariff_tree` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `mid` int(10) NOT NULL DEFAULT '0',
@@ -6480,7 +6481,7 @@ CREATE TABLE `module_tariff_tree` (
   PRIMARY KEY (`id`),
   KEY `tree_id` (`tree_id`),
   KEY `mid_tree` (`mid`,`tree_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6498,17 +6499,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `mtree_node` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `parent_node` int(10) unsigned NOT NULL DEFAULT '0',
   `mtree_id` int(10) unsigned NOT NULL DEFAULT '0',
-  `type` varchar(20) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `data` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `type` varchar(20) NOT NULL DEFAULT '',
+  `data` mediumtext NOT NULL,
   `pos` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `tree_id` (`mtree_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=64;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6526,15 +6527,15 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `news` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `gr` bigint(20) NOT NULL DEFAULT '0',
   `dt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `txt` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(150) NOT NULL DEFAULT '',
+  `txt` mediumtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6552,13 +6553,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `npay_add_cost_detail_3_201505` (
   `cid` int(11) NOT NULL,
   `sid` int(11) NOT NULL,
   `summa` decimal(15,2) NOT NULL,
   KEY `cid` (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6575,7 +6576,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `npay_detail_3_201505` (
   `cid` int(11) NOT NULL,
   `mid` int(11) NOT NULL,
@@ -6588,7 +6589,7 @@ CREATE TABLE `npay_detail_3_201505` (
   KEY `sid` (`sid`),
   KEY `treeId` (`treeId`),
   KEY `mid` (`mid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6605,7 +6606,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `npay_service_object_3` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cid` int(11) NOT NULL,
@@ -6617,12 +6618,12 @@ CREATE TABLE `npay_service_object_3` (
   `date2` date DEFAULT NULL,
   `emid` int(11) NOT NULL,
   `eid` int(11) NOT NULL,
-  `comment` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `comment` varchar(250) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `csid` (`csid`),
   KEY `cid` (`cid`),
   KEY `oid` (`oid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6639,11 +6640,11 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `object` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cid` int(11) NOT NULL DEFAULT '0',
-  `title` varchar(250) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(250) NOT NULL DEFAULT '',
   `type_id` int(11) NOT NULL DEFAULT '0',
   `date1` date DEFAULT NULL,
   `date2` date DEFAULT NULL,
@@ -6651,7 +6652,7 @@ CREATE TABLE `object` (
   PRIMARY KEY (`id`),
   KEY `cid` (`cid`),
   KEY `pos` (`pos`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6668,14 +6669,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `object_list_value` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `param_id` int(11) NOT NULL DEFAULT '0',
-  `title` varchar(250) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(250) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `param_id` (`param_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6692,16 +6693,16 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `object_param` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(250) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(250) NOT NULL DEFAULT '',
   `type` tinyint(1) NOT NULL DEFAULT '0',
-  `comment` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `comment` varchar(255) NOT NULL,
   `flags` tinyint(4) DEFAULT '0',
   `history` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6718,20 +6719,20 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `object_param_value_address` (
   `object_id` int(11) NOT NULL DEFAULT '0',
   `param_id` int(11) NOT NULL DEFAULT '0',
   `hid` int(11) NOT NULL DEFAULT '0',
-  `flat` varchar(15) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
-  `room` varchar(20) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `flat` varchar(15) NOT NULL DEFAULT '0',
+  `room` varchar(20) NOT NULL DEFAULT '',
   `pod` int(11) NOT NULL DEFAULT '0',
   `floor` int(11) NOT NULL DEFAULT '0',
-  `address` varchar(250) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `comment` varchar(250) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `format_key` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `address` varchar(250) NOT NULL DEFAULT '',
+  `comment` varchar(250) NOT NULL DEFAULT '',
+  `format_key` varchar(50) NOT NULL,
   PRIMARY KEY (`object_id`,`param_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6748,15 +6749,15 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `object_param_value_address_log` (
   `object_id` int(11) NOT NULL DEFAULT '0',
   `param_id` int(11) NOT NULL DEFAULT '0',
-  `value` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `value` varchar(250) NOT NULL,
   `dt_change` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
   KEY `object_id` (`object_id`,`param_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6773,13 +6774,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `object_param_value_date` (
   `object_id` int(11) NOT NULL DEFAULT '0',
   `param_id` int(11) NOT NULL DEFAULT '0',
   `value` date DEFAULT NULL,
   PRIMARY KEY (`param_id`,`object_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6796,7 +6797,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `object_param_value_date_log` (
   `object_id` int(11) NOT NULL DEFAULT '0',
   `param_id` int(11) NOT NULL DEFAULT '0',
@@ -6804,7 +6805,7 @@ CREATE TABLE `object_param_value_date_log` (
   `dt_change` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
   KEY `param_id` (`param_id`,`object_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6821,13 +6822,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `object_param_value_flag` (
   `object_id` int(11) NOT NULL DEFAULT '0',
   `param_id` int(11) NOT NULL DEFAULT '0',
   `value` int(2) NOT NULL DEFAULT '0',
   PRIMARY KEY (`object_id`,`param_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6844,7 +6845,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `object_param_value_flag_log` (
   `object_id` int(11) NOT NULL DEFAULT '0',
   `param_id` int(11) NOT NULL DEFAULT '0',
@@ -6852,7 +6853,7 @@ CREATE TABLE `object_param_value_flag_log` (
   `dt_change` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
   KEY `object_id` (`object_id`,`param_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6869,13 +6870,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `object_param_value_list` (
   `object_id` int(11) NOT NULL DEFAULT '0',
   `param_id` int(11) NOT NULL DEFAULT '0',
   `value` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`param_id`,`object_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6892,16 +6893,16 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `object_param_value_list_log` (
   `object_id` int(11) NOT NULL DEFAULT '0',
   `param_id` int(11) NOT NULL DEFAULT '0',
   `value` int(11) NOT NULL DEFAULT '0',
-  `title` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(250) NOT NULL,
   `dt_change` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
   KEY `param_id` (`param_id`,`object_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6918,13 +6919,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `object_param_value_text` (
   `object_id` int(11) NOT NULL DEFAULT '0',
   `param_id` int(11) NOT NULL DEFAULT '0',
-  `value` varchar(250) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `value` varchar(250) NOT NULL DEFAULT '',
   PRIMARY KEY (`param_id`,`object_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6941,15 +6942,15 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `object_param_value_text_log` (
   `object_id` int(11) NOT NULL DEFAULT '0',
   `param_id` int(11) NOT NULL DEFAULT '0',
-  `value` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `value` varchar(250) NOT NULL,
   `dt_change` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
   KEY `param_id` (`param_id`,`object_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6966,15 +6967,15 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `object_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(250) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `name_macros` varchar(250) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `comment` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(250) NOT NULL DEFAULT '',
+  `name_macros` varchar(250) NOT NULL DEFAULT '',
+  `comment` varchar(255) NOT NULL,
   `ishidden` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6991,12 +6992,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `object_type_module` (
   `type_id` int(11) NOT NULL,
   `mid` int(11) NOT NULL,
   UNIQUE KEY `type_mid` (`mid`,`type_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7013,13 +7014,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `object_type_param` (
   `type_id` int(11) NOT NULL DEFAULT '0',
   `param_id` int(11) NOT NULL DEFAULT '0',
   `pos` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`type_id`,`param_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7036,18 +7037,18 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `paymaster_transaction_5` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `contract_id` int(11) NOT NULL,
   `payment_id` int(11) NOT NULL,
   `payment_date` datetime NOT NULL,
   `summa` decimal(12,2) NOT NULL,
-  `sys_payment_data` text COLLATE utf8_unicode_ci NOT NULL,
+  `sys_payment_data` text NOT NULL,
   `sys_payment_id` int(11) NOT NULL,
   `sys_payment_date` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7064,11 +7065,11 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `payment_register` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `date` date DEFAULT NULL,
-  `title` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(200) NOT NULL DEFAULT '',
   `pt` int(11) NOT NULL DEFAULT '0',
   `load_time` datetime DEFAULT NULL,
   `count` int(3) NOT NULL DEFAULT '0',
@@ -7076,13 +7077,13 @@ CREATE TABLE `payment_register` (
   `summa` decimal(10,2) NOT NULL DEFAULT '0.00',
   `processed` tinyint(2) NOT NULL DEFAULT '0',
   `process_time` datetime DEFAULT NULL,
-  `load_log` mediumtext COLLATE utf8_unicode_ci NOT NULL,
-  `ptitle` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `load_log` mediumtext NOT NULL,
+  `ptitle` varchar(50) NOT NULL,
   `regtype` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `id` (`id`),
   KEY `date` (`date`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7099,17 +7100,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `payment_register_item` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `rid` int(11) NOT NULL DEFAULT '0',
   `cid` int(11) NOT NULL DEFAULT '0',
   `summa` float(10,2) NOT NULL DEFAULT '0.00',
   `pid` int(11) NOT NULL DEFAULT '0',
-  `comment` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comment` varchar(200) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `rid` (`rid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7126,16 +7127,16 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `periodic_errors` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `marker` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `marker` varchar(250) NOT NULL,
   `calc_date` date DEFAULT NULL,
-  `subject` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `subject` varchar(250) NOT NULL,
   `text` mediumtext COLLATE utf8_unicode_ci,
   `reg_time` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7152,12 +7153,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `plugin_config` (
   `pid` int(11) NOT NULL,
   `config` mediumtext COLLATE utf8_unicode_ci,
   PRIMARY KEY (`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7175,12 +7176,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `register_group_task_type` (
   `gid` int(11) NOT NULL DEFAULT '0',
   `type_id` int(11) NOT NULL DEFAULT '0',
   KEY `gid` (`gid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7197,13 +7198,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `rscm_service_2` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `sid` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `unit` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sid` varchar(255) DEFAULT NULL,
+  `unit` varchar(30) DEFAULT NULL,
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7220,18 +7221,18 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `rscm_service_account_2` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cid` int(11) NOT NULL,
   `sid` int(11) NOT NULL,
   `date` date DEFAULT NULL,
   `amount` bigint(20) DEFAULT NULL,
-  `comment` text COLLATE utf8_unicode_ci NOT NULL,
+  `comment` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `cid` (`cid`),
   KEY `date_cid` (`date`,`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7248,13 +7249,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `scheduled_class` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `class` varchar(240) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `title` varchar(200) DEFAULT NULL,
+  `class` varchar(240) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7272,13 +7273,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `scheduled_periodic_run` (
   `description` mediumtext COLLATE utf8_unicode_ci,
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `amount` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7295,7 +7296,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `scheduled_task_run` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `data` longblob,
@@ -7303,7 +7304,7 @@ CREATE TABLE `scheduled_task_run` (
   `executed` tinyint(2) DEFAULT '0',
   `start_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7320,7 +7321,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `scheduled_tasks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `mm` bigint(20) NOT NULL DEFAULT '0',
@@ -7333,12 +7334,12 @@ CREATE TABLE `scheduled_tasks` (
   `date2` date DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT '0',
   `class_id` int(11) NOT NULL,
-  `class` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `module_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `comment` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `params` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `class` varchar(255) NOT NULL,
+  `module_id` varchar(255) NOT NULL,
+  `comment` varchar(255) NOT NULL DEFAULT '',
+  `params` mediumtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7356,12 +7357,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `script` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(100) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7379,19 +7380,19 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `script_backup` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
   `script_id` int(11) NOT NULL,
   `script` mediumtext COLLATE utf8_unicode_ci,
   `user_id` int(11) NOT NULL,
   `change_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `comment` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
+  `comment` varchar(255) DEFAULT '',
   `type` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `script_type` (`script_id`,`type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7408,13 +7409,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `script_classes` (
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(255) NOT NULL,
   `last_mod` bigint(20) NOT NULL,
   `data` mediumblob NOT NULL,
   PRIMARY KEY (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7432,12 +7433,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `script_classes_ifaces` (
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `iface` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `iface` varchar(255) NOT NULL,
   PRIMARY KEY (`name`,`iface`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7455,12 +7456,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `script_event_queue` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `event` longblob NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7477,16 +7478,16 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `script_event_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `mid` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `mid` varchar(100) NOT NULL,
   `event_mode` tinyint(4) NOT NULL DEFAULT '1',
-  `event_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
-  `title` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `event_id` varchar(255) NOT NULL DEFAULT '0',
+  `title` varchar(200) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `mid_event` (`mid`,`event_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=156 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=156;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7504,17 +7505,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `script_function` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `script_id` int(11) NOT NULL DEFAULT '0',
-  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(100) NOT NULL DEFAULT '',
   `code` mediumtext COLLATE utf8_unicode_ci,
   `user_id` int(11) NOT NULL,
   `change_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `script_id` (`script_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7531,13 +7532,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `script_function_event_type` (
   `fid` int(11) NOT NULL DEFAULT '0',
-  `mid` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `event_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `mid` varchar(100) NOT NULL,
+  `event_id` varchar(255) NOT NULL DEFAULT '0',
   KEY `fid` (`fid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7554,17 +7555,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `script_lib` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `script` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `script` mediumtext NOT NULL,
   `user_id` int(11) NOT NULL,
   `change_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7581,12 +7582,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sequential_ids` (
-  `mid` varchar(8) COLLATE utf8_unicode_ci NOT NULL COMMENT 'ид модуля/плагина',
+  `mid` varchar(8) NOT NULL COMMENT 'ид модуля/плагина',
   `value` bigint(20) NOT NULL COMMENT 'значение идентификатора',
   PRIMARY KEY (`mid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7603,22 +7604,22 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `service` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(250) NOT NULL,
   `mid` int(11) NOT NULL DEFAULT '0',
   `parentId` int(11) NOT NULL DEFAULT '0',
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
-  `comment` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comment` varchar(255) NOT NULL DEFAULT '',
+  `description` varchar(255) NOT NULL DEFAULT '',
   `lm` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `isusing` tinyint(1) DEFAULT '1',
   `unit` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mid` (`mid`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7636,12 +7637,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `setup` (
-  `id` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `value` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `id` varchar(100) NOT NULL DEFAULT '',
+  `value` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7659,25 +7660,25 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `source` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `mid` int(11) NOT NULL DEFAULT '0',
-  `title` varchar(20) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(20) NOT NULL DEFAULT '',
   `date1` date DEFAULT NULL,
   `date2` date DEFAULT NULL,
-  `comment` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comment` varchar(255) NOT NULL DEFAULT '',
   `source_type` tinyint(4) NOT NULL DEFAULT '0',
-  `host_or_dir` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
-  `user` varchar(15) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `pswd` varchar(15) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `config` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `host_or_dir` varchar(250) NOT NULL,
+  `user` varchar(15) NOT NULL DEFAULT '',
+  `pswd` varchar(15) NOT NULL DEFAULT '',
+  `config` mediumtext NOT NULL,
   `lm` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
   KEY `mid` (`mid`),
   KEY `date1` (`date1`),
   KEY `date2` (`date2`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7694,12 +7695,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sql_patches_history` (
-  `mid` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `mid` varchar(10) NOT NULL,
   `versions` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`mid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7717,14 +7718,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sql_template` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
-  `text` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(150) NOT NULL,
+  `text` mediumtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7741,7 +7742,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `status_log` (
   `from_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `to_date` datetime DEFAULT NULL,
@@ -7749,13 +7750,13 @@ CREATE TABLE `status_log` (
   `mid` int(10) unsigned NOT NULL DEFAULT '0',
   `status` tinyint(4) DEFAULT NULL,
   `uid` tinyint(4) NOT NULL DEFAULT '0',
-  `comment` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comment` varchar(255) NOT NULL DEFAULT '',
   UNIQUE KEY `main_from_index` (`from_date`,`cid`,`mid`),
   UNIQUE KEY `main_to_index` (`to_date`,`cid`,`mid`),
   KEY `from_date_index` (`from_date`),
   KEY `to_date_index` (`to_date`),
   KEY `cid_index` (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7772,15 +7773,15 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `subscr_contact` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cid` int(11) NOT NULL DEFAULT '0',
-  `name` char(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `email` char(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `subject` char(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `name` char(50) NOT NULL DEFAULT '',
+  `email` char(50) NOT NULL DEFAULT '',
+  `subject` char(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7797,7 +7798,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tariff_change_task` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cid` int(11) NOT NULL DEFAULT '0',
@@ -7807,7 +7808,7 @@ CREATE TABLE `tariff_change_task` (
   PRIMARY KEY (`id`),
   KEY `cid` (`cid`),
   KEY `ex_time` (`ex_time`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7824,16 +7825,16 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tariff_group` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(200) NOT NULL DEFAULT '',
   `tm` tinyint(3) NOT NULL DEFAULT '0',
   `df` int(11) NOT NULL DEFAULT '0',
   `beh` int(11) NOT NULL DEFAULT '0',
   `pos` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7851,14 +7852,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tariff_group_tariff` (
   `tgid` int(11) NOT NULL DEFAULT '0',
   `tpid` int(11) NOT NULL DEFAULT '0',
   `date1` date DEFAULT NULL COMMENT 'начало периода видимости тарифа в группе тарифов',
   `date2` date DEFAULT NULL COMMENT 'конец периода видимости тарифа в группе тарифов',
   KEY `tgid` (`tgid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7876,13 +7877,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tariff_label` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) NOT NULL DEFAULT '0',
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7899,12 +7900,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tariff_label_link` (
   `tariff_id` int(11) NOT NULL DEFAULT '0',
   `label_id` int(11) NOT NULL DEFAULT '0',
   KEY `tariff_id` (`tariff_id`,`label_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7921,24 +7922,24 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tariff_option` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
-  `tariff_ids` mediumtext COLLATE utf8_unicode_ci NOT NULL,
-  `comment` mediumtext COLLATE utf8_unicode_ci NOT NULL,
-  `description` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(250) NOT NULL,
+  `tariff_ids` mediumtext NOT NULL,
+  `comment` mediumtext NOT NULL,
+  `description` mediumtext NOT NULL,
   `date1` date DEFAULT NULL,
   `date2` date DEFAULT NULL,
-  `depends` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `incompatible` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `depends` varchar(255) NOT NULL DEFAULT '',
+  `incompatible` varchar(255) NOT NULL DEFAULT '',
   `deactivation_mode` int(11) NOT NULL,
   `contract_groups` bigint(20) NOT NULL DEFAULT '0',
   `hideForWeb` smallint(6) NOT NULL DEFAULT '0',
   `hideForWebContractGroups` bigint(20) NOT NULL DEFAULT '0',
   `hideForWebContractGroupsMode` smallint(6) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7956,11 +7957,11 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tariff_option_activate_mode` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `option_id` int(11) NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(255) NOT NULL DEFAULT '',
   `charge_type_id` int(11) NOT NULL,
   `charge_summa` decimal(10,2) NOT NULL,
   `period_mode` int(11) NOT NULL,
@@ -7973,7 +7974,7 @@ CREATE TABLE `tariff_option_activate_mode` (
   `delete_charge_mode` int(11) DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `option_id` (`option_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7991,19 +7992,19 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tariff_plan` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `title_web` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `title` varchar(200) NOT NULL DEFAULT '',
+  `title_web` varchar(255) DEFAULT NULL,
   `lm` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `actual` int(11) NOT NULL DEFAULT '0',
   `gr` bigint(20) NOT NULL,
-  `pattern` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `pattern` varchar(255) DEFAULT NULL,
   `face` tinyint(4) DEFAULT NULL,
   `tree_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8021,13 +8022,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tariff_tree` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `parent_tree` int(3) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `parent` (`parent_tree`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8045,12 +8046,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tariff_tree_config` (
-  `module` varchar(20) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
-  `data` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `module` varchar(20) NOT NULL DEFAULT '0',
+  `data` longtext NOT NULL,
   PRIMARY KEY (`module`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8067,17 +8068,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `task_load` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `title` char(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` char(200) NOT NULL DEFAULT '',
   `dt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `param` int(10) unsigned NOT NULL DEFAULT '0',
   `count` int(10) unsigned NOT NULL DEFAULT '0',
   `le` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
   KEY `le` (`le`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8094,17 +8095,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `task_proccess` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `mid` int(11) NOT NULL DEFAULT '0',
-  `title` char(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` char(200) NOT NULL DEFAULT '',
   `dt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `param` int(11) NOT NULL DEFAULT '0',
   `start_process_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `spt` (`start_process_time`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8121,13 +8122,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `time_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `data` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `data` mediumtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8144,27 +8145,27 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tv_account_4` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parentId` int(11) NOT NULL,
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(150) NOT NULL,
   `contractId` int(11) NOT NULL,
   `specId` int(11) NOT NULL,
   `deviceId` int(11) NOT NULL,
-  `login` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `password` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `pin` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `identifier` varchar(80) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `login` varchar(200) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
+  `pin` varchar(100) DEFAULT NULL,
+  `identifier` varchar(80) DEFAULT NULL,
   `macAddress` varbinary(64) DEFAULT NULL,
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
   `status` int(11) NOT NULL,
-  `comment` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `config` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `deviceAccountId` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `comment` varchar(255) NOT NULL,
+  `config` varchar(255) DEFAULT NULL,
+  `deviceAccountId` varchar(100) DEFAULT NULL,
   `deviceState` int(11) NOT NULL,
-  `deviceOptions` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `deviceOptions` varchar(200) NOT NULL,
   `accessCode` int(11) NOT NULL DEFAULT '-1',
   PRIMARY KEY (`id`),
   KEY `contract` (`contractId`),
@@ -8172,7 +8173,7 @@ CREATE TABLE `tv_account_4` (
   KEY `period` (`dateFrom`,`dateTo`),
   KEY `parent` (`parentId`),
   KEY `deviceAccountId` (`deviceAccountId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8189,7 +8190,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tv_account_detail_4_201304` (
   `contractId` int(11) NOT NULL,
   `accountId` int(11) NOT NULL,
@@ -8198,7 +8199,7 @@ CREATE TABLE `tv_account_detail_4_201304` (
   `day` int(11) NOT NULL,
   `account` decimal(10,5) NOT NULL,
   PRIMARY KEY (`contractId`,`accountId`,`productId`,`sid`,`day`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH (contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -8217,11 +8218,11 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tv_account_spec_4` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
-  `parentTypeIds` varchar(45) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(150) NOT NULL,
+  `parentTypeIds` varchar(45) NOT NULL DEFAULT '',
   `needLogin` tinyint(4) NOT NULL,
   `needPassword` tinyint(4) NOT NULL,
   `needPin` tinyint(4) NOT NULL,
@@ -8230,7 +8231,7 @@ CREATE TABLE `tv_account_spec_4` (
   `needMacAddress` tinyint(4) NOT NULL DEFAULT '0',
   `config` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8247,14 +8248,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tv_account_spec_device_group_link_4` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tvAccountSpecId` int(11) NOT NULL,
   `deviceGroupId` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `tvAccountSpec` (`tvAccountSpecId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8271,14 +8272,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tv_account_spec_device_type_link_4` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tvAccountSpecId` int(11) NOT NULL,
   `deviceTypeId` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `tvAccountSpec` (`tvAccountSpecId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8295,20 +8296,20 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tv_channel_spec_4` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `entityId` int(11) NOT NULL,
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(150) NOT NULL,
   `serviceSpecId` int(11) NOT NULL,
-  `identifier` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `identifier` varchar(150) NOT NULL,
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
-  `comment` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `comment` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `serviceSpec` (`serviceSpecId`),
   KEY `entity` (`entityId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8325,27 +8326,27 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tv_device_4` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `entityId` int(11) NOT NULL,
   `parentId` int(11) NOT NULL,
   `deviceTypeId` int(11) NOT NULL,
-  `title` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `host` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(200) NOT NULL,
+  `host` varchar(100) NOT NULL,
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
   `orderManagerDisabled` tinyint(4) NOT NULL DEFAULT '0',
-  `username` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `secret` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `config` text COLLATE utf8_unicode_ci NOT NULL,
-  `comment` text COLLATE utf8_unicode_ci NOT NULL,
-  `identifier` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
-  `uptime` text COLLATE utf8_unicode_ci NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `secret` varchar(100) NOT NULL,
+  `config` text NOT NULL,
+  `comment` text NOT NULL,
+  `identifier` varchar(150) NOT NULL,
+  `uptime` text NOT NULL,
   `uptimeTime` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8362,18 +8363,18 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tv_device_type_4` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(250) NOT NULL,
   `deviceEntitySpecId` int(11) NOT NULL,
-  `config` text COLLATE utf8_unicode_ci NOT NULL,
-  `protocolHandlerClass` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `saHandlerClass` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `deviceManagerClass` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `comment` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `config` text NOT NULL,
+  `protocolHandlerClass` varchar(250) DEFAULT NULL,
+  `saHandlerClass` varchar(250) DEFAULT NULL,
+  `deviceManagerClass` varchar(250) DEFAULT NULL,
+  `comment` varchar(250) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8390,18 +8391,18 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tv_service_spec_channel_link_4` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `serviceSpecId` int(11) NOT NULL,
   `deviceId` int(11) NOT NULL,
-  `channel` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `channel` varchar(255) NOT NULL,
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
-  `comment` text COLLATE utf8_unicode_ci NOT NULL,
+  `comment` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `service` (`serviceSpecId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8418,29 +8419,29 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `login` char(15) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `name` char(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `email` char(50) COLLATE utf8_unicode_ci NOT NULL,
-  `descr` char(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `pswd` char(32) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `login` char(15) NOT NULL DEFAULT '',
+  `name` char(50) NOT NULL DEFAULT '',
+  `email` char(50) NOT NULL,
+  `descr` char(255) NOT NULL DEFAULT '',
+  `pswd` char(32) DEFAULT NULL,
   `dt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `gr` bigint(20) NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT '0',
   `cgr` bigint(20) NOT NULL DEFAULT '0',
-  `pids` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `opids` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `pids` varchar(120) DEFAULT NULL,
+  `opids` varchar(255) DEFAULT NULL,
   `contract_pid` int(11) NOT NULL DEFAULT '0',
   `contract_cid` int(11) NOT NULL DEFAULT '0',
-  `config` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `config` mediumtext NOT NULL,
   `crm_user_id` int(11) NOT NULL,
   `cgr_mode` tinyint(4) NOT NULL DEFAULT '1',
   `ch_pswd` tinyint(2) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `login` (`login`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8458,12 +8459,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user_group` (
   `gr_code` smallint(3) unsigned NOT NULL AUTO_INCREMENT,
-  `gr_name` char(60) COLLATE utf8_unicode_ci DEFAULT '0',
+  `gr_name` char(60) DEFAULT '0',
   PRIMARY KEY (`gr_code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8480,12 +8481,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user_group_access` (
   `gr_code` smallint(3) unsigned NOT NULL DEFAULT '0',
   `ma_id` smallint(3) unsigned NOT NULL DEFAULT '0',
   KEY `gr_code` (`gr_code`,`ma_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8502,12 +8503,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user_group_entry` (
   `gr_code` smallint(3) unsigned NOT NULL DEFAULT '0',
   `parent_gr_code` smallint(3) unsigned NOT NULL DEFAULT '0',
   KEY `gr_code` (`gr_code`,`parent_gr_code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8524,12 +8525,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user_group_member` (
   `user_id` smallint(3) unsigned DEFAULT '0',
   `gr_code` smallint(3) unsigned DEFAULT '0',
   KEY `user_id` (`user_id`,`gr_code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8546,13 +8547,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user_menu` (
   `uid` int(11) NOT NULL,
-  `menu_id` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `menu_id` varchar(50) NOT NULL,
   `hidden` tinyint(2) NOT NULL,
   PRIMARY KEY (`uid`,`menu_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8569,16 +8570,16 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user_module_action` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `module` char(30) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `module` char(30) NOT NULL DEFAULT '0',
   `type` int(11) NOT NULL DEFAULT '0',
-  `action` char(40) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
-  `description` char(120) COLLATE utf8_unicode_ci DEFAULT '0',
+  `action` char(40) NOT NULL DEFAULT '0',
+  `description` char(120) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `module_action` (`module`,`action`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8595,17 +8596,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user_tables` (
   `userId` int(11) DEFAULT NULL,
-  `table_module` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `table_id` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `table_module` varchar(100) DEFAULT NULL,
+  `table_id` varchar(100) DEFAULT NULL,
   `widths` mediumtext COLLATE utf8_unicode_ci,
   `positions` mediumtext COLLATE utf8_unicode_ci,
   `hiddens` mediumtext COLLATE utf8_unicode_ci,
   KEY `userId` (`userId`),
   KEY `table_module` (`table_module`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8623,12 +8624,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user_user_access` (
   `user_id` smallint(3) unsigned NOT NULL DEFAULT '0',
   `ma_id` smallint(3) unsigned DEFAULT '0',
   KEY `user_id_2` (`user_id`,`ma_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8645,14 +8646,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `web_menu` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `default` tinyint(1) NOT NULL DEFAULT '0',
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `data` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `data` mediumtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8669,13 +8670,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `web_request_count` (
   `cid` int(11) NOT NULL DEFAULT '0',
   `date` date NOT NULL DEFAULT '0000-00-00',
   `count` int(11) NOT NULL DEFAULT '0',
   UNIQUE KEY `cid` (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8692,12 +8693,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `web_request_limit` (
   `cid` int(11) NOT NULL DEFAULT '0',
   `lim` int(11) DEFAULT NULL,
   PRIMARY KEY (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
