@@ -27,7 +27,7 @@ elif echo "$@" | grep -Eq '\bmysql\b'; then
   [ ! -d /var/lib/mysql ]
   
   mkdir -p /tmp/bgb-install-script
-  curl -fsSL $URL_BASE/mariadb/mysql.sh -o /tmp/bgb-install-script/mysql.sh
+  curl -fsSL $URL_BASE/mysql/mysql.sh -o /tmp/bgb-install-script/mysql.sh
   sh -eux /tmp/bgb-install-script/mariadb.sh
   
 fi
