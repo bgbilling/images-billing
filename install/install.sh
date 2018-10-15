@@ -18,26 +18,17 @@ if echo "$@" | grep -Eq '\bmariadb\b'; then
 
   [ ! -d /var/lib/mysql ]
   
-  echo "Installing MariaDB"
+  mkdir -p /tmp/bgb-install-script
+  curl -fsSL $URL_BASE/mariadb.sh -o /tmp/bgb-install-script/mariadb.sh
+  sh -eux /tmp/bgb-install-script/mariadb.sh 10.2
+  
+elsif echo "$@" | grep -Eq '\bmysql\b'; then
 
-  if cat /etc/os-release | grep -Eq '\bDebian\b'; then
-    apt-get update && apt-get -q -y install mysql-server mysql-client
-  else
-    yum update && yum -y install mariadb-server mariadb-client
-  fi
+  [ ! -d /var/lib/mysql ]
   
-  systemctl stop mariadb
-  
-  if [ -f /etc/my.cnf ]; then mv /etc/my.cnf /etc/my.cnf.bak; fi
-  curl -fsSL $URL_BASE/mysql/5.7/my.cnf -o /etc/my.cnf
-  
-  mkdir -p /etc/systemd/system/mariadb.service.d/
-  { \
-    echo '[Service]'; \
-    echo 'LimitNOFILE=10000'; \
-  } > /etc/systemd/system/mariadb.service.d/limits.conf
-  
-  systemctl restart mariadb
+  mkdir -p /tmp/bgb-install-script
+  curl -fsSL $URL_BASE/mysql.sh -o /tmp/bgb-install-script/mysql.sh
+  sh -eux /tmp/bgb-install-script/mariadb.sh
   
 fi
 
@@ -130,4 +121,19 @@ if echo "$@" | grep -Eq '\binet\b'; then
   mkdir -p /tmp/bgb-install-script
   curl -fsSL $URL/images-billing/${VERSION}/install/inet.sh -o /tmp/bgb-install-script/inet.sh
   sh -eux /tmp/bgb-install-script/inet.sh
+fi
+
+
+if echo "$@" | grep -Eq '\bsetlimits\b'; then
+  { \
+    echo 'bgbilling             soft    nofile           10240'; \
+    echo 'bgbilling             hard    nofile           10240'; \
+    echo 'root             soft    nofile           10240'; \
+    echo 'root             hard    nofile           10240'; \
+  } >> /etc/security/limits.conf
+
+  { \
+    echo 'fs.epoll.max_user_instances = 10000'; \
+    echo 'fs.file-max = 70000'; \
+  } >> /etc/sysctl.conf
 fi
