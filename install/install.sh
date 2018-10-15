@@ -22,7 +22,7 @@ if echo "$@" | grep -Eq '\bmariadb\b'; then
   curl -fsSL $URL_BASE/mariadb.sh -o /tmp/bgb-install-script/mariadb.sh
   sh -eux /tmp/bgb-install-script/mariadb.sh 10.2
   
-elsif echo "$@" | grep -Eq '\bmysql\b'; then
+elif echo "$@" | grep -Eq '\bmysql\b'; then
 
   [ ! -d /var/lib/mysql ]
   
