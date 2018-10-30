@@ -1,7 +1,7 @@
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -9,21 +9,22 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-CREATE DATABASE bgbilling DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CREATE DATABASE bgbilling DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE bgbilling;
+SET collation_connection = utf8mb4_unicode_ci;
 
 --
 -- Table structure for table `address_area`
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `address_area` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `title` varchar(150) NOT NULL DEFAULT '0',
   `cityid` int(11) NOT NULL DEFAULT '-1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,14 +42,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `address_city` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `country_id` int(11) NOT NULL DEFAULT '1',
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `title` varchar(150) NOT NULL DEFAULT '0',
   `pos` int(11) DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,14 +67,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `address_config` (
-  `table_id` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `table_id` varchar(50) NOT NULL,
   `record_id` int(11) NOT NULL,
-  `key` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `value` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `key` varchar(50) NOT NULL,
+  `value` mediumtext NOT NULL,
   PRIMARY KEY (`table_id`,`record_id`,`key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -90,12 +91,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `address_country` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -113,23 +114,23 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `address_house` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `streetid` int(11) NOT NULL DEFAULT '0',
   `house` int(11) NOT NULL DEFAULT '0',
-  `frac` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `frac` varchar(30) DEFAULT NULL,
   `amount` smallint(5) NOT NULL DEFAULT '0',
-  `comment` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `comment` varchar(100) DEFAULT NULL,
   `areaid` int(10) NOT NULL DEFAULT '0',
   `quarterid` int(10) NOT NULL DEFAULT '0',
-  `box_index` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `box_index` varchar(10) DEFAULT NULL,
   `dt` date DEFAULT NULL,
-  `pod_diapazon` text COLLATE utf8_unicode_ci NOT NULL,
-  `pod` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `pod_diapazon` text NOT NULL,
+  `pod` varchar(200) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   UNIQUE KEY `HouseU` (`streetid`,`house`,`frac`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147,14 +148,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `address_quarter` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `title` varchar(150) NOT NULL DEFAULT '0',
   `gid` int(11) DEFAULT NULL,
   `cityid` int(11) NOT NULL DEFAULT '-1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -171,14 +172,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `address_street` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
-  `p_index` varchar(6) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(150) NOT NULL DEFAULT '0',
+  `p_index` varchar(6) NOT NULL DEFAULT '',
   `cityid` int(11) NOT NULL DEFAULT '-1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -196,17 +197,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bgs_group` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(250) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `comment` varchar(250) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(250) NOT NULL DEFAULT '',
+  `comment` varchar(250) NOT NULL DEFAULT '',
   `cgr` bigint(20) NOT NULL DEFAULT '0',
-  `pids` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `opids` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `pids` varchar(120) DEFAULT NULL,
+  `opids` varchar(255) DEFAULT NULL,
   `cgr_mode` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -223,13 +224,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bgs_group_action` (
   `gid` int(11) NOT NULL DEFAULT '0',
-  `mid` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `mid` varchar(10) NOT NULL,
   `aid` int(11) NOT NULL DEFAULT '0',
   KEY `gid` (`gid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -246,13 +247,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bgs_group_menu` (
   `gid` int(11) NOT NULL,
-  `menu_id` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `menu_id` varchar(50) NOT NULL,
   `hidden` tinyint(2) NOT NULL,
   PRIMARY KEY (`gid`,`menu_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -269,12 +270,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bgs_module_action` (
-  `module` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `data` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `module` varchar(100) NOT NULL DEFAULT '',
+  `data` mediumtext NOT NULL,
   PRIMARY KEY (`module`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -291,13 +292,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bgs_user_action` (
   `uid` int(11) NOT NULL DEFAULT '0',
-  `mid` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `mid` varchar(10) NOT NULL,
   `aid` int(11) NOT NULL DEFAULT '0',
   KEY `uid` (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -314,13 +315,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bgs_user_group` (
   `uid` int(11) NOT NULL DEFAULT '0',
   `gid` int(11) NOT NULL DEFAULT '0',
   KEY `uid` (`uid`),
   KEY `gid` (`gid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -337,13 +338,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `gr` bigint(20) NOT NULL DEFAULT '0',
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(150) NOT NULL DEFAULT '',
   `title_pattern_id` int(11) NOT NULL DEFAULT '0',
-  `pswd` varchar(32) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `pswd` varchar(32) NOT NULL DEFAULT '',
   `date1` date DEFAULT NULL,
   `date2` date DEFAULT NULL,
   `mode` tinyint(4) NOT NULL DEFAULT '0',
@@ -351,10 +352,10 @@ CREATE TABLE `contract` (
   `pgid` int(11) NOT NULL DEFAULT '0',
   `pfid` int(11) NOT NULL DEFAULT '0',
   `fc` tinyint(1) NOT NULL DEFAULT '0',
-  `comment` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comment` varchar(100) NOT NULL DEFAULT '',
   `del` tinyint(1) NOT NULL DEFAULT '0',
   `scid` int(11) NOT NULL DEFAULT '0',
-  `sub_list` text COLLATE utf8_unicode_ci NOT NULL,
+  `sub_list` text NOT NULL,
   `sub_mode` tinyint(4) NOT NULL DEFAULT '0',
   `status` tinyint(4) NOT NULL DEFAULT '0',
   `status_date` date DEFAULT NULL,
@@ -366,7 +367,7 @@ CREATE TABLE `contract` (
   KEY `del` (`del`),
   KEY `scid` (`scid`),
   KEY `crm_customer_id` (`crm_customer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -384,7 +385,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_account` (
   `yy` smallint(5) unsigned NOT NULL DEFAULT '0',
   `mm` tinyint(3) unsigned NOT NULL DEFAULT '0',
@@ -393,7 +394,7 @@ CREATE TABLE `contract_account` (
   `summa` decimal(15,5) DEFAULT NULL,
   PRIMARY KEY (`yy`,`mm`,`cid`,`sid`),
   KEY `cid` (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -411,7 +412,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_balance` (
   `yy` smallint(5) unsigned NOT NULL DEFAULT '0',
   `mm` tinyint(3) unsigned NOT NULL DEFAULT '0',
@@ -422,7 +423,7 @@ CREATE TABLE `contract_balance` (
   `summa4` decimal(10,2) NOT NULL,
   PRIMARY KEY (`cid`,`yy`,`mm`),
   KEY `cid` (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -440,7 +441,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_charge` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `dt` date NOT NULL DEFAULT '0000-00-00',
@@ -448,7 +449,7 @@ CREATE TABLE `contract_charge` (
   `pt` int(11) NOT NULL DEFAULT '0',
   `uid` int(11) NOT NULL DEFAULT '0',
   `summa` decimal(10,2) NOT NULL,
-  `comment` char(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comment` char(200) NOT NULL DEFAULT '',
   `lm` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `payback` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
@@ -457,7 +458,7 @@ CREATE TABLE `contract_charge` (
   KEY `uid` (`uid`),
   KEY `cid_dt` (`cid`,`dt`),
   KEY `cid` (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -474,16 +475,16 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_charge_types` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` char(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` char(50) NOT NULL DEFAULT '',
   `flag` tinyint(2) NOT NULL DEFAULT '0',
   `type` tinyint(2) NOT NULL DEFAULT '0',
   `up` int(11) unsigned NOT NULL DEFAULT '0',
   `payback` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -501,18 +502,18 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_comment` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `cid` int(10) unsigned NOT NULL DEFAULT '0',
   `uid` int(10) unsigned NOT NULL DEFAULT '0',
-  `subject` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `comment` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `subject` varchar(255) NOT NULL DEFAULT '',
+  `comment` mediumtext NOT NULL,
   `dt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `visibled` bit(1) NOT NULL DEFAULT b'0',
   PRIMARY KEY (`id`),
   KEY `cid` (`cid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -530,13 +531,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_comment_patterns` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
-  `pat` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(25) NOT NULL,
+  `pat` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -554,18 +555,18 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_delete_money` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `name` varchar(255) NOT NULL DEFAULT '',
   `money` int(10) unsigned NOT NULL DEFAULT '0',
   `time` int(10) unsigned NOT NULL DEFAULT '0',
   `gr` bigint(20) NOT NULL DEFAULT '0',
   `date1` date DEFAULT NULL,
   `date2` date DEFAULT NULL,
-  `comment` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comment` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -582,17 +583,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_delete_time` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `name` varchar(255) NOT NULL DEFAULT '',
   `time` int(10) unsigned NOT NULL DEFAULT '0',
   `gr` bigint(20) NOT NULL DEFAULT '0',
   `date1` date DEFAULT NULL,
   `date2` date DEFAULT NULL,
-  `comment` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comment` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -609,17 +610,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_error` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `dt` date NOT NULL DEFAULT '0000-00-00',
   `hh` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `cid` int(10) unsigned NOT NULL DEFAULT '0',
-  `msg_title` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `msg_data` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `msg_title` varchar(100) NOT NULL DEFAULT '',
+  `msg_data` mediumtext NOT NULL,
   PRIMARY KEY (`id`),
   KEY `dt` (`dt`,`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -636,16 +637,16 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_group` (
   `id` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(100) NOT NULL DEFAULT '',
   `enable` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `editable` tinyint(3) NOT NULL DEFAULT '1',
-  `comment` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comment` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `enable` (`enable`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -663,7 +664,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_limit_manage` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cid` int(11) NOT NULL,
@@ -671,13 +672,13 @@ CREATE TABLE `contract_limit_manage` (
   `summ` decimal(10,2) NOT NULL,
   `date1` datetime NOT NULL,
   `date2` date DEFAULT NULL,
-  `pids` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `pids` varchar(100) DEFAULT NULL,
   `rest` float(10,2) NOT NULL DEFAULT '0.00',
   `status` int(11) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `cid` (`cid`),
   KEY `clp_id` (`clp_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -695,13 +696,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_limit_manage_mode` (
   `cid` int(11) NOT NULL,
   `mode` int(11) NOT NULL DEFAULT '0',
   `cnt` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -719,7 +720,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_limit_period` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `uid` int(11) NOT NULL DEFAULT '0',
@@ -728,7 +729,7 @@ CREATE TABLE `contract_limit_period` (
   `value` decimal(10,2) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `dt` (`dt`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -745,18 +746,18 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_logon_error` (
   `lu` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `cid` int(11) NOT NULL,
-  `login` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `login` varchar(255) NOT NULL,
   `dt` datetime NOT NULL,
-  `ip` varchar(40) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `ip` varchar(40) NOT NULL DEFAULT '',
   `error_code` int(11) NOT NULL,
-  `request_data` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `request_data` mediumtext NOT NULL,
   KEY `cid_dt` (`cid`,`dt`),
   KEY `login_dt` (`login`,`dt`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -774,15 +775,15 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_logon_last` (
   `lu` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `cid` int(11) NOT NULL,
   `dt` datetime NOT NULL,
   `n` int(11) NOT NULL,
-  `ip` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+  `ip` varchar(15) NOT NULL,
   PRIMARY KEY (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -800,16 +801,16 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_logon_ok` (
   `lu` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `cid` int(11) NOT NULL,
   `dt` datetime NOT NULL,
-  `ip` varchar(40) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `session_id` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `user` enum('p','c','a') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'c',
+  `ip` varchar(40) NOT NULL DEFAULT '',
+  `session_id` varchar(32) NOT NULL,
+  `user` enum('p','c','a') NOT NULL DEFAULT 'c',
   KEY `new_index` (`cid`,`dt`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -827,12 +828,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_module` (
   `cid` int(11) NOT NULL,
   `mid` int(11) NOT NULL,
   PRIMARY KEY (`cid`,`mid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -850,16 +851,16 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_notification` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `cid` int(10) unsigned NOT NULL DEFAULT '0',
-  `subject` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `message` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `subject` varchar(255) NOT NULL,
+  `message` mediumtext NOT NULL,
   `dt` datetime NOT NULL,
   `is_read` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'прочитано или нет',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -877,12 +878,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_group` (
   `gid` int(11) NOT NULL DEFAULT '0',
   `pid` int(11) NOT NULL DEFAULT '0',
   KEY `gid` (`gid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -900,12 +901,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_group_name` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `title` char(150) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `title` char(150) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -923,14 +924,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_1` (
   `cid` int(11) NOT NULL DEFAULT '0',
   `pid` int(11) NOT NULL DEFAULT '0',
-  `val` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `val` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`cid`,`pid`),
   KEY `val` (`val`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -948,15 +949,15 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_1_log` (
   `cid` int(11) NOT NULL DEFAULT '0',
   `pid` int(11) NOT NULL DEFAULT '0',
-  `val` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `val` varchar(255) DEFAULT NULL,
   `dt_change` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
   KEY `cid_pid` (`cid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -974,21 +975,21 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_2` (
   `cid` int(10) NOT NULL DEFAULT '0',
   `pid` int(11) NOT NULL DEFAULT '0',
   `hid` int(10) unsigned DEFAULT NULL,
-  `flat` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `room` varchar(5) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `flat` varchar(10) DEFAULT NULL,
+  `room` varchar(5) NOT NULL DEFAULT '',
   `pod` int(10) DEFAULT '0',
   `floor` int(10) DEFAULT '0',
-  `address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `comment` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `format_key` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `comment` varchar(255) DEFAULT NULL,
+  `format_key` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`cid`,`pid`),
   KEY `hid` (`hid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1006,15 +1007,15 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_2_log` (
   `cid` int(11) NOT NULL,
   `pid` int(11) NOT NULL,
-  `val` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `val` varchar(255) DEFAULT NULL,
   `dt_change` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
   KEY `cid_pid` (`cid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1032,17 +1033,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_3` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cid` int(11) NOT NULL DEFAULT '0',
   `pid` int(11) NOT NULL DEFAULT '0',
-  `email` varchar(400) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `comment` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(400) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `comment` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `cid_pid` (`cid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1059,15 +1060,15 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_3_log` (
   `cid` int(11) NOT NULL,
   `pid` int(11) NOT NULL,
-  `val` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `val` varchar(255) DEFAULT NULL,
   `dt_change` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
   KEY `cid_pid` (`cid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1084,13 +1085,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_3_mail` (
   `mailid` int(11) NOT NULL DEFAULT '0',
   `eid` int(11) NOT NULL DEFAULT '0',
   KEY `mailid` (`mailid`),
   KEY `eid` (`eid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1107,14 +1108,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_4` (
   `cid` int(11) NOT NULL DEFAULT '0',
   `pid` int(11) NOT NULL DEFAULT '0',
   `val1` int(11) NOT NULL DEFAULT '0',
   `val2` int(11) NOT NULL DEFAULT '0',
   UNIQUE KEY `cid_pid_val1` (`cid`,`pid`,`val1`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1131,12 +1132,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_4_directory` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(150) COLLATE utf8_unicode_ci DEFAULT '0',
+  `title` varchar(150) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1153,15 +1154,15 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_4_log` (
   `cid` int(11) NOT NULL,
   `pid` int(11) NOT NULL,
-  `val` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `val` varchar(255) DEFAULT NULL,
   `dt_change` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
   KEY `cid_pid` (`cid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1178,13 +1179,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_5` (
   `cid` int(11) NOT NULL DEFAULT '0',
   `pid` int(11) NOT NULL DEFAULT '0',
   `val` int(2) NOT NULL DEFAULT '0',
   PRIMARY KEY (`cid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1201,7 +1202,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_5_log` (
   `cid` int(11) NOT NULL DEFAULT '0',
   `pid` int(11) NOT NULL DEFAULT '0',
@@ -1209,7 +1210,7 @@ CREATE TABLE `contract_parameter_type_5_log` (
   `dt_change` datetime NOT NULL,
   `user_id` int(11) NOT NULL DEFAULT '0',
   KEY `cid_pid` (`cid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1226,13 +1227,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_6` (
   `cid` int(11) NOT NULL DEFAULT '0',
   `pid` int(11) NOT NULL DEFAULT '0',
   `val` date NOT NULL,
   PRIMARY KEY (`cid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1250,7 +1251,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_6_log` (
   `cid` int(11) NOT NULL DEFAULT '0',
   `pid` int(11) NOT NULL DEFAULT '0',
@@ -1258,7 +1259,7 @@ CREATE TABLE `contract_parameter_type_6_log` (
   `dt_change` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
   KEY `cid_pid` (`cid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1276,14 +1277,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_7` (
   `cid` int(11) NOT NULL DEFAULT '0',
   `pid` int(11) NOT NULL DEFAULT '0',
   `val` int(11) NOT NULL DEFAULT '0',
-  `custom_value` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `custom_value` varchar(100) NOT NULL,
   UNIQUE KEY `cid_pid` (`cid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1300,16 +1301,16 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_7_log` (
   `cid` int(11) NOT NULL DEFAULT '0',
   `pid` int(11) NOT NULL DEFAULT '0',
   `val` int(11) DEFAULT NULL,
-  `title` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `title` varchar(100) DEFAULT NULL,
   `dt_change` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
   KEY `cid_pid` (`cid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1326,14 +1327,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_7_values` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `pid` int(11) NOT NULL DEFAULT '0',
-  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(100) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `pid` (`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1350,13 +1351,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_8` (
   `cid` int(11) NOT NULL DEFAULT '0',
   `pid` int(11) NOT NULL DEFAULT '0',
   `val` int(11) NOT NULL DEFAULT '0',
   UNIQUE KEY `cid_pid` (`cid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1373,7 +1374,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_8_log` (
   `cid` int(11) NOT NULL DEFAULT '0',
   `pid` int(11) NOT NULL DEFAULT '0',
@@ -1381,7 +1382,7 @@ CREATE TABLE `contract_parameter_type_8_log` (
   `dt_change` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
   KEY `cid_pid` (`cid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1398,28 +1399,28 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_9` (
   `pid` int(11) NOT NULL,
-  `value` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone1` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_format1` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_comm1` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone2` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_format2` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_comm2` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone3` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_format3` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_comm3` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone4` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_format4` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_comm4` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone5` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_format5` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_comm5` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `value` varchar(255) DEFAULT NULL,
+  `phone1` varchar(11) DEFAULT NULL,
+  `phone_format1` varchar(2) DEFAULT NULL,
+  `phone_comm1` varchar(40) DEFAULT NULL,
+  `phone2` varchar(11) DEFAULT NULL,
+  `phone_format2` varchar(2) DEFAULT NULL,
+  `phone_comm2` varchar(40) DEFAULT NULL,
+  `phone3` varchar(11) DEFAULT NULL,
+  `phone_format3` varchar(2) DEFAULT NULL,
+  `phone_comm3` varchar(40) DEFAULT NULL,
+  `phone4` varchar(11) DEFAULT NULL,
+  `phone_format4` varchar(2) DEFAULT NULL,
+  `phone_comm4` varchar(40) DEFAULT NULL,
+  `phone5` varchar(11) DEFAULT NULL,
+  `phone_format5` varchar(2) DEFAULT NULL,
+  `phone_comm5` varchar(40) DEFAULT NULL,
   `cid` int(11) NOT NULL,
   KEY `cid_pid` (`cid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1436,30 +1437,30 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_9_log` (
   `cid` int(11) NOT NULL,
   `pid` int(11) NOT NULL,
-  `val` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone1` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_format1` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_comm1` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone2` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_format2` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_comm2` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone3` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_format3` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_comm3` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone4` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_format4` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_comm4` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone5` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_format5` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_comm5` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `val` varchar(255) DEFAULT NULL,
+  `phone1` varchar(11) DEFAULT NULL,
+  `phone_format1` varchar(2) DEFAULT NULL,
+  `phone_comm1` varchar(40) DEFAULT NULL,
+  `phone2` varchar(11) DEFAULT NULL,
+  `phone_format2` varchar(2) DEFAULT NULL,
+  `phone_comm2` varchar(40) DEFAULT NULL,
+  `phone3` varchar(11) DEFAULT NULL,
+  `phone_format3` varchar(2) DEFAULT NULL,
+  `phone_comm3` varchar(40) DEFAULT NULL,
+  `phone4` varchar(11) DEFAULT NULL,
+  `phone_format4` varchar(2) DEFAULT NULL,
+  `phone_comm4` varchar(40) DEFAULT NULL,
+  `phone5` varchar(11) DEFAULT NULL,
+  `phone_format5` varchar(2) DEFAULT NULL,
+  `phone_comm5` varchar(40) DEFAULT NULL,
   `dt_change` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
   KEY `cip_pid` (`cid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1476,13 +1477,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_multilist` (
   `cid` int(11) NOT NULL,
   `pid` int(11) NOT NULL,
-  `val` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `val` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`cid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1499,14 +1500,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_multilist_item` (
   `cid` int(11) NOT NULL,
   `pid` int(11) NOT NULL,
   `val` int(11) NOT NULL,
-  `custom_value` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `custom_value` varchar(100) NOT NULL DEFAULT '',
   PRIMARY KEY (`cid`,`pid`,`val`,`custom_value`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1523,15 +1524,15 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_multilist_log` (
   `cid` int(11) NOT NULL,
   `pid` int(11) NOT NULL,
-  `val` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `val` varchar(255) DEFAULT NULL,
   `dt_change` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
   KEY `cid_pid` (`cid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1548,13 +1549,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_multilist_values` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `pid` int(11) NOT NULL,
-  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1571,13 +1572,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_phone` (
   `pid` int(11) NOT NULL,
   `cid` int(11) NOT NULL,
-  `value` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `value` varchar(255) NOT NULL,
   PRIMARY KEY (`pid`,`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1595,17 +1596,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_phone_item` (
   `pid` int(11) NOT NULL,
   `cid` int(11) NOT NULL,
   `n` tinyint(4) NOT NULL,
-  `phone` varchar(14) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `format` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `comment` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `phone` varchar(14) DEFAULT NULL,
+  `format` varchar(2) DEFAULT NULL,
+  `comment` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`pid`,`cid`,`n`),
   KEY `phone` (`phone`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1623,16 +1624,16 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameter_type_phone_log` (
   `pid` int(11) NOT NULL,
   `cid` int(11) NOT NULL,
-  `val` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `val` varchar(255) DEFAULT NULL,
   `data` mediumtext COLLATE utf8_unicode_ci,
   `dt_change` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
   KEY `cid_pid` (`cid`,`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1650,19 +1651,19 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_parameters_pref` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `pt` int(10) unsigned NOT NULL DEFAULT '0',
-  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(100) NOT NULL DEFAULT '',
   `sort` int(10) unsigned NOT NULL DEFAULT '0',
-  `script` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `script` mediumtext NOT NULL,
   `history` tinyint(1) NOT NULL,
   `flags` tinyint(3) NOT NULL DEFAULT '0',
   `lm` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
   KEY `sort` (`sort`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1680,14 +1681,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_password_once` (
   `lu` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `dt` datetime NOT NULL,
-  `contract_title` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `contract_title` varchar(150) NOT NULL,
+  `password` varchar(64) NOT NULL,
   UNIQUE KEY `password` (`password`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1704,26 +1705,26 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_pattern` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(150) NOT NULL DEFAULT '',
   `closesumma` float NOT NULL DEFAULT '0',
-  `tpid` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `tpid` varchar(250) NOT NULL,
   `groups` bigint(20) NOT NULL DEFAULT '0',
   `mode` int(11) NOT NULL DEFAULT '0',
   `pgid` int(11) NOT NULL DEFAULT '0',
   `pfid` int(11) NOT NULL DEFAULT '0',
   `fc` tinyint(2) NOT NULL DEFAULT '0',
   `dtl` int(10) unsigned NOT NULL DEFAULT '0',
-  `tgid` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
-  `scrid` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
-  `name_pattern` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `tgid` varchar(250) NOT NULL,
+  `scrid` varchar(250) NOT NULL,
+  `name_pattern` varchar(200) NOT NULL DEFAULT '',
   `data` blob,
   `patid` int(11) NOT NULL DEFAULT '0',
   `status` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1741,11 +1742,11 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_pattern_modules` (
   `pid` int(11) NOT NULL,
   `mid` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1762,16 +1763,16 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_pattern_named_numbers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(45) NOT NULL,
   `ln` int(10) unsigned NOT NULL,
   `count_number` int(11) DEFAULT '-1',
-  `comment` varchar(90) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `comment` varchar(90) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `title_UNIQUE` (`title`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1788,12 +1789,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_pattern_services` (
   `pid` int(11) NOT NULL DEFAULT '0',
   `sid` int(11) NOT NULL DEFAULT '0',
   KEY `pid` (`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1810,7 +1811,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_payment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `dt` date NOT NULL DEFAULT '0000-00-00',
@@ -1818,14 +1819,14 @@ CREATE TABLE `contract_payment` (
   `pt` int(10) unsigned NOT NULL DEFAULT '0',
   `uid` int(11) NOT NULL DEFAULT '0',
   `summa` decimal(10,2) NOT NULL,
-  `comment` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comment` varchar(200) NOT NULL DEFAULT '',
   `lm` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `pt_dt` (`pt`,`dt`),
   KEY `dt_cid` (`dt`,`cid`),
   KEY `uid` (`uid`),
   KEY `cid_dt` (`cid`,`dt`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1843,7 +1844,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_payment_deleted` (
   `id` int(11) NOT NULL DEFAULT '0',
   `dt` date NOT NULL DEFAULT '0000-00-00',
@@ -1851,14 +1852,14 @@ CREATE TABLE `contract_payment_deleted` (
   `pt` int(10) unsigned NOT NULL DEFAULT '0',
   `uid` int(11) NOT NULL DEFAULT '0',
   `summa` decimal(10,2) NOT NULL,
-  `comment` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comment` varchar(200) NOT NULL DEFAULT '',
   `lm` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `pt_dt` (`pt`,`dt`),
   KEY `dt_cid` (`dt`,`cid`),
   KEY `uid` (`uid`),
   KEY `cid_dt` (`cid`,`dt`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1876,10 +1877,10 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_payment_types` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `title` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(50) NOT NULL DEFAULT '',
   `up` int(11) NOT NULL DEFAULT '0',
   `type` tinyint(2) NOT NULL DEFAULT '0',
   `flag` tinyint(2) NOT NULL DEFAULT '0',
@@ -1887,7 +1888,7 @@ CREATE TABLE `contract_payment_types` (
   KEY `up` (`up`),
   KEY `type` (`type`),
   KEY `flag` (`flag`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1905,7 +1906,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_reserve` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `cid` int(10) NOT NULL,
@@ -1914,9 +1915,9 @@ CREATE TABLE `contract_reserve` (
   `dateCreate` datetime NOT NULL,
   `dateTo` datetime DEFAULT NULL,
   `dateClose` datetime DEFAULT NULL,
-  `comment` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `comment` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1933,12 +1934,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_reserve_total` (
   `cid` int(11) NOT NULL,
   `sum` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1955,13 +1956,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_reserve_types` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(45) NOT NULL,
   `used` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1978,17 +1979,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_script` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cid` int(11) NOT NULL DEFAULT '0',
   `date1` date DEFAULT NULL,
   `date2` date DEFAULT NULL,
   `script_id` int(11) NOT NULL DEFAULT '0',
-  `comment` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comment` varchar(200) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `cid` (`cid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2006,14 +2007,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_service` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `cid` int(10) unsigned NOT NULL DEFAULT '0',
   `sid` int(10) unsigned NOT NULL DEFAULT '0',
   `date1` date DEFAULT NULL,
   `date2` date DEFAULT NULL,
-  `comment` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comment` varchar(255) NOT NULL DEFAULT '',
   `lm` date NOT NULL DEFAULT '0000-00-00',
   `emid` int(11) NOT NULL DEFAULT '0',
   `eid` int(11) NOT NULL DEFAULT '0',
@@ -2022,7 +2023,7 @@ CREATE TABLE `contract_service` (
   KEY `date1` (`date1`),
   KEY `date2` (`date2`),
   KEY `cid` (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2039,17 +2040,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_status` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cid` int(11) NOT NULL,
   `status` tinyint(4) NOT NULL,
   `date1` date NOT NULL,
   `date2` date DEFAULT NULL,
-  `comment` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `comment` varchar(250) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `cid` (`cid`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2067,18 +2068,18 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_status_log` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `status` tinyint(4) NOT NULL,
   `uid` int(11) NOT NULL,
   `date` datetime NOT NULL,
-  `comment` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `comment` varchar(250) NOT NULL,
   `cid` int(11) NOT NULL DEFAULT '0',
   `date1` date NOT NULL,
   `date2` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2096,14 +2097,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_tariff` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `cid` int(10) unsigned NOT NULL DEFAULT '0',
   `tpid` int(10) unsigned NOT NULL DEFAULT '0',
   `date1` date DEFAULT NULL,
   `date2` date DEFAULT NULL,
-  `comment` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comment` varchar(255) NOT NULL DEFAULT '',
   `lm` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `pos` tinyint(4) NOT NULL DEFAULT '0',
   `emid` int(11) NOT NULL DEFAULT '0',
@@ -2111,7 +2112,7 @@ CREATE TABLE `contract_tariff` (
   `replaced_from` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `cid` (`cid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2129,17 +2130,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_tariff_group` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cid` int(11) NOT NULL DEFAULT '0',
   `date1` date DEFAULT NULL,
   `date2` date DEFAULT NULL,
   `gid` int(11) NOT NULL DEFAULT '0',
-  `comment` char(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comment` char(200) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `cid` (`cid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2157,7 +2158,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_tariff_option` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `uid` int(11) NOT NULL,
@@ -2172,7 +2173,7 @@ CREATE TABLE `contract_tariff_option` (
   `deactivated_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `cid` (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2189,12 +2190,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_tree_link` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cid` int(10) NOT NULL DEFAULT '0',
   `tree_id` int(10) NOT NULL DEFAULT '0',
-  `title` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(200) NOT NULL DEFAULT '',
   `date1` date DEFAULT NULL,
   `date2` date DEFAULT NULL,
   `pos` tinyint(4) NOT NULL DEFAULT '0',
@@ -2202,7 +2203,7 @@ CREATE TABLE `contract_tree_link` (
   `eid` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `cid` (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2219,13 +2220,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contract_web_menu` (
   `contract_id` int(11) NOT NULL DEFAULT '0',
   `web_menu_id` int(11) NOT NULL DEFAULT '0',
   KEY `contract_id` (`contract_id`),
   KEY `web_menu_id` (`web_menu_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2242,13 +2243,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `entity` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `entitySpecId` int(11) NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2266,20 +2267,20 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `entity_attr_address` (
   `entityId` int(11) NOT NULL,
   `entitySpecAttrId` int(11) NOT NULL,
   `houseId` int(10) unsigned DEFAULT NULL,
-  `flat` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `room` varchar(5) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `flat` varchar(10) DEFAULT NULL,
+  `room` varchar(5) NOT NULL DEFAULT '',
   `pod` int(10) DEFAULT '0',
   `floor` int(10) DEFAULT '0',
-  `value` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `comment` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `format_key` varchar(45) COLLATE utf8_unicode_ci DEFAULT '',
+  `value` varchar(255) DEFAULT NULL,
+  `comment` varchar(255) DEFAULT NULL,
+  `format_key` varchar(45) DEFAULT '',
   PRIMARY KEY (`entityId`,`entitySpecAttrId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2297,13 +2298,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `entity_attr_date` (
   `entityId` int(11) NOT NULL,
   `entitySpecAttrId` int(11) NOT NULL,
   `value` date NOT NULL,
   PRIMARY KEY (`entityId`,`entitySpecAttrId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2320,13 +2321,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `entity_attr_house` (
   `entityId` int(11) NOT NULL,
   `entitySpecAttrId` int(11) NOT NULL,
   `value` int(11) NOT NULL,
   PRIMARY KEY (`entityId`,`entitySpecAttrId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2343,13 +2344,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `entity_attr_int` (
   `entityId` int(11) NOT NULL,
   `entitySpecAttrId` int(11) NOT NULL,
   `value` int(11) NOT NULL,
   PRIMARY KEY (`entityId`,`entitySpecAttrId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2366,13 +2367,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `entity_attr_list` (
   `entityId` int(11) NOT NULL,
   `entitySpecAttrId` int(11) NOT NULL,
   `value` int(11) NOT NULL,
   PRIMARY KEY (`entityId`,`entitySpecAttrId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2389,13 +2390,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `entity_attr_text` (
   `entityId` int(11) NOT NULL,
   `entitySpecAttrId` int(11) NOT NULL,
-  `value` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `value` varchar(255) NOT NULL,
   PRIMARY KEY (`entityId`,`entitySpecAttrId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2412,17 +2413,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `entity_spec` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL,
   `entitySpecTypeId` int(11) NOT NULL,
-  `comment` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `comment` mediumtext NOT NULL,
   `hidden` int(11) NOT NULL DEFAULT '0',
-  `entityTitleMacros` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `entityTitleMacros` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `entity_type_id` (`entitySpecTypeId`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2440,14 +2441,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `entity_spec_attr` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL,
   `type` int(11) NOT NULL,
-  `comment` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `comment` mediumtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2465,13 +2466,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `entity_spec_attr_link` (
   `entitySpecId` int(11) NOT NULL,
   `entitySpecAttrId` int(11) NOT NULL,
   `pos` int(11) NOT NULL,
   KEY `entity_spec_id` (`entitySpecId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2489,14 +2490,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `entity_spec_attr_list` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `entitySpecAttrId` int(11) NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `entity_spec_attr_id` (`entitySpecAttrId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2513,13 +2514,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `entity_spec_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `type` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `type` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2536,15 +2537,15 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `event_script_link` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `class_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `event_key` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `class_name` varchar(255) NOT NULL,
+  `event_key` varchar(255) NOT NULL,
   `script_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2562,12 +2563,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `firm` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `title` varchar(150) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2584,15 +2585,15 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `global_script` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
   `script` mediumtext COLLATE utf8_unicode_ci,
   `user_id` int(11) NOT NULL,
   `change_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2609,13 +2610,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `global_script_link` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `class_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `class_name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2632,12 +2633,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `helpdesk_category_9` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2654,14 +2655,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `helpdesk_directory_link_9` (
   `group` int(11) NOT NULL,
   `category` int(11) NOT NULL,
   `subcategory` int(11) NOT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2678,12 +2679,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `helpdesk_group_9` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2700,20 +2701,20 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `helpdesk_message_9` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `topic_id` int(11) NOT NULL,
-  `body` text COLLATE utf8_unicode_ci NOT NULL,
+  `body` text NOT NULL,
   `date_from` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `user_from` int(11) NOT NULL,
   `date_to` datetime DEFAULT NULL,
   `user_to` int(11) NOT NULL,
-  `comment` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `comment` varchar(250) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `topic_id` (`topic_id`),
   KEY `from_to` (`user_from`,`user_to`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2730,18 +2731,18 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `helpdesk_package_9` (
   `lu` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'код пакета',
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'название пакета',
+  `title` varchar(255) NOT NULL COMMENT 'название пакета',
   `summa` decimal(12,2) NOT NULL DEFAULT '1.00' COMMENT 'стоимость пакета',
   `count` int(11) NOT NULL DEFAULT '1' COMMENT 'количество обращений в пакете',
   `period` int(11) NOT NULL DEFAULT '1' COMMENT 'на сколько дней пакет активируется',
   `status` int(11) NOT NULL DEFAULT '0' COMMENT 'статус пакета (вкл./выкл.)',
   `charge_id` int(11) NOT NULL DEFAULT '0' COMMENT 'код типа расхода',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2758,7 +2759,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `helpdesk_package_contract_9` (
   `lu` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'код экземпляра пакета',
@@ -2771,7 +2772,7 @@ CREATE TABLE `helpdesk_package_contract_9` (
   `count_use` int(11) NOT NULL COMMENT 'число использованных обращений',
   `user_id` int(11) NOT NULL COMMENT 'код администратора биллинга, активировавшего пакет или -1 если активировал сам пользователь',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2788,13 +2789,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `helpdesk_param_9` (
   `cid` int(11) NOT NULL,
-  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `value` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `value` varchar(255) NOT NULL,
   KEY `cid` (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2811,12 +2812,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `helpdesk_subcategory_9` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2833,10 +2834,10 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `helpdesk_topic_9` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL,
   `cid` int(11) NOT NULL,
   `charge_id` int(11) NOT NULL,
   `cost` decimal(7,2) NOT NULL,
@@ -2844,7 +2845,7 @@ CREATE TABLE `helpdesk_topic_9` (
   `date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `date_close` datetime DEFAULT NULL,
   `comm` tinyint(4) NOT NULL DEFAULT '0',
-  `comm_value` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comm_value` varchar(255) NOT NULL DEFAULT '',
   `user_id` int(11) NOT NULL DEFAULT '-1',
   `status` smallint(6) NOT NULL DEFAULT '0',
   `contract_package_id` int(11) NOT NULL DEFAULT '-1',
@@ -2852,7 +2853,7 @@ CREATE TABLE `helpdesk_topic_9` (
   `category_id` int(11) NOT NULL,
   `subcategory_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2869,13 +2870,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `helpdesk_topic_manager_change_9` (
   `topic_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `date` datetime NOT NULL,
   `comment` text COLLATE utf8_unicode_ci
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2892,7 +2893,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `helpdesk_topic_reserve` (
   `topicId` int(11) NOT NULL,
   `status` tinyint(1) DEFAULT NULL,
@@ -2901,7 +2902,7 @@ CREATE TABLE `helpdesk_topic_reserve` (
   KEY `reserveId` (`reserveId`),
   CONSTRAINT `helpdesk_topic_reserve_ibfk_1` FOREIGN KEY (`reserveId`) REFERENCES `contract_reserve` (`id`) ON UPDATE NO ACTION,
   CONSTRAINT `helpdesk_topic_reserve_ibfk_2` FOREIGN KEY (`topicId`) REFERENCES `helpdesk_topic_9` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2918,12 +2919,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `helpdesk_topic_statuses_9` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(128) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2940,7 +2941,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_accounting_period_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `contractId` int(11) NOT NULL,
@@ -2951,7 +2952,7 @@ CREATE TABLE `inet_accounting_period_1` (
   `userId` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `contract` (`contractId`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2969,7 +2970,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_accounting_period_1_bak_sec` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `contractId` int(11) NOT NULL,
@@ -2978,7 +2979,7 @@ CREATE TABLE `inet_accounting_period_1_bak_sec` (
   `userId` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `contract` (`contractId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2995,26 +2996,26 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_connection_1` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `parentId` bigint(20) NOT NULL,
   `deviceId` int(11) NOT NULL,
   `devicePort` int(11) NOT NULL,
   `agentDeviceId` int(11) NOT NULL DEFAULT '0',
-  `circuitId` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `acctSessionId` varchar(80) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `username` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `circuitId` varchar(45) DEFAULT NULL,
+  `acctSessionId` varchar(80) DEFAULT NULL,
+  `username` varchar(100) DEFAULT NULL,
   `type` int(11) NOT NULL,
   `accessCode` smallint(6) NOT NULL,
   `servId` int(11) NOT NULL,
-  `calledStationId` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `callingStationId` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `calledStationId` varchar(50) DEFAULT NULL,
+  `callingStationId` varchar(50) DEFAULT NULL,
   `ipResourceId` int(11) NOT NULL,
   `ipAddress` varbinary(24) DEFAULT NULL,
   `connectionStart` datetime NOT NULL,
   `deviceState` smallint(6) NOT NULL DEFAULT '1',
-  `deviceOptions` char(250) COLLATE utf8_unicode_ci NOT NULL,
+  `deviceOptions` char(250) NOT NULL,
   `status` smallint(6) NOT NULL,
   KEY `id` (`id`),
   KEY `nas` (`deviceId`,`devicePort`),
@@ -3022,7 +3023,7 @@ CREATE TABLE `inet_connection_1` (
   KEY `parent` (`parentId`),
   KEY `connectionStart` (`connectionStart`),
   KEY `ipAddress` (`ipAddress`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB AUTO_INCREMENT=3
 /*!50100 PARTITION BY HASH (deviceId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3042,11 +3043,11 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_connection_1_seq` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3064,7 +3065,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_connection_route_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `connectionId` bigint(20) NOT NULL,
@@ -3072,7 +3073,7 @@ CREATE TABLE `inet_connection_route_1` (
   `mask` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `connectionId` (`connectionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3089,27 +3090,27 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_device_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `entityId` int(11) NOT NULL,
   `parentId` int(11) NOT NULL,
   `deviceTypeId` int(11) NOT NULL,
-  `title` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
-  `identifier` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
-  `uptime` text COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(250) NOT NULL,
+  `identifier` varchar(150) NOT NULL,
+  `uptime` text NOT NULL,
   `uptimeTime` datetime DEFAULT NULL,
-  `host` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `host` varchar(150) NOT NULL,
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
   `orderManagerDisabled` tinyint(4) NOT NULL DEFAULT '0',
-  `username` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `secret` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `config` text COLLATE utf8_unicode_ci NOT NULL,
-  `comment` text COLLATE utf8_unicode_ci NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `secret` varchar(100) NOT NULL,
+  `config` text NOT NULL,
+  `comment` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3126,12 +3127,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_device_group_link_1` (
   `deviceId` int(11) NOT NULL,
   `deviceGroupId` int(11) NOT NULL,
   KEY `device_id` (`deviceId`,`deviceGroupId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3148,18 +3149,18 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_device_tree_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `invDeviceId` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `invDeviceId` varchar(45) NOT NULL,
   `parentId` int(11) NOT NULL,
-  `title` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(200) NOT NULL,
   `deviceTypeId` int(11) NOT NULL DEFAULT '-1',
-  `identifier` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `host` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `config` text COLLATE utf8_unicode_ci NOT NULL,
+  `identifier` varchar(150) DEFAULT NULL,
+  `host` varchar(100) DEFAULT NULL,
+  `config` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3177,24 +3178,24 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_device_type_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(250) NOT NULL,
   `configId` int(11) NOT NULL,
-  `config` text COLLATE utf8_unicode_ci NOT NULL,
-  `protocolHandlerClass` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `saHandlerClass` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `deviceManagerClass` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `config` text NOT NULL,
+  `protocolHandlerClass` varchar(250) DEFAULT NULL,
+  `saHandlerClass` varchar(250) DEFAULT NULL,
+  `deviceManagerClass` varchar(250) DEFAULT NULL,
   `uniqueInterfaces` tinyint(4) NOT NULL,
   `scriptId` int(11) NOT NULL,
   `saScript` text COLLATE utf8_unicode_ci,
   `eventScript` text COLLATE utf8_unicode_ci,
-  `comment` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `comment` varchar(250) NOT NULL,
   `source` tinyint(1) DEFAULT '0',
   `deviceEntitySpecId` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3212,14 +3213,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_interface_1` (
   `id` int(11) NOT NULL,
-  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(100) NOT NULL,
   `deviceTypeId` int(11) NOT NULL,
   PRIMARY KEY (`id`,`deviceTypeId`),
   KEY `deviceTypeId` (`deviceTypeId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3237,16 +3238,16 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_option_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parentId` int(11) NOT NULL,
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(150) NOT NULL,
   `groupIntersection` tinyint(4) NOT NULL,
-  `config` text COLLATE utf8_unicode_ci NOT NULL,
-  `comment` text COLLATE utf8_unicode_ci NOT NULL,
+  `config` text NOT NULL,
+  `comment` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3264,7 +3265,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_serv_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parentId` int(11) NOT NULL,
@@ -3273,14 +3274,14 @@ CREATE TABLE `inet_serv_1` (
   `deviceId` int(11) NOT NULL,
   `interfaceId` int(11) NOT NULL,
   `vlan` int(11) NOT NULL DEFAULT '-1',
-  `identifier` varchar(80) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `identifier` varchar(80) DEFAULT NULL,
   `macAddress` varbinary(64) DEFAULT NULL,
   `ipResourceId` int(11) DEFAULT NULL,
   `ipResourceSubscriptionId` int(11) NOT NULL,
   `addressFrom` varbinary(24) DEFAULT NULL,
   `addressTo` varbinary(24) DEFAULT NULL,
-  `login` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `password` char(30) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `login` varchar(100) NOT NULL,
+  `password` char(30) DEFAULT NULL,
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
   `contractObjectId` int(11) NOT NULL DEFAULT '0',
@@ -3288,17 +3289,17 @@ CREATE TABLE `inet_serv_1` (
   `sessionCountLimit` int(11) NOT NULL,
   `deviceState` int(11) NOT NULL,
   `accessCode` int(11) NOT NULL,
-  `config` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `deviceOptions` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `comment` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `config` varchar(255) DEFAULT NULL,
+  `deviceOptions` varchar(200) NOT NULL,
+  `comment` varchar(250) NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `parentId` (`parentId`),
   KEY `contractId` (`contractId`),
   KEY `deviceId` (`deviceId`),
   KEY `login` (`login`),
   KEY `contractObjectId` (`contractObjectId`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3316,14 +3317,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_serv_option_1` (
   `servId` int(11) NOT NULL,
   `optionId` int(11) NOT NULL,
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
   KEY `servOptIdx` (`servId`,`optionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3341,19 +3342,19 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_serv_restriction_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `servId` int(11) NOT NULL,
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
   `type` int(11) NOT NULL,
-  `serviceIds` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `serviceIds` varchar(255) NOT NULL DEFAULT '',
   `amount` decimal(20,5) NOT NULL DEFAULT '0.00000',
-  `comment` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comment` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `servId` (`servId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3370,11 +3371,11 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_serv_type_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
-  `parentTypeIds` varchar(45) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(150) NOT NULL,
+  `parentTypeIds` varchar(45) NOT NULL DEFAULT '',
   `sessionInitiationType` tinyint(4) NOT NULL,
   `sessionCountLimit` int(11) NOT NULL,
   `sessionCountLimitLock` tinyint(4) NOT NULL DEFAULT '0',
@@ -3394,7 +3395,7 @@ CREATE TABLE `inet_serv_type_1` (
   `personalVlan` tinyint(4) NOT NULL DEFAULT '1',
   `ipFromParentRange` tinyint(4) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3412,12 +3413,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_serv_type_device_group_link_1` (
   `inetServId` int(11) NOT NULL,
   `deviceGroupId` int(11) NOT NULL,
   KEY `inetServId` (`inetServId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3435,12 +3436,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_serv_type_device_type_link_1` (
   `inetServId` int(11) NOT NULL,
   `deviceTypeId` int(11) NOT NULL,
   KEY `inetServId` (`inetServId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3458,7 +3459,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_1` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `parentId` bigint(20) NOT NULL,
@@ -3475,7 +3476,7 @@ CREATE TABLE `inet_session_1` (
   KEY `id` (`id`),
   KEY `parentId` (`parentId`),
   KEY `connectionId` (`connectionId`)
-) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB AUTO_INCREMENT=104
 /*!50100 PARTITION BY HASH (connectionId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3495,11 +3496,11 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_1_seq` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=104;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3517,7 +3518,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_account_1` (
   `contractId` int(11) NOT NULL,
   `sessionId` bigint(20) NOT NULL,
@@ -3527,7 +3528,7 @@ CREATE TABLE `inet_session_account_1` (
   PRIMARY KEY (`contractId`,`sessionId`,`serviceId`),
   KEY `serviceId` (`serviceId`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3546,7 +3547,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_detail_1` (
   `sessionId` bigint(20) NOT NULL,
   `day` tinyint(4) NOT NULL,
@@ -3556,7 +3557,7 @@ CREATE TABLE `inet_session_detail_1` (
   `amount` bigint(20) NOT NULL,
   PRIMARY KEY (`sessionId`,`day`,`hour`,`trafficTypeId`,`deviceId`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( sessionId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -3575,7 +3576,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_1_201505` (
   `id` bigint(20) NOT NULL,
   `parentId` bigint(20) NOT NULL,
@@ -3585,14 +3586,14 @@ CREATE TABLE `inet_session_log_1_201505` (
   `deviceId` int(11) NOT NULL,
   `devicePort` int(11) NOT NULL,
   `agentDeviceId` int(11) NOT NULL,
-  `acctSessionId` varchar(80) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `username` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `realm` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `acctSessionId` varchar(80) DEFAULT NULL,
+  `username` varchar(100) DEFAULT NULL,
+  `realm` varchar(20) DEFAULT NULL,
   `type` int(11) NOT NULL,
   `accessCode` smallint(6) NOT NULL,
   `servId` int(11) NOT NULL,
-  `calledStationId` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `callingStationId` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `calledStationId` varchar(60) DEFAULT NULL,
+  `callingStationId` varchar(60) DEFAULT NULL,
   `ipResourceId` int(11) NOT NULL,
   `ipAddress` varbinary(24) DEFAULT NULL,
   `connectionStart` datetime NOT NULL,
@@ -3600,7 +3601,7 @@ CREATE TABLE `inet_session_log_1_201505` (
   `sessionStop` datetime DEFAULT NULL,
   `lastActive` datetime NOT NULL,
   `deviceState` smallint(6) NOT NULL,
-  `deviceOptions` varchar(120) COLLATE utf8_unicode_ci NOT NULL,
+  `deviceOptions` varchar(120) NOT NULL,
   `sessionTime` int(11) NOT NULL,
   `sessionCost` decimal(10,5) NOT NULL,
   `status` smallint(6) NOT NULL,
@@ -3612,7 +3613,7 @@ CREATE TABLE `inet_session_log_1_201505` (
   KEY `connection` (`connectionId`),
   KEY `sessionStart` (`sessionStart`),
   KEY `ipAddress` (`ipAddress`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY RANGE (TO_DAYS(sessionStart))
 (PARTITION p20150501 VALUES LESS THAN (736085) ENGINE = InnoDB,
  PARTITION p20150502 VALUES LESS THAN (736086) ENGINE = InnoDB,
@@ -3661,7 +3662,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_1_201506` (
   `id` bigint(20) NOT NULL,
   `parentId` bigint(20) NOT NULL,
@@ -3671,14 +3672,14 @@ CREATE TABLE `inet_session_log_1_201506` (
   `deviceId` int(11) NOT NULL,
   `devicePort` int(11) NOT NULL,
   `agentDeviceId` int(11) NOT NULL,
-  `acctSessionId` varchar(80) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `username` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `realm` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `acctSessionId` varchar(80) DEFAULT NULL,
+  `username` varchar(100) DEFAULT NULL,
+  `realm` varchar(20) DEFAULT NULL,
   `type` int(11) NOT NULL,
   `accessCode` smallint(6) NOT NULL,
   `servId` int(11) NOT NULL,
-  `calledStationId` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `callingStationId` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `calledStationId` varchar(60) DEFAULT NULL,
+  `callingStationId` varchar(60) DEFAULT NULL,
   `ipResourceId` int(11) NOT NULL,
   `ipAddress` varbinary(24) DEFAULT NULL,
   `connectionStart` datetime NOT NULL,
@@ -3686,7 +3687,7 @@ CREATE TABLE `inet_session_log_1_201506` (
   `sessionStop` datetime DEFAULT NULL,
   `lastActive` datetime NOT NULL,
   `deviceState` smallint(6) NOT NULL,
-  `deviceOptions` varchar(120) COLLATE utf8_unicode_ci NOT NULL,
+  `deviceOptions` varchar(120) NOT NULL,
   `sessionTime` int(11) NOT NULL,
   `sessionCost` decimal(10,5) NOT NULL,
   `status` smallint(6) NOT NULL,
@@ -3698,7 +3699,7 @@ CREATE TABLE `inet_session_log_1_201506` (
   KEY `connection` (`connectionId`),
   KEY `sessionStart` (`sessionStart`),
   KEY `ipAddress` (`ipAddress`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY RANGE (TO_DAYS(sessionStart))
 (PARTITION p20150601 VALUES LESS THAN (736116) ENGINE = InnoDB,
  PARTITION p20150602 VALUES LESS THAN (736117) ENGINE = InnoDB,
@@ -3746,7 +3747,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_1_201507` (
   `id` bigint(20) NOT NULL,
   `parentId` bigint(20) NOT NULL,
@@ -3756,14 +3757,14 @@ CREATE TABLE `inet_session_log_1_201507` (
   `deviceId` int(11) NOT NULL,
   `devicePort` int(11) NOT NULL,
   `agentDeviceId` int(11) NOT NULL,
-  `acctSessionId` varchar(80) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `username` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `realm` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `acctSessionId` varchar(80) DEFAULT NULL,
+  `username` varchar(100) DEFAULT NULL,
+  `realm` varchar(20) DEFAULT NULL,
   `type` int(11) NOT NULL,
   `accessCode` smallint(6) NOT NULL,
   `servId` int(11) NOT NULL,
-  `calledStationId` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `callingStationId` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `calledStationId` varchar(60) DEFAULT NULL,
+  `callingStationId` varchar(60) DEFAULT NULL,
   `ipResourceId` int(11) NOT NULL,
   `ipAddress` varbinary(24) DEFAULT NULL,
   `connectionStart` datetime NOT NULL,
@@ -3771,7 +3772,7 @@ CREATE TABLE `inet_session_log_1_201507` (
   `sessionStop` datetime DEFAULT NULL,
   `lastActive` datetime NOT NULL,
   `deviceState` smallint(6) NOT NULL,
-  `deviceOptions` varchar(120) COLLATE utf8_unicode_ci NOT NULL,
+  `deviceOptions` varchar(120) NOT NULL,
   `sessionTime` int(11) NOT NULL,
   `sessionCost` decimal(10,5) NOT NULL,
   `status` smallint(6) NOT NULL,
@@ -3783,7 +3784,7 @@ CREATE TABLE `inet_session_log_1_201507` (
   KEY `connection` (`connectionId`),
   KEY `sessionStart` (`sessionStart`),
   KEY `ipAddress` (`ipAddress`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY RANGE (TO_DAYS(sessionStart))
 (PARTITION p20150701 VALUES LESS THAN (736146) ENGINE = InnoDB,
  PARTITION p20150702 VALUES LESS THAN (736147) ENGINE = InnoDB,
@@ -3832,7 +3833,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_1_201508` (
   `id` bigint(20) NOT NULL,
   `parentId` bigint(20) NOT NULL,
@@ -3842,14 +3843,14 @@ CREATE TABLE `inet_session_log_1_201508` (
   `deviceId` int(11) NOT NULL,
   `devicePort` int(11) NOT NULL,
   `agentDeviceId` int(11) NOT NULL,
-  `acctSessionId` varchar(80) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `username` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `realm` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `acctSessionId` varchar(80) DEFAULT NULL,
+  `username` varchar(100) DEFAULT NULL,
+  `realm` varchar(20) DEFAULT NULL,
   `type` int(11) NOT NULL,
   `accessCode` smallint(6) NOT NULL,
   `servId` int(11) NOT NULL,
-  `calledStationId` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `callingStationId` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `calledStationId` varchar(60) DEFAULT NULL,
+  `callingStationId` varchar(60) DEFAULT NULL,
   `ipResourceId` int(11) NOT NULL,
   `ipAddress` varbinary(24) DEFAULT NULL,
   `connectionStart` datetime NOT NULL,
@@ -3857,7 +3858,7 @@ CREATE TABLE `inet_session_log_1_201508` (
   `sessionStop` datetime DEFAULT NULL,
   `lastActive` datetime NOT NULL,
   `deviceState` smallint(6) NOT NULL,
-  `deviceOptions` varchar(120) COLLATE utf8_unicode_ci NOT NULL,
+  `deviceOptions` varchar(120) NOT NULL,
   `sessionTime` int(11) NOT NULL,
   `sessionCost` decimal(10,5) NOT NULL,
   `status` smallint(6) NOT NULL,
@@ -3869,7 +3870,7 @@ CREATE TABLE `inet_session_log_1_201508` (
   KEY `connection` (`connectionId`),
   KEY `sessionStart` (`sessionStart`),
   KEY `ipAddress` (`ipAddress`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY RANGE (TO_DAYS(sessionStart))
 (PARTITION p20150801 VALUES LESS THAN (736177) ENGINE = InnoDB,
  PARTITION p20150802 VALUES LESS THAN (736178) ENGINE = InnoDB,
@@ -3918,7 +3919,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_1_201509` (
   `id` bigint(20) NOT NULL,
   `parentId` bigint(20) NOT NULL,
@@ -3928,14 +3929,14 @@ CREATE TABLE `inet_session_log_1_201509` (
   `deviceId` int(11) NOT NULL,
   `devicePort` int(11) NOT NULL,
   `agentDeviceId` int(11) NOT NULL,
-  `acctSessionId` varchar(80) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `username` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `realm` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `acctSessionId` varchar(80) DEFAULT NULL,
+  `username` varchar(100) DEFAULT NULL,
+  `realm` varchar(20) DEFAULT NULL,
   `type` int(11) NOT NULL,
   `accessCode` smallint(6) NOT NULL,
   `servId` int(11) NOT NULL,
-  `calledStationId` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `callingStationId` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `calledStationId` varchar(60) DEFAULT NULL,
+  `callingStationId` varchar(60) DEFAULT NULL,
   `ipResourceId` int(11) NOT NULL,
   `ipAddress` varbinary(24) DEFAULT NULL,
   `connectionStart` datetime NOT NULL,
@@ -3943,7 +3944,7 @@ CREATE TABLE `inet_session_log_1_201509` (
   `sessionStop` datetime DEFAULT NULL,
   `lastActive` datetime NOT NULL,
   `deviceState` smallint(6) NOT NULL,
-  `deviceOptions` varchar(120) COLLATE utf8_unicode_ci NOT NULL,
+  `deviceOptions` varchar(120) NOT NULL,
   `sessionTime` int(11) NOT NULL,
   `sessionCost` decimal(10,5) NOT NULL,
   `status` smallint(6) NOT NULL,
@@ -3955,7 +3956,7 @@ CREATE TABLE `inet_session_log_1_201509` (
   KEY `connection` (`connectionId`),
   KEY `sessionStart` (`sessionStart`),
   KEY `ipAddress` (`ipAddress`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY RANGE (TO_DAYS(sessionStart))
 (PARTITION p20150901 VALUES LESS THAN (736208) ENGINE = InnoDB,
  PARTITION p20150902 VALUES LESS THAN (736209) ENGINE = InnoDB,
@@ -4003,7 +4004,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_1_201510` (
   `id` bigint(20) NOT NULL,
   `parentId` bigint(20) NOT NULL,
@@ -4013,14 +4014,14 @@ CREATE TABLE `inet_session_log_1_201510` (
   `deviceId` int(11) NOT NULL,
   `devicePort` int(11) NOT NULL,
   `agentDeviceId` int(11) NOT NULL,
-  `acctSessionId` varchar(80) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `username` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `realm` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `acctSessionId` varchar(80) DEFAULT NULL,
+  `username` varchar(100) DEFAULT NULL,
+  `realm` varchar(20) DEFAULT NULL,
   `type` int(11) NOT NULL,
   `accessCode` smallint(6) NOT NULL,
   `servId` int(11) NOT NULL,
-  `calledStationId` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `callingStationId` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `calledStationId` varchar(60) DEFAULT NULL,
+  `callingStationId` varchar(60) DEFAULT NULL,
   `ipResourceId` int(11) NOT NULL,
   `ipAddress` varbinary(24) DEFAULT NULL,
   `connectionStart` datetime NOT NULL,
@@ -4028,7 +4029,7 @@ CREATE TABLE `inet_session_log_1_201510` (
   `sessionStop` datetime DEFAULT NULL,
   `lastActive` datetime NOT NULL,
   `deviceState` smallint(6) NOT NULL,
-  `deviceOptions` varchar(120) COLLATE utf8_unicode_ci NOT NULL,
+  `deviceOptions` varchar(120) NOT NULL,
   `sessionTime` int(11) NOT NULL,
   `sessionCost` decimal(10,5) NOT NULL,
   `status` smallint(6) NOT NULL,
@@ -4040,7 +4041,7 @@ CREATE TABLE `inet_session_log_1_201510` (
   KEY `connection` (`connectionId`),
   KEY `sessionStart` (`sessionStart`),
   KEY `ipAddress` (`ipAddress`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY RANGE (TO_DAYS(sessionStart))
 (PARTITION p20151001 VALUES LESS THAN (736238) ENGINE = InnoDB,
  PARTITION p20151002 VALUES LESS THAN (736239) ENGINE = InnoDB,
@@ -4089,7 +4090,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_1_201606` (
   `id` bigint(20) NOT NULL,
   `parentId` bigint(20) NOT NULL,
@@ -4099,14 +4100,14 @@ CREATE TABLE `inet_session_log_1_201606` (
   `deviceId` int(11) NOT NULL,
   `devicePort` int(11) NOT NULL,
   `agentDeviceId` int(11) NOT NULL,
-  `acctSessionId` varchar(80) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `username` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `realm` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `acctSessionId` varchar(80) DEFAULT NULL,
+  `username` varchar(100) DEFAULT NULL,
+  `realm` varchar(20) DEFAULT NULL,
   `type` int(11) NOT NULL,
   `accessCode` smallint(6) NOT NULL,
   `servId` int(11) NOT NULL,
-  `calledStationId` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `callingStationId` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `calledStationId` varchar(60) DEFAULT NULL,
+  `callingStationId` varchar(60) DEFAULT NULL,
   `ipResourceId` int(11) NOT NULL,
   `ipAddress` varbinary(24) DEFAULT NULL,
   `connectionStart` datetime NOT NULL,
@@ -4114,7 +4115,7 @@ CREATE TABLE `inet_session_log_1_201606` (
   `sessionStop` datetime DEFAULT NULL,
   `lastActive` datetime NOT NULL,
   `deviceState` smallint(6) NOT NULL,
-  `deviceOptions` varchar(120) COLLATE utf8_unicode_ci NOT NULL,
+  `deviceOptions` varchar(120) NOT NULL,
   `sessionTime` int(11) NOT NULL,
   `sessionCost` decimal(10,5) NOT NULL,
   `status` smallint(6) NOT NULL,
@@ -4126,7 +4127,7 @@ CREATE TABLE `inet_session_log_1_201606` (
   KEY `connection` (`connectionId`),
   KEY `sessionStart` (`sessionStart`),
   KEY `ipAddress` (`ipAddress`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY RANGE (TO_DAYS(sessionStart))
 (PARTITION p20160601 VALUES LESS THAN (736482) ENGINE = InnoDB,
  PARTITION p20160602 VALUES LESS THAN (736483) ENGINE = InnoDB,
@@ -4173,7 +4174,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_account_1_201505` (
   `contractId` int(11) NOT NULL,
   `sessionId` bigint(20) NOT NULL,
@@ -4183,7 +4184,7 @@ CREATE TABLE `inet_session_log_account_1_201505` (
   PRIMARY KEY (`contractId`,`sessionId`,`serviceId`),
   KEY `serviceId` (`serviceId`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4203,7 +4204,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_account_1_201506` (
   `contractId` int(11) NOT NULL,
   `sessionId` bigint(20) NOT NULL,
@@ -4213,7 +4214,7 @@ CREATE TABLE `inet_session_log_account_1_201506` (
   PRIMARY KEY (`contractId`,`sessionId`,`serviceId`),
   KEY `serviceId` (`serviceId`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4233,7 +4234,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_account_1_201507` (
   `contractId` int(11) NOT NULL,
   `sessionId` bigint(20) NOT NULL,
@@ -4243,7 +4244,7 @@ CREATE TABLE `inet_session_log_account_1_201507` (
   PRIMARY KEY (`contractId`,`sessionId`,`serviceId`),
   KEY `serviceId` (`serviceId`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4263,7 +4264,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_account_1_201508` (
   `contractId` int(11) NOT NULL,
   `sessionId` bigint(20) NOT NULL,
@@ -4273,7 +4274,7 @@ CREATE TABLE `inet_session_log_account_1_201508` (
   PRIMARY KEY (`contractId`,`sessionId`,`serviceId`),
   KEY `serviceId` (`serviceId`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4293,7 +4294,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_account_1_201509` (
   `contractId` int(11) NOT NULL,
   `sessionId` bigint(20) NOT NULL,
@@ -4303,7 +4304,7 @@ CREATE TABLE `inet_session_log_account_1_201509` (
   PRIMARY KEY (`contractId`,`sessionId`,`serviceId`),
   KEY `serviceId` (`serviceId`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4323,7 +4324,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_account_1_201510` (
   `contractId` int(11) NOT NULL,
   `sessionId` bigint(20) NOT NULL,
@@ -4333,7 +4334,7 @@ CREATE TABLE `inet_session_log_account_1_201510` (
   PRIMARY KEY (`contractId`,`sessionId`,`serviceId`),
   KEY `serviceId` (`serviceId`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4353,7 +4354,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_account_1_201606` (
   `contractId` int(11) NOT NULL,
   `sessionId` bigint(20) NOT NULL,
@@ -4363,7 +4364,7 @@ CREATE TABLE `inet_session_log_account_1_201606` (
   PRIMARY KEY (`contractId`,`sessionId`,`serviceId`),
   KEY `serviceId` (`serviceId`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4382,7 +4383,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_detail_1_201505` (
   `sessionId` bigint(20) NOT NULL,
   `day` tinyint(4) NOT NULL,
@@ -4392,7 +4393,7 @@ CREATE TABLE `inet_session_log_detail_1_201505` (
   `amount` bigint(20) NOT NULL,
   PRIMARY KEY (`sessionId`,`day`,`hour`,`trafficTypeId`,`deviceId`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( sessionId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4412,7 +4413,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_detail_1_201506` (
   `sessionId` bigint(20) NOT NULL,
   `day` tinyint(4) NOT NULL,
@@ -4422,7 +4423,7 @@ CREATE TABLE `inet_session_log_detail_1_201506` (
   `amount` bigint(20) NOT NULL,
   PRIMARY KEY (`sessionId`,`day`,`hour`,`trafficTypeId`,`deviceId`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( sessionId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4442,7 +4443,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_detail_1_201507` (
   `sessionId` bigint(20) NOT NULL,
   `day` tinyint(4) NOT NULL,
@@ -4452,7 +4453,7 @@ CREATE TABLE `inet_session_log_detail_1_201507` (
   `amount` bigint(20) NOT NULL,
   PRIMARY KEY (`sessionId`,`day`,`hour`,`trafficTypeId`,`deviceId`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( sessionId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4472,7 +4473,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_detail_1_201508` (
   `sessionId` bigint(20) NOT NULL,
   `day` tinyint(4) NOT NULL,
@@ -4482,7 +4483,7 @@ CREATE TABLE `inet_session_log_detail_1_201508` (
   `amount` bigint(20) NOT NULL,
   PRIMARY KEY (`sessionId`,`day`,`hour`,`trafficTypeId`,`deviceId`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( sessionId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4502,7 +4503,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_detail_1_201509` (
   `sessionId` bigint(20) NOT NULL,
   `day` tinyint(4) NOT NULL,
@@ -4512,7 +4513,7 @@ CREATE TABLE `inet_session_log_detail_1_201509` (
   `amount` bigint(20) NOT NULL,
   PRIMARY KEY (`sessionId`,`day`,`hour`,`trafficTypeId`,`deviceId`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( sessionId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4532,7 +4533,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_detail_1_201510` (
   `sessionId` bigint(20) NOT NULL,
   `day` tinyint(4) NOT NULL,
@@ -4542,7 +4543,7 @@ CREATE TABLE `inet_session_log_detail_1_201510` (
   `amount` bigint(20) NOT NULL,
   PRIMARY KEY (`sessionId`,`day`,`hour`,`trafficTypeId`,`deviceId`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( sessionId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4562,7 +4563,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_detail_1_201606` (
   `sessionId` bigint(20) NOT NULL,
   `day` tinyint(4) NOT NULL,
@@ -4572,7 +4573,7 @@ CREATE TABLE `inet_session_log_detail_1_201606` (
   `amount` bigint(20) NOT NULL,
   PRIMARY KEY (`sessionId`,`day`,`hour`,`trafficTypeId`,`deviceId`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( sessionId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4591,7 +4592,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_route_1_201505` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `sessionId` bigint(20) NOT NULL,
@@ -4599,7 +4600,7 @@ CREATE TABLE `inet_session_log_route_1_201505` (
   `mask` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4616,7 +4617,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_route_1_201506` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `sessionId` bigint(20) NOT NULL,
@@ -4624,7 +4625,7 @@ CREATE TABLE `inet_session_log_route_1_201506` (
   `mask` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4641,7 +4642,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_route_1_201507` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `sessionId` bigint(20) NOT NULL,
@@ -4649,7 +4650,7 @@ CREATE TABLE `inet_session_log_route_1_201507` (
   `mask` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4666,7 +4667,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_route_1_201508` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `sessionId` bigint(20) NOT NULL,
@@ -4674,7 +4675,7 @@ CREATE TABLE `inet_session_log_route_1_201508` (
   `mask` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4691,7 +4692,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_route_1_201509` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `sessionId` bigint(20) NOT NULL,
@@ -4699,7 +4700,7 @@ CREATE TABLE `inet_session_log_route_1_201509` (
   `mask` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4716,7 +4717,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_route_1_201510` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `sessionId` bigint(20) NOT NULL,
@@ -4724,7 +4725,7 @@ CREATE TABLE `inet_session_log_route_1_201510` (
   `mask` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4741,7 +4742,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_session_log_route_1_201606` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `sessionId` bigint(20) NOT NULL,
@@ -4749,7 +4750,7 @@ CREATE TABLE `inet_session_log_route_1_201606` (
   `mask` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `sessionId` (`sessionId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4766,7 +4767,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_tariff_traffic_max_1` (
   `contractId` int(11) NOT NULL,
   `treeNodeId` bigint(20) NOT NULL,
@@ -4778,7 +4779,7 @@ CREATE TABLE `inet_tariff_traffic_max_1` (
   `amount1` bigint(20) NOT NULL,
   `amount2` bigint(20) NOT NULL,
   PRIMARY KEY (`contractId`,`treeNodeId`,`maxKey`,`yy`,`mm`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4797,7 +4798,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_tariff_traffic_max_detail_1_201505` (
   `contractId` int(11) NOT NULL,
   `treeNodeId` bigint(20) NOT NULL,
@@ -4807,7 +4808,7 @@ CREATE TABLE `inet_tariff_traffic_max_detail_1_201505` (
   `amount1` bigint(20) NOT NULL,
   `amount2` bigint(20) NOT NULL,
   PRIMARY KEY (`contractId`,`treeNodeId`,`maxKey`,`day`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4826,7 +4827,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_tariff_traffic_max_detail_1_201506` (
   `contractId` int(11) NOT NULL,
   `treeNodeId` bigint(20) NOT NULL,
@@ -4836,7 +4837,7 @@ CREATE TABLE `inet_tariff_traffic_max_detail_1_201506` (
   `amount1` bigint(20) NOT NULL,
   `amount2` bigint(20) NOT NULL,
   PRIMARY KEY (`contractId`,`treeNodeId`,`maxKey`,`day`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4855,7 +4856,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_tariff_traffic_max_detail_1_201507` (
   `contractId` int(11) NOT NULL,
   `treeNodeId` bigint(20) NOT NULL,
@@ -4865,7 +4866,7 @@ CREATE TABLE `inet_tariff_traffic_max_detail_1_201507` (
   `amount1` bigint(20) NOT NULL,
   `amount2` bigint(20) NOT NULL,
   PRIMARY KEY (`contractId`,`treeNodeId`,`maxKey`,`day`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4884,7 +4885,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_tariff_traffic_max_detail_1_201508` (
   `contractId` int(11) NOT NULL,
   `treeNodeId` bigint(20) NOT NULL,
@@ -4894,7 +4895,7 @@ CREATE TABLE `inet_tariff_traffic_max_detail_1_201508` (
   `amount1` bigint(20) NOT NULL,
   `amount2` bigint(20) NOT NULL,
   PRIMARY KEY (`contractId`,`treeNodeId`,`maxKey`,`day`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4913,7 +4914,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_tariff_traffic_max_detail_1_201509` (
   `contractId` int(11) NOT NULL,
   `treeNodeId` bigint(20) NOT NULL,
@@ -4923,7 +4924,7 @@ CREATE TABLE `inet_tariff_traffic_max_detail_1_201509` (
   `amount1` bigint(20) NOT NULL,
   `amount2` bigint(20) NOT NULL,
   PRIMARY KEY (`contractId`,`treeNodeId`,`maxKey`,`day`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4942,7 +4943,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_tariff_traffic_max_detail_1_201510` (
   `contractId` int(11) NOT NULL,
   `treeNodeId` bigint(20) NOT NULL,
@@ -4952,7 +4953,7 @@ CREATE TABLE `inet_tariff_traffic_max_detail_1_201510` (
   `amount1` bigint(20) NOT NULL,
   `amount2` bigint(20) NOT NULL,
   PRIMARY KEY (`contractId`,`treeNodeId`,`maxKey`,`day`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -4971,7 +4972,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_tariff_traffic_max_detail_1_201606` (
   `contractId` int(11) NOT NULL,
   `treeNodeId` bigint(20) NOT NULL,
@@ -4981,7 +4982,7 @@ CREATE TABLE `inet_tariff_traffic_max_detail_1_201606` (
   `amount1` bigint(20) NOT NULL,
   `amount2` bigint(20) NOT NULL,
   PRIMARY KEY (`contractId`,`treeNodeId`,`maxKey`,`day`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -5000,7 +5001,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_tariff_traffic_range_1` (
   `contractId` int(11) NOT NULL,
   `treeNodeId` bigint(20) NOT NULL,
@@ -5011,7 +5012,7 @@ CREATE TABLE `inet_tariff_traffic_range_1` (
   `yy` int(11) NOT NULL,
   `mm` int(11) NOT NULL,
   PRIMARY KEY (`contractId`,`treeNodeId`,`rangeKey`,`yy`,`mm`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -5031,7 +5032,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_tariff_traffic_range_detail_1_201505` (
   `contractId` int(11) NOT NULL,
   `treeNodeId` bigint(20) NOT NULL,
@@ -5039,7 +5040,7 @@ CREATE TABLE `inet_tariff_traffic_range_detail_1_201505` (
   `day` int(11) NOT NULL,
   `amount` bigint(20) NOT NULL,
   PRIMARY KEY (`contractId`,`treeNodeId`,`rangeKey`,`day`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -5059,7 +5060,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_tariff_traffic_range_detail_1_201506` (
   `contractId` int(11) NOT NULL,
   `treeNodeId` bigint(20) NOT NULL,
@@ -5067,7 +5068,7 @@ CREATE TABLE `inet_tariff_traffic_range_detail_1_201506` (
   `day` int(11) NOT NULL,
   `amount` bigint(20) NOT NULL,
   PRIMARY KEY (`contractId`,`treeNodeId`,`rangeKey`,`day`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -5087,7 +5088,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_tariff_traffic_range_detail_1_201507` (
   `contractId` int(11) NOT NULL,
   `treeNodeId` bigint(20) NOT NULL,
@@ -5095,7 +5096,7 @@ CREATE TABLE `inet_tariff_traffic_range_detail_1_201507` (
   `day` int(11) NOT NULL,
   `amount` bigint(20) NOT NULL,
   PRIMARY KEY (`contractId`,`treeNodeId`,`rangeKey`,`day`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -5115,7 +5116,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_tariff_traffic_range_detail_1_201508` (
   `contractId` int(11) NOT NULL,
   `treeNodeId` bigint(20) NOT NULL,
@@ -5123,7 +5124,7 @@ CREATE TABLE `inet_tariff_traffic_range_detail_1_201508` (
   `day` int(11) NOT NULL,
   `amount` bigint(20) NOT NULL,
   PRIMARY KEY (`contractId`,`treeNodeId`,`rangeKey`,`day`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -5143,7 +5144,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_tariff_traffic_range_detail_1_201509` (
   `contractId` int(11) NOT NULL,
   `treeNodeId` bigint(20) NOT NULL,
@@ -5151,7 +5152,7 @@ CREATE TABLE `inet_tariff_traffic_range_detail_1_201509` (
   `day` int(11) NOT NULL,
   `amount` bigint(20) NOT NULL,
   PRIMARY KEY (`contractId`,`treeNodeId`,`rangeKey`,`day`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -5171,7 +5172,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_tariff_traffic_range_detail_1_201510` (
   `contractId` int(11) NOT NULL,
   `treeNodeId` bigint(20) NOT NULL,
@@ -5179,7 +5180,7 @@ CREATE TABLE `inet_tariff_traffic_range_detail_1_201510` (
   `day` int(11) NOT NULL,
   `amount` bigint(20) NOT NULL,
   PRIMARY KEY (`contractId`,`treeNodeId`,`rangeKey`,`day`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -5199,7 +5200,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_tariff_traffic_range_detail_1_201606` (
   `contractId` int(11) NOT NULL,
   `treeNodeId` bigint(20) NOT NULL,
@@ -5207,7 +5208,7 @@ CREATE TABLE `inet_tariff_traffic_range_detail_1_201606` (
   `day` int(11) NOT NULL,
   `amount` bigint(20) NOT NULL,
   PRIMARY KEY (`contractId`,`treeNodeId`,`rangeKey`,`day`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH ( contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -5226,7 +5227,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_task_process_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `deviceId` int(11) NOT NULL,
@@ -5235,7 +5236,7 @@ CREATE TABLE `inet_task_process_1` (
   `curentHour` int(11) NOT NULL,
   `type` tinyint(4) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5252,13 +5253,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_traffic_type_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(150) NOT NULL,
   `unit` int(11) NOT NULL DEFAULT '30000',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5276,12 +5277,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_traffic_type_link_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(150) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5299,7 +5300,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_traffic_type_link_rule_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `linkId` int(11) NOT NULL,
@@ -5314,16 +5315,16 @@ CREATE TABLE `inet_traffic_type_link_rule_1` (
   `addressTo` varbinary(24) DEFAULT NULL,
   `portFrom` int(11) NOT NULL,
   `portTo` int(11) NOT NULL,
-  `diffServ` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `counterRealm` varchar(35) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `counterService` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `diffServ` varchar(50) DEFAULT NULL,
+  `counterRealm` varchar(35) NOT NULL DEFAULT '',
+  `counterService` varchar(100) NOT NULL,
   `counterVendor` int(11) NOT NULL,
   `counterType` int(11) NOT NULL,
-  `counterPrefix` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `counterPrefix` varchar(50) DEFAULT NULL,
   `trafficTypeId` int(11) NOT NULL,
-  `comment` text COLLATE utf8_unicode_ci NOT NULL,
+  `comment` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=35;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5341,12 +5342,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inet_zone_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(150) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5363,22 +5364,22 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `installed_modules` (
-  `name` varchar(100) COLLATE utf8_unicode_ci DEFAULT '0',
-  `title` varchar(200) COLLATE utf8_unicode_ci DEFAULT '0',
-  `version` varchar(20) COLLATE utf8_unicode_ci DEFAULT '0',
-  `pack_server` varchar(200) COLLATE utf8_unicode_ci DEFAULT '0',
-  `pack_client` varchar(200) COLLATE utf8_unicode_ci DEFAULT '0',
-  `type` varchar(20) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `name` varchar(100) DEFAULT '0',
+  `title` varchar(200) DEFAULT '0',
+  `version` varchar(20) DEFAULT '0',
+  `pack_server` varchar(200) DEFAULT '0',
+  `pack_client` varchar(200) DEFAULT '0',
+  `type` varchar(20) NOT NULL DEFAULT '0',
   `client_zip` longblob NOT NULL,
-  `init` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `init` longtext NOT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `enabled` tinyint(1) NOT NULL DEFAULT '0',
   `uninstall` longtext COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5396,27 +5397,27 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_device_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `entityId` int(11) NOT NULL,
   `parentId` int(11) NOT NULL,
   `deviceTypeId` int(11) NOT NULL,
-  `title` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
-  `identifier` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
-  `uptime` text COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(250) NOT NULL,
+  `identifier` varchar(150) NOT NULL,
+  `uptime` text NOT NULL,
   `uptimeTime` datetime DEFAULT NULL,
-  `host` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `host` varchar(150) NOT NULL,
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
   `orderManagerDisabled` tinyint(4) NOT NULL DEFAULT '0',
-  `username` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `secret` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `config` text COLLATE utf8_unicode_ci NOT NULL,
-  `comment` text COLLATE utf8_unicode_ci NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `secret` varchar(100) NOT NULL,
+  `config` text NOT NULL,
+  `comment` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5434,17 +5435,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_device_group_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parentId` int(11) NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL,
   `cityId` int(11) NOT NULL,
-  `comment` text COLLATE utf8_unicode_ci NOT NULL,
+  `comment` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `parent_id` (`parentId`),
   KEY `city_id` (`cityId`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5462,17 +5463,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_device_group_4` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parentId` int(11) NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL,
   `cityId` int(11) NOT NULL,
-  `comment` text COLLATE utf8_unicode_ci NOT NULL,
+  `comment` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `parent_id` (`parentId`),
   KEY `city_id` (`cityId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5489,12 +5490,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_device_group_link_1` (
   `deviceId` int(11) NOT NULL,
   `deviceGroupId` int(11) NOT NULL,
   KEY `device_id` (`deviceId`,`deviceGroupId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5512,12 +5513,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_device_group_link_4` (
   `deviceId` int(11) NOT NULL,
   `deviceGroupId` int(11) NOT NULL,
   KEY `device_id` (`deviceId`,`deviceGroupId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5534,7 +5535,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_device_interface_index_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `deviceId` int(11) NOT NULL,
@@ -5544,7 +5545,7 @@ CREATE TABLE `inv_device_interface_index_1` (
   `ifIndex` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `iface` (`deviceId`,`interfaceId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5561,17 +5562,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_device_port_1` (
   `deviceId` int(11) NOT NULL,
   `port` int(11) NOT NULL,
-  `title` varchar(80) COLLATE utf8_unicode_ci NOT NULL DEFAULT '-',
+  `title` varchar(80) NOT NULL DEFAULT '-',
   `status` int(11) NOT NULL,
   `ipCategoryId` int(11) NOT NULL,
-  `comment` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comment` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`deviceId`,`port`),
   KEY `device_port` (`deviceId`,`port`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5589,7 +5590,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_device_port_subscription_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `deviceId` int(11) NOT NULL,
@@ -5597,10 +5598,10 @@ CREATE TABLE `inv_device_port_subscription_1` (
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
   `subscriberId` int(11) NOT NULL,
-  `subscriberTitle` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `subscriberTitle` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `devicePort` (`deviceId`,`port`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5618,14 +5619,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_ip_category_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parentId` int(11) NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `parent` (`parentId`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5643,7 +5644,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_ip_resource_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `categoryId` int(11) NOT NULL,
@@ -5651,16 +5652,16 @@ CREATE TABLE `inv_ip_resource_1` (
   `addressTo` varbinary(24) NOT NULL,
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
-  `router` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
-  `subnetMask` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
-  `dns` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
-  `comment` text COLLATE utf8_unicode_ci NOT NULL,
+  `router` varchar(150) NOT NULL,
+  `subnetMask` varchar(150) NOT NULL,
+  `dns` varchar(150) NOT NULL,
+  `comment` text NOT NULL,
   `dynamic` tinyint(1) DEFAULT NULL,
-  `config` text COLLATE utf8_unicode_ci NOT NULL,
+  `config` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `ip` (`categoryId`,`addressFrom`,`addressTo`),
   KEY `period` (`dateFrom`,`dateTo`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5669,7 +5670,7 @@ CREATE TABLE `inv_ip_resource_1` (
 
 LOCK TABLES `inv_ip_resource_1` WRITE;
 /*!40000 ALTER TABLE `inv_ip_resource_1` DISABLE KEYS */;
-INSERT INTO `inv_ip_resource_1` VALUES (1,1,'Q�','Q��',NULL,NULL,'81.30.210.1','255.255.255.0','8.8.8.8','',0,'# Имя интерфейса SE100 под привязку данного диапазона при закрытии доступа из radius.realm.default.attributes.macros\n#radiusDefaultAttributes=\n# Имя интерфейса SE100 под привязку данного диапазона при закрытии доступа из radius.disable.attributes.macros\n#radiusDisableAttributes=\n# Имя контекста SE100, в который прописывается данный IP-ресурс\n#radiusContextName='),(2,2,'\n<\0','\n<�',NULL,NULL,'10.60.0.1','255.255.224.0','8.8.8.8','',0,'# Имя интерфейса SE100 под привязку данного диапазона при закрытии доступа из radius.realm.default.attributes.macros\n#radiusDefaultAttributes=\n# Имя интерфейса SE100 под привязку данного диапазона при закрытии доступа из radius.disable.attributes.macros\n#radiusDisableAttributes=\n# Имя контекста SE100, в который прописывается данный IP-ресурс\n#radiusContextName=');
+INSERT INTO `inv_ip_resource_1` VALUES (1,1,0x511ED202,0x511ED2FF,NULL,NULL,'81.30.210.1','255.255.255.0','8.8.8.8','',0,'# Имя интерфейса SE100 под привязку данного диапазона при закрытии доступа из radius.realm.default.attributes.macros\n#radiusDefaultAttributes=\n# Имя интерфейса SE100 под привязку данного диапазона при закрытии доступа из radius.disable.attributes.macros\n#radiusDisableAttributes=\n# Имя контекста SE100, в который прописывается данный IP-ресурс\n#radiusContextName='),(2,2,0x0A3C0002,0x0A3C01FF,NULL,NULL,'10.60.0.1','255.255.224.0','8.8.8.8','',0,'# Имя интерфейса SE100 под привязку данного диапазона при закрытии доступа из radius.realm.default.attributes.macros\n#radiusDefaultAttributes=\n# Имя интерфейса SE100 под привязку данного диапазона при закрытии доступа из radius.disable.attributes.macros\n#radiusDisableAttributes=\n# Имя контекста SE100, в который прописывается данный IP-ресурс\n#radiusContextName=');
 /*!40000 ALTER TABLE `inv_ip_resource_1` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5678,13 +5679,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_ip_resource_dyn_reserve_1` (
   `address` varbinary(24) NOT NULL,
   `timeout` bigint(20) NOT NULL,
   `ipResourceId` int(11) NOT NULL,
   KEY `timeout` (`timeout`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5701,7 +5702,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_ip_resource_subscription_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `subscriberId` int(11) NOT NULL,
@@ -5710,9 +5711,9 @@ CREATE TABLE `inv_ip_resource_subscription_1` (
   `addressTo` varbinary(24) NOT NULL,
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
-  `subscriberTitle` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `subscriberTitle` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5729,7 +5730,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_ip_resource_subscription_dyn_1` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT,
   `ipResourceId` int(11) NOT NULL,
@@ -5739,13 +5740,13 @@ CREATE TABLE `inv_ip_resource_subscription_dyn_1` (
   `timeTo` datetime DEFAULT NULL,
   `subscriberId` int(11) NOT NULL,
   `subscriberType` int(11) NOT NULL,
-  `subscriberTitle` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `subscriberTitle` varchar(150) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `connectionId` (`connectionId`),
   KEY `ip` (`ipResourceId`,`address`),
   KEY `period` (`timeFrom`,`timeTo`),
   KEY `subscriber` (`subscriberId`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5763,17 +5764,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_ip_resource_subscription_real_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `subscriberId` int(11) NOT NULL,
-  `subscriberTitle` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `subscriberTitle` varchar(255) DEFAULT NULL,
   `addressFrom` varbinary(24) NOT NULL,
   `addressTo` varbinary(24) NOT NULL,
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5790,7 +5791,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_product` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `contractId` int(11) NOT NULL,
@@ -5803,12 +5804,12 @@ CREATE TABLE `inv_product` (
   `activationPrice` decimal(10,5) DEFAULT NULL,
   `deactivationTime` datetime DEFAULT NULL,
   `userId` int(11) NOT NULL,
-  `deviceProductId` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `deviceProductId` varchar(100) DEFAULT NULL,
   `deviceState` tinyint(4) NOT NULL,
-  `comment` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `description` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comment` varchar(255) NOT NULL,
+  `description` varchar(100) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5825,7 +5826,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_product_period` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `contractId` int(11) NOT NULL,
@@ -5843,7 +5844,7 @@ CREATE TABLE `inv_product_period` (
   KEY `account` (`accountId`),
   KEY `product` (`productId`),
   KEY `period` (`timeFrom`,`timeTo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH (contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -5862,7 +5863,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_product_spec` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `entityId` int(11) NOT NULL,
@@ -5871,13 +5872,13 @@ CREATE TABLE `inv_product_spec` (
   `periodic` tinyint(4) NOT NULL DEFAULT '1',
   `notRealtime` tinyint(4) NOT NULL DEFAULT '0',
   `priority` int(11) NOT NULL DEFAULT '0',
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `identifier` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `tariffIds` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `contractGroups` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `depends` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `incompatible` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `activationModeIds` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `title` varchar(255) NOT NULL,
+  `identifier` varchar(255) NOT NULL DEFAULT '',
+  `tariffIds` varchar(255) DEFAULT NULL,
+  `contractGroups` varchar(255) DEFAULT NULL,
+  `depends` varchar(255) DEFAULT NULL,
+  `incompatible` varchar(255) DEFAULT NULL,
+  `activationModeIds` varchar(255) DEFAULT NULL,
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
   `status` tinyint(4) NOT NULL,
@@ -5886,14 +5887,14 @@ CREATE TABLE `inv_product_spec` (
   `hideForContractGroupsMode` tinyint(4) NOT NULL DEFAULT '0',
   `activationByCustomer` tinyint(4) NOT NULL,
   `deactivationByCustomer` tinyint(4) NOT NULL,
-  `comment` mediumtext COLLATE utf8_unicode_ci NOT NULL,
-  `description` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `comment` mediumtext NOT NULL,
+  `description` mediumtext NOT NULL,
   PRIMARY KEY (`id`),
   KEY `moduleId` (`moduleId`),
   KEY `date` (`dateFrom`,`dateTo`),
   KEY `parent` (`parentId`),
   KEY `entity` (`entityId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5910,11 +5911,11 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_product_spec_activation_mode` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `productSpecId` int(11) NOT NULL,
-  `title` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `title` varchar(100) DEFAULT NULL,
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
   `periodMode` int(11) NOT NULL,
@@ -5926,7 +5927,7 @@ CREATE TABLE `inv_product_spec_activation_mode` (
   PRIMARY KEY (`id`),
   KEY `productSpec` (`productSpecId`),
   KEY `period` (`dateFrom`,`dateTo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5943,7 +5944,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_product_spec_service_link` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `productSpecId` int(11) NOT NULL,
@@ -5954,7 +5955,7 @@ CREATE TABLE `inv_product_spec_service_link` (
   PRIMARY KEY (`id`),
   KEY `product` (`productSpecId`),
   KEY `service` (`serviceSpecId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5971,7 +5972,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_service` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `contractId` int(11) NOT NULL,
@@ -5986,7 +5987,7 @@ CREATE TABLE `inv_service` (
   KEY `accountId` (`accountId`),
   KEY `productId` (`productId`),
   KEY `serviceSpecId` (`serviceSpecId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH (contractId)
 PARTITIONS 16 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -6005,24 +6006,24 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_service_spec` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `entityId` int(11) NOT NULL,
   `moduleId` int(11) NOT NULL,
   `parentId` int(11) NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `identifier` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `identifier` varchar(255) NOT NULL,
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
-  `comment` mediumtext COLLATE utf8_unicode_ci NOT NULL,
-  `description` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `comment` mediumtext NOT NULL,
+  `description` mediumtext NOT NULL,
   PRIMARY KEY (`id`),
   KEY `moduleId` (`moduleId`),
   KEY `date` (`dateFrom`,`dateTo`),
   KEY `parent` (`parentId`),
   KEY `entity` (`entityId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6039,14 +6040,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_vlan_category_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parentId` int(11) NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `parent` (`parentId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6063,18 +6064,18 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_vlan_resource_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL,
   `vlanFrom` int(11) NOT NULL,
   `vlanTo` int(11) NOT NULL,
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
-  `comment` text COLLATE utf8_unicode_ci NOT NULL,
+  `comment` text NOT NULL,
   `categoryId` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6091,7 +6092,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `inv_vlan_resource_subscription_1` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `vlanResId` int(11) NOT NULL,
@@ -6099,12 +6100,12 @@ CREATE TABLE `inv_vlan_resource_subscription_1` (
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
   `subscriberId` int(11) NOT NULL,
-  `subscriberTitle` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `subscriberTitle` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `vlan` (`vlanResId`,`vlan`),
   KEY `period` (`dateFrom`,`dateTo`),
   KEY `subscriber` (`subscriberId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6121,13 +6122,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `log_contract_face` (
   `dt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `uid` int(11) NOT NULL DEFAULT '0',
   `value` int(11) NOT NULL DEFAULT '0',
   `cid` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6144,16 +6145,16 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `log_contract_limit` (
   `dt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `uid` int(11) NOT NULL DEFAULT '0',
   `nvalue` decimal(10,2) NOT NULL,
   `cid` int(11) NOT NULL DEFAULT '0',
-  `comment` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
-  `days` varchar(4) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `comment` varchar(250) NOT NULL,
+  `days` varchar(4) DEFAULT NULL,
   KEY `cid` (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6171,14 +6172,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `log_contract_limit_manage_mode` (
   `dt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `uid` int(11) NOT NULL DEFAULT '0',
   `mode` int(11) NOT NULL DEFAULT '0',
   `cid` int(11) NOT NULL DEFAULT '0',
   KEY `cid` (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6195,13 +6196,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `log_contract_mode` (
   `dt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `uid` int(11) NOT NULL DEFAULT '0',
   `value` int(11) NOT NULL DEFAULT '0',
   `cid` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6219,13 +6220,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `log_contract_pswd` (
   `dt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `uid` int(11) NOT NULL DEFAULT '0',
   `cid` int(11) NOT NULL DEFAULT '0',
   KEY `cid` (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6243,14 +6244,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `log_function_process_201506` (
   `cid` int(11) NOT NULL,
   `time` datetime NOT NULL,
-  `title` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
-  `data` text COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(250) NOT NULL,
+  `data` text NOT NULL,
   KEY `cid` (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6268,14 +6269,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `log_function_process_201508` (
   `cid` int(11) NOT NULL,
   `time` datetime NOT NULL,
-  `title` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
-  `data` text COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(250) NOT NULL,
+  `data` text NOT NULL,
   KEY `cid` (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6293,14 +6294,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `log_login_pswd` (
   `dt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `uid` int(11) NOT NULL DEFAULT '0',
   `mid` int(11) NOT NULL DEFAULT '0',
   `lid` int(11) NOT NULL DEFAULT '0',
   KEY `lid_mid` (`lid`,`mid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6317,16 +6318,16 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `mail_list` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(50) COLLATE utf8_unicode_ci DEFAULT '0',
+  `title` varchar(50) DEFAULT '0',
   `flag` int(1) unsigned DEFAULT '0',
   `type` tinyint(1) unsigned DEFAULT '0',
   `up` int(11) unsigned DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `up` (`up`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6343,13 +6344,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `mail_list_message` (
   `id` int(11) unsigned NOT NULL DEFAULT '0',
-  `subject` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `subject` varchar(255) DEFAULT NULL,
   `text` mediumtext COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6366,12 +6367,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `mail_temp` (
   `id` int(11) NOT NULL DEFAULT '0',
   `eid` int(11) DEFAULT NULL,
   `dt` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6388,17 +6389,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `message_for_users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `date_from` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `date_to` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `text` mediumtext COLLATE utf8_unicode_ci NOT NULL,
-  `gr` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `users` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `text` mediumtext NOT NULL,
+  `gr` varchar(100) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `users` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6415,15 +6416,15 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `module` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `name` varchar(16) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(150) NOT NULL DEFAULT '',
+  `name` varchar(16) NOT NULL DEFAULT '',
   `config_id` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6441,18 +6442,18 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `module_config` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `mid` int(3) unsigned DEFAULT '0',
   `dt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `title` varchar(150) NOT NULL DEFAULT '0',
   `active` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `uid` int(11) unsigned DEFAULT '0',
   `config` longtext COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `mid_active` (`mid`,`active`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6470,7 +6471,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `module_tariff_tree` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `mid` int(10) NOT NULL DEFAULT '0',
@@ -6480,7 +6481,7 @@ CREATE TABLE `module_tariff_tree` (
   PRIMARY KEY (`id`),
   KEY `tree_id` (`tree_id`),
   KEY `mid_tree` (`mid`,`tree_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6498,17 +6499,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `mtree_node` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `parent_node` int(10) unsigned NOT NULL DEFAULT '0',
   `mtree_id` int(10) unsigned NOT NULL DEFAULT '0',
-  `type` varchar(20) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `data` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `type` varchar(20) NOT NULL DEFAULT '',
+  `data` mediumtext NOT NULL,
   `pos` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `tree_id` (`mtree_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=64;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6526,15 +6527,15 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `news` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `gr` bigint(20) NOT NULL DEFAULT '0',
   `dt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `txt` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(150) NOT NULL DEFAULT '',
+  `txt` mediumtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6552,13 +6553,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `npay_add_cost_detail_3_201505` (
   `cid` int(11) NOT NULL,
   `sid` int(11) NOT NULL,
   `summa` decimal(15,2) NOT NULL,
   KEY `cid` (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6575,7 +6576,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `npay_detail_3_201505` (
   `cid` int(11) NOT NULL,
   `mid` int(11) NOT NULL,
@@ -6588,7 +6589,7 @@ CREATE TABLE `npay_detail_3_201505` (
   KEY `sid` (`sid`),
   KEY `treeId` (`treeId`),
   KEY `mid` (`mid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6605,7 +6606,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `npay_service_object_3` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cid` int(11) NOT NULL,
@@ -6617,12 +6618,12 @@ CREATE TABLE `npay_service_object_3` (
   `date2` date DEFAULT NULL,
   `emid` int(11) NOT NULL,
   `eid` int(11) NOT NULL,
-  `comment` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `comment` varchar(250) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `csid` (`csid`),
   KEY `cid` (`cid`),
   KEY `oid` (`oid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6639,11 +6640,11 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `object` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cid` int(11) NOT NULL DEFAULT '0',
-  `title` varchar(250) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(250) NOT NULL DEFAULT '',
   `type_id` int(11) NOT NULL DEFAULT '0',
   `date1` date DEFAULT NULL,
   `date2` date DEFAULT NULL,
@@ -6651,7 +6652,7 @@ CREATE TABLE `object` (
   PRIMARY KEY (`id`),
   KEY `cid` (`cid`),
   KEY `pos` (`pos`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6668,14 +6669,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `object_list_value` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `param_id` int(11) NOT NULL DEFAULT '0',
-  `title` varchar(250) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(250) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `param_id` (`param_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6692,16 +6693,16 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `object_param` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(250) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(250) NOT NULL DEFAULT '',
   `type` tinyint(1) NOT NULL DEFAULT '0',
-  `comment` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `comment` varchar(255) NOT NULL,
   `flags` tinyint(4) DEFAULT '0',
   `history` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6718,20 +6719,20 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `object_param_value_address` (
   `object_id` int(11) NOT NULL DEFAULT '0',
   `param_id` int(11) NOT NULL DEFAULT '0',
   `hid` int(11) NOT NULL DEFAULT '0',
-  `flat` varchar(15) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
-  `room` varchar(20) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `flat` varchar(15) NOT NULL DEFAULT '0',
+  `room` varchar(20) NOT NULL DEFAULT '',
   `pod` int(11) NOT NULL DEFAULT '0',
   `floor` int(11) NOT NULL DEFAULT '0',
-  `address` varchar(250) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `comment` varchar(250) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `format_key` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `address` varchar(250) NOT NULL DEFAULT '',
+  `comment` varchar(250) NOT NULL DEFAULT '',
+  `format_key` varchar(50) NOT NULL,
   PRIMARY KEY (`object_id`,`param_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6748,15 +6749,15 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `object_param_value_address_log` (
   `object_id` int(11) NOT NULL DEFAULT '0',
   `param_id` int(11) NOT NULL DEFAULT '0',
-  `value` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `value` varchar(250) NOT NULL,
   `dt_change` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
   KEY `object_id` (`object_id`,`param_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6773,13 +6774,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `object_param_value_date` (
   `object_id` int(11) NOT NULL DEFAULT '0',
   `param_id` int(11) NOT NULL DEFAULT '0',
   `value` date DEFAULT NULL,
   PRIMARY KEY (`param_id`,`object_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6796,7 +6797,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `object_param_value_date_log` (
   `object_id` int(11) NOT NULL DEFAULT '0',
   `param_id` int(11) NOT NULL DEFAULT '0',
@@ -6804,7 +6805,7 @@ CREATE TABLE `object_param_value_date_log` (
   `dt_change` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
   KEY `param_id` (`param_id`,`object_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6821,13 +6822,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `object_param_value_flag` (
   `object_id` int(11) NOT NULL DEFAULT '0',
   `param_id` int(11) NOT NULL DEFAULT '0',
   `value` int(2) NOT NULL DEFAULT '0',
   PRIMARY KEY (`object_id`,`param_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6844,7 +6845,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `object_param_value_flag_log` (
   `object_id` int(11) NOT NULL DEFAULT '0',
   `param_id` int(11) NOT NULL DEFAULT '0',
@@ -6852,7 +6853,7 @@ CREATE TABLE `object_param_value_flag_log` (
   `dt_change` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
   KEY `object_id` (`object_id`,`param_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6869,13 +6870,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `object_param_value_list` (
   `object_id` int(11) NOT NULL DEFAULT '0',
   `param_id` int(11) NOT NULL DEFAULT '0',
   `value` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`param_id`,`object_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6892,16 +6893,16 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `object_param_value_list_log` (
   `object_id` int(11) NOT NULL DEFAULT '0',
   `param_id` int(11) NOT NULL DEFAULT '0',
   `value` int(11) NOT NULL DEFAULT '0',
-  `title` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(250) NOT NULL,
   `dt_change` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
   KEY `param_id` (`param_id`,`object_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6918,13 +6919,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `object_param_value_text` (
   `object_id` int(11) NOT NULL DEFAULT '0',
   `param_id` int(11) NOT NULL DEFAULT '0',
-  `value` varchar(250) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `value` varchar(250) NOT NULL DEFAULT '',
   PRIMARY KEY (`param_id`,`object_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6941,15 +6942,15 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `object_param_value_text_log` (
   `object_id` int(11) NOT NULL DEFAULT '0',
   `param_id` int(11) NOT NULL DEFAULT '0',
-  `value` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `value` varchar(250) NOT NULL,
   `dt_change` datetime NOT NULL,
   `user_id` int(11) NOT NULL,
   KEY `param_id` (`param_id`,`object_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6966,15 +6967,15 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `object_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(250) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `name_macros` varchar(250) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `comment` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(250) NOT NULL DEFAULT '',
+  `name_macros` varchar(250) NOT NULL DEFAULT '',
+  `comment` varchar(255) NOT NULL,
   `ishidden` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6991,12 +6992,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `object_type_module` (
   `type_id` int(11) NOT NULL,
   `mid` int(11) NOT NULL,
   UNIQUE KEY `type_mid` (`mid`,`type_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7013,13 +7014,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `object_type_param` (
   `type_id` int(11) NOT NULL DEFAULT '0',
   `param_id` int(11) NOT NULL DEFAULT '0',
   `pos` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`type_id`,`param_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7036,18 +7037,18 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `paymaster_transaction_5` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `contract_id` int(11) NOT NULL,
   `payment_id` int(11) NOT NULL,
   `payment_date` datetime NOT NULL,
   `summa` decimal(12,2) NOT NULL,
-  `sys_payment_data` text COLLATE utf8_unicode_ci NOT NULL,
+  `sys_payment_data` text NOT NULL,
   `sys_payment_id` int(11) NOT NULL,
   `sys_payment_date` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7064,11 +7065,11 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `payment_register` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `date` date DEFAULT NULL,
-  `title` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(200) NOT NULL DEFAULT '',
   `pt` int(11) NOT NULL DEFAULT '0',
   `load_time` datetime DEFAULT NULL,
   `count` int(3) NOT NULL DEFAULT '0',
@@ -7076,13 +7077,13 @@ CREATE TABLE `payment_register` (
   `summa` decimal(10,2) NOT NULL DEFAULT '0.00',
   `processed` tinyint(2) NOT NULL DEFAULT '0',
   `process_time` datetime DEFAULT NULL,
-  `load_log` mediumtext COLLATE utf8_unicode_ci NOT NULL,
-  `ptitle` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `load_log` mediumtext NOT NULL,
+  `ptitle` varchar(50) NOT NULL,
   `regtype` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `id` (`id`),
   KEY `date` (`date`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7099,17 +7100,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `payment_register_item` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `rid` int(11) NOT NULL DEFAULT '0',
   `cid` int(11) NOT NULL DEFAULT '0',
   `summa` float(10,2) NOT NULL DEFAULT '0.00',
   `pid` int(11) NOT NULL DEFAULT '0',
-  `comment` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comment` varchar(200) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `rid` (`rid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7126,16 +7127,16 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `periodic_errors` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `marker` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `marker` varchar(250) NOT NULL,
   `calc_date` date DEFAULT NULL,
-  `subject` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `subject` varchar(250) NOT NULL,
   `text` mediumtext COLLATE utf8_unicode_ci,
   `reg_time` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7152,12 +7153,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `plugin_config` (
   `pid` int(11) NOT NULL,
   `config` mediumtext COLLATE utf8_unicode_ci,
   PRIMARY KEY (`pid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7175,12 +7176,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `register_group_task_type` (
   `gid` int(11) NOT NULL DEFAULT '0',
   `type_id` int(11) NOT NULL DEFAULT '0',
   KEY `gid` (`gid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7197,13 +7198,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `rscm_service_2` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `sid` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `unit` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sid` varchar(255) DEFAULT NULL,
+  `unit` varchar(30) DEFAULT NULL,
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7220,18 +7221,18 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `rscm_service_account_2` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cid` int(11) NOT NULL,
   `sid` int(11) NOT NULL,
   `date` date DEFAULT NULL,
   `amount` bigint(20) DEFAULT NULL,
-  `comment` text COLLATE utf8_unicode_ci NOT NULL,
+  `comment` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `cid` (`cid`),
   KEY `date_cid` (`date`,`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7248,13 +7249,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `scheduled_class` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `class` varchar(240) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `title` varchar(200) DEFAULT NULL,
+  `class` varchar(240) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7272,13 +7273,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `scheduled_periodic_run` (
   `description` mediumtext COLLATE utf8_unicode_ci,
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `amount` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7295,7 +7296,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `scheduled_task_run` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `data` longblob,
@@ -7303,7 +7304,7 @@ CREATE TABLE `scheduled_task_run` (
   `executed` tinyint(2) DEFAULT '0',
   `start_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7320,7 +7321,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `scheduled_tasks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `mm` bigint(20) NOT NULL DEFAULT '0',
@@ -7333,12 +7334,12 @@ CREATE TABLE `scheduled_tasks` (
   `date2` date DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT '0',
   `class_id` int(11) NOT NULL,
-  `class` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `module_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `comment` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `params` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `class` varchar(255) NOT NULL,
+  `module_id` varchar(255) NOT NULL,
+  `comment` varchar(255) NOT NULL DEFAULT '',
+  `params` mediumtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7356,12 +7357,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `script` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(100) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7379,19 +7380,19 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `script_backup` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
   `script_id` int(11) NOT NULL,
   `script` mediumtext COLLATE utf8_unicode_ci,
   `user_id` int(11) NOT NULL,
   `change_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `comment` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
+  `comment` varchar(255) DEFAULT '',
   `type` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `script_type` (`script_id`,`type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7408,36 +7409,27 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `script_classes` (
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(255) NOT NULL,
   `last_mod` bigint(20) NOT NULL,
   `data` mediumblob NOT NULL,
   PRIMARY KEY (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `script_classes`
---
-
-LOCK TABLES `script_classes` WRITE;
-/*!40000 ALTER TABLE `script_classes` DISABLE KEYS */;
-INSERT INTO `script_classes` VALUES ('ru.bitel.bgbilling.inet.dyn.device.des3200.DES320028ServiceActivator',1433856492000,'����\0\0\04\0�	\0?\0m\n\0A\0n\0o\0p\n\0\0q\n\0\0r	\0?\0s\0t	\0?\0u\0v\n\0w\0x	\0?\0y\n\0z\0{	\0?\0|\0}\n\0~\0	\0?\0�\0�	\0?\0�	\0?\0�\n\0�\0�\0�\0�\0�\n\0\0�\0�\n\0\Z\0�\0�\n\0\0n\0�\n\0\0�\n\0\0�\n\0\0�\n\0z\0�\n\0\0�\0�\n\0\0�\0�\0�\0�\n\0\0�\n\0\0�\0�\n\0+\0�\0�\n\0-\0�\n\0+\0�\0�\n\00\0�\n\0+\0�\n\0+\0�\0�\n\0�\0�\n\09\0�\n\0�\0�\n\0�\0�\0�\n\0�\0�\0�\0�\n\0?\0�\0�\n\0?\0�\0�\n\0w\0�\0�\0InnerClasses\0logger\0Lorg/apache/log4j/Logger;\0device\0<Lru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice;\0host\0Ljava/lang/String;\0snmpVersion\0I\0snmpPort\0context\0\'Luk/co/westhawk/snmp/stack/SnmpContext;\0\noidRxValue\0[J\0\noidTxValue\0<init>\0()V\0Code\0LineNumberTable\0init\0�(ILru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceType;Lru/bitel/common/ParameterMap;)Ljava/lang/Object;\0destroy\0()Ljava/lang/Object;\0connect\0\rStackMapTable\0\nExceptions\0�\0\ndisconnect\0setSpeed\0\"(III)Ljava/util/concurrent/Future;\0	Signature\0%(III)Ljava/util/concurrent/Future<*>;\0\rserviceModify\0`(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;)Ljava/util/concurrent/Future;\0�\0c(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;)Ljava/util/concurrent/Future<*>;\0\rserviceCancel\0U(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;)Ljava/lang/Object;\0\naccess$000\0()Lorg/apache/log4j/Logger;\0<clinit>\0\nSourceFile\0DES320028ServiceActivator.java\0C\0D\0Q\0R\0%uk/co/westhawk/snmp/stack/AsnObjectId\0$1.3.6.1.4.1.171.11.113.1.3.2.3.1.1.2\0Q\0�\0�\0�\0N\0O\0$1.3.6.1.4.1.171.11.113.1.3.2.3.1.1.3\0P\0O\0INIT\0�\0�\0�\0E\0F\0�\0�\0�\0G\0H\0snmp.version\0�\0�\0�\0I\0J\0	snmp.port\0K\0J\0L\0M\0�\0�\0�\0DESTROY\0CONNECT\0%uk/co/westhawk/snmp/stack/SnmpContext\0Q\0�\0(uk/co/westhawk/snmp/stack/SnmpContextv2c\0java/lang/StringBuilder\0snmpVersion=\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0\nDISCONNECT\0W\0R\0SET SPEED rx/tx: \0/\0 kbps\0Q\0�\0�\0�\0 uk/co/westhawk/snmp/stack/SetPdu\0Q\0�\0$uk/co/westhawk/snmp/stack/AsnInteger\0Q\0�\0�\0�\0Fru/bitel/bgbilling/inet/dyn/device/des3200/DES320028ServiceActivator$1\0Q\0�\0�\0�\0�\0�\0SERVICE MODIFY\0�\0�\0�\0�\0�\0�\0�\0�\0�\08ru/bitel/bgbilling/modules/inet/api/common/bean/InetServ\0�\0�\0�\0�\0�\0�\0^\0_\0SERVICE CANCEL\0b\0c\0Dru/bitel/bgbilling/inet/dyn/device/des3200/DES320028ServiceActivator\0�\0�\0Aru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorAdapter\0java/lang/Exception\0\rjava/util/Set\0(Ljava/lang/String;)V\0getOid\0()[J\0org/apache/log4j/Logger\0info\0(Ljava/lang/Object;)V\0:ru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice\0getHost\0()Ljava/lang/String;\0ru/bitel/common/ParameterMap\0getInt\0(Ljava/lang/String;I)I\0java/lang/Boolean\0valueOf\0(Z)Ljava/lang/Boolean;\0(Ljava/lang/String;I)V\0append\0-(Ljava/lang/String;)Ljava/lang/StringBuilder;\0(I)Ljava/lang/StringBuilder;\0toString\0	getSecret\0setCommunity\0([J)V\0add\0(J)V\03(Luk/co/westhawk/snmp/stack/SnmpContextBasisFace;)V\0(I)V\0addOid\0O(Luk/co/westhawk/snmp/stack/AsnObjectId;Luk/co/westhawk/snmp/stack/AsnObject;)V\0I(Lru/bitel/bgbilling/inet/dyn/device/des3200/DES320028ServiceActivator;)V\0addObserver\0(Ljava/util/Observer;)V\0send\0()Z\0?ru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent\0getNewInetServ\0<()Lru/bitel/bgbilling/modules/inet/api/common/bean/InetServ;\0getInterfaceId\0()I\0\rgetNewOptions\0()Ljava/util/Set;\0getNewState\0java/lang/Integer\0(I)Ljava/lang/Integer;\0contains\0(Ljava/lang/Object;)Z\0	getLogger\0,(Ljava/lang/Class;)Lorg/apache/log4j/Logger;\0!\0?\0A\0\0\0\0\Z\0C\0D\0\0\0\0\0E\0F\0\0\0\0\0G\0H\0\0\0\0\0I\0J\0\0\0\0\0K\0J\0\0\0\0\0L\0M\0\0\0\0\0N\0O\0\0\0\0\0P\0O\0\0\0\0\0Q\0R\0\0S\0\0\0E\0\0\0\0\0%*�\0*�\0Y�\0�\0�\0*�\0Y�\0�\0�\0	�\0\0\0\0T\0\0\0\0\0\0\0\0\0\0\0\0\0U\0V\0\0S\0\0\0i\0\0\0\0\09�\0\n�\0*,�\0*,�\0\r�\0*�\0�\0*\0��\0�\0*�\0�\0�\0\0\0\0T\0\0\0\0\0\0\0\0\0 \0\r\0\"\0\0#\0!\0$\0/\0&\04\0(\0\0W\0X\0\0S\0\0\0)\0\0\0\0\0\r�\0�\0�\0�\0\0\0\0T\0\0\0\n\0\0\0\0.\0\00\0\0Y\0X\0\0S\0\0\0�\0\0\0\0\0��\0�\0*�\0�\0\0\0\0\0\0H\0\0\0\0\0\0\0\0\0\0\0\0\0\0\02*�\0Y*�\0*�\0�\0�\0�\0:*�\0\ZY*�\0*�\0�\0�\0�\0$�\0�\0Y�\0�\0*�\0�\0 �\0!�\0�\0�*�\0*�\0�\0\"�\0#�\0�\0\0\0\0T\0\0\0*\0\n\0\0\07\0\09\0(\0=\0;\0>\0>\0C\0Q\0D\0T\0I\0p\0J\0u\0N\0�\0P\0Z\0\0\0\0( \0[\0\0\0\0\0\\\0\0]\0X\0\0S\0\0\0H\0\0\0\0\0�\0$�\0*�\0�\0\n*�\0�\0%�\0�\0\0\0\0T\0\0\0\0\0\0\0V\0\0W\0\0Y\0\0\\\0Z\0\0\0\0\0\0\0^\0_\0\0S\0\0\0�\0\0\0\0\0��\0�\0Y�\0&�\0�\0 \'�\0�\0 (�\0�\0!�\0�\0Y*�\0�\0):��\0*�\0Y*�\0	�\0):��\0*�\0+Y*�\0�\0,:�\0-Y�\0.�\0/�\0-Y�\0.�\0/�\00Y*�\01:�\02�\03W�\0\0\0\0T\0\0\02\0\0\0\0e\0\'\0g\04\0h\0;\0i\0H\0j\0O\0l\0\\\0m\0k\0n\0z\0p\0�\0�\0�\0�\0�\0�\0[\0\0\0\0\0\\\0`\0\0\0\0a\0\0b\0c\0\0S\0\0\0�\0\0\0\0\0W�\04�\0+�\05�\06=+�\07N@6+�\08�\0/\06-�\0:�\0;\0�\0\06�\0-�\0:�\0;\0�\0\06*�\0<�\0\0\0\0T\0\0\0.\0\0\0\0�\0\0�\0\0�\0\0�\0\0�\0!\0�\0&\0�\03\0�\0;\0�\0H\0�\0M\0�\0Z\0\0\0\0�\0;\0d\0[\0\0\0\0\0\\\0`\0\0\0\0e\0\0f\0g\0\0S\0\0\0&\0\0\0\0\0\n�\0=�\0�\0\0\0\0T\0\0\0\n\0\0\0\0�\0\0�A\0b\0g\0\0S\0\0\0\0\0\0\0\0*+�\0>�\0\0\0\0T\0\0\0\0\0\0\0\0[\0\0\0\0\0\\\0h\0i\0\0S\0\0\0\0\0\0\0\0\0�\0�\0\0\0\0T\0\0\0\0\0\0\0\0\0j\0R\0\0S\0\0\0!\0\0\0\0\0\0	?�\0@�\0�\0\0\0\0T\0\0\0\0\0\0\0\0\0k\0\0\0\0l\0B\0\0\0\n\0\00\0\0\0\0\0\0'),('ru.bitel.bgbilling.inet.dyn.device.des3200.DES320028ServiceActivator$1',1433856492000,'����\0\0\04\0J	\0\0#\n\0\0$\0%\n\0\0&\n\0!\0\'\0(\n\0\0$\0)\n\0\0*\n\0\0+\n\0\0,\n\0-\0.\n\0/\00\01\n\0-\02\03\05\0this$0\0FLru/bitel/bgbilling/inet/dyn/device/des3200/DES320028ServiceActivator;\0<init>\0I(Lru/bitel/bgbilling/inet/dyn/device/des3200/DES320028ServiceActivator;)V\0Code\0LineNumberTable\0\nupdateImpl\0<(Ljava/util/Observable;Ljava/lang/Object;)Ljava/lang/Object;\0\rStackMapTable\0%\0	Signature\0?Lru/bitel/common/concurrent/FutureObserver<Ljava/lang/Object;>;\0\nSourceFile\0DES320028ServiceActivator.java\0EnclosingMethod\06\07\08\0\0\0\09\0 uk/co/westhawk/snmp/stack/SetPdu\0:\0;\0<\0=\0java/lang/StringBuilder\0Ok: \0>\0?\0>\0@\0A\0B\0C\0D\0E\0F\0G\0H\0PDU set error: \0I\0E\0Fru/bitel/bgbilling/inet/dyn/device/des3200/DES320028ServiceActivator$1\0InnerClasses\0)ru/bitel/common/concurrent/FutureObserver\0Dru/bitel/bgbilling/inet/dyn/device/des3200/DES320028ServiceActivator\0setSpeed\0\"(III)Ljava/util/concurrent/Future;\0()V\0getErrorStatus\0()I\0\naccess$000\0()Lorg/apache/log4j/Logger;\0append\0-(Ljava/lang/String;)Ljava/lang/StringBuilder;\0-(Ljava/lang/Object;)Ljava/lang/StringBuilder;\0toString\0()Ljava/lang/String;\0org/apache/log4j/Logger\0info\0(Ljava/lang/Object;)V\0java/lang/Boolean\0valueOf\0(Z)Ljava/lang/Boolean;\0error\0 \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\"\0\0\0\0\0\n*+�\0*�\0�\0\0\0\0\0\0\0\0\0\0\0q\0\0\0\0\0\0\0\0�\0\0\0\0\0H+�\0N-�\0�\0!�\0�\0Y�\0�\0	-�\0\n�\0�\0�\0\r��\0�\0Y�\0�\0	,�\0\n�\0�\0�\0\r�\0\0\0\0\0\0\0\Z\0\0\0\0u\0\0v\0\0x\0%\0z\0*\0~\0C\0�\0\Z\0\0\0\0�\0*\0\0\0\0\0\0\0\0\0\0\0\0\0 \0\0\0\0!\0\"\04\0\0\0\n\0\0\0\0\0\0\0\0'),('ru.bitel.bgbilling.modules.inet.dyn.access.InetServStateSync',1433856492000,'����\0\0\04\0K\n\0\0\n\0\0\n\0 \0!\0\"\0#\0$\0%\0&\0\'\0(\0)\0\'\0*	\0+\0,\n\0\0-\n\0\0.\0\'\0/\00\01\0<init>\0()V\0Code\0LineNumberTable\0execute\0L(Lru/bitel/bgbilling/server/util/Setup;Lru/bitel/common/sql/ConnectionSet;)V\0\rStackMapTable\02\03\0\nExceptions\04\0\nSourceFile\0InetServStateSync.java\0\0\02\05\06\07\08\09\0:\0;\0<\0SELECT id FROM contract\0=\0>\0?\03\0@\0A\0Sru/bitel/bgbilling/kernel/contract/balance/server/event/ContractBalanceChangedEvent\0B\0C\0D\0E\0F\0\0G\0H\0I\0J\0\0<ru/bitel/bgbilling/modules/inet/dyn/access/InetServStateSync\0<ru/bitel/bgbilling/kernel/script/server/dev/GlobalScriptBase\0.ru/bitel/bgbilling/kernel/event/EventProcessor\0java/sql/ResultSet\0java/lang/Exception\0getInstance\02()Lru/bitel/bgbilling/kernel/event/EventProcessor;\0!ru/bitel/common/sql/ConnectionSet\0\rgetConnection\0()Ljava/sql/Connection;\0java/sql/Connection\0createStatement\0()Ljava/sql/Statement;\0java/sql/Statement\0executeQuery\0((Ljava/lang/String;)Ljava/sql/ResultSet;\0next\0()Z\0getInt\0(I)I\0java/math/BigDecimal\0ZERO\0Ljava/math/BigDecimal;\0(IILjava/math/BigDecimal;)V\0publish\0*(Lru/bitel/bgbilling/kernel/event/Event;)V\0close\0!\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0*�\0�\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0�\0\0\0\0\0F�\0N,�\0�\0\0�\0\0:�\0\0�\0!�\0Y�\0	\0�\0\n�\0:-�\0����\0\r\0�\0\0\0\0\0\0\0\"\0\0\0\0\0\0\0\0\0 \0 \05\0!\0;\0\"\0>\0#\0E\0$\0\0\0\0\0�\0\0\0\'\0\0\0\0\0\0\Z\0\0\0\0\0\0'),('ru.bitel.bgbilling.modules.inet.dyn.accounting.detail.FlowExport',1433856492000,'����\0\0\04�\n\0}\0�\n\0�\0�\0�\n\0\0�\n\0\0�\0�\n\0\0�\0�\n\0�\0�\n\0�\0�\n\0�\0�\n\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\n\0\0�\0�\n\0\0�\n\0�\0�\0�\0�\n\0�\0�\0�\n\0\0�\n\0\0�\0�\n\0\0�\n\0\0�\0�\0�\0�\0�\n\0�\0�\0�\0�\n\0\0�\n\0�\0�\n\0�\0�\0�\0�\0�\0�\0�\0�\n\0�\0�\n\0�\0�\0�\0�\n\01\0�\0�\0�\0�\n\0�\0�\n\0�\0�\n\0�\0�\n\0�\0�\n\0\0�\0�\n\0<\0�\0�\0\0\0\n\0>\0�\n\0\0�\n\0>\0�\n\0<\0�\n\0<\0�\n\0\0�\0�\n\0]\0�\0\0\0\0\0\0�\0\0\0\0\0\0�\n\0F\0�\0�\n\0\0�\n\0\0�\0�\n\0P\0�\n\0�\0�\n\0�\0�\0�\0�\n\0\0�\n\0�\0�\0\n\0W\0�\n\0W\n\n\n\0\n\0]\0�\n\0_\0�	\n\n\r	\0d	\0d\n\0\n\0�\n\n\0�\n\0]\n\Z\n\0\n\n\0�\n\0\n\0�\n\0 \n\0�!\n\0�\"\n\0�#\n\0�$\n\0�%\n\0�&\'\0<init>\0()V\0Code\0LineNumberTable\0main\0([Ljava/lang/String;)V\0\nExceptions(\0export\03(Lru/bitel/common/ParameterMap;Ljava/lang/String;)V\0\rStackMapTable)*\0�\04(Lru/bitel/common/ParameterMap;[Ljava/lang/String;)V\0�+,-\0�(Lru/bitel/common/ParameterMap;Ljava/lang/String;ILjava/util/Date;Ljava/util/Date;Ljava/util/Set;[B[BIZLjava/lang/String;Ljava/lang/String;I)V\0	Signature\0�(Lru/bitel/common/ParameterMap;Ljava/lang/String;ILjava/util/Date;Ljava/util/Date;Ljava/util/Set<Ljava/lang/Integer;>;[B[BIZLjava/lang/String;Ljava/lang/String;I)V\0�(Lru/bitel/common/ParameterMap;Ljava/lang/String;ILjava/util/Date;Ljava/util/Date;Ljava/util/Set;[B[BIZLjava/io/Writer;Ljava/lang/String;I)V\0�(Lru/bitel/common/ParameterMap;Ljava/lang/String;ILjava/util/Date;Ljava/util/Date;Ljava/util/Set<Ljava/lang/Integer;>;[B[BIZLjava/io/Writer;Ljava/lang/String;I)V\0getLogHours\07(Ljava/util/Date;Ljava/util/Date;)Ljava/util/SortedSet;.\0�\0M(Ljava/util/Date;Ljava/util/Date;)Ljava/util/SortedSet<Ljava/util/Calendar;>;\0�(Lru/bitel/common/ParameterMap;Ljava/lang/String;Ljava/lang/String;ILjava/util/List;Lru/bitel/bgbilling/kernel/network/flow/FlowSelector;IZLjava/io/Writer;Ljava/lang/String;I)V/0123\r\0�(Lru/bitel/common/ParameterMap;Ljava/lang/String;Ljava/lang/String;ILjava/util/List<Ljava/util/Calendar;>;Lru/bitel/bgbilling/kernel/network/flow/FlowSelector;IZLjava/io/Writer;Ljava/lang/String;I)V\0writeHeader\0(Ljava/io/Writer;Z)V\0writeRecord4\0\nFlowDetail\0InnerClasses\0�(Ljava/io/Writer;Lru/bitel/bgbilling/kernel/network/datalog/IPDataLogUtils$FlowDetail;Ljava/text/DateFormat;Ljava/util/Date;IZ)V\0\nSourceFile\0FlowExport.java\0~\0567\0@ru/bitel/bgbilling/modules/inet/dyn/accounting/detail/FlowExport\0�\0�\0java/util/ArrayList\00(?:\\A|[\\s]*)(?:(?:\"(.+?)\")|(?:(.+?)))(?:[\\s]|\\z)89:;<*=>?@)ABCD\0java/lang/StringEF\0[Ljava/lang/String;GH\0-sIBJKL\0-h\0\ryyyy-MM-dd-HHMNO\0java/util/GregorianCalendarPQ\0java/util/CalendarARST\0-tFrom\0yyyy-MM-dd\'T\'HH:mm:ss\0-tTo\0-iUV\0-r\0-WXYZ[\\]\0-f\0-tFmt\0-tZone\0-dir\0-maxSort\0-writeIfaces^_`_\0%ru/bitel/bgbilling/common/BGException\0!Parameter -dir must not be empty.\0~a\0Parameter -f must not be empty.\0Parameter -s must not be empty.\04Parameter -h (or -tFrom and -tTo) must not be empty.b_cdefghD\0�\0�\0java/io/FileWriter\0java/io/BufferedWriter\0~i\0�\0�j\0k\0\0�\0�\0Bru/bitel/bgbilling/modules/inet/accounting/detail/InetFlowSelectorSl\0~m\0datalog.flow.dir\0~n\0�\0�\0java/util/TreeSetopqr.stu_\0ru/bitel/common/Preferencesvwxyz{|\0�\0�\0java/util/Date\0\Zjava/text/SimpleDateFormat1}~3>�t\00ru/bitel/bgbilling/kernel/network/flow/FlowArrayC���\0F[Lru/bitel/bgbilling/kernel/network/datalog/IPDataLogUtils$FlowDetail;\0�\0�0\0+Timestamp	FromIp	FromPort	ToIp	ToPort	Bytes�a\0	FromIface	ToIface\0\n	Protocol\n�lP�2�����������D�@���D�l�D�D�D\0java/lang/Object\0java/io/IOException\0java/util/List\0java/util/regex/Matcher\0ru/bitel/common/ParameterMap\0\rjava/util/Set\0[B\0java/util/SortedSet\03ru/bitel/bgbilling/kernel/network/flow/FlowSelector\0java/io/Writer\0java/lang/Iterable\0java/text/DateFormat\0java/util/Iterator\0Cru/bitel/bgbilling/kernel/network/datalog/IPDataLogUtils$FlowDetail\0$ru/bitel/bgbilling/server/util/Setup\0getSetup\0(()Lru/bitel/bgbilling/server/util/Setup;\0java/util/regex/Pattern\0compile\0-(Ljava/lang/String;)Ljava/util/regex/Pattern;\0matcher\03(Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;\0find\0()Z\0group\0(I)Ljava/lang/String;\0add\0(Ljava/lang/Object;)Z\0size\0()I\0toArray\0(([Ljava/lang/Object;)[Ljava/lang/Object;\0trim\0()Ljava/lang/String;\0equals\0ru/bitel/common/Utils\0parseInt\0(Ljava/lang/String;)I\0bitel/billing/common/TimeUtils\0	parseDate\06(Ljava/lang/String;Ljava/lang/String;)Ljava/util/Date;\0setTime\0(Ljava/util/Date;)V\0(II)V\0getTime\0()Ljava/util/Date;\0toIntegerSet\0#(Ljava/lang/String;)Ljava/util/Set;\0split\0\'(Ljava/lang/String;)[Ljava/lang/String;\0java/net/InetAddress\0	getByName\0*(Ljava/lang/String;)Ljava/net/InetAddress;\0\ngetAddress\0()[B\0parseBoolean\0(Ljava/lang/String;)Z\0\risBlankString\0(Ljava/lang/String;)V\0\risEmptyString\0java/util/TimeZone\0getTimeZone\0((Ljava/lang/String;)Ljava/util/TimeZone;\0\ngetDefault\0()Ljava/util/TimeZone;\0getRawOffset\0(Ljava/io/Writer;I)V\0flush\0close\0()J\0)(JJLjava/util/Set;[B[BLjava/util/List;I)V\0(Ljava/util/Collection;)V\0clear_MIN_MIL_SEC\0*(Ljava/util/Calendar;)Ljava/util/Calendar;\0	hourDelta\0+(Ljava/util/Calendar;Ljava/util/Calendar;)I\0clone\0()Ljava/lang/Object;\0notBlankString\0set\0\'(Ljava/lang/String;Ljava/lang/String;)V\08ru/bitel/bgbilling/kernel/network/datalog/IPDataLogUtils\0\ZnewIPHourlyDataLogIterable\0W(Lru/bitel/common/ParameterMap;Ljava/lang/String;ILjava/util/List;)Ljava/lang/Iterable;\0newFlowDetailIterable\0`(Ljava/lang/Iterable;Lru/bitel/bgbilling/kernel/network/flow/FlowSelector;I)Ljava/lang/Iterable;\0iterator\0()Ljava/util/Iterator;\0hasNext\0next\0I\0array\0.[Lru/bitel/bgbilling/kernel/network/flow/Data;\0write\0getMilliseconds\0(J)V\0format\0$(Ljava/util/Date;)Ljava/lang/String;\0valueOf\0(J)Ljava/lang/String;\0(I)V\0getSrcIpAddress\0\"()Lru/bitel/common/inet/IpAddress;\0&(Ljava/lang/Object;)Ljava/lang/String;\0\ngetSrcPort\0getDstIpAddress\0\ngetDstPort\0	getOctets\0getInputInterface\0getOutputInterface\0getProtocol\0!\0\0}\0\0\0\0\0\n\0\0~\0\0\0�\0\0\0\0\0\0\0\0*�\0�\0\0\0\0�\0\0\0\0\0\0\0(\0	\0�\0�\0\0�\0\0\01\0\0\0\0\0�\0L�\0Y�\0+*�\0�\0\0\0\0�\0\0\0\0\0\0\0-\0\0/\0\00\0�\0\0\0\0\0�\01\0\0�\0�\0\0�\0\0\0�\0\0\0\0\0T�\0Y�\0N�\0	,�\0\n:�\0�\0$�\0:�\0�\0:-�\0\r\0W���*+--�\0\0�\0�\0\0�\0�\0�\0\0\0\0�\0\0\0*\0\n\0\0\0<\0\0>\0\0@\0\0B\0#\0C\0(\0E\00\0H\09\0I\0<\0K\0S\0L\0�\0\0\0\0�\0\0�\0��\0\0��\0\0�\0\0\0\0\0�\01\0\0�\0�\0\0�\0\0�\0\0\0\0>::::::	:\n:u06:\r66,�d6�_,2:,`2�\0:�\0�\0�\0>�5�\0�\06�\0:�\0Y�\0\Z:�\0�\0�\0�\0:�\0��\0�\0 �\0:�\0�!�\0�\0 �\0:�\0�\"�\0�\0\r�\0#:�\0�$�\0�\0E%�\0&:��\0�\0\'�\0(Y::�\0\"��\02�\0\'�\0(:2�\0\'�\0(:�\0l)�\0�\0\n:	�\0[*�\0�\0\n:\n�\0J+�\0�\0\n:�\09,�\0�\0\n:\r�\0(-�\0�\0\r�\06�\0.�\0�\0\n�\0/6����+�\0\r�\00�\0\r�\01Y2�\03�	�\00�\0\r�\01Y4�\03��\0\r�\01Y5�\03��\0�\0\r�\01Y6�\03�6�\07�\0�\08:�\09:�\0:�\0:d6*+\r	\n�\0;�\0\0\0\0�\0\0\0C\0\0\0X\0\0Y\0\0Z\0\0[\0\0\\\0\0]\0\0^\0\0_\0\0`\0\Z\0a\0\0b\0\"\0c\0%\0e\05\0g\0;\0h\0F\0j\0P\0l\0Y\0n\0c\0p\0l\0q\0u\0r\0|\0s\0�\0t\0�\0u\0�\0v\0�\0w\0�\0y\0�\0{\0�\0}\0�\0\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0\0�\0�\0�\0�\"\0�,\0�3\0�=\0�D\0�N\0�U\0�_\0�f\0�p\0�z\0��\0��\0e�\0��\0��\0��\0��\0��\0��\0��\0��\0��\0��\0��\0��\0��\0�\0�\0�\0\0\0]\0�\0.\0\0�\0�\0\0�\0�\0�\0�\0�\0�\0�\0�\0�\0\0�\0*\0�\0�<�\0)\0�\0�\0�\0\r		�\0#\0�\0\0\0\0\0�\01\0\0�\0�\0\0�\0\0\0s\0\0\0\0\0C�\0<Y�\0=:�\0>Y?�\0@:*+,	\n\r�\0A�\0B�\0C�\0D�\0\0\0\0�\0\0\0\0\0\0\0�\0\0�\0\0�\03\0�\08\0�\0=\0�\0B\0�\0�\0\0\0\0\0�\0�\0\0\0\0�\0\0�\0�\0\0�\0\0\0t\0\0\0\0\0P�\0E:�\0FY�\0G�\0G\0Hm\0Hi\0Ja\r�\0L:*+M,�\0Y�\0N	\n\r�\0O�\0\0\0\0�\0\0\0\0\0\0\0	\01\0O\0�\0\0\0\0\0�\0�\0\0\0\0�\0\0�\0�\0\0�\0\0\0�\0\0\0\0\0N�\0PY�\0QM�\0Y�\0\ZN-*�\0-�\0RW�\0Y�\0\Z:+�\0-�\0S�\0,-�\0T\0W-�\0U�\0N-�\0���,�\0\0\0\0�\0\0\0.\0\0\0\0\r\0\0\0\Z\0#\0)\02\0:\0B\0L\0�\0\0\0\0�\0)\0�\0�\0�\"\0�\0\0\0\0�\0\0�\0�\0\0�\0\0�\0\0\0\0\0�-�\0V�\0�\0WY�\0X:,-�\0YL+,�\0Z:�\0[:\r*	�\0\\�\0]Y�\0^:\n�\0V�\0�\0_Y\n�\0`:�\0:\r�\0a\0:�\0b\0�\0F�\0c\0�\0d:6�\0e6�\0&�\0f�\0g2:*	�\0h���٧��	�\0i�\0\0\0\0�\0\0\0N\0\0\05\07\08\09\0\Z<\0%=\00?\08B\0AC\0IE\0WI\0ZL\0yN\0�P\0�R\0�N\0�T\0�V\0�W\0�\0\0\0s\0\Z�\0<\0\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0\0�\0\0�\0\0\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0\0�\0\0��\0\0��\0)�\0\0�\0\0\0\0\0�\0�\0\0\0\0�\0\0�\0�\0\0�\0\0\0H\0\0\0\0\0+j�\0k�\0	+l�\0k+m�\0k�\0\0\0\0�\0\0\0\0\0\0b\0d\0\nf\0i\0j\0�\0\0\0\0\0�\0\0\0\0\0�\0\0�\0�\0\0�\0\0:\0\0\0\0\0�-�\0,�\0n�a�\0o+-�\0p�\0k�\0+,�\0n�\0q�\0k+	�\0r+,�\0s�\0t�\0k+	�\0r+,�\0u�\0v�\0k+	�\0r+,�\0w�\0t�\0k+	�\0r+,�\0x�\0v�\0k+	�\0r+,�\0y�\0q�\0k�\0%+	�\0r+,�\0z�\0v�\0k+	�\0r+,�\0{�\0v�\0k+	�\0r+,�\0|�\0v�\0k+\n�\0r�\0\0\0\0�\0\0\0^\0\0\0{\0}\0~\0�\0)�\0/�\0:�\0@�\0K�\0Q�\0\\�\0b�\0m�\0s�\0~�\0��\0��\0��\0��\0��\0��\0��\0��\0�\0\0\0\0\n�\0{\0�\0\0\0\0\0�\0\0�\0\0\0\0�\0�\0\0\0\n\0\0�\0�\0	'),('ru.bitel.bgbilling.modules.inet.dyn.device.cisco.CiscoUtils',1433856492000,'����\0\0\04\0>\n\0\0\Z\n\0\0\0\0\0\0 \0\0!\0\"\n\0\0#\0$\n\0\0%\n\0\0&\n\0\0\'\n\0\0(\0)\0*\0<init>\0()V\0Code\0LineNumberTable\0getStringAttribute\0q(Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;IILjava/lang/String;Ljava/lang/String;)Ljava/lang/String;\0\rStackMapTable\0+\0,\0\nSourceFile\0CiscoUtils.java\0\0\0-\0.\0/\0+\00\01\0,\02\03\04\05\08ru/bitel/bgbilling/kernel/network/radius/RadiusAttribute\06\05\0java/lang/String\07\08\09\0:\0;\0<\0\0=\0;ru/bitel/bgbilling/modules/inet/dyn/device/cisco/CiscoUtils\0java/lang/Object\0java/util/List\0java/util/Iterator\05ru/bitel/bgbilling/kernel/network/radius/RadiusPacket\0\rgetAttributes\0(II)Ljava/util/List;\0iterator\0()Ljava/util/Iterator;\0hasNext\0()Z\0next\0()Ljava/lang/Object;\0getValue\0\nstartsWith\0(Ljava/lang/String;)Z\0length\0()I\0	substring\0(I)Ljava/lang/String;\0((IILjava/lang/String;)Ljava/lang/String;\0!\0\r\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0*�\0�\0\0\0\0\0\0\0\0\0\0\0\0	\0\0\0\0\0\0\0�\0\0	\0\0\0]�\0R*�\0:�\0B�\0\0:�\0\0�\0/�\0\0�\0:�\0�\0:-�\0	�\0\r-�\0\n�\0�����*�\0�\0\0\0\0\0\0\0*\0\n\0\0\0\0\0\Z\0\r\0\0\0\01\0 \0;\0!\0D\0#\0N\0%\0Q\0(\0T\0,\0\0\0\0\0�\0\0\02�\0�\0\0\0\0\0\0\0'),('ru.bitel.bgbilling.modules.inet.dyn.device.cisco.ipdhcp.ISGProtocolHandlerIpDhcp',1433856492000,'����\0\0\04s\n\0d\0�\n\0d\0�	\0_\0�\n\0�\0�	\0_\0�\0�\n\0�\0�	\0_\0�\0�\0�	\0_\0�\0�\n\0\0�\0�\0�\n\0�\0�\0�\n\0�\0�\n\0�\0�\0�	\0_\0�\0�\n\0\0�\0�\n\0\0�\n\0\0�\n\0�\0�\n\0�\0�\0�\n\0�\0�\n\0\0�\0�\0�\0�\n\0!\0�\n\0�\0�\0�\n\0\0�\n\0�\0�\0�\0�\n\0�\0�	\0_\0�\0�\n\0D\0�\n\0�\0�\n\0D\0�	\0_\0�	\0_\0�	\0_\0�\n\0�\0�\n\0�\0�\n\0�\0�	\0_\0�\n\0�\0�\n\0�\0�	\0_\0�\0�\0�\0�\0�\0�\0�\0�\n\0\0�\n\0\0�\n\0\0�\0�\0�\n\0�\0�\0�\n\0B\0�\0�\0�\n\0E\0�\n\0E\0�\n\0E\0�\n\0E\0�\n\0E\0�\n\0E\0�\0�\n\0L\0�\n\0E\0�\n\0E\0�\n\0E\0�\n\0E\0�\n\0E\0�\n\0E\0�\n\0E\0�\0�\n\0E\0�\0�\n\0W\0�\n\0E\0�\n\0�\0�\0�\n\0[\0�\n\0�\0�\n\0�\0�\0�\n\0�\0�\0�\n\0�\0\0logger\0Lorg/apache/log4j/Logger;\0moduleId\0I\0deviceId\0\ncontractId\0servId\0excludeRangeList\0Ljava/util/List;\0	Signature\00Ljava/util/List<Lru/bitel/common/inet/IpRange;>;\0	patternV4\0Ljava/util/regex/Pattern;\0	patternV6\0<init>\0()V\0Code\0LineNumberTable\0init\0�(Lru/bitel/bgbilling/server/util/Setup;ILru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceType;Lru/bitel/common/ParameterMap;)V\0\rStackMapTable\0�	\n\0�\0\nExceptions\0discard\0�(Lru/bitel/bgbilling/kernel/container/managed/ServerContext;Lru/bitel/bgbilling/kernel/network/radius/RadiusListenerWorker;Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;)V\r\0�\0�(Lru/bitel/bgbilling/kernel/container/managed/ServerContext;Lru/bitel/bgbilling/kernel/network/radius/RadiusListenerWorker<*>;Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;)V\0<clinit>\0\nSourceFile\0ISGProtocolHandlerIpDhcp.java\0t\0u\0x\0y\0h\0i\0j\0i\0*radius.connection.close.unknown.contractId\0k\0i\0&radius.connection.close.unknown.servId\0radius.disable.servId\0l\0i\0java/util/ArrayList\0-radius.connection.close.unknown.excludeRanges\0\0\0\\s*;\\s*\n\Z\0\\s*-\\s*\0f\0g\0java/lang/StringBuilder\0Can\'t parse  !\"#$%\0ru/bitel/common/inet/IpRange&\'\0t()*\0java/net/UnknownHostException+ \",\0/radius.connection.close.unknown.excludeRanges: -.#/012\0m\0n\09ru/bitel/bgbilling/kernel/network/radius/RadiusDictionary345678\0i9\0i:;<=>?=@\0q\0rABCDEF\0s\0r\0Username is not an IP-addressGHIFJKL\'M\'NO\0)Sending event to close unknown connection\04bitel/billing/server/radius/RadiusStandartAttributesPQR\0Oru/bitel/bgbilling/kernel/network/radius/RadiusAttribute$RadiusAttributeInteger\0RadiusAttributeInteger\0InnerClassesSK\0java/lang/Integer\0>ru/bitel/bgbilling/modules/inet/api/common/bean/InetConnectionTUVUWUXYZY\0java/util/Date[\\]Y^Y_U`abYcY\08ru/bitel/bgbilling/modules/inet/api/common/bean/InetServde\0java/util/HashSetfghij\0Jru/bitel/bgbilling/modules/inet/access/sa/event/InetSaConnectionCloseEvent\0tklmn#\0Pru/bitel/bgbilling/modules/inet/dyn/device/cisco/ipdhcp/ISGProtocolHandlerIpDhcpop\0\"\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}qr\0�^([\\dA-F]{1,4}:|((?=.*(::))(?!.*\\3.+\\3))\\3?)([\\dA-F]{1,4}(\\3|:\\b)|\\2){5}(([\\dA-F]{1,4}(\\3|:\\b|$)|\\2){2}|(((2[0-4]|1\\d|[1-9])?\\d|25[0-5])\\.?\\b){4})\\z\0Cru/bitel/bgbilling/modules/inet/dyn/device/cisco/ISGProtocolHandler\0Hru/bitel/bgbilling/modules/inet/radius/DiscardedAccountingRequestHandler\0$ru/bitel/bgbilling/server/util/Setup\0:ru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice\0>ru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceType\0ru/bitel/common/ParameterMap\0java/util/List\0[Ljava/lang/String;\0java/lang/String\0java/lang/Exception\0java/net/InetAddress\0[B\0java/util/Iterator\09ru/bitel/bgbilling/kernel/container/managed/ServerContext\0=ru/bitel/bgbilling/kernel/network/radius/RadiusListenerWorker\05ru/bitel/bgbilling/kernel/network/radius/RadiusPacket\0getId\0()I\0getInt\0(Ljava/lang/String;I)I\0get\08(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;\0split\0\'(Ljava/lang/String;)[Ljava/lang/String;\0ru/bitel/common/Utils\0\risBlankString\0(Ljava/lang/String;)Z\0append\0-(Ljava/lang/String;)Ljava/lang/StringBuilder;\0toString\0()Ljava/lang/String;\0org/apache/log4j/Logger\0error\0(Ljava/lang/Object;)V\0	getByName\0*(Ljava/lang/String;)Ljava/net/InetAddress;\0\ngetAddress\0()[B\0([B[B)V\0add\0(Ljava/lang/Object;)Z\0\ngetMessage\0*(Ljava/lang/Object;Ljava/lang/Throwable;)V\0-(Ljava/lang/Object;)Ljava/lang/StringBuilder;\0info\0size\0java/util/Collections\0	emptyList\0()Ljava/util/List;\0valueOf\0(I)Ljava/lang/Integer;\0getIntAttribute\0*(IILjava/lang/Integer;)Ljava/lang/Integer;\0intValue\0radiusVendor\0parentAcctSessionIdType\0parentAcctSessionIdPrefix\0Ljava/lang/String;\0;ru/bitel/bgbilling/modules/inet/dyn/device/cisco/CiscoUtils\0getStringAttribute\0q(Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;IILjava/lang/String;Ljava/lang/String;)Ljava/lang/String;\0notEmptyString\0((IILjava/lang/String;)Ljava/lang/String;\0java/util/regex/Pattern\0matcher\03(Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;\0java/util/regex/Matcher\0matches\0()Z\0iterator\0()Ljava/util/Iterator;\0hasNext\0next\0()Ljava/lang/Object;\0getAddressFrom\0getAddressTo\0inRange\0([B[B[B[B)Z\0getAttribute\0>(II)Lru/bitel/bgbilling/kernel/network/radius/RadiusAttribute;\08ru/bitel/bgbilling/kernel/network/radius/RadiusAttribute\0getValue\0setAcctSessionId\0(Ljava/lang/String;)V\0setCalledStationId\0setCallingStationId\0setDeviceId\0(I)V\0\rsetDevicePort\0setConnectionStart\0(Ljava/util/Date;)V\0\rsetContractId\0	setServId\0setUsername\0setInetAddressBytes\0([B)V\0setIpResourceId\0setConnectionStatus\0setDeviceState\0(S)V\0setDeviceOptions\0(Ljava/util/Set;)V\0.ru/bitel/bgbilling/kernel/event/EventProcessor\0getInstance\02()Lru/bitel/bgbilling/kernel/event/EventProcessor;\0E(IILru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;)V\0publish\0*(Lru/bitel/bgbilling/kernel/event/Event;)V\0warn\0	getLogger\0,(Ljava/lang/Class;)Lorg/apache/log4j/Logger;\0compile\0-(Ljava/lang/String;)Ljava/util/regex/Pattern;\0!\0_\0d\0\0e\0\0\Z\0f\0g\0\0\0\0h\0i\0\0\0\0j\0i\0\0\0\0k\0i\0\0\0\0l\0i\0\0\0\0m\0n\0\0o\0\0\0\0p\0\Z\0q\0r\0\0\0\Z\0s\0r\0\0\0\0\0t\0u\0\0v\0\0\0\0\0\0\0\0*�\0�\0\0\0\0w\0\0\0\0\0\0\0%\0\0x\0y\0\0v\0\0�\0\0\0\0*+-�\0*�\0*-�\0�\0*�\0�\0*	\n�\0�\0�\0�\0Y�\0\r:�\0�\0:�66		�\0�	2:\n\n�\0�\0�\0m\n�\0:��\0 �\0�\0Y�\0�\0\n�\0�\0\Z�\0�\0@2�\0:2�\0:\r�\0Y�\0\r�\0�\0�\0 \0W�\0:�\0�\0\"�\0#�	��z�\0�\0Y�\0$�\0�\0%�\0\Z�\0&*�\0\'\0�\0�\0�\0(�\0)�\0\0�\0�\0�\0!\0\0w\0\0\0^\0\0\0\0<\0\0>\0\0?\0\0A\0$\0B\07\0D\0@\0F\0f\0H\0n\0J\0q\0M\0z\0N\0�\0P\0�\0Q\0�\0V\0�\0W\0�\0Y\0�\0^\0�\0[\0�\0]\0�\0F\0�\0b\0�\0d\0e\0z\0\0\0[\0�\0X\0\n\0{\0|\0}\0~\0\0�\0�\0\0�\0\0��\0,\0�m\0��\0�\0i\0{�\0\0\0{\0|\0}\0~\0\0�\0\0{\0�\0�\0\0\0\0\0�\0\0�\0�\0\0v\0\0�\0\0\0\0�-(�\0+�\0,�\0-6�\0�-*�\0.*�\0/*�\00�\01:�\02�\0�-�\03:�\04�\05�\06�\0\Z�\07�\05�\06�\0�\08�\0&��\0:�\0:	*�\0)�\09\0:\n\n�\0:\0�\0\'\n�\0;\0�\0:		�\0<�\0=�\0>�\0���ղ\0?�\0&-,�\03:\n-�\0A�\0B:-�\03:-�\03:\r�\0�\0C�\0D�\0-�\06�\0EY�\0F:\n�\0G\r�\0H�\0I*�\0�\0J�\0K�\0LY�\0M�\0N*�\0�\0O*�\0�\0P�\0Q	�\0R�\0S�\0T�\0V�\0WY�\0X�\0Y�\0Z�\0[Y*�\0�\0\\�\0]�\0:�\0�\0\"�\0^�\0\0a\0��\0!\0�}�\0!\0\0w\0\0\0�\0*\0\0\0k\0\0m\0\0o\0\0r\0*\0t\02\0v\03\0y\0<\0z\0X\0|\0`\0}\0a\0�\0h\0�\0o\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�+\0�4\0�=\0�D\0�K\0�Q\0�W\0�]\0�i\0�}\0��\0��\0��\0�\0z\0\0\0t\0\n�\0�\0\0��\0-\0��\0\0�\0�\0�*�\0�\0E\0\0{\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0\0@�\0�\0\0{\0�\0�\0�\0�\0�\0�\0\0�\0�\0\0\0\0\0�\0o\0\0\0\0�\0\0�\0u\0\0v\0\0\09\0\0\0\0\0\0_�\0`�\0a�\0b�\04c�\0b�\07�\0\0\0\0w\0\0\0\0\0\0\0)\0\03\0\05\0\0�\0\0\0\0�\0�\0\0\0\n\0\0B\0�\0�\0	'),('ru.bitel.bgbilling.modules.inet.dyn.device.cisco.ipdhcp.ISGServiceActivatorIpDhcp',1433856492000,'����\0\0\04\0�\n\0\0f\n\0\0g\0h\0i\n\0j\0k	\0>\0l\0m	\0>\0n\0o	\0>\0p\0q	\0>\0r\0s\0t	\0>\0u\0v	\0>\0w	\0>\0x\0y\n\0\0f\0z\n\0\0{\n\0\0|\n\0\0}\n\0~\0\n\0�\0�\n\0~\0�\0Z\n\0�\0�\n\0�\0�	\0>\0�\0�\n\0\0�\0�\n\0\0�\n\0�\0�\n\0>\0�\n\0\0�\0\\\n\0\0�\n\0\0�\0^\n\0\0�\n\0�\0�\n\0>\0�\n\0�\0�\n\03\0�\0�\0�\0�\0�\0�\0�\0�\n\03\0�	\0>\0�	\0�\0�\n\0�\0�\0�	\08\0�\n\0�\0�\n\0�\0�\n\0�\0�\n\0\0�\0�\n\0~\0�\0�\0logger\0Lorg/apache/log4j/Logger;\0access\0/Lru/bitel/bgbilling/modules/inet/access/Access;\0RuntimeVisibleAnnotations\0Ljavax/annotation/Resource;\0name\0dhcpDisableMode\0I\0isg\0Z\0<init>\0()V\0Code\0LineNumberTable\0init\0�(Lru/bitel/bgbilling/server/util/Setup;ILru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceType;Lru/bitel/common/ParameterMap;)Ljava/lang/Object;\0\rStackMapTable\0�\0�\0�\0�\0�\0\nExceptions\0�\0connectionModify\0U(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;)Ljava/lang/Object;\0connectionClose\0onAccountingStart\0onAccountingStop\0�\0�\0�\0D(Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;I)Z\0<clinit>\0\nSourceFile\0ISGServiceActivatorIpDhcp.java\0L\0M\0P\0Q\0sa.radius.connection.close.mode\0Dru/bitel/bgbilling/modules/inet/dyn/device/cisco/ISGServiceActivator\0�\0�\0�\0�\0I\0%sa.radius.connection.close.enableMode\0�\0I\0+sa.radius.connection.close.removeFromKeyMap\0�\0K\0*sa.radius.connection.close.disableServices\0�\0K\0dhcp.disable.mode\03ru/bitel/bgbilling/modules/inet/dhcp/InetDhcpDevice\0H\0I\0sa.isg\0J\0K\0A\0B\0java/lang/StringBuilder\0sa.isg=\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0I\0Skip \0�\0�\0 \0�\0�\0�\0�\0�\0[\0Z\0[\0\\\0[\0]\0[\0^\0[\0�\0�\0\\\0b\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\08ru/bitel/bgbilling/modules/inet/api/common/bean/InetServ\0�\0�\0C\0D\0�\0�\0�\0�\0�\0�\0<ru/bitel/bgbilling/modules/inet/access/InetConnectionRuntime\0�\0�\0�\0�\0�\0�\0�\0�\0�\0\\\0�\0Qru/bitel/bgbilling/modules/inet/dyn/device/cisco/ipdhcp/ISGServiceActivatorIpDhcp\0�\0�\0:ru/bitel/bgbilling/modules/inet/access/sa/ServiceActivator\0$ru/bitel/bgbilling/server/util/Setup\0:ru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice\0>ru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceType\0ru/bitel/common/ParameterMap\0java/lang/Exception\0>ru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection\0java/util/List\0java/util/Iterator\0getInt\0(Ljava/lang/String;I)I\0	closeMode\0closeEnableMode\0closeRemoveFromKeyMap\0disableServicesOnClose\0append\0-(Ljava/lang/String;)Ljava/lang/StringBuilder;\0(Z)Ljava/lang/StringBuilder;\0toString\0()Ljava/lang/String;\0org/apache/log4j/Logger\0info\0(Ljava/lang/Object;)V\0java/lang/Integer\0valueOf\0(I)Ljava/lang/Integer;\0debug\0?ru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent\0\rgetConnection\0B()Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;\0getDeviceId\0()I\0deviceId\0-(Ljava/lang/Object;)Ljava/lang/StringBuilder;\0(I)Ljava/lang/StringBuilder;\0\ZsetConnectionStateModified\0(Z)V\0connectionModifyCoA\0	getServId\0getNewInetServ\0<()Lru/bitel/bgbilling/modules/inet/api/common/bean/InetServ;\0getChildren\0()Ljava/util/List;\0iterator\0()Ljava/util/Iterator;\0hasNext\0()Z\0next\0()Ljava/lang/Object;\0getId\0-ru/bitel/bgbilling/modules/inet/access/Access\0connectionManager\0>Lru/bitel/bgbilling/modules/inet/access/InetConnectionManager;\0<ru/bitel/bgbilling/modules/inet/access/InetConnectionManager\0getByServId\0%(Ljava/lang/Integer;)Ljava/util/List;\0\nconnection\0@Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;\0()J\0getInetAddressBytes\0()[B\0ru/bitel/common/inet/IpAddress\0equals\0([B[B)Z\0g(Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;ILjava/lang/Object;)Ljava/lang/Object;\0	getLogger\0,(Ljava/lang/Class;)Lorg/apache/log4j/Logger;\0!\0>\0\0\0@\0\0\Z\0A\0B\0\0\0\0C\0D\0\0E\0\0\0\0\0F\0\0Gs\0C\0\0H\0I\0\0\0\0J\0K\0\0\0\0\0L\0M\0\0N\0\0\0!\0\0\0\0\0*�\0�\0\0\0\0O\0\0\0\n\0\0\0\0.\0\0/\0\0P\0Q\0\0N\0\0P\0\0\0\0\0�*+-�\0W*�\0�\0**�\0�\0�\0*	�\0�\0�\0�\0\n*�\0�\0�\0�\0*\r�\0�\0*�\0�\0�\0�\0�\0�\0Y�\0�\0*�\0�\0�\0�\0*�\0�\0*�\0�\0*�\0�\0\Z�\0�\0\0\0\0O\0\0\02\0\0\0\08\0\0;\0\0=\0\'\0@\0;\0C\0O\0E\0[\0G\0o\0I\0�\0K\0�\0M\0�\0P\0�\0R\0R\0\0\0`\0w\0S�\0\0\0\0S\0T\0U\0V\0W\0\0SR\0S�\0\0\0\0S\0T\0U\0V\0W\0\0S^\0S�\0\0\0\0S\0T\0U\0V\0W\0\0S*\0X\0\0\0\0\0Y\0\0Z\0[\0\0N\0\0\0�\0\0\0\0\0`�\0�\0+�\0�\0*�\0�\0:�\0�\0Y�\0 �\0+�\0�\0!\"�\0*�\0�\0#�\0�\0*�\0�\0+�\0$�*�\0�\0	*+�\0%�*+�\0&�\0\0\0\0O\0\0\0&\0	\0\0\0\\\0\0^\0\0`\0>\0b\0F\0d\0K\0g\0M\0j\0T\0l\0Z\0o\0R\0\0\0\0�\0K\0X\0\0\0\0\0Y\0\0\\\0[\0\0N\0\0\0y\0\0\0\0\0F�\0\'�\0+�\0�\0*�\0�\0-�\0�\0Y�\0 �\0+�\0�\0!\"�\0*�\0�\0#�\0�\0�*+�\0(�\0\0\0\0O\0\0\0\0\0\0\0y\0\0{\0\0}\0>\0~\0@\0�\0R\0\0\0\0�\0@\0X\0\0\0\0\0Y\0\0]\0[\0\0N\0\0\0\0\0\0\0\0*+�\0)�\0\0\0\0O\0\0\0\0\0\0\0�\0X\0\0\0\0\0Y\0\0^\0[\0\0N\0\0\0�\0\0\0\0\0s�\0*�\0+�\0M,�\0*�\0�\0	*+�\0+�*,,�\0,�\0-�\0	*+�\0+�+�\0.�\0/N-�\04-�\00\0:�\01\0�\0\"�\02\0�\03:*,�\04�\0-�\0�\0���*+�\0+�\0\0\0\0O\0\0\06\0\r\0\0\0�\0\0�\0\r\0�\0\0�\0\0�\0*\0�\00\0�\08\0�\0<\0�\0Z\0�\0g\0�\0j\0�\0m\0�\0R\0\0\0\0�\0\0_�\0\0`\0a%�\0\0X\0\0\0\0\0Y\0\0\\\0b\0\0N\0\0\0�\0\0\0\0\0u*�\05�\06�\0\Z�\07N-�\0�-�\00\0:�\01\0�\0O�\02\0�\08:�\09:�\0:+�\0:��\0,�\0*�\0�\0 �\0;+�\0;�\0<�\0**�\0�\0=W�����\0\0\0\0O\0\0\0.\0\0\0\0�\0\0�\0\0�\0\0�\03\0�\0:\0�\0U\0�\0b\0�\0n\0�\0p\0�\0s\0�\0R\0\0\0\0�\0\0`�\0\0a�\0R�\0\0X\0\0\0\0\0Y\0\0c\0M\0\0N\0\0\0!\0\0\0\0\0\0	>�\0?�\0�\0\0\0\0O\0\0\0\0\0\0\0 \0\0d\0\0\0\0e'),('ru.bitel.bgbilling.modules.inet.dyn.device.cisco.ISGLoginGenerator',1433856492000,'����\0\0\04\0�\n\0!\00\n\0\01\n\02\03\n\0\04\n\05\06\n\05\07\n\08\09\n\0:\0;\n\02\0<\0=\n\0\n\00\0>\n\0\n\0?\n\0\n\0@\0A\n\0\n\0B\0C\n\0D\0E\n\0F\0G\0H\n\08\0I\n\0J\0K\n\0F\0L\0M\n\02\0N\0O\n\02\0P\0Q\n\0 \0R\0S\n\0 \0T\0U\0V\0W\0<init>\0()V\0Code\0LineNumberTable\0onEvent\0�(Lru/bitel/bgbilling/modules/inet/api/server/event/InetServChangingEvent;Lru/bitel/bgbilling/server/util/Setup;Lru/bitel/common/sql/ConnectionSet;)V\0\nExceptions\0X\0s(Lru/bitel/bgbilling/kernel/event/Event;Lru/bitel/bgbilling/server/util/Setup;Lru/bitel/common/sql/ConnectionSet;)V\0	Signature\nLru/bitel/bgbilling/kernel/script/server/dev/EventScriptBase<Lru/bitel/bgbilling/modules/inet/api/server/event/InetServChangingEvent;>;Lru/bitel/bgbilling/kernel/script/server/dev/EventScript<Lru/bitel/bgbilling/modules/inet/api/server/event/InetServChangingEvent;>;\0\nSourceFile\0ISGLoginGenerator.java\0#\0$\0Y\0Z\0[\0\\\0]\0^\0]\0_\0`\0a\0b\0e\0f\0g\0h\0i\0j\0k\0l\0]\0java/lang/StringBuilder\0%1$0\0m\0n\0m\0o\0x\0p\0q\0java/lang/Object\0r\0s\0t\0u\0v\0w\00006\0x\0y\0z\0{\0q\0|\0q\0:\0}\0~\0123\0\0~\0Setting userName:\0�\0�\0Fru/bitel/bgbilling/modules/inet/api/server/event/InetServChangingEvent\0\'\0(\0Bru/bitel/bgbilling/modules/inet/dyn/device/cisco/ISGLoginGenerator\0;ru/bitel/bgbilling/kernel/script/server/dev/EventScriptBase\07ru/bitel/bgbilling/kernel/script/server/dev/EventScript\0java/lang/Exception\0getInetServ\0<()Lru/bitel/bgbilling/modules/inet/api/common/bean/InetServ;\08ru/bitel/bgbilling/modules/inet/api/common/bean/InetServ\0getDeviceId\0()I\0getModuleId\0=ru/bitel/bgbilling/modules/inet/api/server/bean/InetDeviceMap\0getInstance\0B(I)Lru/bitel/bgbilling/modules/inet/api/server/bean/InetDeviceMap;\0get\0InetDeviceMapItem\0InnerClasses\0T(I)Lru/bitel/bgbilling/modules/inet/api/server/bean/InetDeviceMap$InetDeviceMapItem;\0Oru/bitel/bgbilling/modules/inet/api/server/bean/InetDeviceMap$InetDeviceMapItem\0	getConfig\0 ()Lru/bitel/common/ParameterMap;\09ru/bitel/bgbilling/modules/inet/dyn/device/cisco/ISGUtils\0\rgetPortLength\0!(Lru/bitel/common/ParameterMap;)I\0getInterfaceId\0append\0-(Ljava/lang/String;)Ljava/lang/StringBuilder;\0(I)Ljava/lang/StringBuilder;\0toString\0()Ljava/lang/String;\0java/lang/Integer\0valueOf\0(I)Ljava/lang/Integer;\0java/lang/String\0format\09(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;\0	getDevice\0>()Lru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice;\0:ru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice\0\rgetIdentifier\0toLowerCase\0setLogin\0(Ljava/lang/String;)V\0setPassword\0print\0(Ljava/lang/Object;)V\0!\0 \0!\0\0\"\0\0\0\0\0#\0$\0\0%\0\0\0\0\0\0\0\0*�\0�\0\0\0\0&\0\0\0\0\0\0\0\0\0\'\0(\0\0%\0\0\0�\0\0\0\0\0�+�\0:�\06+�\0�\0�\0:�\0�\06�\0	6�\0\nY�\0�\0\rh�\0�\0\r�\0�\0Yhxp�\0S�\0:	�\0\nY�\0�\0\r�\0�\0�\0�\0\r�\0\r	�\0\r�\0:\n\n�\0\Z�\0*�\0\nY�\0�\0\r\n�\0\r�\0�\0�\0\0\0\0&\0\0\0.\0\0\0\0\0\0\0\r\0\0\0\Z\0%\0\0,\0\0`\0\0�\0 \0�\0!\0�\0#\0�\0$\0)\0\0\0\0\0*A\0\'\0+\0\0%\0\0\0#\0\0\0\0\0*+�\0,-�\0�\0\0\0\0&\0\0\0\0\0\0\0\0)\0\0\0\0\0*\0\0,\0\0\0\0-\0.\0\0\0\0/\0d\0\0\0\n\0\08\05\0c\0'),('ru.bitel.bgbilling.modules.inet.dyn.device.cisco.ISGPPPoEServiceActivator',1433856492000,'����\0\0\04\0;\n\0\0\n\0\0 \0!\0\"\n\0#\0$	\0\r\0%\0&	\0\r\0\'\0(	\0\r\0)\0*	\0\r\0+\0,\0-\0<init>\0()V\0Code\0LineNumberTable\0init\0�(Lru/bitel/bgbilling/server/util/Setup;ILru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceType;Lru/bitel/common/ParameterMap;)Ljava/lang/Object;\0\rStackMapTable\0,\0.\0/\00\01\0\nExceptions\02\0\nSourceFile\0ISGPPPoEServiceActivator.java\0\0\0\0\0sa.radius.connection.close.mode\0Dru/bitel/bgbilling/modules/inet/dyn/device/cisco/ISGServiceActivator\01\03\04\05\06\0%sa.radius.connection.close.enableMode\07\06\0+sa.radius.connection.close.removeFromKeyMap\08\09\0*sa.radius.connection.close.disableServices\0:\09\0Iru/bitel/bgbilling/modules/inet/dyn/device/cisco/ISGPPPoEServiceActivator\0:ru/bitel/bgbilling/modules/inet/access/sa/ServiceActivator\0$ru/bitel/bgbilling/server/util/Setup\0:ru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice\0>ru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceType\0ru/bitel/common/ParameterMap\0java/lang/Exception\0getInt\0(Ljava/lang/String;I)I\0	closeMode\0I\0closeEnableMode\0closeRemoveFromKeyMap\0Z\0disableServicesOnClose\0!\0\r\0\0\0\0\0\0\0\0\0\0\0\0\0\0!\0\0\0\0\0*�\0�\0\0\0\0\0\0\0\n\0\0\0\0\0\0\0\0\0\0\0\0\0\0�\0\0\0\0\0Q*+-�\0W*�\0�\0**�\0�\0�\0*	�\0�\0�\0�\0\n*�\0�\0�\0�\0�\0\0\0\0\0\0\0\Z\0\0\0\0\0\0\0\0\0\'\0!\0;\0$\0O\0&\0\0\0\0@\0w\0�\0\0\0\0\0\0\0\0\Z\0\0R\0�\0\0\0\0\0\0\0\0\Z\0\0\0\0\0\0\0\0\0\0\0\0\0\0'),('ru.bitel.bgbilling.modules.inet.dyn.device.cisco.ISGProtocolHandler',1433856492000,'����\0\0\04�\n\0m\0�\n\0m\0�\0�\n\0�\0�	\0k\0�\0�\0�\n\0�\0�	\0k\0�\0�	\0k\0�\0�\0�	\0k\0�\0�\n\0�\0�\0�\0�\0�\n\0\0�\n\0�\0�	\0k\0�\0�\0�\0�\0�\0�\n\06\0�\n\0�\0�	\0k\0�\n\0G\0�	\0k\0�	\0k\0�\0�\n\0 \0�\0�\n\0 \0�\n\0 \0�\n\0 \0�\n\0�\0�\0�\0�	\0k\0�\0�\0�	\0k\0�\0�	\0k\0�\0�\0�	\0k\0�\0�	\0k\0�\0�	\0k\0�\0�\n\06\0�\n\0�\0�\0�\n\0�\0�\0�\n\0 \0�\n\0�\0�	\0k\0�\n\0k\0�	\0�\0�\n\0k\0�	\0�\0�\n\0�\0�\n\06\0�\n\0�\0�\n\06\0�\0�\0�\n\06\0�\n\0m\0�\n\0k\0�\n\0m\0�\n\0�\0\n\n\0O\n\0�\n	\n\n\0�\n	\n\0k\r\n\0k\n\0k\n\n\0k	\0�\n\06	\0�	\0�\0�\Z\n\0�\n\n !	\"#\n$%\n &\'\n\0�()*+\0logger\0Lorg/apache/log4j/Logger;\0parentAcctSessionIdType\0I\0parentAcctSessionIdPrefix\0Ljava/lang/String;\0serviceNameType\0serviceNamePrefix\0disableServiceNames\0Ljava/util/Set;\0	Signature\0#Ljava/util/Set<Ljava/lang/String;>;\0\nportLength\0servSearchModes\0[[I\0agentOptionRemoteIdType\0agentOptionRemoteIdPrefix\0agentOptionCircuitIdType\0\ZagentOptionCircuitIdPrefix\0agentOptionRemoveHeader\0ipSubnetSubscription\0Z\0<init>\0()V\0Code\0LineNumberTable\0init\0�(Lru/bitel/bgbilling/server/util/Setup;ILru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceType;Lru/bitel/common/ParameterMap;)V\0\rStackMapTable,\'-\0�./\0\nExceptions0\0setAgentOption1\0RadiusPacketOption\0InnerClasses\0�(Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Ljava/lang/Object;Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket$RadiusPacketOption;)V\0�(Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Ljava/lang/Object;Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket$RadiusPacketOption<Ljava/lang/Object;>;)V\0setAgentOptions\0:(Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;)V2\0setUsername\0�\0preprocessAccessRequest\0�(Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Lru/bitel/common/sql/ConnectionSet;)V\0postprocessAccessRequest\0preprocessAccountingRequest\0preprocessAccountingRequestImpl\0�(ILru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Lru/bitel/common/sql/ConnectionSet;)V\0preprocessDhcpRequest\0i(Lru/bitel/bgbilling/kernel/network/dhcp/DhcpPacket;Lru/bitel/bgbilling/kernel/network/dhcp/DhcpPacket;)V\0<clinit>\0\nSourceFile\0ISGProtocolHandler.java\0�3\0�\0�\0radius.parentAcctSessionId.type/45\0r\0s\0!radius.parentAcctSessionId.prefix\0parent-session-id=67\0t\0u\0radius.serviceName.type\0v\0s\0radius.serviceName.prefix\0\0\0w\0u\0\Zradius.serviceName.disable89:,;<\0java/util/LinkedHashMap\0�\0�=>?\0x\0y@AB\0radius.servSearchMode\0radius.serviceSearchMode\0:ru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceCDEFG\0}\0~HI\0|\0s\0p\0q\0java/lang/StringBuilder\0ISG port length: JKJLMNOPQ\0!radius.agent.option.remoteId.type\0radius.agentRemoteId.type\0\0s\0#radius.agent.option.remoteId.prefix\0remote-id-tag=\0�\0u\0\"radius.agent.option.circuitId.type\0�\0s\0$radius.agent.option.circuitId.prefix\0circuit-id-tag=\0�\0u\0 radius.agent.option.removeHeader\0�\0s\0radius.ipSubnetSubscription\0�\0�\0java/lang/StringRDSTU\0[BVWX\0Unknown value type for option JYZQ[\0s\\]^_`\0�\0�a`bcdefgRh\09ru/bitel/bgbilling/modules/inet/dyn/device/cisco/ISGUtils\09ru/bitel/bgbilling/kernel/network/radius/RadiusDictionaryi<\0�\0�\0�\0�\0�\0�jk\0$Set Framed-IP-Address from User-Namel\0Nru/bitel/bgbilling/kernel/network/radius/RadiusAttribute$RadiusAttributeIpAddr\0RadiusAttributeIpAddrmno\0�pqrsCtuvw<\0�\0�x\0�\0�\0�ybz{\0�|`\0N}~\02Parent acctSessionId found, but ServiceName is not`�`��\0-State is disable (from start disable service)�Q\08ru/bitel/bgbilling/modules/inet/api/common/bean/InetServ�C�\0+State is enable (from stop disable service)�����\0������\0Cru/bitel/bgbilling/modules/inet/dyn/device/cisco/ISGProtocolHandler��\0Oru/bitel/bgbilling/modules/inet/dyn/device/radius/AbstractRadiusProtocolHandler\0>ru/bitel/bgbilling/kernel/network/radius/RadiusProtocolHandler\0:ru/bitel/bgbilling/kernel/network/dhcp/DhcpProtocolHandler\0java/util/List\0$ru/bitel/bgbilling/server/util/Setup\0>ru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceType\0ru/bitel/common/ParameterMap\0java/lang/Exception\0Hru/bitel/bgbilling/kernel/network/radius/RadiusPacket$RadiusPacketOption\0java/lang/Object\0(I)V\0getInt\0(Ljava/lang/String;I)I\0get\08(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;\0ru/bitel/common/Utils\0toList\0$(Ljava/lang/String;)Ljava/util/List;\0size\0()I\0java/util/Collections\0\rnewSetFromMap\0 (Ljava/util/Map;)Ljava/util/Set;\0\rjava/util/Set\0addAll\0(Ljava/util/Collection;)Z\0valueOf\0(I)Ljava/lang/String;\04ru/bitel/bgbilling/modules/inet/api/server/InetUtils\0parseSearchModes\0(Ljava/lang/String;)[[I\0\rgetPortLength\0!(Lru/bitel/common/ParameterMap;)I\0append\0-(Ljava/lang/String;)Ljava/lang/StringBuilder;\0(I)Ljava/lang/StringBuilder;\0toString\0()Ljava/lang/String;\0org/apache/log4j/Logger\0info\0(Ljava/lang/Object;)V\0	substring\05ru/bitel/bgbilling/kernel/network/radius/RadiusPacket\0	setOption\0_(Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket$RadiusPacketOption;Ljava/lang/Object;)V\0java/util/Arrays\0copyOfRange\0([BII)[B\0-(Ljava/lang/Object;)Ljava/lang/StringBuilder;\0error\0radiusVendor\0getAttributeValue\0_(Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;IILjava/lang/String;)Ljava/lang/Object;\0:ru/bitel/bgbilling/modules/inet/radius/InetRadiusProcessor\0AGENT_REMOTE_ID\0JLru/bitel/bgbilling/kernel/network/radius/RadiusPacket$RadiusPacketOption;\0AGENT_CIRCUIT_ID\0getStringAttribute\0((IILjava/lang/String;)Ljava/lang/String;\0lastIndexOf\0(I)I\0setStringAttribute\0(IILjava/lang/String;)V\0(II)Ljava/lang/String;\0length\0getAttribute\0>(II)Lru/bitel/bgbilling/kernel/network/radius/RadiusAttribute;\08ru/bitel/bgbilling/kernel/network/radius/RadiusAttribute\0bitel/billing/common/IPUtils\0convertStringIPtoInt\0(Ljava/lang/String;)I\0(III)V\0setAttribute\0=(Lru/bitel/bgbilling/kernel/network/radius/RadiusAttribute;)V\0java/lang/Integer\0(I)Ljava/lang/Integer;\0getIntAttribute\0*(IILjava/lang/Integer;)Ljava/lang/Integer;\0intValue\0\rsetMacAddress\0;ru/bitel/bgbilling/modules/inet/dyn/device/cisco/CiscoUtils\0q(Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;IILjava/lang/String;Ljava/lang/String;)Ljava/lang/String;\0setStateFromAttributes\0DEVICE_STATE\0\nstartsWith\0(Ljava/lang/String;)Z\0PARENT_ACCT_SESSION_ID\0SERVICE_NAME\0contains\0(Ljava/lang/Object;)Z\0debug\0java/lang/Short\0(S)Ljava/lang/Short;\01ru/bitel/bgbilling/kernel/network/dhcp/DhcpPacket\0getSubOption\06(B)Lru/bitel/bgbilling/kernel/network/dhcp/DhcpOption;\01ru/bitel/bgbilling/kernel/network/dhcp/DhcpOption\0value\0java/lang/System\0	arraycopy\0*(Ljava/lang/Object;ILjava/lang/Object;II)V\0setSubOption\0(B[B)V\0	getLogger\0,(Ljava/lang/Class;)Lorg/apache/log4j/Logger;\0!\0k\0m\0\0n\0o\0\0\Z\0p\0q\0\0\0\0r\0s\0\0\0\0t\0u\0\0\0\0v\0s\0\0\0\0w\0u\0\0\0\0x\0y\0\0z\0\0\0\0{\0\0|\0s\0\0\0\0}\0~\0\0\0\0\0s\0\0\0\0�\0u\0\0\0\0�\0s\0\0\0\0�\0u\0\0\0\0�\0s\0\0\0\0�\0�\0\0\0\0\0�\0�\0\0�\0\0\0#\0\0\0\0\0*	�\0�\0\0\0\0�\0\0\0\n\0\0\0\0e\0\0f\0\0�\0�\0\0�\0\0�\0\0\0\0*+-�\0*�\0�\0*�\0�\0	*\n\0��\0�\0*\r�\0�\0\r�\0�\0:�\0\0�\0 *�\0Y�\0�\0�\0*�\0�\0\0W�\0*�\0*�\0\Z�\0�\0�\0�\0*�\0�\0�\0�\0 Y�\0!\"�\0#*�\0�\0$�\0%�\0&*\'(�\0�\0�\0)**+�\0�\0,*-�\0�\0.*/0�\0�\01*2�\0�\03*4�\0�\0�\0�\05�\0\0\0\0�\0\0\0Z\0\0\0\0l\0\0n\0\0o\0$\0p\02\0q\0?\0s\0M\0t\0W\0v\0e\0w\0t\0{\0y\0~\0�\0\0�\0~\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0\0\0-\0�\0t\0��\0�\0��\0\0\0\0�\0�\0�\0�\0�\0�\0\0�\0�\0\0\0\0\0�\0\0�\0�\0\0�\0\0\0�\0\0\0\0\0f,�\06�\0 ,�\06:*�\03h�\07:+-�\08�\0D,�\09�\0$,�\09�\09:*�\03��\0::+-�\08�\0�\0�\0 Y�\0!;�\0#-�\0<�\0%�\0=�\0\0\0\0�\0\0\02\0\0\0\0�\0\0�\0\r\0�\0\Z\0�\0!\0�\0$\0�\0+\0�\04\0�\0B\0�\0I\0�\0L\0�\0e\0�\0�\0\0\0\0$\'\0z\0\0\0\0�\0\0�\0�\0\0�\0\0\0�\0\0\0\0\0?*+*�\0>*�\0)*�\0,�\0?M,�\0*+,�\0@�\0A*+*�\0>*�\0.*�\01�\0?N-�\0*+-�\0B�\0A�\0\0\0\0�\0\0\0\0\0\0\0�\0\0�\0\0�\0\0�\01\0�\05\0�\0>\0�\0�\0\0\0\0�\0\0��\0\0�\0\0�\0�\0\0�\0\0\0�\0\0\0\0\0t+�\0CM,�\0j,:�\0D>�\0+,`�\07�\0E+,�\0FYM�\0E*�\0�\0;,:�\0D>�\00+�\0 Y�\0!,`�\0F�\0#,,�\0I*�\0hd�\07�\0#�\0%�\0E�\0\0\0\0�\0\0\0.\0\0\0\0�\0\0�\0\0�\0\0�\0\0�\0%\0�\03\0�\0;\0�\0B\0�\0F\0�\0s\0�\0�\0\0\0\0�\03\0��\0?\0\0�\0�\0\0�\0\0\0-\0\0\0\0\0\r*+,-�\0J*+�\0K�\0\0\0\0�\0\0\0\0\0\0\0�\0\0�\0\0�\0�\0\0\0\0\0�\0\0�\0�\0\0�\0\0\0r\0\0\0\0\0=*+,-�\0L*�\05�\01,	�\0M�\0\'�\0N�\0&+�\0C:,�\0OY�\0P�\0Q�\0R�\0\0\0\0�\0\0\0\Z\0\0\0\0�\0\0�\0\0�\0 \0�\0)\0�\0<\0�\0�\0\0\0\0<\0�\0\0\0\0\0�\0\0�\0�\0\0�\0\0\0:\0\0\0\0\0\Z+(�\0S�\0T�\0U6*+,-�\0V�\0\0\0\0�\0\0\0\0\0\0\0�\0\0�\0\0�\0�\0\0\0\0\0�\0\0�\0�\0\0�\0\0F\0\0\0\0\0�*,�\0W*,�\0K*,�\0X,*�\0>*�\0*�\0	�\0Y:�\0*,�\0Z�\0�,�\0[�\08,*�\0>*�\0*�\0�\0Y:�\0\r\\�\0]�\0�\0^�\0=�\0�\07:,�\0_�\08,�\0`�\08*�\0�\0D*�\0�\0a\0�\06�\0�\0�\0b�\0c,�\0[�\0e�\08�\0�\0f�\0c,�\0[�\0e�\08�\0\0\0\0�\0\0\0R\0\0\0\0\0\0\n\0\0\"\n\0\'\r\0/\07\0J\0Y\0d\0l!\0u#\0~\'\0�*\0�,\0�-\0�1\0�2\0�6\0�\0\0\0\0�\0/\0��\0)\0�\n0�\0\0�\0\0\0\0\0�\0\0�\0�\0\0�\0\0\0�\0\0\0\0\0F*�\02.�\0=+�\0gN-�\03-�\0h:��\0%*�\0�:*�\0d*�\0�\0i+�\0j�\0\0\0\0�\0\0\0&\0	\0\0=\0?\0@\0B\0D\0#F\0+I\0>J\0EN\0�\0\0\0\0�\0E\0�\0\0\0\0\0�\0\0�\0�\0\0�\0\0\0!\0\0\0\0\0\0	k�\0l�\0�\0\0\0\0�\0\0\0\0\0\0\0#\0\0�\0\0\0\0�\0�\0\0\0\0\0�\0�\0�\0	\0O\0	'),('ru.bitel.bgbilling.modules.inet.dyn.device.cisco.ISGServiceActivator',1433856492000,'����\0\0\04�\0�\n\0�\0�\0�\n\0\0�	\0\n\0�\n\0�\0�\0�\0�\0�\0�\n\0�\0�	\0\n\0�	\0\n\0�\n\0�\0�\0�\0\0�\0�\0\0�\0�\0�\0�\0�\0�\0�\0�\0\0�\0�\n\0\0�\0�\0�\0\0�\0�\n\0\0�\0�\0�\0�\n\0\0�\n\0q\0�\0�\n\0q\0�\n\0q\0�\n\0\0�\0\0�	\0\n\0�\0�\n\0(\0�\0�\n\0(\0�\n\0(\0�\0�\n\0(\0�\n\0�\0\n\0�\n\n\05\0�\n		\0\n\n\0�\n\0(\r	\0\n	\0\n	\0\n	\0\n	\0\n	\0\n\Z\n\n\n !\n\"\n#	\0\n$\n\0\n%	\0\n&\n\'\n\0\n(\n\0\n)*\n\0�+\n,-/\n\0Z1\n,2\n\0\n3\n4\n567	\0\n8\n9:\n\0\n;<\n9=>\n9?@B\n\0iC\nDEFG\0�\n\05HG\0�IJ\0�KLMNOPQRSTUV\n\0~W\n\0�XYZ\0InnerClasses\0logger\0Lorg/apache/log4j/Logger;\0inetOptionIsgService\0Ljava/util/Map;\0	Signature\06Ljava/util/Map<Ljava/lang/Integer;Ljava/lang/String;>;\0disableServiceNames\0Ljava/util/Set;\0#Ljava/util/Set<Ljava/lang/String;>;\0COA_MODE_SSG_COMMAND_PACKET\0I\0\rConstantValue\0\0\0\0\0COA_MODE_SSG_COMMAND\0\0\0\0COA_MODE_SUBSCR_COMMAND\0\0\0\0COA_MODE_SSG_COMMAND_ONE_PACKET\0\0\0\0coaMode\0CLOSE_MODE_POD_DEPRECATED\0\nDeprecated\0RuntimeVisibleAnnotations\0Ljava/lang/Deprecated;\0CLOSE_MODE_NONE\0CLOSE_MODE_POD\0CLOSE_MODE_SUBSCR_COMMAND\0	closeMode\0closeEnableMode\0coaOnEnable\0Z\0disableServicesOnClose\0closeRemoveFromKeyMap\0forceModifyOnServiceNak\0<init>\0()V\0Code\0LineNumberTable\0init\0�(Lru/bitel/bgbilling/server/util/Setup;ILru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceType;Lru/bitel/common/ParameterMap;)Ljava/lang/Object;\0\rStackMapTable\0�[\0�\\\0�I\0�]^_`\0\nExceptionsa\0connectionModify\0U(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;)Ljava/lang/Object;b\0connectionClosecd\0g(Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;ILjava/lang/Object;)Ljava/lang/Object;\0optionsToServiceNames\0D(Ljava/util/Collection;Ljava/util/Collection;)Ljava/util/Collection;e\0�\0�(Ljava/util/Collection<Ljava/lang/Integer;>;Ljava/util/Collection<Ljava/lang/String;>;)Ljava/util/Collection<Ljava/lang/String;>;\0sendCommands\0�(Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;Ljava/util/Collection;Ljava/util/Collection;)Ljava/lang/Object;fg\0�(Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;Ljava/util/Collection<Ljava/lang/String;>;Ljava/util/Collection<Ljava/lang/String;>;)Ljava/lang/Object;\0<clinit>\0\nSourceFile\0ISGServiceActivator.java\0Acct-Session-Id\0�h\0java/util/HashMap\0�\0�\0�\0�\0�\0�\0sa.radius.connection.coa.mode\0radius.coa.mode\0coa.mode\0Dru/bitel/bgbilling/modules/inet/dyn/device/cisco/ISGServiceActivator`ij\0�\0�klmno\0defaultpq\0\rjava/util/Maprsetu[vwxy\0java/util/Map$Entry\0Entryzy\0;ru/bitel/bgbilling/kernel/network/radius/RadiusAttributeSet{|\\}~y\0java/lang/Integer�~\08ru/bitel/bgbilling/kernel/network/radius/RadiusAttribute��\0A��������\0�\0�\0java/lang/StringBuilder\0\rInet option: ����\0 => ISG service: �����\0sa.radius.service.disable\0\Zradius.serviceName.disable\0\0p����\0java/util/LinkedHashMap���\0�\0���\0Disable services: ��\0!sa.radius.connection.coa.onEnable\0�\0�\0sa.radius.connection.close.mode\0�\0�\0%sa.radius.connection.close.enableMode\0�\0�\0+sa.radius.connection.close.removeFromKeyMap\0�\0�\0*sa.radius.connection.close.disableServices\0�\0�\0-sa.radius.connection.modify.forceOnServiceNak\0�\0�\0Connection modify: oldState: c�~\0; newState: �~\0; oldOptionSet: �s\0; newOptionSet: �s���\0�\0�\0��\0���\0�\0�\0�\0�\0Remove connection from key map.������\0Rru/bitel/bgbilling/modules/inet/access/InetConnectionManager$ConnectionRemoveEvent\0ConnectionRemoveEvent\0����\0�\0��s�s\0Connection close\0Connection close mode �������\0Send PoD: \n��\0Connection close (logoff)��\0Nru/bitel/bgbilling/kernel/network/radius/RadiusAttribute$RadiusAttributeString\0RadiusAttributeString\0!subscriber:command=account-logoff\0��g��\0Send logoff CoA:\n�\0��\0java/lang/String\0\'Not found ISG service for Inet option: ��\0\\0xc\0\\0xb\0\'Send deactivate/activate services CoA:\n\0Send deactivate services CoA:\n\0Send activate services CoA:\n\0Send deactivate service CoA:\n\0Send activate service CoA:\n\0subscriber:service-name=\0%subscriber:command=deactivate-service\0#subscriber:command=activate-service\0Fru/bitel/bgbilling/modules/inet/dyn/device/cisco/ISGServiceActivator$1\0����\0Pru/bitel/bgbilling/modules/inet/dyn/device/radius/AbstractRadiusServiceActivator\0:ru/bitel/bgbilling/modules/inet/access/sa/ServiceActivator\0java/util/Iterator\0java/util/List\0$ru/bitel/bgbilling/server/util/Setup\0:ru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice\0>ru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceType\0ru/bitel/common/ParameterMap\0java/lang/Exception\0>ru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection\0?ru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent\0java/lang/Object\0\rjava/util/Set\0java/util/concurrent/Future\05ru/bitel/bgbilling/kernel/network/radius/RadiusPacket\0)(Ljava/lang/String;ZLjava/lang/String;Z)V\0getInt\0(Ljava/lang/String;I)I\0optionRadiusAttributesMap\0ELru/bitel/bgbilling/kernel/network/radius/RadiusAttributeSetRealmMap;\0Cru/bitel/bgbilling/kernel/network/radius/RadiusAttributeSetRealmMap\0getRealmMap\0()Ljava/util/Map;\0get\0&(Ljava/lang/Object;)Ljava/lang/Object;\0entrySet\0()Ljava/util/Set;\0iterator\0()Ljava/util/Iterator;\0hasNext\0()Z\0next\0()Ljava/lang/Object;\0getValue\0\rgetAttributes\0(II)Ljava/util/List;\0size\0()I\0getKey\0intValue\0valueOf\0&(Ljava/lang/Object;)Ljava/lang/String;\0\nstartsWith\0(Ljava/lang/String;)Z\0	substring\0(I)Ljava/lang/String;\0(I)Ljava/lang/Integer;\0put\08(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;\0append\0-(Ljava/lang/String;)Ljava/lang/StringBuilder;\0(I)Ljava/lang/StringBuilder;\0toString\0()Ljava/lang/String;\0org/apache/log4j/Logger\0info\0(Ljava/lang/Object;)V\08(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;\0ru/bitel/common/Utils\0toList\0$(Ljava/lang/String;)Ljava/util/List;\0java/util/Collections\0\rnewSetFromMap\0 (Ljava/util/Map;)Ljava/util/Set;\0addAll\0(Ljava/util/Collection;)Z\0-(Ljava/lang/Object;)Ljava/lang/StringBuilder;\0getOldState\0getNewState\0\rgetOldOptions\0\rgetNewOptions\0\rgetConnection\0B()Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;\0withoutBreak\0needConnectionStateModify\0\ZsetConnectionStateModified\0(Z)V\0debug\0.ru/bitel/bgbilling/kernel/event/EventProcessor\0getInstance\02()Lru/bitel/bgbilling/kernel/event/EventProcessor;\0<ru/bitel/bgbilling/modules/inet/access/InetConnectionManager\0C(Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;)V\0request\0Z(Lru/bitel/bgbilling/kernel/event/QueueEvent;)Lru/bitel/bgbilling/kernel/event/QueueEvent;\0getOptionsToRemove\0getOptionsToAdd\0radiusClient\07Lru/bitel/bgbilling/kernel/network/radius/RadiusClient;\05ru/bitel/bgbilling/kernel/network/radius/RadiusClient\0createDisconnectRequest\09()Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;\0prepareRequest\0z(Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;)V\0	sendAsync\0V(Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;)Ljava/util/concurrent/Future;\0createModifyRequest\0(IILjava/lang/String;)V\0addAttribute\0=(Lru/bitel/bgbilling/kernel/network/radius/RadiusAttribute;)V\0java/util/Collection\0(I)V\0add\0(Ljava/lang/Object;)Z\0f(Lru/bitel/bgbilling/modules/inet/dyn/device/cisco/ISGServiceActivator;Ljava/util/concurrent/Future;)V\0	getLogger\0,(Ljava/lang/Class;)Lorg/apache/log4j/Logger;\0!\0\n\0�\0\0�\0\0\Z\0�\0�\0\0\0\0�\0�\0\0�\0\0\0\0�\0\0�\0�\0\0�\0\0\0\0�\0\0�\0�\0\0�\0\0\0\0�\0\0�\0�\0\0�\0\0\0\0�\0\0�\0�\0\0�\0\0\0\0�\0\0�\0�\0\0�\0\0\0\0�\0\0�\0�\0\0\0\0�\0�\0\0�\0\0\0\0�\0�\0\0\0\0\0�\0\0\0\0\0�\0\0\0\0�\0�\0\0�\0\0\0\0�\0\0�\0�\0\0�\0\0\0\0�\0\0�\0�\0\0�\0\0\0\0�\0\0�\0�\0\0\0\0�\0�\0\0\0\0�\0�\0\0\0\0�\0�\0\0\0\0�\0�\0\0\0\0�\0�\0\0\0\0\0�\0�\0\0�\0\0\05\0\0\0\0\0*�\0*�\0Y�\0�\0�\0\0\0\0�\0\0\0\0\0\0\0�\0	\0*\0\0�\0\0�\0�\0\0�\0\0A\0\0\0\0�*+-�\0W*	�\0�\0�\0�\0*�\0\r�\0�\0\0�\0:�\0\0�\0\0:�\0\0�\0��\0\0�\0:�\0\0�\0	\0��\0:		���	�\0\Z\0�\0����\0\0�\0�\06\n	�\0\0:�\0\0�\0f�\0\0�\0:�\0 �\0!:\r\r\"�\0#�\0���\r�\0$:*�\0\n�\0%�\0&\0W�\0\'�\0(Y�\0)*�\0+\n�\0,-�\0+�\0+�\0.�\0/�����?012�\03�\03�\04:�\0\Z\0�\0 *�\05Y�\06�\07�\08*�\08�\09\0W�\0*�\08�\0\'�\0(Y�\0):�\0+�\0;�\0.�\0/*<�\0�\0�\0�\0=*>�\0�\0?*@�\0�\0A*B�\0�\0�\0�\0C*D�\0�\0�\0�\0E*F�\0�\0�\0�\0G�\0\0\0\0�\0\0\0z\0\0\0\0�\0\0�\0&\0�\09\0�\0]\0�\0q\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0� \0�*\0�8\0�G\0�L\0�f\0�z\0��\0��\0��\0��\0��\0�\0�\0\0\0�\0�\0G\0�\0��\0;\0�\0��\0\0��\0,\0�\0��\0?\0\0�\0�\0�\0�\0�\0�\0�\0\0�\0�\0;\0�i\0��\0\0\0\0�\0�\0�\0�\0�\0�\0�\0\0�j\0��\0\0\0\0�\0�\0�\0�\0�\0�\0�\0\0�R\0��\0\0\0\0�\0�\0�\0�\0�\0�\0�\0\0�R\0��\0\0\0\0�\0�\0�\0�\0�\0�\0�\0\0�\0�\0\0\0\0\0�\0\0�\0�\0\0�\0\0u\0\0\0\0\0��\0\'�\0(Y�\0)H�\0++�\0I�\0,J�\0++�\0K�\0,L�\0++�\0M�\0;N�\0++�\0O�\0;�\0.�\0/+�\0PM+�\0K�\0/*�\0Q�\0	*+�\0R�*�\0S�\0+�\0T*,*+�\0M�\0U*�\08�\0V�+�\0I�\0[*�\0Q�\05*�\0C�\0\Z�\0\'W�\0X�\0Y�\0ZY,�\0[�\0\\W*,*�\0A�\0]N*�\0=�\0-�*�\0S�\0+�\0T*,*�\08*+�\0O�\0U�\0V�+�\0^N+�\0_:*,*-�\0U*�\0U�\0V�\0\0\0\0�\0\0\0Z\0\0\0\0�\0@\0�\0E\0�\0L\0�\0S\0�\0Y\0�\0`\0�\0e\0�\0x\0�\0\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\r\0�\0�\0�\0�\0�\Z\0�\0\0\0\0�\0Y\0�+\0�\0\0\0\0\0�\0\0�\0�\0\0�\0\0\0�\0\0\0\0\0U�\0\'`�\0/+�\0PN*�\0C�\0\Z�\0\'W�\0X�\0Y�\0ZY-�\0[�\0\\W*�\0E�\0*-*+�\0M�\0U*�\08�\0VM�\0M*-*�\0?,�\0]�\0\0\0\0�\0\0\0&\0	\0\0$\0(\0\r*\0-\0.\0+1\023\0H7\0J:\0�\0\0\0\0�\0+\0\0��\0\0\0�\0�\0�\0�\0\0\0�\0\0\0\0\0�\0\0�\0�\0\0�\0\0&\0\0\0\0\0Ĳ\0\'�\0(Y�\0)a�\0+�\0,�\0.�\0/�\0\0\0\0\0\0\0\0\0\0\0\0\0\0!\0\0\0\0\0\0!\0\0\0X�\0�*�\0b�\0c:*+�\0d�\0\'�\0(Y�\0)e�\0+�\0;�\0.�\0/*�\0b�\0fN�\0S�\0\'g�\0/*�\0b�\0h:*+�\0d�\0iY	j�\0k�\0l�\0\'�\0(Y�\0)m�\0+�\0;�\0.�\0/*�\0b�\0fN�\0-�\0\0\0\0�\0\0\0B\0\0\0K\0M\08R\0;Y\0DZ\0K\\\0e]\0o_\0rd\0zf\0�g\0�i\0�k\0�l\0�n\0�r\0�\0\0\0\086�\0O\0�\0\0\0\0\0�\0\0�\0�\0\0�\0\0\0�\0\0\0\0\0�+�\0+�\0n\0�\0,��\05Y+�\0n\0`�\0o�\07N,�\0-,�\09\0W+�\0p\0:�\0\0�\0M�\0\0�\0:*�\0�\0\0�\0q:�\0 �\0\'�\0(Y�\0)r�\0+�\0;�\0.�\0/���-�\0s\0W���-�\0\0\0\0�\0\0\06\0\r\0\0}\0\r\0�\0\"�\0&�\0.�\0L�\0\\�\0a�\0{�\0~�\0��\0��\0�\0\0\0\0\r�\0\0��\0\0��\0G\0�\0��\0\0�\0\0\0\0�\0\0�\0�\0\0�\0\0_\0\0	\0\0�:*�\0�\0\0S\0\0\0\0\0\0\0\0\0\0\08\0\0S\0\0\0,�\0,�\0n\0�\0-�V-�\0n\0�M*�\0b�\0h:*+�\0d,�\0V,�\0n\0�\0M,�\0p\0:�\0\0�\0;�\0\0�\0q:�\0(Y�\0)t�\0+�\0+�\0.:�\0iY	\0��\0k�\0l���-�\0V-�\0n\0�\0M-�\0p\0:�\0\0�\0;�\0\0�\0q:�\0(Y�\0)u�\0+�\0+�\0.:�\0iY	\0��\0k�\0l���*�\0b�\0f:�\0\'�\0(Y�\0)v�\0+�\0;�\0.�\0/�g,�\0�,�\0n\0�\0�*�\0b�\0h:*+�\0d,�\0p\0:�\0\0�\0;�\0\0�\0q:�\0(Y�\0)t�\0+�\0+�\0.:�\0iY	\0��\0k�\0l���*�\0b�\0f:�\0\'�\0(Y�\0)w�\0+�\0;�\0.�\0/-��-�\0n\0��*�\0b�\0h:*+�\0d-�\0p\0:�\0\0�\0;�\0\0�\0q:�\0(Y�\0)u�\0+�\0+�\0.:�\0iY	\0��\0k�\0l���*�\0b�\0f:�\0\'�\0(Y�\0)x�\0+�\0;�\0.�\0/�L,�\0�,�\0n\0�\0�,�\0p\0:�\0\0�\0p�\0\0�\0q:*�\0b�\0h:*+�\0d�\0(Y�\0)t�\0+�\0+�\0.:�\0iY	\0��\0k�\0l�\0\'�\0(Y�\0)y�\0+�\0;�\0.�\0/*�\0b�\0f:���-��-�\0n\0��-�\0p\0:�\0\0�\0p�\0\0�\0q:*�\0b�\0h:*+�\0d�\0(Y�\0)u�\0+�\0+�\0.:�\0iY	\0��\0k�\0l�\0\'�\0(Y�\0)z�\0+�\0;�\0.�\0/*�\0b�\0f:����1,�\0�,�\0n\0�\0�,�\0p\0:�\0\0�\0{�\0\0�\0q:*�\0b�\0h:*+�\0d�\0iY	�\0(Y�\0){�\0+�\0+�\0.�\0k�\0l�\0iY	|�\0k�\0l�\0\'�\0(Y�\0)y�\0+�\0;�\0.�\0/*�\0b�\0f:���-�\0�-�\0n\0�\0�-�\0p\0:�\0\0�\0{�\0\0�\0q:*�\0b�\0h:*+�\0d�\0iY	�\0(Y�\0){�\0+�\0+�\0.�\0k�\0l�\0iY	}�\0k�\0l�\0\'�\0(Y�\0)z�\0+�\0;�\0.�\0/*�\0b�\0f:���*�\0G�\0�\0:�\0~Y*�\0:�\0\0\0\0�\0\0:\0N\0\0�\0�\0$�\06�\0>�\0G�\0N�\0[�\0y�\0��\0��\0��\0��\0��\0��\0��\0���!�$�1�:�A�_�u��������������������\"�<�?�L�j�s�z����������\0���	/IT\rZg�\Z���� �!�\"�%�\')%*,,O-`/z0�1�8�:�;�a\0�\0\0\0f\0�\0$\0��\0$\0�\0��\0A�\0\0��\0A�\0\'�\0$\0�\0��\0A�\0$�\0$\0�\0��\0A�\0\'�\0\0��\0v�\0\0��\0v�\0\0��\0��\0\0��\0�\0�\0\0\0\0\0�\0�\0\0\0\0�\0\0�\0�\0\0�\0\0\0!\0\0\0\0\0\0	\n�\0��\0\'�\0\0\0\0�\0\0\0\0\0\0\0%\0\0�\0\0\0\0�\0�\0\0\0\"\0\0~\0\0\0\0\0\0\0\0\0�	\0Z.0\0\0i\0A\0	'),('ru.bitel.bgbilling.modules.inet.dyn.device.cisco.ISGServiceActivator$1',1433856492000,'����\0\0\04\0F	\0\0,	\0\0-\n\0\r\0.\0\0/\0\00\0\01\0\02	\03\04\0\05\n\0\06\n\0\07\08\0:\0;\0val$delegate\0Ljava/util/concurrent/Future;\0this$0\0FLru/bitel/bgbilling/modules/inet/dyn/device/cisco/ISGServiceActivator;\0<init>\0f(Lru/bitel/bgbilling/modules/inet/dyn/device/cisco/ISGServiceActivator;Ljava/util/concurrent/Future;)V\0Code\0LineNumberTable\0cancel\0(Z)Z\0isCancelled\0()Z\0isDone\0get\0()Ljava/lang/Boolean;\0\nExceptions\0<\0=\05(JLjava/util/concurrent/TimeUnit;)Ljava/lang/Boolean;\0>\04(JLjava/util/concurrent/TimeUnit;)Ljava/lang/Object;\0()Ljava/lang/Object;\0	Signature\0DLjava/lang/Object;Ljava/util/concurrent/Future<Ljava/lang/Boolean;>;\0\nSourceFile\0ISGServiceActivator.java\0EnclosingMethod\0?\0@\0A\0\0\0\0\0\0B\0\0\0\0\Z\0\0\Z\0\0$\0C\0D\0E\0\0#\0\0!\0\0\0Fru/bitel/bgbilling/modules/inet/dyn/device/cisco/ISGServiceActivator$1\0InnerClasses\0java/lang/Object\0java/util/concurrent/Future\0java/lang/InterruptedException\0\'java/util/concurrent/ExecutionException\0%java/util/concurrent/TimeoutException\0Dru/bitel/bgbilling/modules/inet/dyn/device/cisco/ISGServiceActivator\0sendCommands\0�(Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;Ljava/util/Collection;Ljava/util/Collection;)Ljava/lang/Object;\0()V\0java/lang/Boolean\0TRUE\0Ljava/lang/Boolean;\0 \0\0\r\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\'\0\0\0\0\0*+�\0*,�\0*�\0�\0\0\0\0\0\0\0\0\0\0<\0\0\0\0\0\0\0\0#\0\0\0\0\0*�\0�\0\0�\0\0\0\0\0\0\0\0\0\0@\0\0\0\Z\0\0\0\0\0\"\0\0\0\0\0\n*�\0�\0\0�\0\0\0\0\0\0\0\0\0\0F\0\0\0\Z\0\0\0\0\0\"\0\0\0\0\0\n*�\0�\0\0�\0\0\0\0\0\0\0\0\0\0L\0\0\0\0\0\0\0\0*\0\0\0\0\0*�\0�\0\0W�\0�\0\0\0\0\0\0\0\n\0\0\0S\0\nT\0\0\0\0\0\0\0 \0\0\0!\0\0\0\0\0,\0\0\0\0\0*�\0-�\0	\0W�\0�\0\0\0\0\0\0\0\n\0\0\0[\0\\\0\0\0\0\0\0\0 \0\"A\0\0#\0\0\0\0\0\0\0\0\0\0*-�\0\n�\0\0\0\0\0\0\0\0\0\0<\0\0\0\0\0\0\0 \0\"A\0\0$\0\0\0\0\0\0\0\0\0\0*�\0�\0\0\0\0\0\0\0\0\0\0<\0\0\0\0\0\0\0 \0\0%\0\0\0\0&\0\'\0\0\0\0(\0)\0\0\0\0*\0+\09\0\0\0\n\0\0\0\0\0\0\0\0'),('ru.bitel.bgbilling.modules.inet.dyn.device.cisco.ISGUtils',1433856492000,'����\0\0\04\0\n\0\0\0\0\n\0\0\0\0MAX_PORT_LENGTH\0I\0\rConstantValue\0\0\0\0<init>\0()V\0Code\0LineNumberTable\0\rgetPortLength\0!(Lru/bitel/common/ParameterMap;)I\0\rStackMapTable\0\nSourceFile\0\rISGUtils.java\0\n\0\0isg.port.length\09ru/bitel/bgbilling/modules/inet/dyn/device/cisco/ISGUtils\0\0\Z\0\0java/lang/Object\0ru/bitel/common/ParameterMap\0getInt\0(Ljava/lang/String;I)I\0!\0\0\0\0\0\0\0\0\0\0\0\0\0\0	\0\0\0\n\0\0\0\0\0\0\0\0\0\0\0*�\0�\0\0\0\0\r\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0G\0\0\0\0\0*�\0<�\0�\0<�\0\0\0\0\r\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0�\0\0\0\0\0\0\0'),('ru.bitel.bgbilling.modules.inet.dyn.device.dns.DynDnsServiceActivator',1433856492000,'����\0\0\04\0�\n\0\0=\n\0\0>\0?\n\0\0@	\0\0A\0B\n\0C\0D\n\0E\0F	\0\0G\0H\0I\n\0\0J\n\0\0K\n\0L\0M\n\0E\0N\n\0O\0P\n\0O\0Q\n\0R\0S\n\0\0T\n\0L\0U\n\0V\0W\n\0\0X\n\0\0Y\n\0R\0Z\n\0[\0\\\n\0\0]\n\0\0^\n\0R\0_\0`\0a\0b\0	dnsClient\01Lru/bitel/bgbilling/kernel/network/dns/DnsClient;\0options\0Ljava/util/Set;\0	Signature\0$Ljava/util/Set<Ljava/lang/Integer;>;\0<init>\0()V\0Code\0LineNumberTable\0init\0�(Lru/bitel/bgbilling/server/util/Setup;ILru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceType;Lru/bitel/common/ParameterMap;)Ljava/lang/Object;\0\rStackMapTable\0\nExceptions\0c\0destroy\0()Ljava/lang/Object;\0getHostname\0T(Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;)Ljava/lang/String;\0d\0register\0D(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;)V\0e\0\nunregister\0onAccountingStart\0U(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;)Ljava/lang/Object;\0onAccountingStop\0connectionModify\0\nSourceFile\0DynDnsServiceActivator.java\0%\0&\0)\0*\0/ru/bitel/bgbilling/kernel/network/dns/DnsClient\0%\0f\0\0 \0dns.inetOptions\0g\0h\0i\0j\0k\0l\0!\0\"\0m\0n\0o\0p\0&\0.\0/\0e\0q\0r\0s\0t\0d\0u\0v\0w\0r\0x\0y\0z\00\01\0{\0|\0}\0~\0\0�\0�\0�\0�\0�\0�\0�\0�\0�\03\04\06\04\0�\0�\0Eru/bitel/bgbilling/modules/inet/dyn/device/dns/DynDnsServiceActivator\0Aru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorAdapter\0:ru/bitel/bgbilling/modules/inet/access/sa/ServiceActivator\0java/lang/Exception\0java/lang/String\0>ru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection\0!(Lru/bitel/common/ParameterMap;)V\0ru/bitel/common/ParameterMap\0get\08(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;\0ru/bitel/common/Utils\0toIntegerSet\0#(Ljava/lang/String;)Ljava/util/Set;\0\rjava/util/Set\0size\0()I\0close\0getUsername\0()Ljava/lang/String;\0\risBlankString\0(Ljava/lang/String;)Z\0replace\0(CC)Ljava/lang/String;\0toLowerCase\0?ru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent\0\rgetConnection\0B()Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;\0getInetAddressBytes\0()[B\0ru/bitel/common/inet/IpAddress\0toString\0([B)Ljava/lang/String;\0\rregisterAsync\0\'(Ljava/lang/String;Ljava/lang/String;)V\0unregisterAsync\0(Ljava/lang/String;)V\0\rgetNewOptions\0()Ljava/util/Set;\0java/util/Collections\0disjoint\0/(Ljava/util/Collection;Ljava/util/Collection;)Z\0\rgetOldOptions\0!\0\0\0\0\0\0\0\0 \0\0\0\0!\0\"\0\0#\0\0\0\0$\0	\0\0%\0&\0\0\'\0\0\0\0\0\0\0\0*�\0�\0\0\0\0(\0\0\0\0\0\0\0\0\0)\0*\0\0\'\0\0\0p\0\0\0\0\0;*+-�\0W*�\0Y�\0�\0*�\0�\0�\0	*�\0	�\0\n\0�\0*�\0	�\0\0\0\0(\0\0\0\Z\0\0\0\0(\0\0*\0\0,\0(\0-\04\0/\09\02\0+\0\0\0\09\0,\0\0\0\0\0-\0\0.\0/\0\0\'\0\0\01\0\0\0\0\0*�\0�\0*�\0*�\0�\0\0\0\0(\0\0\0\0\0\0\09\0\0:\0\0<\0,\0\0\0\0\0-\0\00\01\0\0\'\0\0\0L\0\0\0\0\0\Z+�\0\rM,�\0�\0�,@-�\0�\0�\0\0\0\0(\0\0\0\0\0\0\0A\0\0C\0\0E\0\0H\0+\0\0\0\0�\0\02\0\03\04\0\0\'\0\0\0X\0\0\0\0\0+�\0M*,�\0N-�\0*�\0-,�\0�\0�\0�\0\0\0\0(\0\0\0\0\0\0\0M\0\0N\0\0P\0\0R\0\0T\0+\0\0\0\0�\0\05\02\0\06\04\0\0\'\0\0\0Q\0\0\0\0\0+�\0M*,�\0N-�\0*�\0-�\0�\0\0\0\0(\0\0\0\0\0\0\0X\0\0Y\0\0[\0\0]\0\0_\0+\0\0\0\0�\0\05\02\0\07\08\0\0\'\0\0\0K\0\0\0\0\0*�\0	�\0+�\0*�\0	�\0�\0�*+�\0�\0\0\0\0(\0\0\0\0\0\0\0e\0\0g\0\0j\0\0l\0+\0\0\0\0\0,\0\0\0\0\0-\0\09\08\0\0\'\0\0\0K\0\0\0\0\0*�\0	�\0+�\0*�\0	�\0�\0�*+�\0\Z�\0\0\0\0(\0\0\0\0\0\0\0s\0\0u\0\0x\0\0z\0+\0\0\0\0\0,\0\0\0\0\0-\0\0:\08\0\0\'\0\0\0�\0\0\0\0\0B*�\0	�\0�+�\0*�\0	�\0�\0+�\0*�\0	�\0�\0*+�\0�\0+�\0*�\0	�\0�\0*+�\0\Z�\0\0\0\0(\0\0\0\"\0\0\0\0�\0\0�\0	\0�\0\0�\0%\0�\0-\0�\0;\0�\0@\0�\0+\0\0\0\0	#\0,\0\0\0\0\0-\0\0;\0\0\0\0<'),('ru.bitel.bgbilling.modules.inet.dyn.device.manad.ManadDeviceManager',1433856492000,'����\0\0\04\0�\n\0\'\0H\n\0I\0J\0K\0L\0M\n\0\0N\n\0O\0P	\0%\0Q\n\0\0R	\0%\0S\0T\n\0\n\0U	\0%\0V\0W\n\0\n\0X\n\0\r\0Y	\0%\0Z\0[\n\0\n\0\\\n\0\0]\0^\n\0\0_	\0%\0`	\0%\0a\0b\n\0c\0d\n\0\'\0e\n\0\'\0f\n\0\r\0g\n\0\n\0g\n\0\0g\0h\0D\n\0\r\0i\n\0\0j\n\0k\0l\n\0m\0n\0o\n\0c\0p\0q\0r\0logger\0Lorg/apache/log4j/Logger;\0host\0Ljava/lang/String;\0port\0I\0socket\0Ljava/net/Socket;\0out\0Ljava/io/PrintWriter;\0in\0Ljava/io/BufferedReader;\0<init>\0()V\0Code\0LineNumberTable\0init\0�(Lru/bitel/bgbilling/server/util/Setup;ILru/bitel/oss/systems/inventory/resource/common/bean/Device;Lru/bitel/oss/systems/inventory/resource/common/bean/DeviceType;Lru/bitel/common/ParameterMap;)Ljava/lang/Object;\0\nExceptions\0s\0	Signature\0�(Lru/bitel/bgbilling/server/util/Setup;ILru/bitel/oss/systems/inventory/resource/common/bean/Device<**>;Lru/bitel/oss/systems/inventory/resource/common/bean/DeviceType;Lru/bitel/common/ParameterMap;)Ljava/lang/Object;\0connect\0()Ljava/lang/Object;\0\ndisconnect\0destroy\0\rStackMapTable\0uptime\0<clinit>\0\nSourceFile\0ManadDeviceManager.java\05\06\0t\0u\0v\0w\0x\0y\0\Zjava/net/InetSocketAddress\0z\0{\0|\0}\0~\0+\0,\0\0�\0-\0.\0java/net/Socket\05\0�\0/\00\0java/io/PrintWriter\0�\0�\05\0�\01\02\0java/io/InputStreamReader\0�\0�\05\0�\0java/io/BufferedReader\05\0�\03\04\0)\0*\0	Connected\0�\0�\0�\0?\0@\0A\0@\0�\06\0Disconnected\0�\0�\0�\0~\0�\0�\0�\0�\0�\0�\0Cru/bitel/bgbilling/modules/inet/dyn/device/manad/ManadDeviceManager\0�\0�\0Cru/bitel/oss/systems/inventory/resource/server/DeviceManagerAdapter\0<ru/bitel/oss/systems/inventory/resource/server/DeviceManager\0java/lang/Exception\0:ru/bitel/oss/systems/inventory/resource/common/bean/Device\0getHosts\0()Ljava/util/List;\0java/util/List\0get\0(I)Ljava/lang/Object;\0\ngetAddress\0()Ljava/net/InetAddress;\0java/net/InetAddress\0getHostAddress\0()Ljava/lang/String;\0getPort\0()I\0(Ljava/lang/String;I)V\0getOutputStream\0()Ljava/io/OutputStream;\0\Z(Ljava/io/OutputStream;Z)V\0getInputStream\0()Ljava/io/InputStream;\0(Ljava/io/InputStream;)V\0(Ljava/io/Reader;)V\0org/apache/log4j/Logger\0info\0(Ljava/lang/Object;)V\0close\0println\0(Ljava/lang/String;)V\0readLine\0ru/bitel/common/Utils\0	parseLong\0(Ljava/lang/String;J)J\0java/lang/Long\0valueOf\0(J)Ljava/lang/Long;\0	getLogger\0,(Ljava/lang/Class;)Lorg/apache/log4j/Logger;\0!\0%\0\'\0\0(\0\0\n\0)\0*\0\0\0\0+\0,\0\0\0\0-\0.\0\0\0\0/\00\0\0\0\01\02\0\0\0\03\04\0\0\0\0\05\06\0\07\0\0\0\0\0\0\0\0*�\0�\0\0\0\08\0\0\0\0\0\0\0\0\09\0:\0\07\0\0\0R\0\0\0\0\0*-�\0:�\0\0�\0:*�\0�\0�\0*�\0�\0	�\0\0\0\08\0\0\0\0\0\0\0\'\0\0)\0\0*\0\0+\0(\0-\0;\0\0\0\0\0<\0=\0\0\0\0>\0\0?\0@\0\07\0\0\0z\0\0\0\0\0N*�\0\nY*�\0*�\0	�\0�\0*�\0\rY*�\0�\0�\0�\0�\0Y*�\0�\0�\0L*�\0Y+�\0�\0�\0�\0*�\0\Z�\0\0\0\08\0\0\0\Z\0\0\0\04\0\05\0&\06\05\07\0A\0:\0I\0<\0;\0\0\0\0\0<\0\0A\0@\0\07\0\0\0k\0\0\0\0\03*�\0W*�\0�\0*�\0�\0*�\0�\0*�\0*�\0*�\0�\0�\0�\0\0\0\08\0\0\0&\0	\0\0\0C\0\0D\0\0E\0\0F\0\Z\0G\0\0H\0$\0I\0)\0K\01\0L\0;\0\0\0\0\0<\0\0B\0@\0\07\0\0\0�\0\0\0\0\0;*�\0�\0*�\0�\0*�\0*�\0�\0*�\0�\0*�\0*�\0�\0*�\0�\0*�\0�\0\0\0\08\0\0\0*\0\n\0\0\0U\0\0W\0\0X\0\0Z\0\Z\0\\\0!\0]\0&\0`\0-\0b\04\0c\09\0f\0C\0\0\0\0\0;\0\0\0\0\0<\0\0D\0@\0\07\0\0\0:\0\0\0\0\0\Z*�\0 �\0!*�\0�\0\"L+	�\0#�\0$�\0\0\0\08\0\0\0\0\0\0\0o\0	\0p\0\0q\0;\0\0\0\0\0<\0\0E\06\0\07\0\0\0!\0\0\0\0\0\0	%�\0&�\0�\0\0\0\08\0\0\0\0\0\0\0\0\0F\0\0\0\0G'),('ru.bitel.bgbilling.modules.inet.dyn.device.manad.ManadServiceActivator',1433856492000,'����\0\0\04y\n\0l\0�\n\0l\0�	\0i\0�\n\0�\0�\0�\0�\0�\n\0\0�\n\0�\0�\n\0\0�\0�\n\0\n\0�	\0i\0�\0�\n\0\n\0�\n\0\r\0�	\0i\0�	\0i\0�\0�\n\0�\0�\n\0l\0�\n\0l\0�\n\0\r\0�\n\0\n\0�\0�\0�\n\0\0�\0�\n\0\0�\n\0\0�\n\0\r\0�\n\0l\0�	\0i\0�\0�\n\0!\0�\0�\0�\n\0b\0�\0�\n\0%\0�\0�\0�\0�\0�\0�\0�\n\0i\0�\0�\0�\n\0`\0�\0�\0�\0�\n\0�\0�\n\0�\0�\n\0`\0�\n\0i\0�\0�\n\0i\0�\0�\n\07\0�\0�\0�\n\0:\0�\n\0:\0�\n\0�\0�\n\0�\0�\n\0i\0�\n\07\0�	\0i\0�\0�\n\0�\0�\n\07\0�\0�	\0i\0�	\0i\0�\n\0P\0�\n\0�\0�\0�\n\0P\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\n\0%\0�\0�\n\0R\0�\0�\n\0:\0\n\0�\n\0W	\0W	\0W\n\0\\	\n\0\\\n\n\0`\r\0�\0�\n\0\n\0�\0InnerClasses\0PatternItem\0logger\0Lorg/apache/log4j/Logger;\0\ninetDevice\0<Lru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice;\0paramMultiPattern\0Ljava/util/regex/Pattern;\0socket\0Ljava/net/Socket;\0out\0Ljava/io/PrintWriter;\0<init>\0()V\0Code\0LineNumberTable\0init\0�(Lru/bitel/bgbilling/server/util/Setup;ILru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceType;Lru/bitel/common/ParameterMap;)Ljava/lang/Object;\0\nExceptions\Z\0connect\0()Ljava/lang/Object;\0\ndisconnect\0executeCommand\0(Ljava/lang/String;)V\0executeCommands\0�(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetServ;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;Ljava/util/Set;[Ljava/lang/String;)Ljava/lang/Object;\0\rStackMapTable\0	Signature(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetServ;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;Ljava/util/Set<Ljava/lang/Integer;>;[Ljava/lang/String;)Ljava/lang/Object;\0generateRule([Ljava/lang/String;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetServ;Ljava/util/List;Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;Ljava/util/Set;)Ljava/lang/String;\0�\0� R([Ljava/lang/String;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetServ;Ljava/util/List<Lru/bitel/bgbilling/modules/inet/api/common/bean/InetServ;>;Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;Ljava/util/Set<Ljava/lang/Integer;>;)Ljava/lang/String;\0\rgetParamMulti\0&(Ljava/lang/String;)Ljava/lang/String;!\0processBlock\0�(Ljava/lang/String;Ljava/util/List;Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;Ljava/util/Set;)Ljava/lang/StringBuffer;\"(Ljava/lang/String;Ljava/util/List<Lru/bitel/bgbilling/modules/inet/api/common/bean/InetServ;>;Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;Ljava/util/Set<Ljava/lang/Integer;>;)Ljava/lang/StringBuffer;\0<clinit>\0\nSourceFile\0\ZManadServiceActivator.java\0{\0|\0\0�\0s\0t#$%&\'\0\Zjava/net/InetSocketAddress()*+,-.\0java/net/Socket\0{/\0w\0x\0java/io/PrintWriter01\0{2\0y\0z\0q\0r\0	Connected345\0�\0�\0�\0�6\0|\0Disconnected\0java/lang/StringBuilder\0	execute: 789,:\0�\0�\0�;<\0java/util/HashSet\0{=>?@%\0java/util/ArrayListA.BCD?\0�\0�\0\\\\t\0	EF\0\n\0|\0fullCommand=G5HIJK,\0�\0�\0\0\0�\0�\0java/lang/StringBuffer\0*(<LOOP>.*?</LOOP>)?(.*?)<LOOP>(.*?)</LOOP>\0java/util/regex/PatternLMNO PQRS\0�\0�TU\0java/lang/ObjectVWX7Y\0(?:<LOOP>(?:.*)</LOOP>)(.*)\\z\0u\0vZ[&F\\J\0.]^_`abcd!eQf\0�\0ru/bitel/common/ParameterMap\0{g\0java/util/HashMap\0\\{([A-Z]+)(\\d+)\\}Lhij\0Rru/bitel/bgbilling/modules/inet/dyn/device/manad/ManadServiceActivator$PatternItem\0{klmno\"&p\0java/lang/Integerq.rstu\0java/lang/String\0{\0�\08ru/bitel/bgbilling/modules/inet/api/common/bean/InetServ\0\\{7v\0\\}\0{\0}\0Fru/bitel/bgbilling/modules/inet/dyn/device/manad/ManadServiceActivatorwx\0\\$paramMulti\\((.*)\\)\0Tru/bitel/bgbilling/modules/inet/dyn/device/terminal/AbstractTerminalServiceActivator\0:ru/bitel/bgbilling/modules/inet/access/sa/ServiceActivator\0Hru/bitel/bgbilling/modules/inet/dyn/device/manad/ManadServiceActivator$1\0java/lang/Exception\0java/util/List\0[Ljava/lang/String;\0?ru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent\0>ru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection\0\rjava/util/Set\0java/util/regex/Matcher\0java/util/Iterator\0\rjava/util/Map\0:ru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice\0getHosts\0()Ljava/util/List;\0get\0(I)Ljava/lang/Object;\0\ngetAddress\0()Ljava/net/InetAddress;\0java/net/InetAddress\0getHostAddress\0()Ljava/lang/String;\0getPort\0()I\0(Ljava/lang/String;I)V\0getOutputStream\0()Ljava/io/OutputStream;\0\Z(Ljava/io/OutputStream;Z)V\0org/apache/log4j/Logger\0info\0(Ljava/lang/Object;)V\0close\0append\0-(Ljava/lang/String;)Ljava/lang/StringBuilder;\0toString\0println\0workingOptions\0Ljava/util/Set;\0(Ljava/util/Collection;)V\0	retainAll\0(Ljava/util/Collection;)Z\0getChildren\0size\0add\0(Ljava/lang/Object;)Z\0addAll\0\nreplaceAll\08(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;\0debug\0ru/bitel/common/Utils\0notBlankString\0(Ljava/lang/String;)Z\0trim\0compile\0.(Ljava/lang/String;I)Ljava/util/regex/Pattern;\0matcher\03(Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;\0find\0()Z\0group\0(I)Ljava/lang/String;\0macrosFormat\0#Lru/bitel/common/util/MacrosFormat;\0!ru/bitel/common/util/MacrosFormat\0format\09(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;\0,(Ljava/lang/String;)Ljava/lang/StringBuffer;\0config\0Lru/bitel/common/ParameterMap;\0\risBlankString\0\nsubIndexed\0)(Ljava/lang/String;)Ljava/util/SortedMap;\0java/util/SortedMap\0values\0()Ljava/util/Collection;\0java/util/Collection\0iterator\0()Ljava/util/Iterator;\0hasNext\0next\0(I)V\0-(Ljava/lang/String;)Ljava/util/regex/Pattern;\0parseInt\0(Ljava/lang/String;I)I\0M(Lru/bitel/bgbilling/modules/inet/dyn/device/manad/ManadServiceActivator$1;)V\0number\0I\0letter\0Ljava/lang/String;\0&(Ljava/lang/Object;)Ljava/lang/Object;\0intValue\0valueOf\0(I)Ljava/lang/Integer;\0put\08(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;\0(I)Ljava/lang/StringBuilder;\0	getLogger\0,(Ljava/lang/Class;)Lorg/apache/log4j/Logger;\0!\0i\0l\0\0m\0\0\n\0q\0r\0\0\0\0s\0t\0\0\0\0u\0v\0\0\0\0w\0x\0\0\0\0\0y\0z\0\0\0\n\0\0{\0|\0\0}\0\0\0!\0\0\0\0\0*�\0�\0\0\0\0~\0\0\0\n\0\0\0\0\0\0\0\0�\0\0}\0\0\03\0\0\0\0\0*+-�\0W*-�\0�\0\0\0\0~\0\0\0\0\0\0\0,\0\0-\0\0.\0�\0\0\0\0\0�\0\0�\0�\0\0}\0\0\0�\0\0\0\0\0O*�\0�\0L+�\0\0�\0M,�\0�\0N,�\0	6*�\0\nY-�\0�\0*�\0\rY*�\0�\0�\0�\0�\0�\0*�\0�\0\0\0\0~\0\0\0\"\0\0\0\05\0\07\0\08\0\09\0!\0;\0/\0<\0B\0>\0J\0@\0�\0\0\0\0\0�\0\0�\0�\0\0}\0\0\0E\0\0\0\0\0*�\0W*�\0�\0*�\0�\0�\0�\0�\0\0\0\0~\0\0\0\0\0\0\0G\0\0H\0\0I\0\0K\0\0L\0�\0\0\0\0\0�\0\0�\0�\0\0}\0\0\0B\0\0\0\0\0\"�\0�\0Y�\0\Z�\0+�\0�\0�\0*�\0+�\0�\0\0\0\0~\0\0\0\0\0\0\0U\0\0V\0!\0W\0�\0\0\0\0\0�\0\0�\0�\0\0}\0\01\0\0	\0\0\0�+�\0*+,-�\0��\0�*�\0 �\0\Z�\0!Y�\0\":*�\0 �\0#\0W,�\0$:�\0%Y�\0&:�\0\'\0�\0,�\0(\0W�\0\r�\0)\0W*,+-�\0*:+,�\0-:./�\0-:�\0�\0Y�\0\Z0�\0�\0�\0�\01�\02�\0*�\03�\04�\0\0\0\0~\0\0\0N\0\0\0\0]\0\0_\0\0b\0\0d\0\0g\0\0i\0)\0j\05\0n\0;\0p\0D\0r\0N\0t\0Z\0x\0d\0{\0s\0|\0~\0}\0�\0~\0�\0�\0�\0�\0�\0�\0�\0\0\0\0�\0$\0�\0�	�\0O\0�\0�\0\0\0\0\0�\0�\0\0\0\0�\0\0�\0�\0\0}\0\0l\0\0\0\0v5:+:�6	6\n\n	�\0+\n2:�\0Y�\0\Z�\0�\0.�\0�\0:�\n���*�\06::�\07Y�\08:9:		 �\0;:\n\n�\0<:6�\0=�\0x6�\0>�\03:\r*\r-�\0?�\0@:\r�\0>:*�\0A�\0BYSY,SYSYS�\0C:�\0Y�\0\Z�\03�\0.�\0�\0�\0DW\r�\03�\0DW����\0\\E:		 �\0;:\n\n�\0<:�\0=�\0h�\0>�\03:\r*�\0A\r�\0BYSY,SYSYS�\0C:\r\r�\03�\0DW�\0-*�\0A�\0BYSY,SYSYS�\0C:�\0DW�\0@�\0\0\0\0~\0\0\0�\0 \0\0\0�\0\0�\0\0�\08\0�\0>\0�\0F\0�\0I\0�\0R\0�\0V\0�\0_\0�\0h\0�\0k\0�\0s\0�\0v\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�8\0�C\0�F\0�h\0�p\0�\0�\0\0\0\\\0�\0\0\0�\0�\0�\0�\0�\0�\0�\0�\0�\0\0�\0.�\0,\0\r\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0\0�\0|�\0])\0�\0\0\0\0�\0\0�\0�\0\0}\0\0\0\0\0\0\0��\0F+�\0<M,�\0=�\0�,�\0>N*�\0G-5�\0H:�\0I�\0s5:*�\0G�\0Y�\0\Z-�\0J�\0�\0�\0K�\0L\0�\0M\0:�\0N\0�\0?�\0O\0�\0P:5�\0H:�\02�\0�\0Y�\0\Z�\0�\0.�\0�\0:����+�\0\0\0\0~\0\0\06\0\r\0\0\0�\0\0�\0\0�\0\0�\0!\0�\0)\0�\0-\0�\0i\0�\0s\0�\0{\0�\0�\0�\0�\0�\0�\0�\0�\0\0\0$\0�\0S\0\0�\0�\0�\0�\0�\0�\0\0�\0B�\0�\0\0\0�\0�\0\0}\0\0�\0\0\0\0��\07Y�\08:�\0%Y\n�\0Q:�\0RY�\0S:T�\0U:		+�\0<:\n\n�\0=�\0h\n�\0>:\n�\0>�\0V6�\0WY�\0X:\r\r�\0Y\r�\0Z\r�\0(\0W�\0[\0�\0\\:�\0\r�\0]�\0�\0^�\0_\0W���,�\0\'\066�\0�\0`Y+�\0a:\r,�\0\0�\0b:�\0c\0:�\0N\0�\0}�\0O\0�\0W:�\0Z�\0[\0�\0\\�\0]`h�\0Y`6\r�\0Y�\0\Zd�\0�\0Z�\0�\0Y�\0ef�\0�\0�\0Y�\0\Zg�\0�\0Z�\0�\0eh�\0�\0�\0-:\r��\r:*�\0A�\0BY-SYSYSYS�\0C:�\0Y�\0\Z�\0.�\0�\0�\0DW����\0\0\0\0~\0\0\0v\0\0\0\0�\0	\0�\0\0�\0\0�\0$\0�\0,\0�\04\0�\0<\0�\0H\0�\0R\0�\0Y\0�\0`\0�\0j\0�\0x\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0\0�\0�\0�\0L	O\rSu�\0��\0�\0\0\0�\0�\0,\0\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0\0�\0Z\0\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0\0�\0\0\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0\0�\0\n�\0&\0�\0�\0��\0��\0E\0�\0\0\0\0�\0\0�\0|\0\0}\0\0\0-\0\0\0\0\0\0i�\0j�\0k�\0U�\0F�\0\0\0\0~\0\0\0\n\0\0\0\0 \0\0$\0\0�\0\0\0\0�\0o\0\0\0\0\0n\0\0\0\0\0W\0i\0p\0\n'),('ru.bitel.bgbilling.modules.inet.dyn.device.manad.ManadServiceActivator$1',1433856492000,'����\0\0\04\0\0\0	\0\nSourceFile\0\ZManadServiceActivator.java\0EnclosingMethod\0\n\0Hru/bitel/bgbilling/modules/inet/dyn/device/manad/ManadServiceActivator$1\0InnerClasses\0java/lang/Object\0Fru/bitel/bgbilling/modules/inet/dyn/device/manad/ManadServiceActivator \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\n\0\0\0\0\0\0'),('ru.bitel.bgbilling.modules.inet.dyn.device.manad.ManadServiceActivator$PatternItem',1433856492000,'����\0\0\04\0\n\0\0\n\0\0\0\0\0letter\0Ljava/lang/String;\0number\0I\0<init>\0()V\0Code\0LineNumberTable\0\0InnerClasses\0M(Lru/bitel/bgbilling/modules/inet/dyn/device/manad/ManadServiceActivator$1;)V\0\nSourceFile\0\ZManadServiceActivator.java\0	\0\n\0\0Rru/bitel/bgbilling/modules/inet/dyn/device/manad/ManadServiceActivator$PatternItem\0PatternItem\0java/lang/Object\0Hru/bitel/bgbilling/modules/inet/dyn/device/manad/ManadServiceActivator$1\0Fru/bitel/bgbilling/modules/inet/dyn/device/manad/ManadServiceActivator\0 \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0	\0\n\0\0\0\0\0\0\0\0\0\0*�\0�\0\0\0\0\0\0\0\0\0\0\0\0	\0\0\0\0\0\0\0\0\0\0\0*�\0�\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\r\0\0\0\0\0\0\0\0\n'),('ru.bitel.bgbilling.modules.inet.dyn.device.mikrotik.MikrotikServiceActivator',1433856492000,'����\0\0\04\0�\n\0@\0m\0n\n\0o\0p	\0;\0q	\0;\0r	\0;\0s	\0;\0t\0u\n\0v\0w\0x\n\0v\0y\n\0@\0z\0{	\0;\0|	\0;\0}	\0;\0~	\0;\0\n\0\r\0�	\0;\0�\n\0\r\0�\n\0@\0�	\0;\0�\n\0\r\0�\n\0\r\0�	\0;\0�\0�\n\0�\0�\0�\n\0\0m\0�\n\0\0�\n\0\0�\n\0�\0�\0�\0�\n\0�\0�\0�\0�\n\0�\0�\n\0�\0�\n\0�\0�\0K\n\0@\0�	\0;\0�\0�\n\0-\0�\0�\0�	\0;\0�\0�\n\0�\0�\n\0�\0�\n\0�\0�\n\0;\0�\n\0;\0�\n\0o\0�\0�\n\0�\0�\n\0�\0�\0�\0�\n\0�\0�\0�\n\0�\0�\0�\0�\0session\07Lbitel/billing/server/util/mikrotik/MikrotikApiSession;\0logger\0Lorg/apache/log4j/Logger;\0\rresultPattern\0Ljava/util/regex/Pattern;\0RESULT_ID_PARAM\0Ljava/lang/String;\0\rConstantValue\0\nprevIdList\0\nsourceHost\0\nsourcePort\0I\0<init>\0()V\0Code\0LineNumberTable\0init\0�(Lru/bitel/bgbilling/server/util/Setup;ILru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceType;Lru/bitel/common/ParameterMap;)Ljava/lang/Object;\0\nExceptions\0�\0connect\0()Ljava/lang/Object;\0\ndisconnect\0executeCommandMikrotik\0&(Ljava/lang/String;)Ljava/lang/String;\0getValue(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetServ;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;Ljava/util/Set;Ljava/lang/String;[Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;\0\rStackMapTable\0	Signature+(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetServ;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;Ljava/util/Set<Ljava/lang/Integer;>;Ljava/lang/String;[Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;\0executeCommands\0�(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetServ;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;Ljava/util/Set;[Ljava/lang/String;)Ljava/lang/Object;\0�(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetServ;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;Ljava/util/Set<Ljava/lang/Integer;>;[Ljava/lang/String;)Ljava/lang/Object;\0executeCommand\0(Ljava/lang/String;)V\0parseResultParamas\0�\0�\0<clinit>\0\nSourceFile\0MikrotikServiceActivator.java\0O\0P\0=(.+?)=(.+)\0�\0�\0�\0F\0G\0K\0I\0L\0I\0M\0N\0\rsa.sourceHost\0�\0�\0�\0\rsa.sourcePort\0�\0�\0S\0T\05bitel/billing/server/util/mikrotik/MikrotikApiSession\0�\0I\0�\0N\0�\0I\0�\0I\0O\0�\0B\0C\0W\0�\0Y\0X\0�\0I\0�\0[\0Y\0P\0D\0E\0Disconnected\0�\0�\0�\0java/lang/StringBuilder\0	execute: \0�\0�\0�\0�\0�\0�\0\\n\0\n\0�\0�\0�\0result=\0servId\0�\0�\0�\0�\0�\0�\0�\0\\\0]\0�\0�\0java/util/HashSet\0O\0�\0�\0�\0�\0�\0�\0java/lang/Object\0�\0�\0�\0�\0�\0�\0�\0�\0Z\0[\0g\0f\0�\0�\0\0\0�\0�\0�\0�\0�\0Lru/bitel/bgbilling/modules/inet/dyn/device/mikrotik/MikrotikServiceActivator\0.id\0�\0�\0,\0�\0�\0Tru/bitel/bgbilling/modules/inet/dyn/device/terminal/AbstractTerminalServiceActivator\0:ru/bitel/bgbilling/modules/inet/access/sa/ServiceActivator\0java/lang/Exception\0[Ljava/lang/String;\0java/util/regex/Matcher\0java/lang/String\0java/util/regex/Pattern\0compile\0-(Ljava/lang/String;)Ljava/util/regex/Pattern;\0ru/bitel/common/ParameterMap\0get\08(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;\0getInt\0(Ljava/lang/String;I)I\0host\0port\0username\0password\0M(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V\0()Ljava/lang/String;\0exitCommand\0	doCommand\0org/apache/log4j/Logger\0debug\0(Ljava/lang/Object;)V\0append\0-(Ljava/lang/String;)Ljava/lang/StringBuilder;\0toString\0info\0replace\0D(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;\0equals\0(Ljava/lang/Object;)Z\08ru/bitel/bgbilling/modules/inet/api/common/bean/InetServ\0getId\0()I\0valueOf\0(I)Ljava/lang/String;\0workingOptions\0Ljava/util/Set;\0(Ljava/util/Collection;)V\0\rjava/util/Set\0	retainAll\0(Ljava/util/Collection;)Z\0macrosFormat\0#Lru/bitel/common/util/MacrosFormat;\0!ru/bitel/common/util/MacrosFormat\0format\09(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;\0ru/bitel/common/Utils\0notBlankString\0(Ljava/lang/String;)Z\0trim\0matcher\03(Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;\0find\0()Z\0group\0\risEmptyString\0	getLogger\0,(Ljava/lang/Class;)Lorg/apache/log4j/Logger;\0!\0;\0@\0\0A\0\0\0B\0C\0\0\0\Z\0D\0E\0\0\0\0F\0G\0\0\0\Z\0H\0I\0\0J\0\0\0\0<\0\0K\0I\0\0\0\0L\0I\0\0\0\0M\0N\0\0\0\n\0\0O\0P\0\0Q\0\0\0E\0\0\0\0\0*�\0*�\0�\0*�\0*�\0*�\0�\0\0\0\0R\0\0\0\0\0\0\0\0\0\0\r\0\0\0\0\0 \0\0S\0T\0\0Q\0\0\0D\0\0\0\0\0$*�\0	�\0*\n�\0�\0*+-�\0�\0\0\0\0R\0\0\0\0\0\0\0\'\0\0(\0\0*\0U\0\0\0\0\0V\0\0W\0X\0\0Q\0\0\0M\0	\0\0\0\0-*�\0\rY*�\0*�\0*�\0*�\0*�\0*�\0�\0�\0*�\0�\0W�\0\0\0\0R\0\0\0\0\0\0\01\0#\02\0+\03\0U\0\0\0\0\0V\0\0Y\0X\0\0Q\0\0\0J\0\0\0\0\0\"*�\0W*�\0*�\0�\0W*�\0�\0�\0\Z�\0�\0\0\0\0R\0\0\0\0\0\0\0:\0\0;\0\0<\0\0=\0 \0>\0U\0\0\0\0\0V\0\0Z\0[\0\0Q\0\0\0n\0\0\0\0\0F�\0�\0Y�\0�\0+�\0�\0 �\0!+\"#�\0$L*�\0+�\0M�\0�\0Y�\0%�\0,�\0�\0 �\0!,�\0\0\0\0R\0\0\0\0\0\0\0E\0\0F\0\"\0G\0+\0H\0D\0I\0U\0\0\0\0\0V\0\0\\\0]\0\0Q\0\0\0c\0\0\0\0\01&�\0\'�\0,�\0(�\0)�*�\0\'�\0*�\0�*+,-�\0+�\0\0\0\0R\0\0\0\0\0\0\0P\0\n\0R\0\0T\0\0V\0!\0Z\0^\0\0\0\0\0U\0\0\0\0\0V\0_\0\0\0\0`\0\0a\0b\0\0Q\0\0\0�\0\0\n\0\0\0|�\0�*�\0,�\0\Z�\0-Y�\0.:*�\0,�\0/\0W:�66�\0E2:	*�\00	�\01Y+SY,SY-SYS�\02:		�\03�\0**	�\04�\05�\06�����\0\0\0\0R\0\0\0.\0\0\0\0b\0\0d\0\0g\0\0i\0\0j\0%\0n\0?\0p\0_\0r\0g\0t\0t\0n\0z\0x\0^\0\0\0\0�\0\0c�\0B�\0\0U\0\0\0\0\0V\0_\0\0\0\0d\0\0e\0f\0\0Q\0\0\0\0\0\0\0\0\0�\0\0\0\0R\0\0\0\0\0\0\0�\0U\0\0\0\0\0V\0\0g\0f\0\0Q\0\0\0�\0\0\0\0\0r*�\0+�\07M*8�\0,�\09�\0^,�\0:N,�\0::-�\0J-<�\0\'�\0A*�\0�\0=�\0�\0Y�\0*Z�\0�\0>�\0�\0 �\0�\0Y�\0*Z�\0�\0�\0�\0 �\0����\0\0\0\0R\0\0\0.\0\0\0\0�\0	\0�\0\0�\0\0�\0\0�\0#\0�\00\0�\0:\0�\0T\0�\0n\0�\0q\0�\0^\0\0\0\0�\0\0h�\0D\0i\0i�\0\0\0j\0P\0\0Q\0\0\0!\0\0\0\0\0\0	;�\0?�\0�\0\0\0\0R\0\0\0\0\0\0\0\0\0k\0\0\0\0l'),('ru.bitel.bgbilling.modules.inet.dyn.device.misc.CompositeServiceActivator',1433856492000,'����\0\0\04\n\0G\0u	\0E\0v\0U\n\0w\0x\n\0y\0z\0{\n\0|\0}\n\0~\0\0�\n\0\0�\n\0�\0}\n\0\0�\0�\n\0\r\0u\0�\n\0\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0\0�\0�\0�\n\0\0�\0\0�\0�\n\0\0�\0�\n\0y\0�\0�\0�\0�\0�\n\0!\0u\0�\n\0!\0�\0�\n\0 \0�\n\0!\0�\n\0w\0�\0�\0�\0�\0�\0K	\0E\0�\0�\n\0!\0�\n\0w\0�\0�\n\0\0�\0�\n\0�\0�	\0E\0�	\0E\0�\0\0�\n\0E\0�\0e\0\0�\0\0�\0\0�\0\0�\n\0�\0�\0�\0\0�\0\0�\0\0�\0\0�\0\0�\0\0�\0�\n\0w\0�\0�\0logger\0Lorg/apache/log4j/Logger;\0serviceActivators\0=[Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivator;\0reverseOrderServiceActivators\0disableOrderServiceActivators\0<init>\0()V\0Code\0LineNumberTable\0result\08(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;\0\rStackMapTable\0init\0�(Lru/bitel/bgbilling/server/util/Setup;ILru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceType;Lru/bitel/common/ParameterMap;)Ljava/lang/Object;\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0\nExceptions\0�\0destroy\0()Ljava/lang/Object;\0connect\0\ndisconnect\0\rserviceCreate\0U(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;)Ljava/lang/Object;\0�\0\rserviceModify\0\rserviceCancel\0connectionModify\0connectionClose\0onAccountingStart\0onAccountingStop\0<clinit>\0\nSourceFile\0CompositeServiceActivator.java\0N\0O\0H\0I\0�\0�\0�\0�\0�\0�\0ru/bitel/common/Preferences\0�\0�\0�\0�\0�\0�\0\n\0N\0�\0�\0�\0�\0java/util/ArrayList\0\rsa.composite.\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0f\0�\0java/util/Map$Entry\0Entry\0InnerClasses\0�\0f\0ru/bitel/common/ParameterMap\0class\0�\0�\0�\0f\0java/lang/Integer\0�\0�\0:ru/bitel/bgbilling/modules/inet/access/sa/ServiceActivator\0�\0�\0�\0�\0�\0java/lang/Throwable\0java/lang/StringBuilder\0Error loading class: \0�\0�\0. \0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0J\0K\0#Composite ServiceActivators count: \0�\0�\0�\0�\0sa.composite.orderMode\0�\0�\0Composite orderMode: \0�\0�\0�\0L\0K\0M\0K\0U\0V\0R\0S\0e\0f\0g\0f\0h\0f\0i\0j\0�\0�\0�\08ru/bitel/bgbilling/modules/inet/api/common/bean/InetServ\0l\0j\0m\0j\0n\0j\0o\0j\0p\0j\0q\0j\0Iru/bitel/bgbilling/modules/inet/dyn/device/misc/CompositeServiceActivator\0\0java/lang/Object\0$ru/bitel/bgbilling/server/util/Setup\0:ru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice\0>ru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceType\0<ru/bitel/bgbilling/kernel/dynamic/server/DynamicClassManager\0java/util/List\0java/util/Iterator\0java/lang/String\0java/lang/Exception\0?ru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent\0org/apache/log4j/Logger\0debug\0(Ljava/lang/Object;)V\0getInstance\0@()Lru/bitel/bgbilling/kernel/dynamic/server/DynamicClassManager;\0	getConfig\0()Ljava/lang/String;\0ru/bitel/common/Utils\0maskNull\0&(Ljava/lang/String;)Ljava/lang/String;\0\'(Ljava/lang/String;Ljava/lang/String;)V\0inherit\0>(Lru/bitel/common/ParameterMap;)Lru/bitel/common/ParameterMap;\0\nsubIndexed\0)(Ljava/lang/String;)Ljava/util/SortedMap;\0java/util/SortedMap\0entrySet\0()Ljava/util/Set;\0\rjava/util/Set\0iterator\0()Ljava/util/Iterator;\0hasNext\0()Z\0next\0\rjava/util/Map\0getValue\0get\0getKey\0intValue\0()I\0newInstance\07(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Object;\0add\0(Ljava/lang/Object;)Z\0append\0-(Ljava/lang/String;)Ljava/lang/StringBuilder;\0\ngetMessage\0toString\0error\0*(Ljava/lang/Object;Ljava/lang/Throwable;)V\0size\0toArray\0(([Ljava/lang/Object;)[Ljava/lang/Object;\0(I)Ljava/lang/StringBuilder;\0info\0getInt\0(Ljava/lang/String;I)I\0java/util/Collections\0reverse\0(Ljava/util/List;)V\0getNewState\0	getLogger\0,(Ljava/lang/Class;)Lorg/apache/log4j/Logger;\0!\0E\0G\0\0\0\0\Z\0H\0I\0\0\0\0J\0K\0\0\0\0L\0K\0\0\0\0M\0K\0\0\0\0\0N\0O\0\0P\0\0\0\0\0\0\0\0*�\0�\0\0\0\0Q\0\0\0\0\0\0\0!\0\0R\0S\0\0P\0\0\01\0\0\0\0\0,�\0+�,�\0\0\0\0Q\0\0\0\0\0\0\0,\0\0.\0\02\0T\0\0\0\0\0\0U\0V\0\0P\0\0�\0\0\0\0��\0�\0�\0:�\0Y�\0�\0	�\0\n:�\0Y-�\0�\0	�\0\n�\0:�\0\rY�\0:�\0�\0\0�\0\0:		�\0\0�\0�	�\0\0�\0:\n\n�\0\0�\0�\0:\n�\0\Z\0�\0�\0����\0����\0�\0:�\0\0W�\0.:�\0�\0!Y�\0\"#�\0$�\0$%�\0$�\0&�\0$�\0\'�\0(��{*�\0)\0�\0�\0*\0�\0+�\0,�\0�\0!Y�\0\"-�\0$*�\0,��\0.�\0\'�\0/0�\016	�\0�\0!Y�\0\"2�\0$	�\0.�\0\'�\0/	�\0<�\03*�\0)\0�\0�\0*\0�\0+�\04	�\0**�\04�\05�\0**�\0,�\05�\0**�\0,�\04**�\0,�\05:\n*�\0,:�66\r\r�\0&\r2:*+-�\06\0\n�\07:\n�\r���\n�\0\0�\0�\0�\0 \0\0Q\0\0\0�\0 \0\0\0:\0\0<\0\r\0>\0 \0?\07\0A\0@\0C\0i\0E\0z\0F\0�\0H\0�\0M\0�\0N\0�\0S\0�\0P\0�\0R\0�\0T\0�\0V\0�\0X\0Z\Z\0\\4\0^9\0`>\0bV\0d\\\0fg\0jr\0oz\0p�\0s�\0u�\0w�\0u�\0z\0T\0\0\0j\0\n�\0S\0\n\0W\0X\0Y\0Z\0[\0\\\0[\0]\0^\0\0�\0>\0_\0`Z\0a�\0*�\0�\0�\n�\0\0\0W\0X\0Y\0Z\0[\0\\\0[\0]\0b\0+\0\0�\0)\0c\0\0\0\0\0d\0\0e\0f\0\0P\0\0\0\0\0\0\0\06�\08�\0L*�\04M,�>6�\0,2:*�\09\0+�\07L����+�\0\0\0\0Q\0\0\0\Z\0\0\0\0�\0\0�\0\n\0�\0!\0�\0.\0�\04\0�\0T\0\0\0\0�\0\0\0W\0b\0+\0\0�\0\0c\0\0\0\0\0d\0\0g\0f\0\0P\0\0\0s\0\0\0\0\0.L*�\0,M,�>6�\0,2:*�\0:\0+�\07L����+�\0\0\0\0Q\0\0\0\0\0\0\0�\0\0�\0\0�\0&\0�\0,\0�\0T\0\0\0\0�\0\r\0\0W\0b\0+\0\0�\0\0c\0\0\0\0\0d\0\0h\0f\0\0P\0\0\0s\0\0\0\0\0.L*�\04M,�>6�\0,2:*�\0;\0+�\07L����+�\0\0\0\0Q\0\0\0\0\0\0\0�\0\0�\0\0�\0&\0�\0,\0�\0T\0\0\0\0�\0\r\0\0W\0b\0+\0\0�\0\0c\0\0\0\0\0d\0\0i\0j\0\0P\0\0\0y\0\0\0\0\01M*�\0,N-�66�\0-2:*+�\0<\0,�\07M����,�\0\0\0\0Q\0\0\0\0\0\0\0�\0\0�\0\0�\0)\0�\0/\0�\0T\0\0\0\Z\0�\0\0\0W\0k\0b\0+\0\0�\0 \0c\0\0\0\0\0d\0\0l\0j\0\0P\0\0\0�\0\0\0\0\0iM+�\0=�\03*�\0,N-�66�\0-2:*+�\0?\0,�\07M����\00*�\05N-�66�\0-2:*+�\0?\0,�\07M����,�\0\0\0\0Q\0\0\0&\0	\0\0\0�\0\0�\0\n\0�\0#\0�\01\0�\0:\0�\0S\0�\0a\0�\0g\0�\0T\0\0\0&\0�\0\0\0W\0k\0b\0+\0\0�\0 �\0\0+�\0 \0c\0\0\0\0\0d\0\0m\0j\0\0P\0\0\0y\0\0\0\0\01M*�\05N-�66�\0-2:*+�\0@\0,�\07M����,�\0\0\0\0Q\0\0\0\0\0\0\0�\0\0�\0\0�\0)\0�\0/\0�\0T\0\0\0\Z\0�\0\0\0W\0k\0b\0+\0\0�\0 \0c\0\0\0\0\0d\0\0n\0j\0\0P\0\0\0�\0\0\0\0\0iM+�\0=�\03*�\0,N-�66�\0-2:*+�\0A\0,�\07M����\00*�\05N-�66�\0-2:*+�\0A\0,�\07M����,�\0\0\0\0Q\0\0\0&\0	\0\0\0�\0\0�\0\n\0�\0#\0�\01\0�\0:\0�\0S\0�\0a\0�\0g\0�\0T\0\0\0&\0�\0\0\0W\0k\0b\0+\0\0�\0 �\0\0+�\0 \0c\0\0\0\0\0d\0\0o\0j\0\0P\0\0\0y\0\0\0\0\01M*�\05N-�66�\0-2:*+�\0B\0,�\07M����,�\0\0\0\0Q\0\0\0\0\0\0\0�\0\0�\0\0�\0)\0�\0/\0\0T\0\0\0\Z\0�\0\0\0W\0k\0b\0+\0\0�\0 \0c\0\0\0\0\0d\0\0p\0j\0\0P\0\0\0y\0\0\0\0\01M*�\0,N-�66�\0-2:*+�\0C\0,�\07M����,�\0\0\0\0Q\0\0\0\0\0\0\0	\0\0)	\0/\0T\0\0\0\Z\0�\0\0\0W\0k\0b\0+\0\0�\0 \0c\0\0\0\0\0d\0\0q\0j\0\0P\0\0\0y\0\0\0\0\01M*�\05N-�66�\0-2:*+�\0D\0,�\07M����,�\0\0\0\0Q\0\0\0\0\0\0\0\0\0)\0/\0T\0\0\0\Z\0�\0\0\0W\0k\0b\0+\0\0�\0 \0c\0\0\0\0\0d\0\0r\0O\0\0P\0\0\0!\0\0\0\0\0\0	E�\0F�\0�\0\0\0\0Q\0\0\0\0\0\0\0$\0\0s\0\0\0\0t\0�\0\0\0\n\0\0\0�\0�	'),('ru.bitel.bgbilling.modules.inet.dyn.device.radius.AbstractRadiusProtocolHandler',1433856492000,'����\0\0\049\n\0R\0�	\0P\0�\0�\n\0�\0�	\0P\0�\0�\n\0�\0�\n\0�\0�\n\0:\0�	\0P\0�\0�	\0P\0�\0�	\0P\0�\0�	\0P\0�\0�\n\0�\0�	\0P\0�\0�\0�	\0P\0�\n\0�\0�\n\0�\0�\0�\0�\0�\0�\0�\n\0\0�\n\0�\0�\n\0�\0�\n\0�\0�	\0P\0�\0�\n\0�\0�	\0<\0�\0�\n\0�\0�\n\0�\0�\0�\n\0P\0�\0�	\0<\0�\0�	\0<\0�\0�\n\0�\0�\n\0�\0�\n\02\0�\n\0�\0�\0�\n\0)\0�\n\0)\0�\n\0)\0�\n\0P\0�\n\0P\0�\n\0P\0�\0�\0�\0�\n\0�\0�\0�\0�\n\0)\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\n\0�\0�\0�\n\0�\0�\n\0�\0�\0�\n\0H\0�\n\0H\0�\0�\0�\n\0H\0�\n\02\0�\n\0�\0�\0�\n\0�\0�\0�\0�\0logger\0Lorg/apache/log4j/Logger;\0defaultRadiusVendor\0I\0radiusVendor\0disablePatternAttributes\0=Lru/bitel/bgbilling/kernel/network/radius/RadiusAttributeSet;\0macAddressVendor\0macAddressType\0macAddressPrefix\0Ljava/lang/String;\0optionRadiusAttributesMap\0ELru/bitel/bgbilling/kernel/network/radius/RadiusAttributeSetRealmMap;\0addFramedRouteHost\0<init>\0(I)V\0Code\0LineNumberTable\0()V\0init\0�(Lru/bitel/bgbilling/server/util/Setup;ILru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceType;Lru/bitel/common/ParameterMap;)V\0\rStackMapTable\0�\0\nExceptions\0�\0setStateFromAttributes\0:(Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;)V\0\rsetMacAddress\0�\0getAttributeValue\0_(Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;IILjava/lang/String;)Ljava/lang/Object;\0�\0preprocessAccessRequest\0�(Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Lru/bitel/common/sql/ConnectionSet;)V\0postprocessAccessRequest\0preprocessAccountingRequest\0addResponseAttributesZ(Lru/bitel/bgbilling/kernel/container/managed/ServerContext;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetServType;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetServ;Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Ljava/lang/String;Ljava/util/Map;Lru/bitel/bgbilling/kernel/network/radius/RadiusAttributeSet;Ljava/util/Set;)Z\0�\0�\0	Signature�(Lru/bitel/bgbilling/kernel/container/managed/ServerContext;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetServType;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetServ;Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Ljava/lang/String;Ljava/util/Map<Ljava/lang/String;Lru/bitel/bgbilling/kernel/network/radius/RadiusAttributeSet;>;Lru/bitel/bgbilling/kernel/network/radius/RadiusAttributeSet;Ljava/util/Set<Ljava/lang/Integer;>;)Z\0addFramedRoute\0<clinit>\0\nSourceFile\0\"AbstractRadiusProtocolHandler.java\0b\0f\0V\0W\0\rradius.vendor\0�\0�\0�\0X\0W\0!radius.disable.pattern.attributes\0�\0�\0�\0�\0�\0�\0�\0Y\0Z\0radius.macAddress.vendor\0[\0W\0radius.macAddress.type\0\\\0W\0radius.macAddress.prefix\0]\0^\0radius.inetOption.\0�\0�\0�\0_\0`\0radius.addFramedRoute\0radius.addFramedRoute.gateway\0a\0^\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0\Zjava/net/InetSocketAddress\0�\0�\0�\0�\0�\0�\0�\0\0T\0U\0\"State is disable (from attributes)\08ru/bitel/bgbilling/modules/inet/api/common/bean/InetServ\r\0!State is enable (from attributes)\0q\0r\0java/lang/String\0[B\0&Unknown type for macAddress attribute.\08ru/bitel/bgbilling/kernel/network/radius/RadiusAttribute\Z\0�\0�\0o\0n\0m\0n\0~\0n\0�\0;ru/bitel/bgbilling/kernel/network/radius/RadiusAttributeSet !\0:ru/bitel/bgbilling/modules/inet/radius/InetRadiusProcessor\0disable\"#$%&\0�\'()\0java/lang/Integer*\0�+\09ru/bitel/bgbilling/kernel/network/radius/RadiusDictionary,-.\0�/\0java/lang/StringBuilder01\0 \0 1\0�2\0b345\0Oru/bitel/bgbilling/modules/inet/dyn/device/radius/AbstractRadiusProtocolHandler67\0@ru/bitel/bgbilling/modules/inet/access/sa/ProtocolHandlerAdapter\0>ru/bitel/bgbilling/kernel/network/radius/RadiusProtocolHandler\0java/lang/Exception\0java/lang/Object\0java/util/List\0java/util/Iterator\0ru/bitel/common/ParameterMap\0getInt\0(Ljava/lang/String;I)I\0get\08(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;\0ru/bitel/common/Utils\0notBlankString\0(Ljava/lang/String;)Z\0newRadiusAttributeSet\0Q(Ljava/lang/String;)Lru/bitel/bgbilling/kernel/network/radius/RadiusAttributeSet;\04ru/bitel/bgbilling/modules/inet/api/server/InetUtils\0newRadiusAttributeSetRealmMap\0x(ILru/bitel/common/ParameterMap;Ljava/lang/String;)Lru/bitel/bgbilling/kernel/network/radius/RadiusAttributeSetRealmMap;\0\risBlankString\0:ru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice\0getHosts\0()Ljava/util/List;\0size\0()I\0(I)Ljava/lang/Object;\0\ngetAddress\0()Ljava/net/InetAddress;\0java/net/InetAddress\0()[B\0ru/bitel/common/inet/IpAddress\0toString\0([B)Ljava/lang/String;\05ru/bitel/bgbilling/kernel/network/radius/RadiusPacket\0contains\0@(Lru/bitel/bgbilling/kernel/network/radius/RadiusAttributeSet;)Z\0org/apache/log4j/Logger\0debug\0(Ljava/lang/Object;)V\0DEVICE_STATE8\0RadiusPacketOption\0InnerClasses\0JLru/bitel/bgbilling/kernel/network/radius/RadiusPacket$RadiusPacketOption;\0java/lang/Short\0valueOf\0(S)Ljava/lang/Short;\0	setOption\0_(Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket$RadiusPacketOption;Ljava/lang/Object;)V\0MAC_ADDRESS\0MAC_ADDRESS_BYTES\0error\0getAttribute\0>(II)Lru/bitel/bgbilling/kernel/network/radius/RadiusAttribute;\0getValue\0()Ljava/lang/Object;\0\rgetAttributes\0(II)Ljava/util/List;\0\nstartsWith\0length\0	substring\0(I)Ljava/lang/String;\0\rjava/util/Map\0&(Ljava/lang/Object;)Ljava/lang/Object;\0\raddAttributes\0@(Lru/bitel/bgbilling/kernel/network/radius/RadiusAttributeSet;)V\0equals\0(Ljava/lang/Object;)Z\0\rjava/util/Set\0iterator\0()Ljava/util/Iterator;\0hasNext\0()Z\0next\0Cru/bitel/bgbilling/kernel/network/radius/RadiusAttributeSetRealmMap\0d(Ljava/lang/String;Ljava/lang/Integer;)Lru/bitel/bgbilling/kernel/network/radius/RadiusAttributeSet;\0getByteAttribute\0(II[B)[B\0\Zru/bitel/common/inet/IpNet\0([BI)Ljava/lang/String;\0append\0-(Ljava/lang/String;)Ljava/lang/StringBuilder;\0()Ljava/lang/String;\0(IIILjava/lang/Object;)V\0setAttribute\0=(Lru/bitel/bgbilling/kernel/network/radius/RadiusAttribute;)V\0	getLogger\0,(Ljava/lang/Class;)Lorg/apache/log4j/Logger;\0Hru/bitel/bgbilling/kernel/network/radius/RadiusPacket$RadiusPacketOption\0!\0P\0R\0\0S\0	\0\Z\0T\0U\0\0\0\0V\0W\0\0\0\0X\0W\0\0\0\0Y\0Z\0\0\0\0[\0W\0\0\0\0\\\0W\0\0\0\0]\0^\0\0\0\0_\0`\0\0\0\0a\0^\0\0\0\0\0b\0c\0\0d\0\0\0*\0\0\0\0\0\n*�\0*�\0�\0\0\0\0e\0\0\0\0\0\0\0L\0\0M\0	\0N\0\0b\0f\0\0d\0\0\0,\0\0\0\0\0*�\0*	0�\0�\0\0\0\0e\0\0\0\0\0\0\0Q\0\0R\0\0S\0\0g\0h\0\0d\0\0:\0\0	\0\0\0�**�\0�\0�\0�\0:�\0�\0*�\0	�\0\n�\0*�\0\n**�\0�\0�\0*\r�\0�\0*�\0�\0*�\0�\0�\0�\0Y*�\0�\0*�\0�\0�\04-�\0:�\0)�\0\0�\0�\0\Z\0�\0�\0:*�\0�\0�\0*�\0�\0�\0*�\0�\0\0\0\0e\0\0\0N\0\0\0\0Y\0\0[\0\0\\\0!\0^\0-\0c\02\0f\0A\0g\0M\0h\0Y\0j\0e\0l\0p\0n\0|\0p\0�\0r\0�\0s\0�\0u\0�\0v\0�\0z\0�\0|\0�\0\0i\0\0\0\r\0�\0-\0j�\0�\0k\0\0\0\0\0l\0\0m\0n\0\0d\0\0\0v\0\0\0\0\0<*�\0\n�\07+*�\0\n�\0�\0�\0 !�\0\"+�\0#�\0%�\0&�\0�\0 \'�\0\"+�\0#�\0%�\0&�\0\0\0\0e\0\0\0\0\0\0\0�\0\0�\0\0�\0\Z\0�\0(\0�\00\0�\0;\0�\0i\0\0\0\0(\0\0o\0n\0\0d\0\0\0�\0\0\0\0\0L*+*�\0*�\0*�\0�\0(M,�\08,�\0)�\0+�\0*,�\0)�\0&�\0#,�\0+�\0+�\0,,�\0+�\0+�\0&�\0�\0 -�\0.�\0\0\0\0e\0\0\0\"\0\0\0\0�\0\0�\0\0�\0\0�\0+\0�\02\0�\0C\0�\0K\0�\0i\0\0\0\n\0�\0+\0p\0\0q\0r\0\0d\0\0\0\0\0\0\0��\0�\0��\0�\0+�\0/:�\0	�\00��\0d+�\01:�\0�6�\0\06�\0B�\0\Z\0�\02:�\00:		�\0)�\0	�\0):\n\n�\03�\0\n�\04�\05������\0\0\0\0e\0\0\0N\0\0\0\0�\0	\0�\0\0�\0\0�\0\0�\0 \0�\0&\0�\0)\0�\01\0�\06\0�\08\0�\0K\0�\0Y\0�\0`\0�\0h\0�\0o\0�\0y\0�\0�\0�\0�\0�\0i\0\0\0\0	\Z�\0\0s�\0?�\0\0\0t\0u\0\0d\0\0\0+\0\0\0\0\0*+�\06*+�\07�\0\0\0\0e\0\0\0\0\0\0\0�\0\0�\0\n\0�\0k\0\0\0\0\0l\0\0v\0u\0\0d\0\0\0\"\0\0\0\0\0*,�\08�\0\0\0\0e\0\0\0\n\0\0\0\0�\0\0�\0k\0\0\0\0\0l\0\0w\0u\0\0d\0\0\0+\0\0\0\0\0*+�\06*+�\07�\0\0\0\0e\0\0\0\0\0\0\0\0\n\0k\0\0\0\0\0l\0\0x\0y\0\0d\0\0\0�\0\0\r\0\0\0~�\09\0�\0::		�\0\n	�\0;�\0\n�\0;=�\0>�\0��\0H�\0?\0�\0>�\0@\0:\n\n�\0A\0�\0+\n�\0B\0�\0C:*�\0�\0D:�\0\n�\0;����\0\0\0\0e\0\0\0:\0\0\08\09\0;\0\Z?\0A\0&E\00G\02K\0AM\0`O\0mP\0rR\0yT\0|W\0i\0\0\0\0�\0\Z\0z�\0\0{.�\0\0k\0\0\0\0\0l\0|\0\0\0\0}\0\0~\0n\0\0d\0\0\0�\0\0\0\0\0J*�\0�\0E+�\0FM,�\08, �\0GN+�\02Y�\0HY�\0I-�\0JK�\0J*�\0�\0JL�\0J�\0M�\0N�\0O�\0\0\0\0e\0\0\0\Z\0\0\0_\0a\0c\0e\0g\0Ij\0i\0\0\0\0�\0I\0k\0\0\0\0\0l\0\0\0f\0\0d\0\0\0!\0\0\0\0\0\0	P�\0Q�\0 �\0\0\0\0e\0\0\0\0\0\0\0%\0\0�\0\0\0\0�\n\0\0\0\n\0\0�	\0	'),('ru.bitel.bgbilling.modules.inet.dyn.device.radius.AbstractRadiusServiceActivator',1433856492000,'����\0\0\04\n\0�\0�\0�	\0�\0�	\0�\0�	\0�\0�	\0�\0�\n\0�\0�	\0�\0�\n\0�\0�\0\0\n\0�\n\n		\0�\n\n\r\n\n\0�	\0�\n\0�\n\0�\Z	\0�	\0� 	\0�!\n\0&\"	\0�#\n\0&$	\0�%\n\0�&\'()\n\0*	\0�+,\n-.	\0�/012\n\03	\0�45\n\06	\0�789:\n\0�;\n<=\n\0=>	\0�?@	\0�AB	\0�C\n\0-\0�	\0-+	\0-/	\0-4	\0-7	\0-?	\0-A	\0-C\n\0�DE	\0�F\n\0G	\0�HI\nJKL	\0�MN	\0�O\n\0&P\nQR\nQS\n\0&T\nUV\n\0&WXYXZ[\\\nU]\n\0�^\n\0d_\n\0y`a\nUbc\nUde\nUf\ngh\n\0dij\nk\n\rlmn\n\0vp\n\0yqr\n\0ys\n\0�t\n\ruvw&xy\n\0�z\n\0�{|\n\0�\0�}\n\0�~\n�\n\0���\n��\n�\n\0���\n�\n\0��\nJ�\n�\n\0��\n\0&�\n\0��\n��\n\0&�\n�X������\n����\nJ��\n\0�\0���\0	ConfCache\0InnerClasses\0logger\0Lorg/apache/log4j/Logger;\0\ndataLogger\0?Lru/bitel/bgbilling/modules/inet/radius/RadiusHourlyDataLogger;\0RuntimeVisibleAnnotations\0Ljavax/annotation/Resource;\0name\0radiusDataLogger\0deviceId\0I\0nasHostAddr\0Ljava/net/InetAddress;\0\rnasIdentifier\0Ljava/lang/String;\0radiusClient\07Lru/bitel/bgbilling/kernel/network/radius/RadiusClient;\0realmRadiusAttributesMap\0Ljava/util/Map;\0	Signature\0`Ljava/util/Map<Ljava/lang/String;Lru/bitel/bgbilling/kernel/network/radius/RadiusAttributeSet;>;\0optionRadiusAttributesMap\0ELru/bitel/bgbilling/kernel/network/radius/RadiusAttributeSetRealmMap;\0disableRadiusAttributes\0=Lru/bitel/bgbilling/kernel/network/radius/RadiusAttributeSet;\0enableRadiusAttributes\0withoutBreak\0Z\0\ZconnectionRadiusAttributes\0Ljava/util/Set;\0#Ljava/util/Set<Ljava/lang/String;>;\0addRealmAttributes\0podFixedAttributes\0coaFixedAttributes\0needConnectionStateModify\0defaultOptionsPrefix\0defaultWithoutBreak\0defaultConnectionAttributes\0 defaultNeedConnectionStateModify\0logCoA\0logPoD\0\nCONF_CACHE\0+Lru/bitel/common/ref/ConcurrentWeakHashMap;\0�Lru/bitel/common/ref/ConcurrentWeakHashMap<Lru/bitel/common/ParameterMap;Lru/bitel/bgbilling/modules/inet/dyn/device/radius/AbstractRadiusServiceActivator$ConfCache;>;\0<init>\0)(Ljava/lang/String;ZLjava/lang/String;Z)V\0Code\0LineNumberTable\0\rStackMapTable�y\0init\0�(Lru/bitel/bgbilling/server/util/Setup;ILru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceType;Lru/bitel/common/ParameterMap;)Ljava/lang/Object;������\'\0\nExceptions�\0destroy\0()Ljava/lang/Object;\0connect\0\ndisconnect\0prepareRequest\0z(Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;)V\0getUsernameAndRealm\0((Ljava/lang/String;Z)[Ljava/lang/String;\0connectionModifyCoA\0U(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;)Ljava/lang/Object;�r�\0<clinit>\0()V\0\nSourceFile\0#AbstractRadiusServiceActivator.java\0�\0�\0radius.inetOption.\0�\0�\0�\0�\0�\0�\0�\0����\0�\0��������\0[Ljava/lang/String;\0radius.host��������\0�\0�\0radius.port\01700�����\0sa.radius.sourceHost\0radius.sourceHost\0sa.radius.sourcePort\0radius.sourcePort\0radius.identifier��\0�\0�\0sa.radius.secret\0\rradius.secret����\0\rsa.radius.log\0sa.radius.log.coa\0�\0�\0sa.radius.log.pod\0�\0�\05ru/bitel/bgbilling/kernel/network/radius/RadiusClient\0�\0�\0��\0�\0�\0��\0�\0���\0Zru/bitel/bgbilling/modules/inet/dyn/device/radius/AbstractRadiusServiceActivator$ConfCache\0\rradius.realm.\0\nattributes��\0�\0�\0!sa.radius.option.attributesPrefix���\0�\0�\0sa.radius.disable.attributes\0radius.disable.attributes\0radius.realm.disable.attributes��\0�\0�\0sa.radius.enable.attributes��\0�\0�\0java/util/HashSet\0sa.radius.connection.attributes\0\\s*,\\s*�����\0��\0�\0�\0sa.radius.pod.attributes\0�\0�\0sa.radius.coa.attributes\0�\0���\0!sa.radius.connection.withoutBreak\0�\0���\0�\0�\07withoutBreak=true but disableRadiusAttributes is empty!���\0sa.radius.realm.addAttributes\0�\0�\0 sa.radius.connection.stateModify\0�\0�\0�\0��������������\0NAS-Port��\08ru/bitel/bgbilling/kernel/network/radius/RadiusAttribute\09ru/bitel/bgbilling/kernel/network/radius/RadiusDictionary����\0����\0Acct-Session-Id��\0	User-Name��\0Framed-IP-Address�����\0��\0NAS-IP-Address����\0NAS-Identifier\0Nru/bitel/bgbilling/kernel/network/radius/RadiusAttribute$RadiusAttributeString\0RadiusAttributeString\0����\05ru/bitel/bgbilling/kernel/network/radius/RadiusPacket��\0�\0���\0default�\0;ru/bitel/bgbilling/kernel/network/radius/RadiusAttributeSet\0java/lang/String����\0java/lang/StringBuilder\0!Connection modify CoA: oldState: �\0��\0; newState: �\0; oldOptionSet: �\0; newOptionSet: 	�\n�\r\0�\0�\0�\0Send CoA lock: \n���\0�\0java/lang/Integer�\Z\0Send CoA: \n\0Pru/bitel/bgbilling/modules/inet/dyn/device/radius/AbstractRadiusServiceActivator\0)ru/bitel/common/ref/ConcurrentWeakHashMap\0Aru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorAdapter\0:ru/bitel/bgbilling/modules/inet/access/sa/ServiceActivator\0java/util/List\0$ru/bitel/bgbilling/server/util/Setup\0:ru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice\0>ru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceType\0ru/bitel/common/ParameterMap\0[B\0java/lang/Exception\0>ru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection\0java/util/Iterator\0getId\0()I\0getHostsAsString\0()Ljava/util/List;\0size\0get\0(I)Ljava/lang/Object;\0getHost\0()Ljava/lang/String;\08(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;\0java/net/InetAddress\0	getByName\0*(Ljava/lang/String;)Ljava/net/InetAddress;\0ru/bitel/common/Utils\0parseInt\0(Ljava/lang/String;)I\0getInt\0(Ljava/lang/String;I)I\0\rgetIdentifier\0	getSecret\0getBytes\0()[B\0�(Ljava/lang/String;ILjava/net/InetAddress;I[BLru/bitel/bgbilling/server/util/Setup;Lru/bitel/bgbilling/kernel/network/radius/datalog/hourly/RadiusHourlyDataLogger;ZZ)V\0/(Ljava/lang/String;ILjava/net/InetAddress;I[B)V\0&(Ljava/lang/Object;)Ljava/lang/Object;\0\ZnewRadiusAttributeRealmMap\0S(Lru/bitel/common/ParameterMap;Ljava/lang/String;Ljava/lang/String;)Ljava/util/Map;\04ru/bitel/bgbilling/modules/inet/api/server/InetUtils\0newRadiusAttributeSetRealmMap\0x(ILru/bitel/common/ParameterMap;Ljava/lang/String;)Lru/bitel/bgbilling/kernel/network/radius/RadiusAttributeSetRealmMap;\0newRadiusAttributeSet\0Q(Ljava/lang/String;)Lru/bitel/bgbilling/kernel/network/radius/RadiusAttributeSet;\0getRadiusAttributeSet\0split\0\'(Ljava/lang/String;)[Ljava/lang/String;\0java/util/Arrays\0asList\0%([Ljava/lang/Object;)Ljava/util/List;\0(Ljava/util/Collection;)V\0put\08(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;\0isEmpty\0()Z\0org/apache/log4j/Logger\0warn\0(Ljava/lang/Object;)V\04ru/bitel/bgbilling/kernel/network/radius/nas/NasList\0getInstance\08()Lru/bitel/bgbilling/kernel/network/radius/nas/NasList;\05(I)Lru/bitel/bgbilling/kernel/network/radius/nas/Nas;\0setNas\0!(Lru/bitel/common/model/Idable;)V\0()J\0setConnectionId\0(J)V\0\rjava/util/Set\0contains\0(Ljava/lang/Object;)Z\0\rgetDevicePort\0valueOf\0(I)Ljava/lang/Integer;\0(IIILjava/lang/Object;)V\0setAttribute\0=(Lru/bitel/bgbilling/kernel/network/radius/RadiusAttribute;)V\0getAcctSessionId\0getUsername\0getInetAddressBytes\0java/nio/ByteBuffer\0wrap\0([B)Ljava/nio/ByteBuffer;\0(IIILjava/nio/ByteBuffer;)V\0\ngetAddress\0convertBytesToInt\0([B)I\0(IILjava/lang/String;)V\0getCode\0()B\0\raddAttributes\0@(Lru/bitel/bgbilling/kernel/network/radius/RadiusAttributeSet;)V\0\risBlankString\0(Ljava/lang/String;)Z\0\rjava/util/Map\0indexOf\0(I)I\0	substring\0(I)Ljava/lang/String;\0append\0-(Ljava/lang/String;)Ljava/lang/StringBuilder;\0?ru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent\0getOldState\0(I)Ljava/lang/StringBuilder;\0getNewState\0\rgetOldOptions\0()Ljava/util/Set;\0-(Ljava/lang/Object;)Ljava/lang/StringBuilder;\0\rgetNewOptions\0toString\0info\0\rgetConnection\0B()Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;\0connectionClose\0createModifyRequest\09()Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;\0\ZsetConnectionStateModified\0(Z)V\0	sendAsync\0V(Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;)Ljava/util/concurrent/Future;\0getRealm\0iterator\0()Ljava/util/Iterator;\0hasNext\0next\0Cru/bitel/bgbilling/kernel/network/radius/RadiusAttributeSetRealmMap\0d(Ljava/lang/String;Ljava/lang/Integer;)Lru/bitel/bgbilling/kernel/network/radius/RadiusAttributeSet;\0	getLogger\0,(Ljava/lang/Class;)Lorg/apache/log4j/Logger;!\0�\0�\0\0�\0\0\Z\0�\0�\0\0\0\0�\0�\0\0�\0\0\0\0\0�\0\0�s\0�\0\0�\0�\0\0\0\0�\0�\0\0\0\0�\0�\0\0\0\0�\0�\0\0\0\0�\0�\0\0�\0\0\0\0�\0\0�\0�\0\0\0\0�\0�\0\0\0\0�\0�\0\0\0\0�\0�\0\0\0\0�\0�\0\0�\0\0\0\0�\0\0�\0�\0\0\0\0�\0�\0\0\0\0�\0�\0\0\0\0�\0�\0\0\0\0�\0�\0\0\0\0�\0�\0\0\0\0�\0�\0\0\0\0�\0�\0\0\0\0�\0�\0\0\0\0�\0�\0\0\0\Z\0�\0�\0\0�\0\0\0\0�\0	\0\0�\0�\0\0�\0\0\0o\0\0\0\0\0!*�\0+�\0L*+�\0*�\0*-�\0*�\0�\0\0\0\0�\0\0\0\"\0\0\0\0�\0\0�\0\0�\0\0�\0\0�\0\0�\0\Z\0�\0 \0�\0�\0\0\0\0�\0\0\0�\0�\0�\0\0\0\0�\0�\0\0�\0\0�\0\0\0\0�*-�\0�\0-�\0	:�\0�\0\n\0�\0�\0\0�\0�\0:\r�\0\n2�\0-�\0�\0:*�\0�\0�\0\n2�\0�\0�\06		�\0�6	�\0�\0:\n�\0�\06*\Z-�\0�\0�\0-�\0�\0�\0�\0 :!�\06\r*\"\r�\0�\0�\0�\0#*$\r�\0�\0�\0�\0%*�\0#�\0\n*�\0%�\0**�\0&Y\n*�\0	+*�\0\'*�\0#*�\0%�\0(�\0)�\0\Z*�\0&Y\n*�\0	�\0*�\0)�\0+�\0,�\0-:�\0�*./�\00�\01*2*�\0�\0�\03�\04567�\0�\0�\0:*�\08�\09*:�\0�\0;�\0<*�\0=Y>*�\0�\0?�\0@�\0A�\0B�\0C*D�\0�\08�\0E*F�\0�\08�\0G�\0-Y�\0H:*�\01�\0I*�\04�\0J*�\09�\0K*�\0<�\0L*�\0C�\0M*�\0E�\0N*�\0G�\0O�\0+�\0PW�\0B*�\0I�\01*�\0J�\04*�\0K�\09*�\0L�\0<*�\0M�\0C*�\0N�\0E*�\0O�\0G*Q*�\0�\0�\0�\0�\0�\0�\0R*�\0R�\0!*�\09�\0\r*�\09�\0S�\0�\0TU�\0V*�\0R*W�\0�\0�\0�\0X*Y*�\0�\0�\0�\0�\0�\0�\0Z�\0\0\0\0�\0\0\0�\04\0\0\0�\0\0�\0\0�\0.\0�\0G\0�\0P\0�\0j\0�\0o\0�\0t\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�%\0�<\0�I\0�N\0�[\0�p\0��\0��\0��\0��\0��\0��\0��\0��\0��\0�\0\0�	\0�\0�\0�$\0�/\0�2\0�;\0�D\0�M\0�V\0�_\0�h\0�q�����\n�\0�\0\0�\0�\0+\0�@\0�\0\0\0�\0�\0�\0�\0�\0�\0\0\0�\0��\0\0\0�\0�\0�\0�\0�\0�\0\0\0�\0�\0��\0\0	\0�\0�\0�\0�\0�\0�\0\0�\0\0�\0��\0\0	\0�\0�\0�\0�\0�\0�\0\0�\0\0�\0�\0��\0�\0b\0\0�\0�\0�\0�\0�\0�\0\0�\0�\0�\0\0��\0\0\0\0�\0�\0�\0�\0�\0�\0\0�\0�\0�\0\0�S\0��\0\0\0\0�\0�\0�\0�\0�\0�\0\0�\0�\0�\0\0�&�\0�\0�>�\0\0\0�\0�\0�\0�\0�\0�\0\0�\0�\0�\0�\0\0�\0�\0��\0\0\0\0�\0�\0�\0�\0�\0�\0\0�\0�\0�\0�\0\0�\0�\0�I\0��\0\0\0\0�\0�\0�\0�\0�\0�\0\0�\0�\0�\0�\0\0�\ZO\0��\0\0\0\0�\0�\0�\0�\0�\0�\0\0�\0�\0�\0�\0\0��\0\0\0�\0�\0�\0�\0�\0�\0\0�\0�\0�\0�\0\0�\0�\0��\0\0\0\0�\0�\0�\0�\0�\0�\0\0�\0�\0�\0�\0\0�\0�\0�I\0��\0\0\0\0�\0�\0�\0�\0�\0�\0\0�\0�\0�\0�\0\0�\0�\0\0\0\0\0�\0\0�\0�\0\0�\0\0\0%\0\0\0\0\0	*�\0)�\0[�\0\0\0\0�\0\0\0\n\0\0\0\0\0�\0\0\0\0\0�\0\0�\0�\0\0�\0\0\0Q\0\0\0\0\0#*�\0#�\0\n*�\0%�\0�\0\\*�\0�\0]L*�\0)+�\0^�\0\0\0\0�\0\0\0\0\0\0\"\0$\0%\0!(\0�\0\0\0\0\0�\0\0\0\0\0�\0\0�\0�\0\0�\0\0\0\Z\0\0\0\0\0�\0\0\0\0�\0\0\0\0\0\02\0�\0\0\0\0\0�\0\0�\0�\0\0�\0\0X\0\0\0\0�*�\0),�\0_�\0`*�\0C�\0a\0�\0*�\0Cb�\0c\0�\0+�\0dY,�\0f�\0g�\0h�\0i*�\0C�\0a\0�\0*�\0Cj�\0c\0�\0+�\0dY,,�\0k�\0h�\0i*�\0C�\0a\0�\0*�\0Cl�\0c\0�\0+�\0dY,�\0m�\0h�\0i*�\0C�\0a\0�\0*�\0Cn�\0c\0�\0 ,�\0o�\0+�\0dY,�\0o�\0p�\0q�\0i*�\0C�\0a\0�\0*�\0Cr�\0c\0�\0$*�\0�\0s�\0t>�\0+�\0dY�\0g�\0h�\0i*�\0C�\0a\0�\0*�\0Cu�\0c\0�\0+�\0vY *�\0�\0w�\0i+�\0x+�\0Q*�\0G�\0+*�\0G�\0z*�\0X�\0S,�\0m�\0{N-2:�\0|�\0}:*�\01�\0~\0�\0:�\0	+�\0z�\0+�\0x(�\0*�\0E�\0+*�\0E�\0z�\0\0\0\0�\0\0\0�\0 \0\0?\0A\0%C\0:F\0TH\0gK\0�M\0�P\0�R\0�T\0�X\0�Z\0�[\0�]ac1f:iAkIoPqYr^sfujxzy{�}�������\0�\0\0\0\0% �\0 \0\0��\0\Z\0\n\0�\0�\0\0�\0\0\0�\0\0\0\0\0M�\0�M*@�\0�>�\0,*�\0�S,*`�\0�S�\0,*S,}S�\0,2\\�\0�>�\0,,2`�\0�S,�\0\0\0\0�\0\0\02\0\0\0�\0�\0�\0�\0�\0%�\0)�\0.�\02�\0;�\0?�\0K�\0�\0\0\0\0�\0%\0\0\0�\0�\0\0�\0\0�\0\0\0\06�\0T�\0�Y�\0���\0�+�\0��\0���\0�+�\0��\0���\0�+�\0��\0���\0�+�\0��\0��\0��\0�+�\0�M+�\0��\0T*�\0R�\0	*+�\0��*�\0)�\0�N*-,�\0�-*�\09�\0z*�\0Z�\0+�\0��\0T�\0�Y�\0���\0�-�\0��\0��\0�*�\0)-�\0��+�\0��\0*�\0R�\0	*+�\0��*�\0)�\0�N*-,�\0�+�\0�:+�\0��\0+�\0��\0�\0:�\0�\0�\0*�\0�\0�\0�:*�\04�\0�:�\0	-�\0z���*�\0Z�\0+�\0��\0T�\0�Y�\0���\0�-�\0��\0��\0�*�\0)-�\0��\0\0\0\0�\0\0\0r\0\0\0�\0@�\0E�\0L�\0S�\0Y�\0a�\0g�\0o�\0v�\0{�\0��\0��\0��\0��\0��\0��\0��\0��\0��\0��\0��\0������-�\0�\0\0\0&\0	�\0Y\0��\0!\0��\0!�\0\Z\0�\0��\0\n\0�-�\0\0�\0\0\0\0\0�\0\0�\0�\0\0�\0\0\0/\0\0\0\0\0\0��\0��\0T�\0�Y�\0��\0+�\0\0\0\0�\0\0\0\n\0\0\0\0)\0\0�\0\0�\0\0\0\0�\0�\0\0\0\0\0-\0�\0�\0\0v\0do\0	'),('ru.bitel.bgbilling.modules.inet.dyn.device.radius.AbstractRadiusServiceActivator$ConfCache',1433856492000,'����\0\0\04\0\n\0\0\0\Z\0\0realmRadiusAttributesMap\0Ljava/util/Map;\0	Signature\0`Ljava/util/Map<Ljava/lang/String;Lru/bitel/bgbilling/kernel/network/radius/RadiusAttributeSet;>;\0optionRadiusAttributesMap\0ELru/bitel/bgbilling/kernel/network/radius/RadiusAttributeSetRealmMap;\0disableRadiusAttributes\0=Lru/bitel/bgbilling/kernel/network/radius/RadiusAttributeSet;\0enableRadiusAttributes\0\ZconnectionRadiusAttributes\0Ljava/util/Set;\0#Ljava/util/Set<Ljava/lang/String;>;\0podFixedAttributes\0coaFixedAttributes\0<init>\0()V\0Code\0LineNumberTable\0\nSourceFile\0#AbstractRadiusServiceActivator.java\0\0\0\0Zru/bitel/bgbilling/modules/inet/dyn/device/radius/AbstractRadiusServiceActivator$ConfCache\0	ConfCache\0InnerClasses\0java/lang/Object\0Pru/bitel/bgbilling/modules/inet/dyn/device/radius/AbstractRadiusServiceActivator\0 \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0	\0\0\0\0\n\0\0\0\0\0\0\0\0\0\0\r\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0*�\0�\0\0\0\0\0\0\0\0\0\0\0�\0\0\0\0\0\0\0\0\0\0\n\0\0\0\0\0'),('ru.bitel.bgbilling.modules.inet.dyn.device.radius.CoAProtocolHandler',1433856492000,'����\0\0\04\0\n\0\0\0\0\r\0\0<init>\0()V\0Code\0LineNumberTable\0\nSourceFile\0CoAProtocolHandler.java\0\0\0Dru/bitel/bgbilling/modules/inet/dyn/device/radius/CoAProtocolHandler\0Oru/bitel/bgbilling/modules/inet/dyn/device/radius/AbstractRadiusProtocolHandler\0>ru/bitel/bgbilling/kernel/network/radius/RadiusProtocolHandler\0!\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0*�\0�\0\0\0\0\0\0\0\0\0\0\0\0\0	\0\0\0\0\n'),('ru.bitel.bgbilling.modules.inet.dyn.device.radius.CoAServiceActivator',1433856492000,'����\0\0\04\0U\0$\n\0\0%\n\0\0&	\0\0\'\0(\n\0)\0*\n\0+\0,	\0\0-\n\0.\0/\n\0\00\01\n\0\02\03\n\0\04\n\0\05\n\0\06\n\0.\07\08\n\0)\09\0:\0;\0logger\0Lorg/apache/log4j/Logger;\0<init>\0()V\0Code\0LineNumberTable\0connectionModify\0U(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;)Ljava/lang/Object;\0\nExceptions\0<\0connectionClose\0<clinit>\0\nSourceFile\0CoAServiceActivator.java\0WNAS-Port, Acct-Session-Id, User-Name, Framed-IP-Address, NAS-IP-Address, NAS-Identifier\0\0=\0>\0\0\0\0Connection close\0?\0@\0A\0B\0C\0D\0E\0F\0G\0H\0I\0J\0K\0java/lang/StringBuilder\0\0\0Send PoD: \n\0L\0M\0L\0N\0O\0P\0Q\0R\0Eru/bitel/bgbilling/modules/inet/dyn/device/radius/CoAServiceActivator\0S\0T\0Pru/bitel/bgbilling/modules/inet/dyn/device/radius/AbstractRadiusServiceActivator\0:ru/bitel/bgbilling/modules/inet/access/sa/ServiceActivator\0java/lang/Exception\0)(Ljava/lang/String;ZLjava/lang/String;Z)V\0connectionModifyCoA\0org/apache/log4j/Logger\0info\0(Ljava/lang/Object;)V\0?ru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent\0\rgetConnection\0B()Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;\0radiusClient\07Lru/bitel/bgbilling/kernel/network/radius/RadiusClient;\05ru/bitel/bgbilling/kernel/network/radius/RadiusClient\0createDisconnectRequest\09()Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;\0prepareRequest\0z(Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;)V\0append\0-(Ljava/lang/String;)Ljava/lang/StringBuilder;\0-(Ljava/lang/Object;)Ljava/lang/StringBuilder;\0toString\0()Ljava/lang/String;\0	sendAsync\0V(Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;)Ljava/util/concurrent/Future;\0	getLogger\0,(Ljava/lang/Class;)Lorg/apache/log4j/Logger;\0!\0\0\0\0\0\0\Z\0\0\0\0\0\0\0\0\0\0\Z\0\0\0&\0\0\0\0\0\n*�\0�\0\0\0\0\0\0\0\n\0\0\0\0\0	\0\0\0\0\0\0\Z\0\0\0\0\0\0\0\0*+�\0�\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0 \0\0\0\Z\0\0\0i\0\0\0\0\0=�\0�\0+�\0M*�\0�\0	N*-,�\0\n�\0�\0Y�\0\r�\0-�\0�\0�\0*�\0-�\0�\0\0\0\0\0\0\0\Z\0\0\0\0)\0\0+\0\r\0-\0\0.\0\00\04\02\0\0\0\0\0\0\0\0!\0\0\0\Z\0\0\0!\0\0\0\0\0\0	�\0�\0�\0\0\0\0\0\0\0\0\0\0\0\0\0\"\0\0\0\0#'),('ru.bitel.bgbilling.modules.inet.dyn.device.redback.SmartEdgeClipsProtocolHandler',1433856492000,'����\0\0\04	\n\0A\0y	\0\0z	\0\0{\n\0A\0|\0}\0~\0\n\0�\0�\n\0�\0�\n\0�\0�	\0\0�\0�\0�\0�\n\0�\0�	\0\0�\0�\0�\0�	\0\0�\0�	\0\0�	\0\0�\n\0�\0�\0�\0�\n\0�\0�\0�\n\0�\0�\n\0�\0�\0�\n\0\0y\n\0�\0�\n\0\0�\0�\n\0\0�\n\0�\0�\n\0.\0�\n\0�\0�\n\0�\0�\n\0�\0�\n\0�\0�\n\0.\0�\0�\0�\0�\0�\0�\n\0�\0�\n\0�\0�	\0�\0�\n\0\0�\n\0�\0�\n\0\0�	\0�\0�\n\0A\0�\n\0\0�\n\0\0�\n\0A\0�\n\0�\0�\n\0A\0�\n\0�\0�	\0�\0�\n\0�\0�\n\0�\0�\0�\0�\0�\0�\0Agent_Remote_Id\0I\0\rConstantValue\0\0\0`\0Agent_Circuit_Id\0\0\0a\0Mac_Addr\0\0\0�\0DHCP_Option\0\0\0�\0servSearchModes\0[[I\0agentOptionRemoteIdType\0agentOptionRemoteIdPosition\0agentOptionRemoteIdLength\0agentOptionCircuitIdType\0agentOptionRemoveHeader\0<init>\0()V\0Code\0LineNumberTable\0init\0�(Lru/bitel/bgbilling/server/util/Setup;ILru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceType;Lru/bitel/common/ParameterMap;)V\0\nExceptions\0�\0setUsername\0:(Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;)V\0\rStackMapTable\0�\0�\0setAgentOption\0�\0RadiusPacketOption\0InnerClasses\0�(Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Lru/bitel/bgbilling/kernel/network/radius/RadiusAttribute;IILru/bitel/bgbilling/kernel/network/radius/RadiusPacket$RadiusPacketOption;)V\0�\0	Signature\0�(Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Lru/bitel/bgbilling/kernel/network/radius/RadiusAttribute<*>;IILru/bitel/bgbilling/kernel/network/radius/RadiusPacket$RadiusPacketOption<Ljava/lang/Object;>;)V\0�(Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Ljava/util/List;IIIILru/bitel/bgbilling/kernel/network/radius/RadiusPacket$RadiusPacketOption;)V\0�\0�(Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Ljava/util/List<Lru/bitel/bgbilling/kernel/network/radius/RadiusAttribute<*>;>;IIIILru/bitel/bgbilling/kernel/network/radius/RadiusPacket$RadiusPacketOption<Ljava/lang/Object;>;)V\0setAgentOptions\0preprocessAccessRequest\0�(Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Lru/bitel/common/sql/ConnectionSet;)V\0postprocessAccessRequest\0preprocessAccountingRequestImpl\0�(ILru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Lru/bitel/common/sql/ConnectionSet;)V\0preprocessDhcpRequest\0i(Lru/bitel/bgbilling/kernel/network/dhcp/DhcpPacket;Lru/bitel/bgbilling/kernel/network/dhcp/DhcpPacket;)V\0�\0postprocessDhcpRequest\0\nSourceFile\0\"SmartEdgeClipsProtocolHandler.java\0U\0V\0Q\0E\0R\0E\0Y\0Z\0radius.servSearchMode\0radius.serviceSearchMode\0:ru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice\0�\0�\0�\0�\0�\0�\0�\0�\0�\0N\0O\0!radius.agent.option.remoteId.type\0radius.agentRemoteId.type\0Pru/bitel/bgbilling/modules/inet/dyn/device/redback/SmartEdgeClipsProtocolHandler\0�\0�\0P\0E\0%radius.agent.option.remoteId.position\0#radius.agent.option.remoteId.length\0\"radius.agent.option.circuitId.type\0S\0E\0 radius.agent.option.removeHeader\0T\0E\0�\0E\0�\0�\0�\0\\-\0\0\0�\0�\09ru/bitel/bgbilling/kernel/network/radius/RadiusDictionary\0�\0�\0�\0�\0java/lang/StringBuilder\0�\0�\0�\0�\0�\0:\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\08ru/bitel/bgbilling/kernel/network/radius/RadiusAttribute\0�\0�\0�\0�\0�\0�\0�\0b\0j\0�\0�\0b\0f\0�\0�\0n\0o\0]\0^\0m\0^\0p\0o\0�\0�\0q\0r\0�\0\0�\0java/lang/NullPointerException\0Kru/bitel/bgbilling/modules/inet/dyn/device/redback/SmartEdgeProtocolHandler\0>ru/bitel/bgbilling/kernel/network/radius/RadiusProtocolHandler\0:ru/bitel/bgbilling/kernel/network/dhcp/DhcpProtocolHandler\0java/lang/Exception\0java/lang/String\0[B\0Hru/bitel/bgbilling/kernel/network/radius/RadiusPacket$RadiusPacketOption\0java/nio/ByteBuffer\0valueOf\0(I)Ljava/lang/String;\0ru/bitel/common/ParameterMap\0get\08(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;\04ru/bitel/bgbilling/modules/inet/api/server/InetUtils\0parseSearchModes\0(Ljava/lang/String;)[[I\0getInt\0(Ljava/lang/String;I)I\0radiusVendor\05ru/bitel/bgbilling/kernel/network/radius/RadiusPacket\0getStringAttribute\0((IILjava/lang/String;)Ljava/lang/String;\0\nreplaceAll\0setStringAttribute\0(IILjava/lang/String;)V\0getByteAttribute\0(II[B)[B\0ru/bitel/common/Utils\0\rbytesToString\0)([BZLjava/lang/String;)Ljava/lang/String;\0append\0-(Ljava/lang/String;)Ljava/lang/StringBuilder;\0toString\0()Ljava/lang/String;\0toLowerCase\0getData\0()Ljava/nio/ByteBuffer;\0position\0(I)Ljava/nio/Buffer;\0limit\0slice\0	setOption\0_(Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket$RadiusPacketOption;Ljava/lang/Object;)V\0getValue\0()Ljava/lang/Object;\0java/util/List\0size\0()I\0(I)Ljava/lang/Object;\0(I)B\0\rgetAttributes\0(II)Ljava/util/List;\0:ru/bitel/bgbilling/modules/inet/radius/InetRadiusProcessor\0AGENT_REMOTE_ID\0JLru/bitel/bgbilling/kernel/network/radius/RadiusPacket$RadiusPacketOption;\0getAttribute\0>(II)Lru/bitel/bgbilling/kernel/network/radius/RadiusAttribute;\0AGENT_CIRCUIT_ID\0removeAttributes\0(II)V\01ru/bitel/bgbilling/kernel/network/dhcp/DhcpPacket\0getSubOption\06(B)Lru/bitel/bgbilling/kernel/network/dhcp/DhcpOption;\01ru/bitel/bgbilling/kernel/network/dhcp/DhcpOption\0value\0java/lang/System\0	arraycopy\0*(Ljava/lang/Object;ILjava/lang/Object;II)V\0setSubOption\0(B[B)V\0!\0\0A\0\0B\0C\0\n\0\0D\0E\0\0F\0\0\0\0G\0\0H\0E\0\0F\0\0\0\0I\0\0J\0E\0\0F\0\0\0\0K\0\0L\0E\0\0F\0\0\0\0M\0\0N\0O\0\0\0\0P\0E\0\0\0\0Q\0E\0\0\0\0R\0E\0\0\0\0S\0E\0\0\0\0T\0E\0\0\0\0\0U\0V\0\0W\0\0\0/\0\0\0\0\0*�\0*�\0*�\0�\0\0\0\0X\0\0\0\0\0\0\0\0\0(\0	\0)\0\0Y\0Z\0\0W\0\0\0�\0\0\0\0\0j*+-�\0*�\0�\0	�\0	�\0\n�\0*\r`�\0�\0�\0*�\0�\0*�\0�\0*a�\0�\0*�\0�\0�\0\0\0\0X\0\0\0*\0\n\0\0\09\0\0<\0\0=\0\0<\0$\0A\08\0B\0D\0C\0P\0G\0]\0H\0i\0I\0[\0\0\0\0\0\\\0\0]\0^\0\0W\0\0\0�\0\0\0\0\0x+*�\0\0��\0M,�\0,\Z�\0N+-�\0+*�\0`�\0N+*�\0a�\0:-�\0;�\06�\0Y�\0 -�\0!�\0\"#�\0\"�\0!�\0\"�\0$:�\0%:+�\0�\0\0\0\0X\0\0\0.\0\0\0\0Q\0\r\0R\0\0T\0\Z\0V\0\"\0Y\0.\0Z\0;\0\\\0D\0^\0h\0_\0o\0a\0w\0c\0_\0\0\0\0�\0\"\0`�\0T\0a\0a\0\0b\0f\0\0W\0\0\0�\0\0\0\0\0B�\0�\01,�\0&:�\0\'W�\0\r`�\0(W�\0):+�\0*�\0\r+,�\0+�\0*�\0\0\0\0X\0\0\0*\0\n\0\0\0o\0	\0q\0\0r\0\0t\0\0v\0%\0y\0,\0{\04\0|\07\0\0A\0�\0_\0\0\0\r\0	�\0\0g�\0	\0h\0\0\0\0i\0\0b\0j\0\0W\0\0\0�\0\0\0\0\0_6,�\0,\06		�\0O,�\0-\0�\0.:\n\n�\0&:�\0/�\0*�\0\'W�\0`�\0(W�\0):+�\0*�����\0\0\0\0X\0\0\0.\0\0\0\0�\0\0�\0\0�\0&\0�\01\0�\09\0�\0>\0�\0I\0�\0P\0�\0X\0�\0^\0�\0_\0\0\0\0�\0�\0=\0k\0g�\0�\0\0h\0\0\0\0l\0\0m\0^\0\0W\0\0B\0\0\0\0\0�*�\0�\0\0\0\0\0\0G\0\0\0\0\0\0\0\0\0\0\0\0\0�\0\0\0�\0U+*�\0\0ʶ\00M,�\0E*+,*�\0`*�\0�\01�\02�\0-+*�\0*�\0�\03M,�\0*+,*�\0*�\0`*�\0�\01�\04�\0*�\0�\0\0\0\0\0>\0\0\0\0\0\0\0\0\0\0\0\0\0�\0\0\0�\0E+*�\0\0ʶ\00M,�\05*+,�\05�\02�\0%+*�\0*�\0�\03M,�\0*+,*�\0�\05�\04�\0�\0\0\0\0X\0\0\0F\0\0\0\0�\0 \0�\0#\0�\0/\0�\03\0�\0K\0�\0X\0�\0\\\0�\0u\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0_\0\0\0\n\0 \')!\0\0n\0o\0\0W\0\0\06\0\0\0\0\0*+,-�\06*+�\07*+�\08�\0\0\0\0X\0\0\0\0\0\0\0�\0\0�\0\0�\0\0�\0[\0\0\0\0\0\\\0\0p\0o\0\0W\0\0\0/\0\0\0\0\0*+,-�\09,�\0:�\0\0\0\0X\0\0\0\0\0\0\0�\0\0�\0\0�\0[\0\0\0\0\0\\\0\0q\0r\0\0W\0\0\0i\0\0\0\0\02*,-�\0;�\0\0\0\0\0\0\0e\0\0\0g\0\0\0\Z\0\0\0\Z\0\0\0\Z�\0\r*,�\07*,�\08�\0\0\0\0X\0\0\0\Z\0\0\0\0	\r\0$\0\'\Z\0,\01 \0_\0\0\0\0$	\0[\0\0\0\0\0\\\0\0s\0t\0\0W\0\0\0�\0\0\0\0\0Q*�\02.�\0H+�\0<�\0=N+�\0<�\0=:�:�:-�\0>�\0>+�\0?+�\0?�\0N��\0\0\0K\0N\0@\0\0X\0\0\06\0\r\0\0(\0,\0-\0.\0$/\0)0\021\0=2\0D3\0K8\0N5\0O7\0P:\0_\0\0\0	\0�\0N\0u\0[\0\0\0\0\0\\\0\0v\0t\0\0W\0\0\0\0\0\0\0\0\0�\0\0\0\0X\0\0\0\0\0\0@\0[\0\0\0\0\0\\\0\0w\0\0\0\0x\0e\0\0\0\n\0\0c\0�\0d\0	'),('ru.bitel.bgbilling.modules.inet.dyn.device.redback.SmartEdgeClipsServiceActivator',1433856492000,'����\0\0\04\0\0\n\0\0\n\0\0\0\0\0<init>\0()V\0Code\0LineNumberTable\0init\0�(Lru/bitel/bgbilling/server/util/Setup;ILru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceType;Lru/bitel/common/ParameterMap;)Ljava/lang/Object;\0\nExceptions\0\0\nSourceFile\0#SmartEdgeClipsServiceActivator.java\0Lru/bitel/bgbilling/modules/inet/dyn/device/redback/SmartEdgeServiceActivator\0\0\0\n\0\0Qru/bitel/bgbilling/modules/inet/dyn/device/redback/SmartEdgeClipsServiceActivator\0:ru/bitel/bgbilling/modules/inet/access/sa/ServiceActivator\0java/lang/Exception\0	(ZIIZZZ)V\0!\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\'\0\0\0\0\0*�\0�\0\0\0\0	\0\0\0\n\0\0\0\0\0\n\0\0\0\n\0\0\0\0\0\0*\0\0\0\0\0*+-�\0W�\0\0\0\0	\0\0\0\n\0\0\0\0%\0\0\'\0\0\0\0\0\0\r\0\0\0\0\0\0'),('ru.bitel.bgbilling.modules.inet.dyn.device.redback.SmartEdgeDot1qProtocolHandler',1433856492000,'����\0\0\044\n\0L\0�\n\0L\0�\0�\n\0\0�\n\0\0�\0�\n\0\0�\n\0\0�\n\0\0�\n\0\0�\0�\0�	\0J\0�\n\0\0�\n\0�\0�\0�\n\0�\0�\0�\n\0�\0�\n\0�\0�\n\0�\0�\n\0�\0�\n\0�\0�\0�\n\0\0�\0�\n\0\0�\0�\n\0\0�\n\0\0�\n\0�\0�	\0�\0�\n\0�\0�	\0�\0�\n\0�\0�\n\0L\0�\n\0J\0�\n\0L\0�\n\0L\0�\n\0�\0�\n\0�\0�\n\0�\0�\0�\n\0+\0�\n\0�\0�\n\0�\0�\n\0�\0�\n\0�\0�\n\0�\0�\n\0�\0�\n\0J\0�\n\0I\0�\n\0�\0�\0\0\0\0����\n\0�\0�\0�\n\0�\0�\n\0�\0�\n\09\0�\0�\n\0�\0�	\0J\0�	\0�\0�\n\0�\0�\0�\0�\0�\0�\0�	\0D\0�\n\0I\0�\n\0�\0�\n\0I\0�\0�\0�\n\0�\0�\0�\0�\0�\0�\0logger\0Lorg/apache/log4j/Logger;\0access\0/Lru/bitel/bgbilling/modules/inet/access/Access;\0RuntimeVisibleAnnotations\0Ljavax/annotation/Resource;\0name\0<init>\0()V\0Code\0LineNumberTable\0init\0�(Lru/bitel/bgbilling/server/util/Setup;ILru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceType;Lru/bitel/common/ParameterMap;)V\0\rStackMapTable\0�\0�\0�\0�\0�\0�\0�\0�\0�\0\nExceptions\0processUsername\0:(Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;)V\0preprocessAccessRequest\0�(Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Lru/bitel/common/sql/ConnectionSet;)V\0postprocessAccessRequest\0preprocessAccountingRequestImpl\0�(ILru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Lru/bitel/common/sql/ConnectionSet;)V\0beforeAuthentication#(Lru/bitel/bgbilling/kernel/container/managed/ServerContext;Lru/bitel/bgbilling/kernel/network/radius/RadiusListenerWorker;Lru/bitel/bgbilling/kernel/network/radius/RadiusSession;Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;)V\0	Signature�(Lru/bitel/bgbilling/kernel/container/managed/ServerContext;Lru/bitel/bgbilling/kernel/network/radius/RadiusListenerWorker<Lru/bitel/bgbilling/modules/inet/radius/InetNas;>;Lru/bitel/bgbilling/kernel/network/radius/RadiusSession<Lru/bitel/bgbilling/modules/inet/radius/InetNas;Lru/bitel/bgbilling/modules/inet/radius/InetRadiusSessionParams;>;Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;)V\0afterAuthorization\0addResponseAttributesZ(Lru/bitel/bgbilling/kernel/container/managed/ServerContext;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetServType;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetServ;Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Ljava/lang/String;Ljava/util/Map;Lru/bitel/bgbilling/kernel/network/radius/RadiusAttributeSet;Ljava/util/Set;)Z\0��(Lru/bitel/bgbilling/kernel/container/managed/ServerContext;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetServType;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetServ;Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Ljava/lang/String;Ljava/util/Map<Ljava/lang/String;Lru/bitel/bgbilling/kernel/network/radius/RadiusAttributeSet;>;Lru/bitel/bgbilling/kernel/network/radius/RadiusAttributeSet;Ljava/util/Set<Ljava/lang/Integer;>;)Z\0\rgetConnection\0C(I)Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;\0�\0�\0postprocessDhcpRequest\0i(Lru/bitel/bgbilling/kernel/network/dhcp/DhcpPacket;Lru/bitel/bgbilling/kernel/network/dhcp/DhcpPacket;)V\0<clinit>\0\nSourceFile\0\"SmartEdgeDot1qProtocolHandler.java\0W\0X\0[\0\\\09ru/bitel/bgbilling/kernel/container/managed/ServerContext\0W\0�\0[\0X\0<ru/bitel/bgbilling/kernel/container/resource/ResourceManager\0�\0�\0�\0X\0�\0X\0\"javax/naming/NameNotFoundException\0java/lang/Exception\0P\0Q\0�\0�\0�\0�\0�\09ru/bitel/bgbilling/kernel/network/radius/RadiusDictionary\0�\0�\0�\0.\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0java/lang/StringBuilder\0Agent device: \0�\0�\0, VLAN: \0�\0�\0�\0�\0�\0�\0�\0�\0j\0k\0h\0i\0l\0k\0m\0n	\n\0�\r\08ru/bitel/bgbilling/kernel/network/radius/RadiusAttribute\0W\Z\0x\0y\0Nru/bitel/bgbilling/kernel/network/radius/RadiusAttribute$RadiusAttributeIpAddr\0RadiusAttributeIpAddr\0InnerClasses \0W!\0No inetServ address/net found\0�\0�\0R\0S\"#$%&\'\0�()*\0<ru/bitel/bgbilling/modules/inet/access/InetConnectionRuntime+,-\0�./0\0>ru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection\0Pru/bitel/bgbilling/modules/inet/dyn/device/redback/SmartEdgeDot1qProtocolHandler12\0Kru/bitel/bgbilling/modules/inet/dyn/device/redback/SmartEdgeProtocolHandler\0>ru/bitel/bgbilling/kernel/network/radius/RadiusProtocolHandler\0:ru/bitel/bgbilling/kernel/network/dhcp/DhcpProtocolHandler\0Aru/bitel/bgbilling/modules/inet/radius/RadiusAccessRequestHandler\0$ru/bitel/bgbilling/server/util/Setup\0:ru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice\0>ru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceType\0ru/bitel/common/ParameterMap\0java/lang/Throwable\0[B\0java/util/List\0+(Lru/bitel/bgbilling/server/util/Setup;II)V\0inject\0T(Lru/bitel/bgbilling/kernel/container/managed/ContainerContext;Ljava/lang/Object;I)V\0commit\0destroy\0\ngetMessage\0()Ljava/lang/String;\0org/apache/log4j/Logger\0error\0*(Ljava/lang/Object;Ljava/lang/Throwable;)V\05ru/bitel/bgbilling/kernel/network/radius/RadiusPacket\0getStringAttribute\0((IILjava/lang/String;)Ljava/lang/String;\0java/lang/String\0lastIndexOf\0(Ljava/lang/String;)I\0(Ljava/lang/String;I)I\0	substring\0(I)Ljava/lang/String;\0ru/bitel/common/Utils\0parseInt\0(II)Ljava/lang/String;\0append\0-(Ljava/lang/String;)Ljava/lang/StringBuilder;\0(I)Ljava/lang/StringBuilder;\0toString\0debug\0(Ljava/lang/Object;)V\0:ru/bitel/bgbilling/modules/inet/radius/InetRadiusProcessor\0AGENT_REMOTE_ID3\0RadiusPacketOption\0JLru/bitel/bgbilling/kernel/network/radius/RadiusPacket$RadiusPacketOption;\0	setOption\0_(Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket$RadiusPacketOption;Ljava/lang/Object;)V\0VLAN_ID\0java/lang/Integer\0valueOf\0(I)Ljava/lang/Integer;\0getByteAttribute\0(II[B)[B\0\Zru/bitel/common/inet/IpNet\0	maskToInt\0([B)I\0([BI)Ljava/lang/String;\0(IIILjava/lang/Object;)V\0setAttribute\0=(Lru/bitel/bgbilling/kernel/network/radius/RadiusAttribute;)V\0removeAttributes\0(II)V\0<ru/bitel/bgbilling/modules/inet/api/common/bean/InetServType\0getAddressType\0()I\08ru/bitel/bgbilling/modules/inet/api/common/bean/InetServ\0getAddressFrom\0()[B\0getAddressTo\0getId\0getInetAddressBytes\0newInstance\0\"([B[B)Lru/bitel/common/inet/IpNet;\0getMask\0	getSubnet\0convertBytesToInt\0(III)V\0-ru/bitel/bgbilling/modules/inet/access/Access\0connectionManager\0>Lru/bitel/bgbilling/modules/inet/access/InetConnectionManager;\0<ru/bitel/bgbilling/modules/inet/access/InetConnectionManager\0getByServId\0%(Ljava/lang/Integer;)Ljava/util/List;\0size\0get\0(I)Ljava/lang/Object;\0\nconnection\0@Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;\0getUsername\0\risBlankString\0(Ljava/lang/String;)Z\0getConnectionStatus\0	getLogger\0,(Ljava/lang/Class;)Lorg/apache/log4j/Logger;\0Hru/bitel/bgbilling/kernel/network/radius/RadiusPacket$RadiusPacketOption\0!\0J\0L\0\0M\0N\0O\0\0\Z\0P\0Q\0\0\0\0R\0S\0\0T\0\0\0\0\0U\0\0Vs\0R\0\0\0W\0X\0\0Y\0\0\0\0\0\0\0\0*�\0�\0\0\0\0Z\0\0\0\0\0\0\0(\0\0[\0\\\0\0Y\0\0\0\0	\0\0\0g*+-�\0�\0Y+�\0:�\0�\0Y�\0:*�\0�\0	�\0\n�\0.:�\0\n�\0$:�\0\r�\0�\0�\0\n�\0\r:�\0\n��\0\0\03\0;\0\0\03\0E\0\0\03\0\\\0\0\0;\0=\0\\\0\0\0E\0T\0\\\0\0\0\\\0^\0\\\0\0\0\0Z\0\0\0F\0\0\0\07\0\0;\0\0<\0\0?\0%\0@\0.\0B\03\0L\08\0M\0;\0D\0=\0L\0B\0M\0E\0F\0G\0H\0T\0L\0Y\0M\0\\\0L\0f\0N\0]\0\0\0(\0�\0;\0\0^\0_\0`\0a\0b\0c\0\0dI\0eV\0f	\0g\0\0\0\0\0\0\0h\0i\0\0Y\0\0\0�\0\0\0\0\0i+�\0M,�\0>,d�\06,`�\0�\06,�\0:�\0\r�\0Y�\0\Z�\0�\0�\0�\0�\0�\0+�\0 �\0!+�\0\"�\0#�\0!�\0\0\0\0Z\0\0\0&\0	\0\0\0V\0\0X\0\0Y\0\Z\0[\0&\0]\0/\0_\0S\0a\0\\\0b\0h\0c\0\0j\0k\0\0Y\0\0\0-\0\0\0\0\0\r*+,-�\0$*+�\0%�\0\0\0\0Z\0\0\0\0\0\0\0i\0\0k\0\0l\0g\0\0\0\0\0\0\0l\0k\0\0Y\0\0\0$\0\0\0\0\0*+,-�\0&�\0\0\0\0Z\0\0\0\n\0\0\0\0r\0\0s\0g\0\0\0\0\0\0\0m\0n\0\0Y\0\0\0�\0\0	\0\0\0�*,-�\0\'�\0\0\0\0\"\0\0\0e\0\0\0g\0\0\0\Z\0\0\0\Z\0\0\0\Z*,�\0%�\0*,�\0%,�\0(:,	�\0(: �\0)d6�\0*:,�\0+Y�\0,�\0-,�\0.,	�\0.,�\0+Y�\0,�\0-�\0\0\0\0Z\0\0\0:\0\0\0\0z\0	\0|\0$\0�\0)\0�\0,\0�\01\0�\0;\0�\0E\0�\0O\0�\0X\0�\0i\0�\0p\0�\0w\0�\0�\0�\0]\0\0\0\0$\0g\0\0\0\0\0\0\0o\0p\0\0Y\0\0\0\0\0\0\0\0\0�\0\0\0\0Z\0\0\0\0\0\0\0�\0g\0\0\0\0\0\0q\0\0\0\0r\0\0s\0p\0\0Y\0\0\0\0\0\0\0\0\0�\0\0\0\0Z\0\0\0\0\0\0\0�\0g\0\0\0\0\0\0q\0\0\0\0r\0\0t\0u\0\0Y\0\0U\0\0\r\0\0\0�:	:\n,�\0/�\0\0\0\0S\0\0\0\0\0\0\0\0\07\0\0\0\Z\0\0\0\Z-�\00:	-�\01:\n	�\0\n�\0;	:\n�\04*-�\02�\03:�\0%�\04Y:\n:	�\0-�\00:	-�\01:\n\n�\0	:\n	�\0O\n�\0J	\n�\05:\06 �\08dy\06�6�\09Y�\0:�\0;�\0<�\0-�\09Y	�\0<�\0-�\0�\0\r=�\0>�\0\0\0\0Z\0\0\0^\0\0\0\0�\0\0�\0\0�\0$\0�\0*\0�\00\0�\05\0�\0:\0�\0A\0�\0K\0�\0P\0�\0]\0�\0c\0�\0i\0�\0n\0�\0r\0�\0|\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0]\0\0\0\0�\0$\0v\0v�\0P\0g\0\0\0\0\0\0q\0\0\0\0w\0\0x\0y\0\0Y\0\0\0�\0\0\0\0\0Z*�\0?�\0@�\0#�\0AM,�\0H>,�\0B\06�\08,�\0C\0�\0D�\0E:�\0F�\0G�\0�\0H�\0�\0H�\0������\0\0\0\0Z\0\0\0&\0	\0\0\0�\0\0�\0\0�\0#\0�\02\0�\0?\0�\0O\0\0R\0�\0X\0]\0\0\0\0�\0\0z�\01\0{�\0�\0\0\0|\0}\0\0Y\0\0\0\0\0\0\0\0\0�\0\0\0\0Z\0\0\0\0\0\0\0g\0\0\0\0\0\0\0~\0X\0\0Y\0\0\0!\0\0\0\0\0\0	J�\0K�\0\r�\0\0\0\0Z\0\0\0\0\0\0\0,\0\0\0\0\0\0�\0�\0\0\0\0\09\0+\0�\0	\0�\0�\0\0	'),('ru.bitel.bgbilling.modules.inet.dyn.device.redback.SmartEdgeDot1qServiceActivator',1433856492000,'����\0\0\04\0�\n\00\0R\n\00\0S	\0.\0T\0A\n\0U\0V\n\0W\0X\n\0Y\0Z	\0.\0[\0\\\n\0	\0R\0]\n\0	\0^\n\0	\0_\0`\n\0	\0a\n\0	\0b\n\00\0c\0D\n\00\0d\n\00\0e\0F\n\0U\0f\n\0.\0g\n\00\0h\n\0W\0i\n\0.\0j\0k\n\0W\0l\n\0!\0m\0n\0o\0p\0q\0p\0r\0s\n\0!\0t\n\0.\0u	\0.\0v	\0w\0x\n\0y\0z\n\0{\0|\0}	\0(\0~\n\0Y\0	\0.\0�	\0.\0�\n\00\0�\0�\n\0U\0�\0�\0�\0logger\0Lorg/apache/log4j/Logger;\0access\0/Lru/bitel/bgbilling/modules/inet/access/Access;\0RuntimeVisibleAnnotations\0Ljavax/annotation/Resource;\0name\0<init>\0()V\0Code\0LineNumberTable\0init\0�(Lru/bitel/bgbilling/server/util/Setup;ILru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceType;Lru/bitel/common/ParameterMap;)Ljava/lang/Object;\0\nExceptions\0�\0connectionModify\0U(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;)Ljava/lang/Object;\0\rStackMapTable\0connectionClose\0onAccountingStart\0onAccountingStop\0tryCloseDOT1QConnection\0D(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;)Z\0�\0�\0�\0haveConnections\0D(ILru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;)Z\0�(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;ILru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;)Z\0<clinit>\0\nSourceFile\0#SmartEdgeDot1qServiceActivator.java\09\0:\0=\0>\02\03\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0java/lang/StringBuilder\0Skip \0�\0�\0�\0�\0 \0�\0�\0�\0�\0A\0B\0D\0B\0E\0B\0�\0�\0G\0H\0F\0B\0�\0�\0L\0M\0Have DHCP connections\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\08ru/bitel/bgbilling/modules/inet/api/common/bean/InetServ\0�\0�\0D\0N\04\05\0�\0�\0�\0�\0�\0�\0�\0�\0�\0<ru/bitel/bgbilling/modules/inet/access/InetConnectionRuntime\0�\0�\0�\0�\0�\0�\0�\0�\0D\0�\0Qru/bitel/bgbilling/modules/inet/dyn/device/redback/SmartEdgeDot1qServiceActivator\0�\0�\0Lru/bitel/bgbilling/modules/inet/dyn/device/redback/SmartEdgeServiceActivator\0:ru/bitel/bgbilling/modules/inet/access/sa/ServiceActivator\0java/lang/Exception\0>ru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection\0java/util/List\0java/util/Iterator\0org/apache/log4j/Logger\0debug\0(Ljava/lang/Object;)V\0?ru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent\0\rgetConnection\0B()Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;\0getDeviceId\0()I\0deviceId\0I\0append\0-(Ljava/lang/String;)Ljava/lang/StringBuilder;\0-(Ljava/lang/Object;)Ljava/lang/StringBuilder;\0(I)Ljava/lang/StringBuilder;\0toString\0()Ljava/lang/String;\0info\0\rgetInetServId\0getNewInetServ\0<()Lru/bitel/bgbilling/modules/inet/api/common/bean/InetServ;\0getChildren\0()Ljava/util/List;\0iterator\0()Ljava/util/Iterator;\0hasNext\0()Z\0next\0()Ljava/lang/Object;\0getId\0-ru/bitel/bgbilling/modules/inet/access/Access\0connectionManager\0>Lru/bitel/bgbilling/modules/inet/access/InetConnectionManager;\0java/lang/Integer\0valueOf\0(I)Ljava/lang/Integer;\0<ru/bitel/bgbilling/modules/inet/access/InetConnectionManager\0getByServId\0%(Ljava/lang/Integer;)Ljava/util/List;\0\nconnection\0@Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;\0()J\0	closeMode\0disableServicesOnClose\0Z\0�(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;IZ)Ljava/lang/Object;\0	getLogger\0,(Ljava/lang/Class;)Lorg/apache/log4j/Logger;\0!\0.\00\0\01\0\0\Z\02\03\0\0\0\04\05\0\06\0\0\0\0\07\0\08s\04\0\n\0\09\0:\0\0;\0\0\0!\0\0\0\0\0*�\0�\0\0\0\0<\0\0\0\n\0\0\0\0#\0\0$\0\0=\0>\0\0;\0\0\0*\0\0\0\0\0*+-�\0W�\0\0\0\0<\0\0\0\n\0\0\0\0-\0\0/\0?\0\0\0\0\0@\0\0A\0B\0\0;\0\0\0y\0\0\0\0\0F�\0�\0+�\0�\0*�\0�\0-�\0�\0	Y�\0\n�\0+�\0�\0\r�\0*�\0�\0�\0�\0�*+�\0�\0\0\0\0<\0\0\0\0\0\0\09\0\0;\0\0=\0>\0>\0@\0A\0C\0\0\0\0�\0@\0?\0\0\0\0\0@\0\0D\0B\0\0;\0\0\0y\0\0\0\0\0F�\0�\0+�\0�\0*�\0�\0-�\0�\0	Y�\0\n�\0+�\0�\0\r�\0*�\0�\0�\0�\0�*+�\0�\0\0\0\0<\0\0\0\0\0\0\0K\0\0M\0\0O\0>\0P\0@\0S\0C\0\0\0\0�\0@\0?\0\0\0\0\0@\0\0E\0B\0\0;\0\0\0\0\0\0\0\0*+�\0�\0\0\0\0<\0\0\0\0\0\0\0]\0?\0\0\0\0\0@\0\0F\0B\0\0;\0\0\04\0\0\0\0\0�\0�\0*+�\0W*+�\0�\0\0\0\0<\0\0\0\0\0\0\0g\0\0i\0\0k\0?\0\0\0\0\0@\0\0G\0H\0\0;\0\0A\0\0\0\0\0�+�\0M,�\0*�\0�\0�*+�\0,�\0\Z�\0\r�\0�\0�+�\0�\0N-�\0;-�\0\0:�\0\0�\0)�\0 \0�\0!:*�\0\",�\0\Z�\0\r�\0�\0����*++�\0,�\0#�\0�-�\04-�\0\0:�\0\0�\0\"�\0 \0�\0!:*+�\0\",�\0#�\0�����\0\0\0\0<\0\0\0V\0\0\0\0q\0\0s\0\0u\0\0x\0\0z\0&\0{\0(\0~\00\0\04\0�\0R\0�\0_\0�\0g\0�\0i\0�\0l\0�\0y\0�\0{\0�\0\0�\0�\0�\0�\0�\0�\0�\0�\0�\0C\0\0\0!\0	�\0\0I�\0\0J\0K,�\0�\0\0K%�\0\0?\0\0\0\0\0@\0\0L\0M\0\0;\0\0\0�\0\0\0\0\0Z*�\0$�\0%�\0&�\0\'N-�\0�-�\0\0:�\0\0�\04�\0 \0�\0(:�\0):�\0*,�\0*��\0�\0*�\0�\0�����\0\0\0\0<\0\0\0&\0	\0\0\0�\0\0�\0\0�\0\0�\03\0�\0:\0�\0S\0�\0U\0�\0X\0�\0C\0\0\0\0�\0\0J�\0\0K7�\0\0\0D\0N\0\0;\0\0\0�\0\0\0\0\0m*�\0$�\0%�\0&�\0\':�\0��\0\0:�\0\0�\0D�\0 \0�\0(:�\0):�\0*-�\0*��\0!�\0*�\0�\0*+*�\0+*�\0,�\0-W�����\0\0\0\0<\0\0\0*\0\n\0\0\0�\0\0�\0\0�\0\0�\06\0�\0=\0�\0V\0�\0f\0�\0h\0�\0k\0�\0C\0\0\0\0�\0\0J�\0\0K�\0G�\0\0?\0\0\0\0\0@\0\0O\0:\0\0;\0\0\0!\0\0\0\0\0\0	.�\0/�\0�\0\0\0\0<\0\0\0\0\0\0\0\0\0P\0\0\0\0Q'),('ru.bitel.bgbilling.modules.inet.dyn.device.redback.SmartEdgeProtocolHandler',1433856492000,'����\0\0\04\0�\n\0*\0F\n\0*\0G\0H\n\0I\0J	\0(\0K\0L	\0(\0M\0N\n\0I\0O	\0(\0P\n\0*\0Q\0R\n\0S\0T\n\0U\0V\n\0S\0W\n\0(\0X\n\0(\0Y\n\0U\0Z	\0(\0[	\0(\0\\\0]\n\0\0^\0_\n\0\0`\0a\n\0\0b\n\0c\0d\n\0U\0e	\0f\0g\n\0U\0h	\0f\0i\n\0j\0k\n\0l\0m\0n	\0f\0o\0p\n\0q\0r\0s\n\0(\0t\0u\n\0c\0v\0w\0x\0y\0logger\0Lorg/apache/log4j/Logger;\0parentAcctSessionIdType\0I\0serviceNameType\0disableServiceName\0Ljava/lang/String;\0<init>\0()V\0Code\0LineNumberTable\0init\0�(Lru/bitel/bgbilling/server/util/Setup;ILru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceType;Lru/bitel/common/ParameterMap;)V\0\nExceptions\0z\0preprocessAccessRequest\0�(Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Lru/bitel/common/sql/ConnectionSet;)V\0preprocessAccountingRequest\0preprocessAccountingRequestImpl\0�(ILru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Lru/bitel/common/sql/ConnectionSet;)V\0\rStackMapTable\0{\0<clinit>\0\nSourceFile\0SmartEdgeProtocolHandler.java\04\0|\08\09\0radius.parentAcctSessionId.type\0}\0~\0\0/\00\0radius.serviceName.type\01\00\0\Zradius.serviceName.disable\0�\0�\02\03\0<\0=\09ru/bitel/bgbilling/kernel/network/radius/RadiusDictionary\0�\0�\0�\0�\0�\0�\0�\0�\0?\0@\0�\0�\0�\0�\0�\00\0-\0.\0java/lang/StringBuilder\04\05\0parentAcctSessionId=\0�\0�\0, serviceName=\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0{\0�\0�\0-State is disable (from start disable service)\0�\0�\08ru/bitel/bgbilling/modules/inet/api/common/bean/InetServ\0�\0�\0�\0+State is enable (from stop disable service)\0�\0�\0Kru/bitel/bgbilling/modules/inet/dyn/device/redback/SmartEdgeProtocolHandler\0�\0�\0Oru/bitel/bgbilling/modules/inet/dyn/device/radius/AbstractRadiusProtocolHandler\0>ru/bitel/bgbilling/kernel/network/radius/RadiusProtocolHandler\0:ru/bitel/bgbilling/kernel/network/dhcp/DhcpProtocolHandler\0java/lang/Exception\0java/lang/String\0(I)V\0ru/bitel/common/ParameterMap\0getInt\0(Ljava/lang/String;I)I\0get\08(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;\0java/lang/Integer\0valueOf\0(I)Ljava/lang/Integer;\05ru/bitel/bgbilling/kernel/network/radius/RadiusPacket\0getIntAttribute\0*(IILjava/lang/Integer;)Ljava/lang/Integer;\0intValue\0()I\0\rsetMacAddress\0:(Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;)V\0getStringAttribute\0((IILjava/lang/String;)Ljava/lang/String;\0radiusVendor\0append\0-(Ljava/lang/String;)Ljava/lang/StringBuilder;\0toString\0()Ljava/lang/String;\0org/apache/log4j/Logger\0debug\0(Ljava/lang/Object;)V\0setIntAttribute\0(III)V\0:ru/bitel/bgbilling/modules/inet/radius/InetRadiusProcessor\0PARENT_ACCT_SESSION_ID\0�\0RadiusPacketOption\0InnerClasses\0JLru/bitel/bgbilling/kernel/network/radius/RadiusPacket$RadiusPacketOption;\0	setOption\0_(Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket$RadiusPacketOption;Ljava/lang/Object;)V\0SERVICE_NAME\0ru/bitel/common/Utils\0notBlankString\0(Ljava/lang/String;)Z\0equals\0(Ljava/lang/Object;)Z\0DEVICE_STATE\0java/lang/Short\0(S)Ljava/lang/Short;\0setStateFromAttributes\0	getLogger\0,(Ljava/lang/Class;)Lorg/apache/log4j/Logger;\0Hru/bitel/bgbilling/kernel/network/radius/RadiusPacket$RadiusPacketOption\0!\0(\0*\0\0+\0,\0\0\Z\0-\0.\0\0\0\0/\00\0\0\0\01\00\0\0\0\02\03\0\0\0\0\04\05\0\06\0\0\0$\0\0\0\0\0*	0�\0�\0\0\0\07\0\0\0\n\0\0\0\0*\0\0+\0\08\09\0\06\0\0\0[\0\0\0\0\03*+-�\0*2�\0�\0*\0��\0�\0*�\0	�\0\n�\0\0\0\07\0\0\0\0\0\0\01\0\03\0\04\0&\06\02\07\0:\0\0\0\0\0;\0\0<\0=\0\06\0\0\0$\0\0\0\0\0*+,-�\0�\0\0\0\07\0\0\0\n\0\0\0\0=\0\0>\0:\0\0\0\0\0;\0\0>\0=\0\06\0\0\0:\0\0\0\0\0\Z+(�\0\r�\0�\06*+,-�\0�\0\0\0\07\0\0\0\0\0\0\0D\0\0E\0\0F\0:\0\0\0\0\0;\0\0?\0@\0\06\0\0@\0\0\0\0\0�*,�\0�\0\0\0\0�\0\0\0e\0\0\0g\0\0\0\Z\0\0\0\Z\0\0\0\Z,*�\0�\0:,*�\0*�\0�\0:�\0�\0Y�\0�\0�\0�\0�\0�\0\Z�\0,(dd�\0,�\0�\0,�\0�\0*�\0\n�\0 �\0D*�\0\n�\0!�\08e�\0	g�\0�\0\"�\0,�\0#�\0%�\0�\0�\0&�\0,�\0#�\0%�\0�\0*,�\0\'�\0\0\0\07\0\0\0F\0\0\0\0L\0\0N\0 \0V\0,\0X\0;\0Z\0_\0]\0j\0_\0s\0a\0|\0e\0�\0h\0�\0j\0�\0k\0�\0o\0�\0p\0�\0z\0�\0\0�\0�\0A\0\0\0\0 �\0}\0B\0B�\0\0:\0\0\0\0\0;\0\0C\05\0\06\0\0\0!\0\0\0\0\0\0	(�\0)�\0�\0\0\0\07\0\0\0\0\0\0\0\0\0D\0\0\0\0E\0�\0\0\0\n\0\0�\0U\0�\0	'),('ru.bitel.bgbilling.modules.inet.dyn.device.redback.SmartEdgeServiceActivator',1433856492000,'����\0\0\04�\0�\n\0\0�\0�\0�\n\0�\0�\0�\n\0\0�	\0\0�	\0\0�	\0\0�	\0\0�	\0\0�	\0\0�\n\0�\0�\0�\n\0�\0�	\0\0�	\0\0�\n\0�\0�\0�\0\0�\0�\0\0�\0�\0�\0�\0�\0�\0�\0�\0\0�\0\n\0\0\n\0!\0�\n\0$\0�\n\0J\n\0!	\0\n	\0\n\0*\0�\r\n\0*\n\0*\n\0*\n	\0	\0	\0\Z	\0	\0	\0 !\n\0�\"\n\0#	\0$%&\'\n()*+\n(,-\n\0J./0\n\0M\0�\n12	\03\0�45\n\0*6\n\0�78\n9:;\n9<=\n9>?\n9@\n9A	\0B\n\0C	\0D\n9E\n\0F\n\0G\n\0H\n\0I\0�	\0J\nKL\n\0M\nNO\n\0$P\nNQR\nKS	\0T\n9U\n\0�VW\nKXY\0\n1Z[\n\0w\0�Y\0�\n(\\\0�/\0�]	\0^_`a\nb\ncdf\n\0�h\nci\nKjkl\nmno\0logger\0Lorg/apache/log4j/Logger;\0REDBACK_VENDOR\0I\0\rConstantValue\0\0	0\0SERVICE_NAME\0\0\0�\0DEACTIVATE_SERVICE_NAME\0\0\0�\0inetOptionSeService\0Ljava/util/Map;\0	Signature\06Ljava/util/Map<Ljava/lang/Integer;Ljava/lang/String;>;\0CLOSE_MODE_NONE\0\0\0\0CLOSE_MODE_POD\0\0\0\0	closeMode\0closeEnableMode\0closeDisableMode\0coaOnEnable\0Z\0disableServicesOnClose\0closeRemoveFromKeyMap\0serviceCloseAttributes\0=Lru/bitel/bgbilling/kernel/network/radius/RadiusAttributeSet;\0defaultCloseMode\0defaultCloseEnableMode\0defaultCoaOnEnable\0defaultCloseRemoveFromKeyMap\0defaultDisableServicesOnClose\0disableServiceOptions\0Ljava/util/Set;\0$Ljava/util/Set<Ljava/lang/Integer;>;\0\noptionMode\0<init>\0()V\0Code\0LineNumberTable\0(Z)V\0	(ZIIZZZ)V\0init\0�(Lru/bitel/bgbilling/server/util/Setup;ILru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceType;Lru/bitel/common/ParameterMap;)Ljava/lang/Object;\0\rStackMapTable\0�pqrs\0�t\0�u-\0\nExceptionsv\0destroy\0()Ljava/lang/Object;\0connectionModify\0U(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;)Ljava/lang/Object;wxy\0optionsToServiceSet\0\'(Ljava/util/Collection;)Ljava/util/Set;\0P(Ljava/util/Collection<Ljava/lang/Integer;>;)Ljava/util/Set<Ljava/lang/String;>;\0sendCommands\0�(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;Ljava/util/Collection;Ljava/util/Collection;)Ljava/lang/Object;z{\0�(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;Ljava/util/Collection<Ljava/lang/Integer;>;Ljava/util/Collection<Ljava/lang/Integer;>;)Ljava/lang/Object;\0connectionDisable\0�(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;)Ljava/lang/Object;\0connectionClose\0�(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;IZ)Ljava/lang/Object;|\0<clinit>\0\nSourceFile\0SmartEdgeServiceActivator.java\0Lru/bitel/bgbilling/modules/inet/dyn/device/redback/SmartEdgeServiceActivator\0�\0�\0sa.radius.option.\0Acct-Session-Id\0�}\0java/util/HashMap\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0\rsa.optionModes~\0�\0������\0default��\0\rjava/util/Map��x��t���\0�\0java/util/Map$Entry\0Entry\0InnerClasses�\0�\0;ru/bitel/bgbilling/kernel/network/radius/RadiusAttributeSet��u���\0�\0java/lang/Integer��\08ru/bitel/bgbilling/kernel/network/radius/RadiusAttribute������\0�\0�\0java/lang/StringBuilder\0\rInet option: ����\0 => SE service: �����\0sa.radius.connection.close.mode\0�\0�\0%sa.radius.connection.close.enableMode\0�\0�\0&sa.radius.connection.close.disableMode\0�\0�\0!sa.radius.connection.coa.onEnable\0�\0�\0+sa.radius.connection.close.removeFromKeyMap\0�\0�\0*sa.radius.connection.close.disableServices\0�\0�\0!sa.radius.service.closeAttributes\0\0����\0�\0�\0close.attributes\0%Deactivate-Service-Name:1=RSE-SVC-EXT\0#sa.radius.service.disable.optionIds���\0sa.radius.service.disable\0\Zradius.serviceName.disable��\0java/lang/String����\0java/util/LinkedHashMap���\0�\0���\0Disable options: ��\0�\0�\0Connection modify: oldState: z��\0; newState: ��\0; oldOptionSet: ��\0; newOptionSet: �����\0�\0�\0��\0��\0�\0�\0�\0�\0�\0�\0����������y��\0����\0\ZSend close services CoA: \n���\0�����\0Send enable services CoA: \n��{��\0java/util/HashSet��\0Connection disable�\0�\0Send CoA lock: \n\0Connection close mode \0Remove connection from key map.������\0Rru/bitel/bgbilling/modules/inet/access/InetConnectionManager$ConnectionRemoveEvent\0ConnectionRemoveEvent\0������\0Send PoD: \n\0Connection close��\0Pru/bitel/bgbilling/modules/inet/dyn/device/radius/AbstractRadiusServiceActivator\0:ru/bitel/bgbilling/modules/inet/access/sa/ServiceActivator\0$ru/bitel/bgbilling/server/util/Setup\0:ru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice\0>ru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceType\0ru/bitel/common/ParameterMap\0java/util/Iterator\0java/util/List\0java/lang/Exception\0>ru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection\0\rjava/util/Set\05ru/bitel/bgbilling/kernel/network/radius/RadiusPacket\0?ru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent\0java/util/Collection\0java/lang/Object\0)(Ljava/lang/String;ZLjava/lang/String;Z)V\0getInt\0(Ljava/lang/String;I)I\0optionRadiusAttributesMap\0ELru/bitel/bgbilling/kernel/network/radius/RadiusAttributeSetRealmMap;\0Cru/bitel/bgbilling/kernel/network/radius/RadiusAttributeSetRealmMap\0getRealmMap\0()Ljava/util/Map;\0get\0&(Ljava/lang/Object;)Ljava/lang/Object;\0entrySet\0()Ljava/util/Set;\0iterator\0()Ljava/util/Iterator;\0hasNext\0()Z\0next\0getValue\0\rgetAttributes\0(II)Ljava/util/List;\0size\0()I\0getKey\0intValue\0valueOf\0&(Ljava/lang/Object;)Ljava/lang/String;\0(I)Ljava/lang/Integer;\0put\08(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;\0append\0-(Ljava/lang/String;)Ljava/lang/StringBuilder;\0(I)Ljava/lang/StringBuilder;\0toString\0()Ljava/lang/String;\0org/apache/log4j/Logger\0info\0(Ljava/lang/Object;)V\08(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;\0newRadiusAttributeSet\0Q(Ljava/lang/String;)Lru/bitel/bgbilling/kernel/network/radius/RadiusAttributeSet;\0ru/bitel/common/Utils\0\rtoIntegerList\0$(Ljava/lang/String;)Ljava/util/List;\0toList\0equals\0(Ljava/lang/Object;)Z\0add\0java/util/Collections\0\rnewSetFromMap\0 (Ljava/util/Map;)Ljava/util/Set;\0addAll\0(Ljava/util/Collection;)Z\0-(Ljava/lang/Object;)Ljava/lang/StringBuilder;\0getOldState\0getNewState\0\rgetOldOptions\0\rgetNewOptions\0\rgetConnection\0B()Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;\0withoutBreak\0needConnectionStateModify\0\ZsetConnectionStateModified\0isEmpty\0radiusClient\07Lru/bitel/bgbilling/kernel/network/radius/RadiusClient;\05ru/bitel/bgbilling/kernel/network/radius/RadiusClient\0createModifyRequest\09()Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;\0prepareRequest\0z(Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;)V\0\raddAttributes\0@(Lru/bitel/bgbilling/kernel/network/radius/RadiusAttributeSet;)V\0(IIILjava/lang/Object;)V\0addAttribute\0=(Lru/bitel/bgbilling/kernel/network/radius/RadiusAttribute;)V\0send\0:(Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;)Z\0enableRadiusAttributes\0getRealm\0d(Ljava/lang/String;Ljava/lang/Integer;)Lru/bitel/bgbilling/kernel/network/radius/RadiusAttributeSet;\0	sendAsync\0V(Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;)Ljava/util/concurrent/Future;\0emptySet\0\risBlankString\0(Ljava/lang/String;)Z\0disableRadiusAttributes\0debug\0.ru/bitel/bgbilling/kernel/event/EventProcessor\0getInstance\02()Lru/bitel/bgbilling/kernel/event/EventProcessor;\0<ru/bitel/bgbilling/modules/inet/access/InetConnectionManager\0C(Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;)V\0request\0Z(Lru/bitel/bgbilling/kernel/event/QueueEvent;)Lru/bitel/bgbilling/kernel/event/QueueEvent;\0createDisconnectRequest\0	getLogger\0,(Ljava/lang/Class;)Lorg/apache/log4j/Logger;\0!\0\0�\0\0�\0\0\Z\0�\0�\0\0\0\0�\0�\0\0�\0\0\0\0�\0\0�\0�\0\0�\0\0\0\0�\0\0�\0�\0\0�\0\0\0\0�\0\0�\0�\0\0�\0\0\0\0�\0\0�\0�\0\0�\0\0\0\0�\0\0�\0�\0\0�\0\0\0\0�\0\0�\0�\0\0\0\0�\0�\0\0\0\0�\0�\0\0\0\0�\0�\0\0\0\0�\0�\0\0\0\0�\0�\0\0\0\0�\0�\0\0\0\0�\0�\0\0\0\0�\0�\0\0\0\0�\0�\0\0\0\0�\0�\0\0\0\0�\0�\0\0\0\0�\0�\0\0�\0\0\0\0�\0\0�\0�\0\0\0\0\0�\0�\0\0�\0\0\0\'\0\0\0\0\0*�\0�\0\0\0\0�\0\0\0\n\0\0\0\0�\0\n\0�\0\0�\0�\0\0�\0\0\0\'\0\0\0\0\0*�\0�\0\0\0\0�\0\0\0\n\0\0\0\0�\0\n\0�\0\0�\0�\0\0�\0\0\0f\0\0\0\0\02*�\0*�\0Y�\0�\0*�\0	*�\0\n*�\0*�\0*�\0\r�\0\0\0\0�\0\0\0\"\0\0\0\0�\0\n\0,\0\0�\0\Z\0�\0\0�\0%\0�\0+\0�\01\0�\0\0�\0�\0\0�\0\0\0\0\0\0�*+-�\0W*�\0�\0�\0�\0*�\0�\0�*�\0�\0�\0\0�\0:�\0\0�\0\0:�\0\0�\0��\0\Z\0�\0:�\0\0�\0	0\0��\0:		���	�\0\0�\0����\0 \0�\0!�\0\"6\n	�\0#\0:�\0\0�\0Q�\0\Z\0�\0$:�\0%�\0&:\r*�\0\n�\0\'\r�\0(\0W�\0)�\0*Y�\0+,�\0-\n�\0./�\0-\r�\0-�\00�\01�����S*2*�\0	�\0�\03*4*�\0\n�\0�\05*6*�\03�\0�\07*8*�\0�\0�\0�\0�\0�\0�\09*:*�\0\r�\0�\0�\0�\0�\0�\0;*<*�\0�\0�\0�\0�\0�\0�\0=*�\0�\0*>?�\0@�\0A�\0B�\0\Z*>CD�\0@�\0@�\0A�\0B*�\0�\0�E?�\0@�\0F:�\0\0�\0�GH?�\0@�\0@�\0I:�\0\0�\0o�\0#\0:�\0\0�\0\\�\0\Z\0�\0J:	*�\0�\0\0�\0\0:\n\n�\0\0�\03\n�\0\Z\0�\0:	�\0\0�\0K�\0�\0 \0�\0L\0W�����ɧ���\0\0�\0 *�\0MY�\0N�\0O�\0P*�\0P�\0Q\0W�\0*�\0P�\0)�\0*Y�\0+R�\0-�\0S�\00�\01�\0\0\0\0�\0\0\0�\0*\0\0\0�\0\0�\0 \0�\0\'\0�\0:\0�\0^\0�\0s\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�%\0�D\0�c\0��\0��\0��\0��\0��\0��\0��\0��\0��\0�\0�6\0�E\0�T\0�W\0�Z\0�]\0�g\0�u\0����	\0�\0\0�\0\\\0��\0\0\0\0�\0�\0�\0�\0�\0\0��\0*\0�\0��\0<\0�\0��\0\0��\0W\0\0�\0�\0�\0�\0�\0�\0�\0\0�\0�\0<\0\0�\0�\0�\0�\0�\0\0�\0�\0��\0\0\0\0�\0�\0�\0�\0�\0\0�\0�\0�I\0��\0\0\0\0�\0�\0�\0�\0�\0\0��\0\0\0�\0�\0�\0�\0�\0\0�\0�\0��\0\0\0\0�\0�\0�\0�\0�\0\0�\0�\0�I\0��\0\0\0\0�\0�\0�\0�\0�\0\0��\0\0\0�\0�\0�\0�\0�\0\0�\0�\0��\0\0\0\0�\0�\0�\0�\0�\0\0�\0�\0�I\0��\0\0\0\0�\0�\0�\0�\0�\0\0��\0F\0�\0�\0��\0%\0�\0�6�\0�\0&�\0\0�\0\0\0\0\0�\0\0�\0�\0\0�\0\0\0#\0\0\0\0\0*�\0TW�\0\0\0\0�\0\0\0\n\0\0\0\0\0�\0\0\0\0\0�\0\0�\0�\0\0�\0\0�\0\0	\0\0в\0)�\0*Y�\0+U�\0-+�\0V�\0.W�\0-+�\0X�\0.Y�\0-+�\0Z�\0S[�\0-+�\0\\�\0S�\00�\01+�\0]M+�\0X�\0,*�\0^�\0*+,*�\07*�\0=�\0_�*�\0`�\0+�\0a*+,�\0b�+�\0V�\0A*�\0^�\0*+,*�\05�\0_N*�\09�\0-�*�\0`�\0+�\0a*�\0�\0*+,*�\0P+�\0\\�\0c�*+�\0Z�\0dN*�\0B�\0e�\0-�\0f\0�\0v*�\0g�\0h:*,�\0i*�\0B�\0j-�\0\0:�\0\0�\0\'�\0\Z\0�\0J:�\0$Y	0\0��\0k�\0l��ղ\0)�\0*Y�\0+m�\0-�\0S�\00�\01*�\0g�\0nW*�\0g�\0h:*,�\0i+�\0V�\0*�\0o�\0j+�\0p:+�\0\\�\0\0:�\0\0�\0+�\0\Z\0�\0!:*�\0�\0q:�\0\n�\0j��Ѳ\0)�\0*Y�\0+r�\0-�\0S�\00�\01*�\0g�\0s�\0\0\0\0�\0\0\0�\0\'\0\0\0@\0E!\0L&\0S(\0b-\0i/\0n3\0u7\0|<\0�>\0�B\0�D\0�J\0�L\0�O\0�Q\0�U\0�X\0�Z\0�[\0�\\\0�^\r`\"a%c?eIiRjYn`pisoy�{�|�~������\0�\0\0\05\0�\0b\0�\"�\0\0��\0 \0�\0��\0-�\0#�\0\0��\0\0�\0�.�\0\0�\0\0\0\0\0�\0\0�\0�\0\0�\0\0\0�\0\0\0\0\0p+�\0+�\0t\0�\0*�\0�\0*�\0�\0u\0�\0�\0v��\0wY�\0xM+�\0y\0N-�\0\0�\05-�\0\Z\0�\0!:*�\0�\0\0�\0J:�\0z�\0���,�\0{\0W���,�\0\0\0\0�\0\0\0*\0\n\0\0�\0 �\0$�\0,�\0G�\0W�\0_�\0b�\0k�\0n�\0�\0\0\0\0 �\0\0�\0��\0.\0�\0��\0\0�\0\0\0\0�\0\0�\0�\0\0�\0\0�\0\0\0\0\Z�\0)|�\01*-�\0d:�\0f\0�\0q*�\0g�\0h:*,�\0i*-�\0d�\0\0:�\0\0�\0\'�\0\Z\0�\0J:�\0$Y	0\0��\0k�\0l��ղ\0)�\0*Y�\0+m�\0-�\0S�\00�\01*�\0g�\0nW�\0��\0t\0�\0�*�\0g�\0h:*,�\0i+�\0p:6�\0y\0:		�\0\0�\0.	�\0\Z\0�\0!:\n*�\0\n�\0q:�\0\r6�\0j����\0��\0)�\0*Y�\0+r�\0-�\0S�\00�\01*�\0g�\0s��\0\0\0\0�\0\0\0j\0\Z\0\0�\0�\0�\0�\0\"�\0)�\0K�\0`�\0c�\0}�\0��\0��\0��\0��\0��\0��\0��\0��\0��\0��\0��\0��\0��\0����\0�\0\0\0?\0�\05\0�\0�\0��\0-�\0#�\00\0\n\0�\0�\0�\0�\0�\0�\0�\0�\0�\0\01�\0�\0#\0�\0\0\0\0\0�\0�\0\0\0\0�\0\0�\0�\0\0�\0\0\0�\0\0\0\0\0V�\0)}�\01*�\0g�\0hN*-,�\0i*�\0�\0*+,+�\0Z*�\0P�\0c�-*�\0~�\0j�\0)�\0*Y�\0+�\0--�\0S�\00�\01*�\0g-�\0s�\0\0\0\0�\0\0\0\"\0\0\0�\0�\0�\0�\0�\0,�\04�\0M�\0�\0\0\0\0�\0,\0�\0�\0\0\0\0\0�\0\0�\0�\0\0�\0\0\0\0\0\0\0��\0)�\0*Y�\0+��\0-�\0.�\00�\01*�\0;�\0\Z�\0)��\0��\0��\0�Y,�\0��\0�W�\0*+,�\0b:�\0:�\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0�\0;*�\0g�\0�:*,�\0i�\0)�\0*Y�\0+��\0-�\0S�\00�\01*�\0g�\0s:�\0�\0\0\0\0�\0\0\0>\0\0\0�\0\0\0 \0(\07\0<	\0G\r\0J\0d\0g\0p\0w\0�\0�!\0�%\0�\0\0\0\r\07�\0\0�7\0�\0\0\0\0\0�\0\0�\0�\0\0�\0\0\0<\0\0\0\0\0�\0)��\01+�\0]M*+,*�\03*�\0=�\0_�\0\0\0\0�\0\0\0\0\0\00\02\0\r4\0�\0\0\0\0\0�\0\0�\0�\0\0�\0\0\0!\0\0\0\0\0\0	�\0��\0)�\0\0\0\0�\0\0\0\0\0\0\0\"\0\0�\0\0\0\0�\0�\0\0\0\0\0\0\0�	\0�eg\0'),('ru.bitel.bgbilling.modules.inet.dyn.device.redback.SmartEdgeStaticClipsProtocolHandler',1433856492000,'����\0\0\04\0n\n\0\00\n\0\01\02\n\03\04\n\05\06\n\05\07\09\n\0<\0=\n\0\0>\n\03\0?\0@	\0\0A\n\0B\0C\0D\n\0\00\0E\n\0\0F\0G\n\0\0H\n\0\0I\n\0B\0J\n\0\0K\0L\n\0B\0M\0N\0O\0P\0logger\0Lorg/apache/log4j/Logger;\0<init>\0()V\0Code\0LineNumberTable\0init\0�(Lru/bitel/bgbilling/server/util/Setup;ILru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceType;Lru/bitel/common/ParameterMap;)V\0\nExceptions\0postprocessAccessRequest\0�(Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Lru/bitel/bgbilling/kernel/network/radius/RadiusPacket;Lru/bitel/common/sql/ConnectionSet;)V\0\rStackMapTable\0L\0Q\0R\0S\0@\0<clinit>\0\nSourceFile\0(SmartEdgeStaticClipsProtocolHandler.java\0\0\0\"\0#\09ru/bitel/bgbilling/kernel/network/radius/RadiusDictionary\0Q\0T\0U\0V\0W\0X\0Y\0Z\0[\0Nru/bitel/bgbilling/kernel/network/radius/RadiusAttribute$RadiusAttributeIpAddr\0RadiusAttributeIpAddr\0InnerClasses\0\\\0]\0^\0\0_\0`\0a\0java/lang/Exception\0\0\0b\0c\0d\0java/lang/StringBuilder\0IP-address not found \0e\0f\0: \0g\0h\0i\0h\0j\0k\0%\0&\0Vru/bitel/bgbilling/modules/inet/dyn/device/redback/SmartEdgeStaticClipsProtocolHandler\0l\0m\0Kru/bitel/bgbilling/modules/inet/dyn/device/redback/SmartEdgeProtocolHandler\0>ru/bitel/bgbilling/kernel/network/radius/RadiusProtocolHandler\0:ru/bitel/bgbilling/kernel/network/dhcp/DhcpProtocolHandler\05ru/bitel/bgbilling/kernel/network/radius/RadiusPacket\0!ru/bitel/common/sql/ConnectionSet\0java/lang/String\0getStringAttribute\0((IILjava/lang/String;)Ljava/lang/String;\0java/net/InetAddress\0	getByName\0*(Ljava/lang/String;)Ljava/net/InetAddress;\0\ngetAddress\0()[B\08ru/bitel/bgbilling/kernel/network/radius/RadiusAttribute\0ru/bitel/common/Utils\0convertBytesToInt\0([B)I\0(III)V\0setAttribute\0=(Lru/bitel/bgbilling/kernel/network/radius/RadiusAttribute;)V\0org/apache/log4j/Logger\0\risInfoEnabled\0()Z\0append\0-(Ljava/lang/String;)Ljava/lang/StringBuilder;\0\ngetMessage\0()Ljava/lang/String;\0toString\0info\0(Ljava/lang/Object;)V\0	getLogger\0,(Ljava/lang/Class;)Lorg/apache/log4j/Logger;\0!\0\0\0\0\Z\0\0\0\Z\0\0\0\0\0\0\0\0\0\0 \0\0\0\0\0\0\0\0*�\0�\0\0\0\0!\0\0\0\0\0\0\0\0\0\"\0#\0\0 \0\0\0(\0\0\0\0\0*+-�\0�\0\0\0\0!\0\0\0\n\0\0\0\0\0\0\0$\0\0\0\0\0\0\0%\0&\0\0 \0\0\0�\0\0\0\0\0g+�\0:�\0:�\0:,�\0Y�\0�\0	�\0\n�\05:�\0�\0\r�\0*�\0�\0Y�\0�\0�\0�\0�\0�\0�\0�\0*+,-�\0�\0\0	\0*\0-\0\0\0!\0\0\0*\0\n\0\0\0\'\0	\0+\0\0,\0\0.\0*\06\0-\00\0/\02\08\04\0_\08\0f\09\0\'\0\0\0\0�\0-\0\0(\0)\0)\0*\0+\0\0,1\0$\0\0\0\0\0\0\0-\0\0\0 \0\0\0!\0\0\0\0\0\0	�\0�\0�\0\0\0\0!\0\0\0\0\0\0\0\0\0.\0\0\0\0/\0;\0\0\0\n\0\0\08\0:\0	'),('ru.bitel.bgbilling.modules.inet.dyn.device.snmp.SnmpDeviceManager',1433856492000,'����\0\0\04\0�\n\0\'\0O	\0%\0P\0Q\n\0R\0S\n\0T\0U\0V\0W\0V\0X\0Y\0Z\n\0[\0\\	\0%\0]\0^\n\0T\0_\n\0[\0`	\0%\0a\0b\0c\n\0d\0e	\0%\0f\0g\n\0T\0h	\0%\0i\0j\0k\0l\n\0\0m\n\0\0n	\0%\0o	\0%\0p\n\0\0q\0r\n\0\0s��������\0t\n\0\0u\0v\n\0R\0w\0x\0y\0logger\0Lorg/apache/log4j/Logger;\0host\0Ljava/lang/String;\0snmpVersion\0I\0snmpPort\0\rsnmpCommunity\0\nsnmpClient\03Lru/bitel/bgbilling/kernel/network/snmp/SnmpClient;\0	uptimeOid\0[J\0<init>\0()V\0Code\0LineNumberTable\0init\0�(Lru/bitel/bgbilling/server/util/Setup;ILru/bitel/oss/systems/inventory/resource/common/bean/Device;Lru/bitel/oss/systems/inventory/resource/common/bean/DeviceType;Lru/bitel/common/ParameterMap;)Ljava/lang/Object;\0\rStackMapTable\0z\0v\0{\0|\0}\0~\0\0	Signature\0�(Lru/bitel/bgbilling/server/util/Setup;ILru/bitel/oss/systems/inventory/resource/common/bean/Device<**>;Lru/bitel/oss/systems/inventory/resource/common/bean/DeviceType;Lru/bitel/common/ParameterMap;)Ljava/lang/Object;\0destroy\0()Ljava/lang/Object;\0\nExceptions\0�\0connect\0\ndisconnect\0uptime\0<clinit>\0\nSourceFile\0SnmpDeviceManager.java\05\06\0)\0*\0INIT\0�\0�\0�\0|\0�\0�\0z\0�\0�\0�\0�\0[Ljava/lang/String;\0snmp.version\0~\0�\0�\0-\0.\0	snmp.host\0�\0�\0�\0�\0+\0,\0	snmp.port\0161\0�\0�\0�\0/\0.\0snmp.community\0�\0�\00\0,\0%uk/co/westhawk/snmp/stack/AsnObjectId\0snmp.uptimeOid\01.3.6.1.2.1.1.3.0\05\0�\0�\0�\03\04\01\02\0E\06\01ru/bitel/bgbilling/kernel/network/snmp/SnmpClient\05\0�\0java/lang/Long\0�\0�\0Aru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpDeviceManager\0�\0�\0Cru/bitel/oss/systems/inventory/resource/server/DeviceManagerAdapter\0<ru/bitel/oss/systems/inventory/resource/server/DeviceManager\0java/util/List\0$ru/bitel/bgbilling/server/util/Setup\0:ru/bitel/oss/systems/inventory/resource/common/bean/Device\0>ru/bitel/oss/systems/inventory/resource/common/bean/DeviceType\0ru/bitel/common/ParameterMap\0java/lang/String\0java/lang/Exception\0org/apache/log4j/Logger\0info\0(Ljava/lang/Object;)V\0getHostsAsString\0()Ljava/util/List;\0size\0()I\0get\0(I)Ljava/lang/Object;\0getInt\0(Ljava/lang/String;I)I\0getHost\0()Ljava/lang/String;\08(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;\0ru/bitel/common/Utils\0parseInt\0(Ljava/lang/String;)I\0	getSecret\0(Ljava/lang/String;)V\0getOid\0()[J\0((Ljava/lang/String;ILjava/lang/String;)V\0(([JJLjava/lang/Class;)Ljava/lang/Object;\0	getLogger\0,(Ljava/lang/Class;)Lorg/apache/log4j/Logger;\0!\0%\0\'\0\0(\0\0\Z\0)\0*\0\0\0\0+\0,\0\0\0\0-\0.\0\0\0\0/\0.\0\0\0\00\0,\0\0\0\01\02\0\0\0\03\04\0\0\0\0\05\06\0\07\0\0\0\0\0\0\0\0*�\0�\0\0\0\08\0\0\0\0\0\0\0 \0\09\0:\0\07\0\0�\0\0\0\0\0��\0�\0-�\0:�\0�\0\0�\0�\0\0�\0�\0:*	�\0\n�\0*�\0\n2�\0-�\0\r�\0�\0*�\0\n2�\0�\0�\0\n�\0*-�\0�\0�\0*�\0Y�\0�\0\Z�\0�\0�\0\0\0\08\0\0\0&\0	\0\0\03\0\05\0\06\0.\08\0:\09\0U\0:\0q\0;\0�\0=\0�\0?\0;\0\0\0�\0�\0+\0<@\0�\0\0\0=\0>\0?\0@\0A\0<\0\0\0=\0A\0B�\0\0\0=\0>\0?\0@\0A\0<\0\0\0=\0A\0B\0B�\0\0\0=\0>\0?\0@\0A\0<\0\0\0=\0A\0B�\0\0\0=\0>\0?\0@\0A\0<\0\0\0=\0A\0B\0B\0C\0\0\0\0D\0\0E\0F\0\07\0\0\0B\0\0\0\0\0*�\0�\0*�\0�\0*�\0�\0\0\0\08\0\0\0\0\0\0\0F\0\0H\0\0I\0\0L\0;\0\0\0\0\0G\0\0\0\0\0H\0\0I\0F\0\07\0\0\05\0\0\0\0\0*�\0Y*�\0*�\0*�\0�\0 �\0�\0\0\0\08\0\0\0\n\0\0\0\0S\0\0U\0G\0\0\0\0\0H\0\0J\0F\0\07\0\0\0B\0\0\0\0\0*�\0�\0*�\0�\0*�\0�\0\0\0\08\0\0\0\0\0\0\0\\\0\0^\0\0_\0\0b\0;\0\0\0\0\0G\0\0\0\0\0H\0\0K\0F\0\07\0\0\0)\0\0\0\0\0*�\0*�\0\0!#�\0$�\0\0\0\08\0\0\0\0\0\0\0i\0G\0\0\0\0\0H\0\0L\06\0\07\0\0\0!\0\0\0\0\0\0	%�\0&�\0�\0\0\0\08\0\0\0\0\0\0\0$\0\0M\0\0\0\0N'),('ru.bitel.bgbilling.modules.inet.dyn.device.snmp.SnmpServiceActivator',1433856492000,'����\0\0\04o\n\0l\0�	\0j\0�\0�\n\0�\0�\n\0�\0�\0�\0�\0�\0�\0�\0�\n\0�\0�	\0j\0�\0�\n\0�\0�\n\0�\0�	\0j\0�\0�\0�\n\0�\0�	\0j\0�\0�\n\0�\0�	\0j\0�\0�\0�\n\0�\0�	\0\0�\n\0�\0�	\0j\0�\0�\0�\0�\n\0\0�\n\0\0�	\0j\0�\0�\0�	\0j\0�\0�\n\0�\0�\n\0�\0�\0�\0�	\0)\0�	\0j\0�\0�	\0j\0�\0�	\0j\0�\0�\0�	\01\0�	\0j\0�	\0j\0�\n\07\0�\0�\n\07\0�	\0n\0�\n\0)\0�\n\0�\0�\n\0�\0�\n\0&\0�\n\0&\0�	\0n\0�\n\01\0���������\n\0�\0�\n\0�\0�\n\0�\0�\0�\n\0F\0�\n\0�\0�\n\0�\0�\0�\n\0�\0�\n\0J\0�\0�\0�\n\0�\0�\0�\n\0P\0�\0�\n\0P\0\n\n\0P\n\n\n\0P	\n\n\n\0P\n\0j\r\n	\0n\n\0\0�\n\0j\n\0�\n\0j\n\07\n\0�\Z\0InnerClasses\0DisconnectMode\0KeyMode\0KeyField\0logger\0Lorg/apache/log4j/Logger;\0host\0Ljava/lang/String;\0snmpVersion\0I\0snmpPort\0\rsnmpCommunity\0\nsnmpClient\03Lru/bitel/bgbilling/kernel/network/snmp/SnmpClient;\0connectionKeyField\0OLru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator$KeyField;\0connectionKeyOffset\0connectionKeyLength\0connectionKeyMode\0NLru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator$KeyMode;\0disconnectMode\0ULru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator$DisconnectMode;\0\rdisconnectOid\0[J\0disconnectValue\0Ljava/lang/Object;\0<init>\0()V\0Code\0LineNumberTable\0init\0�(Lru/bitel/bgbilling/server/util/Setup;ILru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceType;Lru/bitel/common/ParameterMap;)Ljava/lang/Object;\0\rStackMapTable \0�\0\nExceptions\0destroy\0()Ljava/lang/Object;\0connect\0\ndisconnect\0getKey\0T(Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;)Ljava/lang/Object;\0�\0compose\0([JLjava/lang/Object;)[J\0connectionModify\0U(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;)Ljava/lang/Object;\0connectionClose!\"\0<clinit>\0\nSourceFile\0SnmpServiceActivator.java\0�\0�\0s\0t\0INIT#$%&\'()*+\0[Ljava/lang/String;\0snmp.version ,-\0w\0x\0	snmp.host./*0\0u\0v\0	snmp.port\0161123\0y\0x\0snmp.community4/\0z\0v\0Sru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator$DisconnectMode\0sa.snmp.disconnect.mode*56\0�78\0�\0�\0%uk/co/westhawk/snmp/stack/AsnObjectId\0sa.snmp.disconnect.oid\01.3.6.1.4.1.9.2.9.10.0\0�9:;\0�\0�\0sa.snmp.disconnect.value\01\0�\0�\0java/lang/String2-<=>\0Mru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator$KeyField\0sa.snmp.connection.key.field?\0~\0}\0~\0sa.snmp.connection.key.offset\0\0x\0sa.snmp.connection.key.length\0�\0x\0Lru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator$KeyMode\0sa.snmp.connection.key.mode@\0�\0�\0�\0{\0|\0�\0�\01ru/bitel/bgbilling/kernel/network/snmp/SnmpClient\0�ABCD)!E)F/G)HIJCKLM=NKO\0java/lang/ExceptionP/QRST\0java/lang/NumberUVWXY\0[BZ[\\\0java/lang/StringBuilder\0Connection modify: oldState: ]^_`)]a\0; newState: b)\0; oldOptionSet: cd]e\0; newOptionSet: fdg/\0�\0�\0Connection closehijC\0�\0�\0Skip wrong key!Q%\0Set \0 to \0�\0�kl\0Dru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivatormn\0Aru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorAdapter\0:ru/bitel/bgbilling/modules/inet/access/sa/ServiceActivator\0Fru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator$1\0java/util/List\0$ru/bitel/bgbilling/server/util/Setup\0:ru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice\0>ru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceType\0ru/bitel/common/ParameterMap\0>ru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection\0java/lang/Object\0org/apache/log4j/Logger\0info\0(Ljava/lang/Object;)V\0getHostsAsString\0()Ljava/util/List;\0size\0()I\0get\0(I)Ljava/lang/Object;\0getInt\0(Ljava/lang/String;I)I\0getHost\0()Ljava/lang/String;\08(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;\0ru/bitel/common/Utils\0parseInt\0(Ljava/lang/String;)I\0	getSecret\0&(Ljava/lang/String;)Ljava/lang/String;\0oid\0	parseEnum\0E(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/Enum;)Ljava/lang/Enum;\0(Ljava/lang/String;)V\0getOid\0()[J\0java/lang/Integer\0valueOf\0(I)Ljava/lang/Integer;\0nasPort\0plain\0((Ljava/lang/String;ILjava/lang/String;)V\0X$SwitchMap$ru$bitel$bgbilling$modules$inet$dyn$device$snmp$SnmpServiceActivator$KeyField\0[I\0ordinal\0\rgetDevicePort\0getAcctSessionId\0length\0	substring\0(II)Ljava/lang/String;\0W$SwitchMap$ru$bitel$bgbilling$modules$inet$dyn$device$snmp$SnmpServiceActivator$KeyMode\0	parseLong\0(Ljava/lang/String;J)J\0java/lang/Long\0(J)Ljava/lang/Long;\0(Ljava/lang/String;I)J\0\ngetMessage\0error\0*(Ljava/lang/Object;Ljava/lang/Throwable;)V\0getInetAddressBytes\0()[B\0java/util/Arrays\0copyOf\0([JI)[J\0	longValue\0()J\0java/lang/System\0	arraycopy\0*(Ljava/lang/Object;ILjava/lang/Object;II)V\0append\0-(Ljava/lang/String;)Ljava/lang/StringBuilder;\0?ru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent\0getOldState\0(I)Ljava/lang/StringBuilder;\0getNewState\0\rgetOldOptions\0()Ljava/util/Set;\0-(Ljava/lang/Object;)Ljava/lang/StringBuilder;\0\rgetNewOptions\0toString\0\rgetConnection\0B()Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;\0^$SwitchMap$ru$bitel$bgbilling$modules$inet$dyn$device$snmp$SnmpServiceActivator$DisconnectMode\0setAsync\04([JJLjava/lang/Object;)Ljava/util/concurrent/Future;\0	getLogger\0,(Ljava/lang/Class;)Lorg/apache/log4j/Logger;\0!\0j\0l\0\0m\0\r\0\Z\0s\0t\0\0\0\0\0u\0v\0\0\0\0\0w\0x\0\0\0\0\0y\0x\0\0\0\0\0z\0v\0\0\0\0{\0|\0\0\0\0\0}\0~\0\0\0\0\0\0x\0\0\0\0\0�\0x\0\0\0\0\0�\0�\0\0\0\0\0�\0�\0\0\0\0\0�\0�\0\0\0\0\0�\0�\0\0\0\n\0\0�\0�\0\0�\0\0\0!\0\0\0\0\0*�\0�\0\0\0\0�\0\0\0\n\0\0\0\0C\0\0[\0\0�\0�\0\0�\0\0,\0\0	\0\0�\0�\0-�\0:�\0�\0\0�\0�\0\0�\0�\0:*	�\0\n�\0*�\0\n2�\0-�\0\r�\0�\0*�\0\n2�\0�\0�\0\n�\0*-�\0�\0�\0*�\0�\0\Z�\0�\0�\0*�\0Y�\0�\0 �\0!�\0\"*#$�\0�\0%*�\0%�\0&�\0\'6�\0*�\0(�\0%*)*�\0�\0+�\0�\0)�\0,*-�\0\n�\0.*/�\0\n�\00*12�\0�\03�\0�\01�\04�\0\0\0\0�\0\0\0J\0\0\0\0o\0\0q\0\0r\0.\0t\0:\0u\0U\0v\0q\0w\0�\0y\0�\0z\0�\0{\0�\0|\0�\0}\0�\0\0�\0�\0�\0�\0�\0�\0�\Z\0�\0�\0\0\0�\0�\0+\0�@\0�\0\0\0�\0�\0�\0�\0�\0�\0\0\0�\0�\0��\0\0\0�\0�\0�\0�\0�\0�\0\0\0�\0�\0�\0��\0\0\0�\0�\0�\0�\0�\0�\0\0\0�\0�\0��\0\0\0�\0�\0�\0�\0�\0�\0\0\0�\0�\0�\0��\0m\0�\0\0\0\0\0F\0\0�\0�\0\0�\0\0\0B\0\0\0\0\0*�\05�\0*�\05�\06*�\05�\0\0\0\0�\0\0\0\0\0\0\0�\0\0�\0\0�\0\0�\0�\0\0\0\0\0�\0\0\0\0\0F\0\0�\0�\0\0�\0\0\05\0\0\0\0\0*�\07Y*�\0*�\0*�\0�\08�\05�\0\0\0\0�\0\0\0\n\0\0\0\0�\0\0�\0�\0\0\0\0\0F\0\0�\0�\0\0�\0\0\0B\0\0\0\0\0*�\05�\0*�\05�\06*�\05�\0\0\0\0�\0\0\0\0\0\0\0�\0\0�\0\0�\0\0�\0�\0\0\0\0\0�\0\0\0\0\0F\0\0�\0�\0\0�\0\02\0\0\0\0\0��\09*�\0,�\0:.�\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0!\0\0\0�+�\0;�\0(�+�\0<M*�\0.�\0\n*�\00�\02*�\00�\0\n*�\00�\0,�\0=*�\0.d>,�\0=�\0,*�\0.*�\0.`�\0>M�\0?*�\04�\0@.�\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0&,\0A�\0C�\0D�,�\0E�\0D�N�\0-�\0G-�\0H\0A�\0D�+�\0I�\0\0�\0�\0�\0F\0\0�\0\0\0:\0\0\0\0�\0$\0�\0,\0�\01\0�\0?\0�\0W\0�\0_\0�\0n\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0\0\0\0\n$�\0\0�\rH%\nI\0��\0\0\n\0�\0�\0\0�\0\0\0�\0\0\0\0\0�+�\0J�\0**�`�\0KM,*�+�\0J�\0LP,�+�\0M�\08+�\0M�\0MM**�,�`�\0KN*�6-��\0-,*�d3\0�~�P����-�+�\0N�\0!+�\0N�\0NM**�,�`�\0KN,-*�,��\0O-�*�\0\0\0\0�\0\0\0F\0\0\0\0�\0\0�\0\0�\0\0�\0\0�\0$\0�\0,\0�\06\0�\0A\0�\0Q\0�\0W\0�\0Y\0�\0`\0�\0h\0�\0r\0�\0|\0�\0~\0\0�\0\0\0\0�\0\0M\0N�\0�\0$\0\0�\0�\0\0�\0\0\0b\0\0\0\0\0F�\0�\0PY�\0QR�\0S+�\0T�\0UV�\0S+�\0W�\0UX�\0S+�\0Y�\0Z[�\0S+�\0\\�\0Z�\0]�\0*+�\0^�\0\0\0\0�\0\0\0\n\0\0\0\0@\n\0�\0\0\0\0\0F\0\0�\0�\0\0�\0\0P\0\0\0\0\0�\0_�\0+�\0`M�\0a*�\0�\0b.�\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0}*,�\0cN-�\0J�\0-�\0J�\0L\0A��\0\r�\0d�\0e��\0�\0PY�\0Qf�\0S*�\0%�\0Zg�\0S-�\0Z�\0]�\0*�\05*�\0\"-�\0h\0A*�\0%�\0i�*,�\0cN-�\0J�\0-�\0J�\0L\0A��\0\r�\0d�\0e��\0�\0PY�\0Qf�\0S-�\0Z�\0]�\0*�\05*�\0\"\0A-�\0i�\0\0\0\0�\0\0\0>\0\0\0\0\0\r\04\Z\0:\0O\0W\0Y\"\0~#\0�(\0�*\0�,\0�-\0�0\0�1\0�\0\0\0\0�\04\0��\0$\0��\0;�\0$\0�\0�\0\0\0\0\0F\0\0�\0�\0\0�\0\0\0!\0\0\0\0\0\0	j�\0k�\0�\0\0\0\0�\0\0\0\0\0\0\0G\0\0�\0\0\0\0�\0o\0\0\0\"\0\0n\0\0\0\0\0\0j\0p@\01\0j\0q@\0)\0j\0r@'),('ru.bitel.bgbilling.modules.inet.dyn.device.snmp.SnmpServiceActivator$1',1433856492000,'����\0\0\04\0N\n\0\"\0#	\0\0$	\0\"\0%\n\0\"\0&\0\'	\0\"\0(\n\0)\0*	\0\0+	\0)\0,\n\0)\0&	\0)\0-	\0)\0.\n\0/\00	\0\01	\0/\02\n\0/\0&	\0/\03\04\06\0W$SwitchMap$ru$bitel$bgbilling$modules$inet$dyn$device$snmp$SnmpServiceActivator$KeyMode\0[I\0X$SwitchMap$ru$bitel$bgbilling$modules$inet$dyn$device$snmp$SnmpServiceActivator$KeyField\0^$SwitchMap$ru$bitel$bgbilling$modules$inet$dyn$device$snmp$SnmpServiceActivator$DisconnectMode\0<clinit>\0()V\0Code\0LineNumberTable\0\rStackMapTable\0\'\0\nSourceFile\0SnmpServiceActivator.java\0EnclosingMethod\07\08\0:\0;\0\0\0<\0=\0>\0?\0\Zjava/lang/NoSuchFieldError\0@\0=\0A\0:\0C\0\0\0D\0E\0F\0E\0G\0E\0H\0:\0J\0\0\0K\0L\0M\0L\0Fru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator$1\0InnerClasses\0java/lang/Object\0Dru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator\0Sru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator$DisconnectMode\0DisconnectMode\0values\0X()[Lru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator$DisconnectMode;\0oid\0ULru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator$DisconnectMode;\0ordinal\0()I\0value\0Mru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator$KeyField\0KeyField\0R()[Lru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator$KeyField;\0nasPort\0OLru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator$KeyField;\0\racctSessionId\0	ipAddress\0Lru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator$KeyMode\0KeyMode\0Q()[Lru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator$KeyMode;\0plain\0NLru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator$KeyMode;\0hex \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\Z\0\0\0\0\0\0\0��\0��\n�\0�\0�\0�\0O�\0K�\0�\0�\0O�\0K�\0��\n�\0�\0�\0	�\0\nO�\0K�\0�\0�\0\nO�\0K�\0�\0�\0\nO�\0K�\0\r��\n�\0�\0�\0�\0O�\0K�\0�\0�\0O�\0K�\0\0	\0\0\0\0\0#\0&\0\00\0;\0>\0\0?\0J\0M\0\0N\0Y\0\\\0\0f\0q\0t\0\0u\0�\0�\0\0\0\0\0\0\0\0\0\0\'\0�\0]\0�\0\0\0\0%\0W\0\0M\0\0V\0\0M\0\0M\0\0V\0\0M\0\0\0\0\0\0\0\0\0 \0\0\0\0!\0\0\05\0\0\0\"\0\0\0\0\0\0\0\"\0!\09@\0)\0!\0B@\0/\0!\0I@'),('ru.bitel.bgbilling.modules.inet.dyn.device.snmp.SnmpServiceActivator$DisconnectMode',1433856492000,'����\0\0\04\00	\0\0\"\n\0#\0$\0\0&\n\0\0\'\n\0\0(\0\r\n\0\0(	\0\0)\0	\0\0*\0+\0oid\0DisconnectMode\0InnerClasses\0ULru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator$DisconnectMode;\0value\0$VALUES\0V[Lru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator$DisconnectMode;\0values\0X()[Lru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator$DisconnectMode;\0Code\0LineNumberTable\0valueOf\0i(Ljava/lang/String;)Lru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator$DisconnectMode;\0<init>\0(Ljava/lang/String;I)V\0	Signature\0()V\0<clinit>\0gLjava/lang/Enum<Lru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator$DisconnectMode;>;\0\nSourceFile\0SnmpServiceActivator.java\0\0\0\0,\0-\0.\0Sru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator$DisconnectMode\0\0/\0\Z\0\0\r\0\0\0\0java/lang/Enum\0clone\0()Ljava/lang/Object;\0Dru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator\05(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;@0\0\0\0\0\0@\0\r\0\0\0@\0\0\0\0\Z\0\0\0\0\0\0	\0\0\0\0\0\0\0\"\0\0\0\0\0\0\n�\0�\0�\0�\0\0\0\0\0\0\0\0\0\0\0[\0	\0\0\0\0\0\0\0\"\0\0\0\0\0\n*�\0�\0�\0\0\0\0\0\0\0\0\0\0\0[\0\0\Z\0\0\0\0\0\0\0\0\0\0\0*+�\0�\0\0\0\0\0\0\0\0\0\0\0[\0\0\0\0\0\0\0\0\0\0\0\0\0J\0\0\0\0\0\0.�\0Y�\0�\0	�\0Y\n�\0�\0�\0Y�\0	SY�\0S�\0�\0\0\0\0\0\0\0\n\0\0\0\0]\0\Z\0[\0\0\0\0\0\0\0 \0\0\0\0!\0\0\0\0\n\0\0\0%\0@'),('ru.bitel.bgbilling.modules.inet.dyn.device.snmp.SnmpServiceActivator$KeyField',1433856492000,'����\0\0\04\04	\0\0%\n\0&\0\'\0\0)\n\0\0*\n\0\0+\0\n\0\0+	\0\0,\0	\0\0-\0	\0\0.\0/\0nasPort\0KeyField\0InnerClasses\0OLru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator$KeyField;\0\racctSessionId\0	ipAddress\0$VALUES\0P[Lru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator$KeyField;\0values\0R()[Lru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator$KeyField;\0Code\0LineNumberTable\0valueOf\0c(Ljava/lang/String;)Lru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator$KeyField;\0<init>\0(Ljava/lang/String;I)V\0	Signature\0()V\0<clinit>\0aLjava/lang/Enum<Lru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator$KeyField;>;\0\nSourceFile\0SnmpServiceActivator.java\0\0\0\00\01\02\0Mru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator$KeyField\0\03\0\0\0\0\0\0\0\0\0java/lang/Enum\0clone\0()Ljava/lang/Object;\0Dru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator\05(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;@0\0\0\0\0\0@\0\0\0\0@\0\0\0\0@\0\0\0\0\Z\0\0\0\0\0\0	\0\0\0\0\0\0\0\"\0\0\0\0\0\0\n�\0�\0�\0�\0\0\0\0\Z\0\0\0\0\0\0\0Q\0	\0\0\0\0\0\0\0\"\0\0\0\0\0\n*�\0�\0�\0\0\0\0\Z\0\0\0\0\0\0\0Q\0\0\0\0\0\0\0\0\0\0\0\0\0*+�\0�\0\0\0\0\Z\0\0\0\0\0\0\0Q\0\0\0\0\0 \0\0!\0 \0\0\0\0\0]\0\0\0\0\0\0A�\0Y�\0�\0	�\0Y\n�\0�\0�\0Y�\0�\0\r�\0Y�\0	SY�\0SY�\0\rS�\0�\0\0\0\0\Z\0\0\0\n\0\0\0\0S\0\'\0Q\0\0\0\0\0\0\"\0#\0\0\0\0$\0\0\0\0\n\0\0\0(\0@'),('ru.bitel.bgbilling.modules.inet.dyn.device.snmp.SnmpServiceActivator$KeyMode',1433856492000,'����\0\0\04\00	\0\0\"\n\0#\0$\0\0&\n\0\0\'\n\0\0(\0\r\n\0\0(	\0\0)\0	\0\0*\0+\0plain\0KeyMode\0InnerClasses\0NLru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator$KeyMode;\0hex\0$VALUES\0O[Lru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator$KeyMode;\0values\0Q()[Lru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator$KeyMode;\0Code\0LineNumberTable\0valueOf\0b(Ljava/lang/String;)Lru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator$KeyMode;\0<init>\0(Ljava/lang/String;I)V\0	Signature\0()V\0<clinit>\0`Ljava/lang/Enum<Lru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator$KeyMode;>;\0\nSourceFile\0SnmpServiceActivator.java\0\0\0\0,\0-\0.\0Lru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator$KeyMode\0\0/\0\Z\0\0\r\0\0\0\0java/lang/Enum\0clone\0()Ljava/lang/Object;\0Dru/bitel/bgbilling/modules/inet/dyn/device/snmp/SnmpServiceActivator\05(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;@0\0\0\0\0\0@\0\r\0\0\0@\0\0\0\0\Z\0\0\0\0\0\0	\0\0\0\0\0\0\0\"\0\0\0\0\0\0\n�\0�\0�\0�\0\0\0\0\0\0\0\0\0\0\0V\0	\0\0\0\0\0\0\0\"\0\0\0\0\0\n*�\0�\0�\0\0\0\0\0\0\0\0\0\0\0V\0\0\Z\0\0\0\0\0\0\0\0\0\0\0*+�\0�\0\0\0\0\0\0\0\0\0\0\0V\0\0\0\0\0\0\0\0\0\0\0\0\0J\0\0\0\0\0\0.�\0Y�\0�\0	�\0Y\n�\0�\0�\0Y�\0	SY�\0S�\0�\0\0\0\0\0\0\0\n\0\0\0\0X\0\Z\0V\0\0\0\0\0\0\0 \0\0\0\0!\0\0\0\0\n\0\0\0%\0@'),('ru.bitel.bgbilling.modules.inet.dyn.device.terminal.AbstractTerminalServiceActivator',1433856492000,'����\0\0\04�	!�\n)�	!�	!�	��\n\0I�\n���\n\0��\n\0�\n\0�\n\0�\n��	��\n�����\n��\n�	��\n��\n)��\n���\n\0�\n��\n\0�	!�\n��	!�	!�	!�\n�������\n\0&�\n��	!�\n\0&�	!��\n\0m��\n\0m�\n��	!�\n��	!���\n��	!�\n!�	!��\0\0�`	!��	!�\0\n!\n\n\0C�	!	\n	\n\0I\r\n�	�	!	!	!\n!\Z	!	!\n! 	!!\"	!#$\n!%	!&\'\n\0d�	!(	!)*\n\0m+�,-\0k/01\0k2�345\n\0r�678	\0r9:	\0r;<\n\0z=	\0r>?\n!@	\0rAB�CDE	\0rFG	\0rHI	\0rJ�	\0rK�	\0rLM\n\0��\n\0mN\nO	!P\nQR\nST�U\n\0mVWXY�Z[\n\0\\\n�]^�_HW,`ab\n\0�cd\n\0�e\n�f\ngh\nij\nk\nlmno\nlpq\0\0\0\0����\nrstu\nvw=\nxy\nz{\n�|\nz}~\n\n��\n��\n��\n��\n��\n�6�\n��\n���\n���\n!�	��\n���\n���\n���	��\n\0���\n!����\n\0��������\n\0���\n��\n\0��\n���\n���\n�\n\0C���\n��\n\0���\n!�\n!�\n��\n��\n��\n��\n!�\n��\n��	\0z�\n!�\n��\n!�\n��\n!�\n!�\n!�\n!�\n��\n!�\n!�\ng�	\0z�\n��\n��\n��\n!�\n!�\n!�\n��\n��\n�����	!�\n#��\n�\n#��\n���	��	��\n#��\nQ���\0\nCommandSet\0InnerClasses\0Commands\0logger\0Lorg/apache/log4j/Logger;\0\rSEMAPHORE_MAP\00Lru/bitel/common/ref/ConcurrentReferenceHashMap;\0	Signature\0eLru/bitel/common/ref/ConcurrentReferenceHashMap<Ljava/lang/Integer;Ljava/util/concurrent/Semaphore;>;\0moduleId\0I\0deviceId\0device\0<Lru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice;\0config\0Lru/bitel/common/ParameterMap;\0host\0Ljava/lang/String;\0port\0username\0password\0timeout\0readWait\0J\0optionRuntimeMap\0>Lru/bitel/bgbilling/modules/inet/runtime/InetOptionRuntimeMap;\0macrosFormat\0#Lru/bitel/common/util/MacrosFormat;\0connectCommands\0[Ljava/lang/String;\0disconnectCommands\0exitCommand\0\ncommandSet\0aLru/bitel/bgbilling/modules/inet/dyn/device/terminal/AbstractTerminalServiceActivator$CommandSet;\0\rcommandSetMap\0Ljava/util/Map;\0�Ljava/util/Map<Ljava/lang/String;Lru/bitel/bgbilling/modules/inet/dyn/device/terminal/AbstractTerminalServiceActivator$CommandSet;>;\0servTypeCommandSetMap\0�Ljava/util/Map<Ljava/lang/Integer;Lru/bitel/bgbilling/modules/inet/dyn/device/terminal/AbstractTerminalServiceActivator$CommandSet;>;\0workingOptions\0Ljava/util/Set;\0$Ljava/util/Set<Ljava/lang/Integer;>;\0needConnectionStateModify\0Z\0skipServiceAccountingEvents\0accountingEventDeviceIds\0\ZconnectionSemaphorePermits\0connectionSemaphore\0 Ljava/util/concurrent/Semaphore;\0connectionSemaphoreAcquired\0access\0/Lru/bitel/bgbilling/modules/inet/access/Access;\0RuntimeVisibleAnnotations\0Ljavax/annotation/Resource;\0name\0semicolonPattern\0Ljava/util/regex/Pattern;\0<init>\0()V\0Code\0LineNumberTable\0getDeviceAttribute\07(II)Lru/bitel/oss/kernel/entity/common/bean/EntityAttr;\0\rStackMapTable�\0\rgetIpResource\0�(Lru/bitel/bgbilling/modules/inet/api/common/bean/InetServ;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;)Lru/bitel/oss/systems/inventory/resource/server/ip/dynamic/IpResourceRuntime;\0\nExceptions�\0init\0�(Lru/bitel/bgbilling/server/util/Setup;ILru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceType;Lru/bitel/common/ParameterMap;)Ljava/lang/Object;0��������\0\rparseCommands\0!(Lru/bitel/common/ParameterMap;)V-5\0�(Lru/bitel/common/ParameterMap;Ljava/lang/String;)Lru/bitel/bgbilling/modules/inet/dyn/device/terminal/AbstractTerminalServiceActivator$CommandSet;\0X(Lru/bitel/common/ParameterMap;Ljava/lang/String;[Ljava/lang/String;)[Ljava/lang/String;^\0parseOptionCommands\0A(Lru/bitel/common/ParameterMap;Ljava/lang/String;)Ljava/util/Map;�\0�(Lru/bitel/common/ParameterMap;Ljava/lang/String;)Ljava/util/Map<Ljava/lang/Integer;Lru/bitel/bgbilling/modules/inet/dyn/device/terminal/AbstractTerminalServiceActivator$Commands;>;\0createMacrosFormat\0%()Lru/bitel/common/util/MacrosFormat;\0getValue(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetServ;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;Ljava/util/Set;Ljava/lang/String;[Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;�������+(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetServ;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;Ljava/util/Set<Ljava/lang/Integer;>;Ljava/lang/String;[Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;\0executeCommands\0�(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetServ;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;Ljava/util/Set;[Ljava/lang/String;)Ljava/lang/Object;(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetServ;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;Ljava/util/Set<Ljava/lang/Integer;>;[Ljava/lang/String;)Ljava/lang/Object;\0executeCommand\0(Ljava/lang/String;)V\0connect\0()Ljava/lang/Object;\0\ndisconnect\0\rgetCommandSet\0�(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;)Lru/bitel/bgbilling/modules/inet/dyn/device/terminal/AbstractTerminalServiceActivator$CommandSet;\0\rserviceCreate\0U(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;)Ljava/lang/Object;\0\rserviceCancel\0\rserviceModify\0serviceChanged\0w(Lru/bitel/bgbilling/modules/inet/api/common/bean/InetServ;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetServ;)Z\0\raddressEquals\0([B[B)Z\0serviceDisable\0\rserviceEnable\0serviceOptionsModify\0connectionModify\0connectionDisable\0connectionEnable\0connectionOptionsModify\0\rswitchOptions\0�(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetServ;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;Ljava/util/Map;Ljava/util/Set;Ljava/util/Set;)V�(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetServ;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;Ljava/util/Map<Ljava/lang/Integer;Lru/bitel/bgbilling/modules/inet/dyn/device/terminal/AbstractTerminalServiceActivator$Commands;>;Ljava/util/Set<Ljava/lang/Integer;>;Ljava/util/Set<Ljava/lang/Integer;>;)V\0connectionClose\0onAccountingStart\0onAccountingStop\0getConnectionSemaphore\0\"()Ljava/util/concurrent/Semaphore;�\0\naccess$000\0()Lorg/apache/log4j/Logger;\0<clinit>\0\nSourceFile\0%AbstractTerminalServiceActivator.java./deY5]^���\0\0java/lang/StringBuilder\0Device not found with id=	\n�\r8��\01ru/bitel/oss/kernel/entity/common/bean/EntityAttr�pq\0ru/bitel/common/Preferences�	\0\nd\Z4565789:� \0\Zjava/net/InetSocketAddress!\"#$	;<%=5\0sa.host&\0sa.port\'()	><*	?<\0sa.username\0sa.password+,-CD��EF\0sa.command.timeout@5\0sa.command.readWaitAB\0sa.config.inherit{|\0sa.inetOption.root./0\0java/util/HashSetRS�12�345�\0java/lang/Integer6789S:;<=\0!sa.command.connection.stateModifyUV\0+sa.command.connection.skipServiceAccountingWV\0sa.command.connection.deviceIdsXS\0sa.connection.semaphorePermits��Z[\0sa.command.exit\0exitJ<\0sa.command.connect{�GH\0sa.command.disconnectIH\0sa.command.{KL\0java/util/HashMapMNPN\0sa.commandSet.>?@A\0java/util/Map$Entry\0Entry��\0ru/bitel/common/ParameterMap\0\0B�CD\0servTypeIds\0_ru/bitel/bgbilling/modules/inet/dyn/device/terminal/AbstractTerminalServiceActivator$CommandSet\0serv.enable\0serv.disable\0serv.createEH\0serv.cancelFH\0]ru/bitel/bgbilling/modules/inet/dyn/device/terminal/AbstractTerminalServiceActivator$CommandsdGHI\0inetOption.��JN\0serv.inetOption.KL\0connection.enable\0connection.disableMI\0connection.inetOption.NN\0connection.closeOHPHQH\0java/util/ArrayListRSTbcUVWXYZ\0.[\\]^_`a=\0 commands: bc\0java/lang/Stringde\0enable\0disable\0Vru/bitel/bgbilling/modules/inet/dyn/device/terminal/AbstractTerminalServiceActivator$1df\0ipg=hijkli\0netmino\0mask\0bitmaskpq\0netmaskrst\0netmaskWild\0vlanu\0ifacev\0\nifaceTitlew,xyz{\0mac|i}k\0macBytes~\0	servTitle�	\0\ncontractId�\0servId\0\nservTypeId�\0servDeviceId�\0\ragentDeviceId�\0connectionDeviceId\0ipGatelm�����	\0ipDns�	\0ipSubnetMask�	\0ipParam\0�\0\ndeviceAttrhi\0\rmacBytesDoted\0(.{4})(.{4})(.{4})\0$1.$2.$3�&\0ifaceTitleBeforeColon\0\n(.*):(\\d*)\0$1\0ifaceTitleAfterColon\0$2\0\rcontractTitle�\04ru/bitel/bgbilling/kernel/base/server/DefaultContext�,�����\0null��	\0translit�Rd��;\0java/lang/Object����	\0\\n�������������A����A�H�������\08ru/bitel/bgbilling/modules/inet/api/common/bean/InetServ�������������g��H�A�A���������������\0Skip service connection�=\0Skip connection with deviceId=01\0java/util/concurrent/Semaphored��D\0Tru/bitel/bgbilling/modules/inet/dyn/device/terminal/AbstractTerminalServiceActivator��\0.ru/bitel/common/ref/ConcurrentReferenceHashMap�����d�\0\\s*;\\s*��\0Aru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorAdapter\0:ru/bitel/bgbilling/modules/inet/access/sa/ServiceActivator\0@ru/bitel/bgbilling/modules/inet/runtime/device/InetDeviceRuntime\0%ru/bitel/bgbilling/common/BGException\0java/util/List\0\rjava/util/Set\0java/util/Iterator\0$ru/bitel/bgbilling/server/util/Setup\0:ru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice\0>ru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceType\0java/lang/Exception\0\rjava/util/Map\0?ru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent\0>ru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection\0[Ljava/lang/Object;\0:ru/bitel/bgbilling/kernel/contract/runtime/ContractRuntime\0-ru/bitel/bgbilling/modules/inet/access/Access\0	deviceMap\0ELru/bitel/bgbilling/modules/inet/runtime/device/InetDeviceRuntimeMap;\0valueOf\0(I)Ljava/lang/Integer;\0Cru/bitel/bgbilling/modules/inet/runtime/device/InetDeviceRuntimeMap\0get\0W(Ljava/lang/Integer;)Lru/bitel/bgbilling/modules/inet/runtime/device/InetDeviceRuntime;\0append\0-(Ljava/lang/String;)Ljava/lang/StringBuilder;\0(I)Ljava/lang/StringBuilder;\0toString\0()Ljava/lang/String;\0org/apache/log4j/Logger\0warn\0(Ljava/lang/Object;)V\0\ninetDevice\0getEntityAttributes\0()Ljava/util/Map;\0&(Ljava/lang/Object;)Ljava/lang/Object;\0getIpResourceId\0()I\0ipResourceManager\0TLru/bitel/oss/systems/inventory/resource/server/ip/dynamic/IpResourceRuntimeManager;\0Rru/bitel/oss/systems/inventory/resource/server/ip/dynamic/IpResourceRuntimeManager\0getResource\0b(Ljava/lang/Integer;)Lru/bitel/oss/systems/inventory/resource/server/ip/dynamic/IpResourceRuntime;\0	getConfig\0\'(Ljava/lang/String;Ljava/lang/String;)V\0inherit\0>(Lru/bitel/common/ParameterMap;)Lru/bitel/common/ParameterMap;\0getId\0getHosts\0()Ljava/util/List;\0size\0(I)Ljava/lang/Object;\0\ngetAddress\0()Ljava/net/InetAddress;\0java/net/InetAddress\0getHostAddress\0getPort\08(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;\0getInt\0(Ljava/lang/String;I)I\0getUsername\0getPassword\0<ru/bitel/bgbilling/modules/inet/runtime/InetOptionRuntimeMap\0getInstance\0A(I)Lru/bitel/bgbilling/modules/inet/runtime/InetOptionRuntimeMap;\0ru/bitel/common/Utils\0toIntegerSet\0#(Ljava/lang/String;)Ljava/util/Set;\0iterator\0()Ljava/util/Iterator;\0hasNext\0()Z\0next\0intValue\0>(I)Lru/bitel/bgbilling/modules/inet/runtime/InetOptionRuntime;\09ru/bitel/bgbilling/modules/inet/runtime/InetOptionRuntime\0\rdescendantIds\0addAll\0(Ljava/util/Collection;)Z\0remove\0(Ljava/lang/Object;)Z\0subKeyed\0#(Ljava/lang/String;)Ljava/util/Map;\0entrySet\0()Ljava/util/Set;\0getKey\0put\08(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;\0servCreateCommands\0servCancelCommands\0)([Ljava/lang/String;[Ljava/lang/String;)V\0servModifyCommands\0_Lru/bitel/bgbilling/modules/inet/dyn/device/terminal/AbstractTerminalServiceActivator$Commands;\0servOptionModifyCommandsMap\0putAll\0(Ljava/util/Map;)V\0connectionModifyCommands\0!connectionOptionModifyCommandsMap\0connectionCloseCommands\0onAccountingStartCommands\0onAccountingStopCommands\0&(Ljava/lang/String;)Ljava/lang/String;\0notBlankString\0(Ljava/lang/String;)Z\0java/util/regex/Pattern\0split\0-(Ljava/lang/CharSequence;)[Ljava/lang/String;\0java/util/Arrays\0asList\0%([Ljava/lang/Object;)Ljava/util/List;\0\nsubIndexed\0)(Ljava/lang/String;)Ljava/util/SortedMap;\0java/util/SortedMap\0values\0()Ljava/util/Collection;\0java/util/Collection\0add\0-(Ljava/lang/Object;)Ljava/lang/StringBuilder;\0debug\0toArray\0(([Ljava/lang/Object;)[Ljava/lang/Object;\0Y(Lru/bitel/bgbilling/modules/inet/dyn/device/terminal/AbstractTerminalServiceActivator;)V\0equals\0getInetAddressBytes\0()[B\0ru/bitel/common/inet/IpAddress\0([B)Ljava/lang/String;\0getAddressFrom\0getAddressTo\0\Zru/bitel/common/inet/IpNet\0([B[B)Ljava/lang/String;\0getMask\0([B[B)I\0bitel/billing/common/IPUtils\0convertLongIpToString\0(J)Ljava/lang/String;\0getVlan\0getInterfaceId\08ru/bitel/bgbilling/modules/inet/runtime/InetInterfaceMap\0=(I)Lru/bitel/bgbilling/modules/inet/runtime/InetInterfaceMap;\0getInvDeviceId\0getInterfaceTitle\0(II)Ljava/lang/String;\0getMacAddressListBytes\0macAddressToString\0\rbytesToString\0)([BZLjava/lang/String;)Ljava/lang/String;\0getTitle\0\rgetContractId\0	getTypeId\0getDeviceId\0getAgentDeviceId\0Kru/bitel/oss/systems/inventory/resource/server/ip/dynamic/IpResourceRuntime\0\nipResource\0@Lru/bitel/oss/systems/inventory/resource/common/bean/IpResource;\0>ru/bitel/oss/systems/inventory/resource/common/bean/IpResource\0	getRouter\0getDns\0\rgetSubnetMask\0&(Ljava/lang/Object;)Ljava/lang/String;\0\nreplaceAll\0(()Lru/bitel/common/worker/ThreadContext;\0=ru/bitel/bgbilling/kernel/contract/runtime/ContractRuntimeMap\0A()Lru/bitel/bgbilling/kernel/contract/runtime/ContractRuntimeMap;\0getConnectionSet\0%()Lru/bitel/common/sql/ConnectionSet;\0getContractRuntime\0t(Lru/bitel/common/sql/ConnectionSet;Ljava/lang/Integer;)Lru/bitel/bgbilling/kernel/contract/runtime/ContractRuntime;\0getContractTitle\0\ntoTranslit\0(Ljava/util/Collection;)V\0	retainAll\0!ru/bitel/common/util/MacrosFormat\0format\09(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;\0trim\0getInetServRuntime\0;()Lru/bitel/bgbilling/modules/inet/runtime/InetServRuntime;\07ru/bitel/bgbilling/modules/inet/runtime/InetServRuntime\0getInetServ\0<()Lru/bitel/bgbilling/modules/inet/api/common/bean/InetServ;\0getNewInetServ\0\rgetNewOptions\0getNewState\0\rgetOldOptions\0disableCommands\0getOldInetServ\0getChildren\0getOldState\0enableCommands\0getOptionsToRemove\0getOptionsToAdd\0\ZsetConnectionStateModified\0(Z)V\0\rgetConnection\0B()Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;\0java/util/Collections\0	singleton\0#(Ljava/lang/Object;)Ljava/util/Set;\0getParentConnectionId\0()J\0contains\0(IZ)V\0putIfAbsent\0	getLogger\0,(Ljava/lang/Class;)Lorg/apache/log4j/Logger;\0<ru/bitel/common/ref/ConcurrentReferenceHashMap$ReferenceType\0\rReferenceType\0SOFT\0>Lru/bitel/common/ref/ConcurrentReferenceHashMap$ReferenceType;\0STRONG\0(Lru/bitel/common/ref/ConcurrentReferenceHashMap$ReferenceType;Lru/bitel/common/ref/ConcurrentReferenceHashMap$ReferenceType;)V\0compile\0-(Ljava/lang/String;)Ljava/util/regex/Pattern;!!)\0*\0\0\Z./\0\0\0\Z01\02\0\0\03\045\0\0\065\0\0\078\0\0\09:\0\0\0;<\0\0\0=5\0\0\0><\0\0\0?<\0\0\0@5\0\0\0AB\0\0\0CD\0\0\0EF\0\0\0GH\0\0\0IH\0\0\0J<\0\0\0KL\0\0\0MN\02\0\0\0O\0PN\02\0\0\0Q\0RS\02\0\0\0T\0UV\0\0\0WV\0\0\0XS\02\0\0\0T\0Y5\0\0\0Z[\0\0\0\\V\0\0\0]^\0_\0\0\0\0`\0as]\0bc\0\0\0\"\0de\0f\0\0\0&\0\0\0\0\0\n*�\0*�\0�\0\0\0g\0\0\0\n\0\0\0\04\0\0�\0hi\0f\0\0\0�\0\0\0\0\0F*�\0�\0�\0�\0N-�\0�\0�\0Y�\0	\n�\0�\0�\0\r�\0�-�\0:�\0�\0�\0\0�\0�\0\0\0g\0\0\0\Z\0\0\0\0�\0\0�\0\0�\0,\0�\0.\0�\04\0�j\0\0\0\0�\0.k\0lm\0f\0\0\0q\0\0\0\0\0/,�\0,�\0>�\0+�\0>�\0+�\0>�\0*�\0�\0�\0�\0��\0\0\0g\0\0\0\"\0\0\0\0�\0\0�\0	\0�\0\r\0�\0\0�\0\Z\0�\0\0�\0-\0�j\0\0\0\0�\0n\0\0\0\0o\0pq\0f\0\0\0\0\0\0�*+-�\0W�\0Y�\0\Z�\0�\0Y-�\0\Z�\0�\0:*�\0*-�\0�\0 *-�\0!*�\0\"-�\0#:�\0$\0�\0%�\0%\0�\0&:*�\0\'�\0(�\0)*�\0*�\0+*,*�\0)�\0-�\0)*.*�\0+�\0/�\0+*-�\00�\01*-�\02�\03*4-�\00�\0-�\01*5-�\02�\0-�\03*�\06�\07**�\08�\09**�\0\":;�\0/�\0<**�\0\"=2�\0/��\0>?�\0/�\0*�\0@�\0	*�\0@A�\0-�\0B:*�\0CY�\0D�\0E�\0F\0:		�\0G\0�\04	�\0H\0�\0I:\n�\06\n�\0J�\0K:�\0*�\0E�\0L�\0M\0W���*�\0E�\0�\0N\0W*�\0E�\0O\0�\0*�\0E*P�\0/�\0�\0�\0Q*R�\0/�\0�\0�\0S*T�\0-�\0B�\0U*�\0U�\0O\0�\0*�\0U*V�\0/�\0**�\0W�\0X�\0\0\0g\0\0\0�\0*\0\0\0�\0\0�\0,\0�\01\0�\09\0�\0>\0�\0D\0�\0J\0�\0T\0�\0a\0�\0m\0�\0v\0�\0�\0�\0�\0�\0�\n\0�\0�\0�\0�\0�\Z#BP U\"d$g&u(�*�-�/�1�2�4�7�8�:j\0\0\0n\0�\0vrs�\0��\0 tu7�\0Ov�\0\0\0	vwxyrrst\0vRv�\0\0\0	vwxyrrst\0v\"n\0\0\0\0z\0{|\0f\0\0b\0\0\0\0\0�*+YZ�\0-�\0[**+\\�\0]�\0^**+_�\0]�\0`**+a�\0b�\0c*�\0dY�\0e�\0f*�\0dY�\0e�\0g+h�\0i�\0j\0�\0F\0M,�\0G\0�\0x,�\0H\0�\0kN*-�\0l\0�\0mn�\0b:*�\0f-�\0o\0�\0p\0W-�\0l\0�\0mqn�\0-�\0B:�\0F\0:�\0G\0�\0 �\0H\0�\0I:*�\0g�\0p\0W��ܧ���\0\0\0g\0\0\0>\0\0\0?\0A\0B\0$D\0/F\0:G\0EI\0iK\0zL\0�N\0�O\0�Q\0�R\0�S\0�Tj\0\0\07\0�\0Vu�\0S\0vru}~tu\0\0�\0&\0vru\0\0�\0\0{\0f\0\0�\0\0\0\0�\0rY�\0sN*+�\0Y�\0	,�\0t�\0�\0\r�\0]:*+�\0Y�\0	,�\0u�\0�\0\r�\0]:-*+�\0Y�\0	,�\0v�\0�\0\r�\0]�\0w-*+�\0Y�\0	,�\0x�\0�\0\r�\0]�\0y-�\0zY�\0{�\0|-*+�\0Y�\0	,�\0}�\0�\0\r�\0~�\0-�\0*+�\0Y�\0	,�\0��\0�\0\r�\0~�\0�\0*+�\0Y�\0	,�\0��\0�\0\r�\0]:*+�\0Y�\0	,�\0��\0�\0\r�\0]:-�\0zY�\0{�\0�-*+�\0Y�\0	,�\0��\0�\0\r�\0~�\0�-*+�\0Y�\0	,�\0��\0�\0\r�\0]�\0�-*+�\0Y�\0	,�\0��\0�\0\r�\0]�\0�-*+�\0Y�\0	,�\0��\0�\0\r�\0]�\0�-�\0\0\0g\0\0\0B\0\0\0X\0Z\0#[\0>]\0[^\0y`\0�a\0�b\0�d\0�e\0�g\nh&jCl`m}o\0{�\0f\0\0)\0\0	\0\0\0Ż\0�Y�\0�:+,�\0�:�\0��\0�\0��\0��\0��\0�\0W�\0[+�\0Y�\0	,�\0��\0�\0\r�\0��\0�\0�\0�\0:�\0G\0�\0.�\0H\0�\0m:n�\0-:�\0��\0\r�\0�\0W��β\0�\0Y�\0	,�\0��\0�\0��\0\r�\0��\0$\0�\0-��\0$\0�\0��\0�\0�\0��\0\0\0g\0\0\06\0\r\0\0v\0	x\0z\0|\0.�\0g�\0q�\0y�\0��\0��\0��\0��\0��j\0\0\0\0�\0.s��\0\"u1�\0)\0��\0f\0\0\0\0\n\0\0\0��\0dY�\0eN+,�\0��\0�\0�\0F\0:�\0G\0�\0^�\0H\0�\0k:�\0o\0�\0I:�\0l\0�\0m:*��\0]:*��\0]:	�\0	�\0-�\0zY	�\0{�\0p\0W���-�\0\0\0g\0\0\0*\0\n\0\0�\0�\0/�\0;�\0G�\0R�\0]�\0g�\0{�\0~�j\0\0\0I\0�\0�u�\0M\0\nvr��u}�r\0�\0�\0\0�\0\0vr��u\0\0�\02\0\0\0�\0��\0f\0\0\0!\0\0\0\0\0	�\0�Y*�\0��\0\0\0g\0\0\0\0\0\0�\0��\0f\0\0�\0\0\r\0\0���\0��\0-�\0-�\0��\0-�\0��\0��,�\0��\0����\0��\0,�\0�,�\0��\0����\0��\0\r��\0��\0,�\0�,�\0��\0��\0���\0��\0%,�\0�,�\0��\0�6\0� dy\0�7		�\0����\0��\0-,�\0�,�\0��\0�6\0� dy\0�7		\0��7�\0����\0��\0,�\0��\0���\0��\0\r��\0��\0,�\0��\0���\0��\0,�\0�6*�\0�\0�*�\0!�\0��\0����\0��\0,�\0��\0����\0��\0\r,�\0��\0°��\0��\0,�\0İ��\0��\0,�\0Ƹ\0���\0��\0,�\0ȸ\0���\0��\0,�\0ʸ\0���\0��\0*�\0 �\0���\0��\0,�\0͸\0���\0��\0-�\0\n-�\0ϧ\0,�\0ȸ\0���\0��\0-�\0\n-�\0ѧ\0,�\0͸\0���\0��\0*,-�\0�:�\0�\0Զ\0հ����\0��\0*,-�\0�:�\0�\0Զ\0װ����\0��\0*,-�\0�:�\0�\0Զ\0ٰ����\0��\0)��\0#*,-�\0�:�\0�\0�2�\0ܶ\0���^��\0��\0���\0\0\0p\0\0\0\0\0\0\0\0\0\0\0\01\0\0\0O*�\0 62�\0I�\0J6	:\n�\0N2�\0I�\0J62�\0I�\0J6	:\n�\002�\0I�\0J62�\0I�\0J6	2:\n�\0*�\0 66	:\n*	�\0�:�\0�\n���\0��\0,�\0��\0���\0���\0��\0!,�\0�6*�\0�\0�*�\0 �\0���\0���\0��\0!,�\0�6*�\0�\0�*�\0 �\0���\0���\0��\0-�\0��\0�:�\0��\0�,�\0Ƹ\0�\0�:		�\0�	�\0���\0��\0��\02�\0ܸ\0���\0\0\0g\0\0�\0h\0\0L\0\nN\0P\0T\0%W\0/Y\0;[\0O]\0^_\0ha\0ub\0�d\0�f\0�h\0�i\0�j\0�l\0�n\0�p\0�r\0�t\0�v\0�x\0�y{\Z}\",�6�@�E�O�W�a�i�s�{��������������������������������)�1�6�?�B�R�Z�_�o�r�|����������������������������������\n�\r��\Z�+�5�;�S]c{�	�\n��\r������j\0\0\0g\0/+3#CC,% �\0��\0��\0\0v���t���\0\0\Z\'\'�\0-���\0\Zn\0\0\0\0z2\0\0\0�\0��\0f\0\0\0�\0\0\n\0\0\0��\0��\0!*�\0E�\0\Z�\0CY�\0�:*�\0E�\0�\0W:�66�\0S2:	*�\09	�\0�Y+SY,SY-SYS�\0�:		�\0��\0	�\0�:		��\0��\0\Z:	*	�\0������\0\0\0g\0\0\0:\0\0\0\"\0$\0\'\0)\0*\0*-\0D/\0d0\0l2\0s3\0}5\0�8\0�-\0�<j\0\0\0\0\"�\0\0��\0J��\0�\0n\0\0\0\0z2\0\0\0���\0n\0\0\0\0z\0��\0f\0\0\0+\0\0\0\0\0**�\0^�\0�W�\0\0\0g\0\0\0\n\0\0\0F\0\rGn\0\0\0\0z\0��\0f\0\0\0+\0\0\0\0\0**�\0`�\0�W�\0\0\0g\0\0\0\n\0\0\0N\0\rOn\0\0\0\0z\0��\0f\0\0\0x\0\0\0\0\07+�\0\n+�\0��\0*�\0c�+�\0��\0��\0�=*�\0g�\0�\0\0�\0rN-�\0-�*�\0c�\0\0\0g\0\0\0\0\0\0T\0V\0Y\0[\0,\\\00^\02aj\0\0\0\0�\0!~\0��\0f\0\0\0k\0\0\0\0\0>*++�\0�+�\0�*+�\0��\0w�\0�W+�\0��\0*++�\0�+�\0*+�\0��\0|��\0��*+��\0\0\0g\0\0\0\0\0\0h\0k\0m\08qj\0\0\0\08n\0\0\0\0z\0��\0f\0\0\0J\0\0\0\0\0.*++�*+�\0��\0+�\0�*++�+�\0*+�\0��\0y�\0��\0\0\0g\0\0\0\n\0\0\0y\0zn\0\0\0\0z\0��\0f\0\0P\0\0\0\0\0�+��\0�+�\0��\0�=+���\0$\0+�\0���\0$\0�\0O>+���\0$\0�\0=+���\0%\0�:+�\0���\0%\0�:*��\0=�\0	����*+�+�\0���\0\"+���\0$\0+�\0���\0$\0�\0�\0*+�W*+�	W�+�\0��\0	*+�\n�+��\0	*+��*+��\0\0\0g\0\0\0R\0\0\0�\0�\0�\0+�\0=�\0O�\0a�\0l�\0n�\0q�\0w�\0��\0��\0��\0��\0��\0��\0��\0��\0��j\0\0\0\0�\0-�\0C�\0-�\0\rn\0\0\0\0z\0��\0f\0\0\0j\0\0\0\0\0:+�\0�,�\0��\0,+�\0�,�\0��\0!*+�\0�,�\0��\r�\0*+�\0�,�\0��\r�\0�\0�\0\0\0g\0\0\0\0\0\0�\0�\0�\0\'�j\0\0\0\04@\0��\0f\0\0\0;\0\0\0\0\0+�\0,�\0+,��\0�\0�\0\0\0g\0\0\0\0\0\0�j\0\0\0\0@\0��\0f\0\0\0S\0\0\0\0\03*++�*+�\0��\0+�\0�*++�+�\0*+�\0��\0|��\0�W�\0\0\0g\0\0\0\0\0\0�\0�\01�n\0\0\0\0z\0��\0f\0\0\0S\0\0\0\0\03*++�\0�+�\0�*+�\0��\0|��\0�W*++�\0�*+�\0��\0+�\0���\0\0\0g\0\0\0\0\0\0�\0\Z�\01�n\0\0\0\0z\0��\0f\0\0\0D\0\0\0\0\0 +�M+�N*++�\0�*+�\0��\0,-��\0\0\0g\0\0\0\0\0\0�\0�\0\n�\0�n\0\0\0\0z\0��\0f\0\0\0|\0\0\0\0\08+�\0��\0*�\0Q�\0+�*+��+��\0*�\0Q�\0+�*+��*+��\0\0\0g\0\0\0&\0	\0\0�\0�\0�\0�\0�\0 �\0\'�\0,�\02�j\0\0\0\0n\0\0\0\0z\0��\0f\0\0\0Y\0\0\0\0\09*++�\0�+�*+�\0��\0�+�\0�*++�\0�+�+�\0*+�\0��\0���\0�W�\0\0\0g\0\0\0\0\0\0�\0\Z\07n\0\0\0\0z\0��\0f\0\0\0Y\0\0\0\0\09*++�\0�+�+�\0�*+�\0��\0���\0�W*++�\0�+�*+�\0��\0�+�\0���\0\0\0g\0\0\0\0\0\0	\0\07\rn\0\0\0\0z\0��\0f\0\0\0G\0\0\0\0\0#+�M+�N*++�\0�+�*+�\0��\0�,-��\0\0\0g\0\0\0\0\0\0\0\0\n\0!n\0\0\0\0z\0��\0f\0\0g\0\0\n\0\0\0��\0p*�\0E�\0\Z�\0CY�\0�:*�\0E�\0�\0W�\0F\0:�\0G\0�\0?�\0H\0�\0I:�\0\0�\0z:		�\0	��\0*+,-�	��\0�W����\0p*�\0E�\0\Z�\0CY�\0�:*�\0E�\0�\0W�\0F\0:�\0G\0�\0?�\0H\0�\0I:�\0\0�\0z:		�\0	��\0*+,-�	��\0�W����\0\0\0g\0\0\0N\0\0\0\0!\0#\0$\0#\'\0B)\0P*\0],\0o.\0r1\0w3\0~5\0�6\0�9\0�;\0�<\0�>\0�@\0�Bj\0\0\0\0#�\0u�\0B�\0\"�\0u�\0B�\0n\0\0\0\0z2\0\0\0�\0��\0f\0\0\08\0\0\0\0\0*++�\0�+�+�\0�*+�\0��\0��\0�W�\0\0\0g\0\0\0\n\0\0\0H\0\ZJn\0\0\0\0z\0��\0f\0\0\0�\0\0\0\0\0r+�M*�\0S�\0,�	��\0�\0�\0��*�\0U�\05*�\0U,�\0Ѹ\0�\Z\0�\0\"�\0�\0Y�\0	�\0,�\0Ѷ\0�\0\r�\0��*++�\0�,+�\0�*+�\0��\0��\0�W�\0\0\0g\0\0\0&\0	\0\0Q\0S\0U\0V\0 Y\0:[\0W\\\0Y_\0paj\0\0\0	\0�\0 �8n\0\0\0\0z\0��\0f\0\0\0�\0\0\0\0\0r+�M*�\0S�\0,�	��\0�\0�\0��*�\0U�\05*�\0U,�\0Ѹ\0�\Z\0�\0\"�\0�\0Y�\0	�\0,�\0Ѷ\0�\0\r�\0��*++�\0�,+�\0�*+�\0��\0��\0�W�\0\0\0g\0\0\0&\0	\0\0h\0j\0l\0m\0 p\0:r\0Ws\0Yv\0pxj\0\0\0	\0�\0 �8n\0\0\0\0z\0��\0f\0\0\0�\0\0\0\0\0G*�\0�\0��*�\0 �\0��L+�\0+��Y*�\0�M�*�\0 �\0,� �L+�\0,L+�\0\0\0g\0\0\0*\0\n\0\0}\0\0	�\0\Z�\0�\0 �\0-�\0?�\0C�\0E�j\0\0\0\0	�\0��\0$���\0f\0\0\0\0\0\0\0\0\0�\0�\0\0\0g\0\0\0\0\0\0\04\0�e\0f\0\0\0C\0\0\0\0\0\0#!�\"�\0�#Y�$�%�&�\'�(�\0��\0\0\0g\0\0\0\0\0\0\08\0	\0:\0r\0�\0\0\0�,\0\0\0*\0\0r!+\0\0z!-\0\0�\0\0\0\0\0\0\0k�.	�#�@'),('ru.bitel.bgbilling.modules.inet.dyn.device.terminal.AbstractTerminalServiceActivator$1',1433856492000,'����\0\0\04\0�	\07\0R\n\08\0S\0T\n\0U\0V\n\07\0W\0X\n\07\0Y\n\0Z\0[\0\\\n\07\0]\0^\0_	\0\0`\n\0a\0b	\0P\0c\0d\0e\n\0\0f\n\0Z\0g\0h\0i\n\0\0j\0k	\0P\0l\n\0m\0n\0o\0p\0o\0q\0r\n\0\0s\n\0t\0u\0v\0w\n\0 \0S\n\0 \0x\n\0 \0y\0z\0{	\0P\0|\n\0}\0~\0%\0\0�\0�\0�\0�\0�	\0\0�\0%\0�\n\0+\0�\0�\0�\0�\n\0P\0�\0�\n\0P\0�\n\03\0�\n\0�\0�\0�\0�\0this$0\0VLru/bitel/bgbilling/modules/inet/dyn/device/terminal/AbstractTerminalServiceActivator;\0<init>\0Y(Lru/bitel/bgbilling/modules/inet/dyn/device/terminal/AbstractTerminalServiceActivator;)V\0Code\0LineNumberTable\0invoke\0L(Ljava/lang/String;[Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;\0\rStackMapTable\0�\0�\0e\0�\0�\0�\0w\0{\0_\0�\0�\0\nSourceFile\0%AbstractTerminalServiceActivator.java\0EnclosingMethod\0�\0�\0�\09\0:\0;\0�\0arg\0�\0�\0�\0�\0�\0macros\0�\0�\0�\0�\0�\0\0\0�\0�\0param\09ru/bitel/bgbilling/modules/inet/runtime/InetOptionRuntime\0�\0�\0�\0�\0�\0�\0�\0	servParam\08ru/bitel/bgbilling/modules/inet/api/common/bean/InetServ\0�\0�\0�\0�\0ru/bitel/common/Preferences\0\n\0;\0�\0host\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0\Zjava/net/InetSocketAddress\0�\0�\0�\0�\0�\0concat\0java/lang/StringBuilder\0�\0�\0�\0�\0option\0\rjava/util/Set\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0java/lang/Integer\0�\0�\0�\0�\0�\0�\0switch\0>ru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection\0?ru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent\0�\0�\0java/lang/Exception\0�\0�\0�\0�\0�\0�\0�\0Vru/bitel/bgbilling/modules/inet/dyn/device/terminal/AbstractTerminalServiceActivator$1\0InnerClasses\0!ru/bitel/common/util/MacrosFormat\0java/lang/String\0java/lang/Object\0java/util/List\0[Ljava/lang/Object;\0java/util/Iterator\0Tru/bitel/bgbilling/modules/inet/dyn/device/terminal/AbstractTerminalServiceActivator\0createMacrosFormat\0%()Lru/bitel/common/util/MacrosFormat;\0()V\0equals\0(Ljava/lang/Object;)Z\0getInt\0([Ljava/lang/Object;II)I\0	getString\0:([Ljava/lang/Object;ILjava/lang/String;)Ljava/lang/String;\0ru/bitel/common/Utils\0\risEmptyString\0(Ljava/lang/String;)Z\0format\09(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;\0inheritedConfig\0Lru/bitel/common/ParameterMap;\0ru/bitel/common/ParameterMap\0get\08(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;\0config\0	getConfig\0()Ljava/lang/String;\0\risBlankString\0\'(Ljava/lang/String;Ljava/lang/String;)V\0device\0<Lru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice;\0:ru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice\0getHosts\0()Ljava/util/List;\0size\0()I\0(I)Ljava/lang/Object;\0\ngetAddress\0()Ljava/net/InetAddress;\0java/net/InetAddress\0getHostAddress\0append\0-(Ljava/lang/Object;)Ljava/lang/StringBuilder;\0toString\0optionRuntimeMap\0>Lru/bitel/bgbilling/modules/inet/runtime/InetOptionRuntimeMap;\0<ru/bitel/bgbilling/modules/inet/runtime/InetOptionRuntimeMap\0>(I)Lru/bitel/bgbilling/modules/inet/runtime/InetOptionRuntime;\0iterator\0()Ljava/util/Iterator;\0hasNext\0()Z\0next\0()Ljava/lang/Object;\0\rdescendantIds\0Ljava/util/Set;\0contains\0intValue\0getValue(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetServ;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;Ljava/util/Set;Ljava/lang/String;[Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;\0\naccess$000\0()Lorg/apache/log4j/Logger;\0\ngetMessage\0org/apache/log4j/Logger\0error\0*(Ljava/lang/Object;Ljava/lang/Throwable;)V\0 \07\08\0\0\0\09\0:\0\0\0\0\0\0;\0<\0\0=\0\0\0\"\0\0\0\0\0\n*+�\0*�\0�\0\0\0\0>\0\0\0\0\0\0�\0\0?\0@\0\0=\0\0�\0\0	\0\0�+�\0�\0\r-*,�\02�+�\0�\0*,�\0:�\0�\0	�*-�\0\n�+�\0�\0V,��\05,2:�\0�\0�\0�\0\r*,�\0*,	�\0�\0�*,	�\0�*�\0�\0*,�\0*,	�\0�\0�+�\0�\0F-2�\0:�\0:�\0�\0*,	�\0��\0Y�\0:*,	�\0*,	�\0�\0�+�\0�\01*�\0�\0�\0:�\0\Z\0�\0�\0\0�\0:�\0�\0��+�\0�\09�\0 Y�\0!:,:�66�\02:�\0\"W�����\0#�$+�\0�\0�-2�\0%:,��\0b*,�\06�\0T*�\0�\0&�\0\':�\0(\0:�\0)\0�\01�\0*\0�\0+:�\0,�\0-\0�\0*�\0�\0&�\0.�\0\'������\0(\0:�\0)\0�\0�\0*\0�\0+:*�\0�\0&�\0.�\0\'��/+�\0�\0a*,�\06,�p�\0�\06�\0\n,�d�\0,�66�\0 *,�\0�\0\n,`2�`6���,�p�\0\n,,�d2��-2:�\00�\0**�\0-2�\01-2�\0-2�\00-2�\0%+,-�\02:�\0\'*�\0-2�\01-2�\0-2�\00-2�\0%+,-�\02:�:�\04�\05�\06�\0c��\03\0\0>\0\0\n\0B\0\0�\0	�\0�\0�\0%�\0-�\00�\08�\0A�\0G�\0L�\0T�\0p�\0y�\0��\0��\0��\0��\0��\0��\0��\0��\0��\0��\0����� �)�B�J�P�V�_�g�l�u�z�����\n����,6CJS$Z&a)c1h2p4�8�;�=�?�B\0A\0\0\0�\0 �\0\0B�\0�\07\0C�\0\Z�\0(\0D\0B�\0\"�\04\0E�\0�\0\0\0F\0B\0G\0G\0H\0G\0\0�\0�\0�\0:\0\0F\0B\0G\0G\0I\0J\0K\0\04�\0�\0�\0\0K�\0%�\0�\0@�\0\rA�\0\Z�\0\r�\0�\03\0\0C�\0#\0\0F\0B\0G\0G\0C\0C\0\0�\0\0\0F\0B\0G\0G\0\0L\0\0M\0\0\0\0N\0O\0\0\0\0P\0Q\0�\0\0\0\n\0\07\0\0\0\0\0\0'),('ru.bitel.bgbilling.modules.inet.dyn.device.terminal.AbstractTerminalServiceActivator$Commands',1433856492000,'����\0\0\04\0\n\0\0	\0\0	\0\0\0\0\0enableCommands\0[Ljava/lang/String;\0disableCommands\0<init>\0)([Ljava/lang/String;[Ljava/lang/String;)V\0Code\0LineNumberTable\0\nSourceFile\0%AbstractTerminalServiceActivator.java\0	\0\0\0\0\0\0\0]ru/bitel/bgbilling/modules/inet/dyn/device/terminal/AbstractTerminalServiceActivator$Commands\0Commands\0InnerClasses\0java/lang/Object\0()V\0Tru/bitel/bgbilling/modules/inet/dyn/device/terminal/AbstractTerminalServiceActivator\0!\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0	\0\n\0\0\0\0\03\0\0\0\0\0*�\0*+�\0*,�\0�\0\0\0\0\0\0\0\0\0\0\0d\0\0e\0	\0f\0\0g\0\0\r\0\0\0\0\0\0\0\0\n\0\0\0\0\0'),('ru.bitel.bgbilling.modules.inet.dyn.device.terminal.AbstractTerminalServiceActivator$CommandSet',1433856492000,'����\0\0\04\0\"\n\0\0\0\0\0servCreateCommands\0[Ljava/lang/String;\0servCancelCommands\0servModifyCommands\0 \0Commands\0InnerClasses\0_Lru/bitel/bgbilling/modules/inet/dyn/device/terminal/AbstractTerminalServiceActivator$Commands;\0servOptionModifyCommandsMap\0Ljava/util/Map;\0	Signature\0�Ljava/util/Map<Ljava/lang/Integer;Lru/bitel/bgbilling/modules/inet/dyn/device/terminal/AbstractTerminalServiceActivator$Commands;>;\0connectionModifyCommands\0!connectionOptionModifyCommandsMap\0connectionCloseCommands\0onAccountingStartCommands\0onAccountingStopCommands\0<init>\0()V\0Code\0LineNumberTable\0\nSourceFile\0%AbstractTerminalServiceActivator.java\0\0\0!\0_ru/bitel/bgbilling/modules/inet/dyn/device/terminal/AbstractTerminalServiceActivator$CommandSet\0\nCommandSet\0java/lang/Object\0]ru/bitel/bgbilling/modules/inet/dyn/device/terminal/AbstractTerminalServiceActivator$Commands\0Tru/bitel/bgbilling/modules/inet/dyn/device/terminal/AbstractTerminalServiceActivator\0!\0\0\0\0\0	\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\r\0\0\0\0\0\0\0\0\0\0\0\0\0\0\r\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0*�\0�\0\0\0\0\0\0\0\0\0\0\0j\0\0\0\0\0\0\Z\0\n\0\0\0\0\0\0\0	\0\0\0\0\0'),('ru.bitel.bgbilling.modules.inet.dyn.device.terminal.SSHServiceActivator',1433856492000,'����\0\0\04V\n\0g\0�\n\0g\0�	\0c\0�\0�\n\0�\0�	\0c\0�\0�	\0c\0�\0�\n\0�\0�	\0c\0�\n\0g\0�\n\0c\0�	\0c\0�\0\0\0\0\0\0\0	\0�\0�\n\0�\0�	\0c\0�\0�	\0c\0�	\0c\0�	\0c\0�\n\0\0�	\0c\0�\n\0\0�	\0c\0�\n\0\0�\n\0�\0�\n\0\0�\n\0\0�\n\0\0�	\0c\0�\0�\n\0\"\0�\0�\n\0\"\0�	\0c\0�\n\0\"\0�\n\0\"\0�\n\0�\0�	\0c\0�\0�\0�\0�\0�\n\0\"\0�\0�\n\0�\0�\n\0g\0�\n\0g\0�\0�\0�	\0c\0�\n\0\0�\n\0\0�\0�\n\0�\0�\0�\n\0�\0�\n\0c\0�\0�\n\0\0�\0�\0�	\0c\0�\n\0�\0�\n\0�\0�\n\0�\0�\n\0�\0�\0�\0�\0�\n\0�\0�\0\0\0\0\0	\'�\n\0�\0�\0�	\0c\0�\0�\0�\0�\n\0�\0�\0�\n\0�\0�\0�\0�\0�\0�\0�\n\0Z\0�\n\0�\0�\0�\n\0_\0�\0�\n\0�\0�\0�\n\0g\0�\0�\n\0�\0�\0\n\0�\0logger\0Lorg/apache/log4j/Logger;\0regexp\0Ljava/lang/String;\0endSequence\0session\0*Lbitel/billing/server/util/ssh/SSHSession;\0lazyConnect\0Z\0returnCodePattern\0Ljava/util/regex/Pattern;\0<init>\0()V\0Code\0LineNumberTable\0init\0�(Lru/bitel/bgbilling/server/util/Setup;ILru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceType;Lru/bitel/common/ParameterMap;)Ljava/lang/Object;\0\rStackMapTable\0�\0\nExceptions\0destroy\0()Ljava/lang/Object;\0connect\0connectImpl\0�\0�\0\ngetSession\0,()Lbitel/billing/server/util/ssh/SSHSession;\0\ndisconnect\0executeCommand\0(Ljava/lang/String;)V\0�\0�	\0getValue(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetServ;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;Ljava/util/Set;Ljava/lang/String;[Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;\0	Signature+(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetServ;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;Ljava/util/Set<Ljava/lang/Integer;>;Ljava/lang/String;[Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;\0<clinit>\0\nSourceFile\0SSHServiceActivator.java\0t\0u\0x\0y\n\0sa.endSequence\r\0m\0l\0\rsa.exitRegexp\0k\0l\0sa.lazyConnect\0p\0q\0�\0�\0�\0�\0q\0(bitel/billing/server/util/ssh/SSHSession\0l\Z\0l\0l\0t !\"#$%&\'\0�(\0�\0�)\0i\0j\0java/lang/StringBuilder\0\rConnected to *+,-*./)012\0n\0o\0java/lang/Exception\0Can\'t connect to \0 to \0:*3\0H. Check host/port, username/password and sa.endSequence (command prompt)42\0�\0�\0�\0�\0[\0] executeAsync: 5\0l6\0�\0�\0u\0Disconnected72\0\"Not connected - skip disconnection8\0u\0�\0�\0] execute: 9:\0%java/util/concurrent/TimeoutException\0DTimeout waiting command prompt (endSequence) when executing command.\0r\0s;<=	>?@AB\0	Command \"\0\" executed with RETURN_CODE=\0inet.sa.ssh.returnCodeCDEFGH\0\\Inet: Ошибка работы обработчика активации сервисов [I\0] \0VОшибка работы обработчика активации сервисов [\0\nJ)\0\n(K)\0)\n\n\0%Исполнение команды \"\0+\" завершилось с ошибкой \0!\0:bitel/billing/server/admin/errorlog/bean/AlarmErrorMessage\0tLMN\0setEndSequenceOP\0java/lang/StringQ&\0\0\0�\0�\0Gru/bitel/bgbilling/modules/inet/dyn/device/terminal/SSHServiceActivatorRS\0RETURN_CODE=(\\d+)TU\0Tru/bitel/bgbilling/modules/inet/dyn/device/terminal/AbstractTerminalServiceActivator\0:ru/bitel/bgbilling/modules/inet/access/sa/ServiceActivator\0$ru/bitel/bgbilling/server/util/Setup\0:ru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice\0>ru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceType\0ru/bitel/common/ParameterMap\0java/lang/Throwable\0java/util/regex/Matcher\0port\0I\0get\08(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;\0getInt\0(Ljava/lang/String;I)I\0connectionSemaphore\0 Ljava/util/concurrent/Semaphore;\0java/util/concurrent/TimeUnit\0MINUTES\0Ljava/util/concurrent/TimeUnit;\0java/util/concurrent/Semaphore\0\ntryAcquire\0#(JLjava/util/concurrent/TimeUnit;)Z\0connectionSemaphoreAcquired\0host\0username\0password\0:(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V\0timeout\0\nsetTimeout\0(I)V\0readWait\0J\0setReadWait\0(J)V\0ru/bitel/common/Utils\0notBlankString\0(Ljava/lang/String;)Z\0setEndString\0	setRegexp\0()Ljava/lang/String;\0append\0-(Ljava/lang/String;)Ljava/lang/StringBuilder;\0device\0<Lru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice;\0-(Ljava/lang/Object;)Ljava/lang/StringBuilder;\0toString\0org/apache/log4j/Logger\0info\0(Ljava/lang/Object;)V\0(I)Ljava/lang/StringBuilder;\0error\0exitCommand\0doCommandAsync\0debug\0release\0	doCommand\0&(Ljava/lang/String;)Ljava/lang/String;\0java/util/regex/Pattern\0matcher\03(Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;\0find\0()Z\0group\0(I)Ljava/lang/String;\0parseInt\0java/lang/System\0currentTimeMillis\0()J\0/bitel/billing/server/admin/errorlog/AlarmSender\0\rneedAlarmSend\0(Ljava/lang/String;JJ)Z\0deviceId\0getHost\0\ngetComment\09(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V\0	sendAlarm\0@(Lbitel/billing/server/admin/errorlog/bean/AlarmErrorMessage;J)V\0equals\0(Ljava/lang/Object;)Z\0notEmptyString\0	getLogger\0,(Ljava/lang/Class;)Lorg/apache/log4j/Logger;\0compile\0-(Ljava/lang/String;)Ljava/util/regex/Pattern;\0!\0c\0g\0\0h\0\0\Z\0i\0j\0\0\0\0k\0l\0\0\0\0m\0l\0\0\0\0n\0o\0\0\0\0p\0q\0\0\0\n\0r\0s\0\0\0\n\0\0t\0u\0\0v\0\0\0\0\0\0\0\0*�\0�\0\0\0\0w\0\0\0\0\0\0\0\0\0x\0y\0\0v\0\0\0�\0\0\0\0\0G*+-�\0W*�\0�\0	*�\0*�\0�\0*�\0�\0*	�\0\n�\0�\0�\0�\0\0\0\0w\0\0\0\0\0\0\01\0\03\0\05\0\08\0%\09\01\0;\0E\0=\0z\0\0\0\"\0g\0{�\0\0\0\0{\0|\0}\0~\0\0\0{\0�\0\0\0\0\0+\0\0�\0�\0\0v\0\0\0\0\0\0\0\0*�\0�\0\0\0\0w\0\0\0\0\0\0\0D\0�\0\0\0\0\0+\0\0�\0�\0\0v\0\0\07\0\0\0\0\0*�\0�\0�*�\0\r�\0\0\0\0w\0\0\0\0\0\0\0K\0\0M\0	\0P\0z\0\0\0\0	\0�\0\0\0\0\0+\0\0�\0�\0\0v\0\0L\0\0\0\0\0�*�\0�\0**�\0\0�\0�\0�\0�\0Y*�\0*�\0*�\0*�\0�\0L+*�\0�\0\Z+*�\0�\0*�\0�\0�\0+*�\0�\0*�\0�\0�\0+*�\0�\0+�\0 W�\0!�\0\"Y�\0#$�\0%*�\0&�\0\'�\0(�\0)*+�\0*�\0?L�\0!�\0\"Y�\0#,�\0%*�\0&�\0\'-�\0%*�\0�\0%.�\0%*�\0�\0/0�\0%�\0(�\01+�*�\02�\0\0\0\0�\0�\0+\0\0w\0\0\0F\0\0\0\0X\0\0Z\0\0]\00\0^\08\0_\0@\0a\0J\0c\0R\0f\0\\\0h\0d\0k\0i\0l\0�\0n\0�\0t\0�\0p\0�\0r\0�\0s\0�\0v\0z\0\0\0\0�\09\0��\0(\0\0{\0\0�;\0�\0\0\0\0\0+\0\0�\0�\0\0v\0\0\0C\0\0\0\0\0*�\0*�\0*�\0*�*�\0\rW*�\0*�\0\0\0\0w\0\0\0\0\0\0\0|\0\0~\0\0�\0\0�\0z\0\0\0\0\0�\0\0\0\0\0+\0\0�\0�\0\0v\0\01\0\0\0\0\0�*�\0*�\0l*�\03W�\0!�\0\"Y�\0#4�\0%*�\0&�\0\'5�\0%*�\06�\0%�\0(�\0)*�\0**�\06�\07*�\0*�\08*�\0*�\0!9�\0:�\0\ZL*�\0*�\08*�\0*�\0!9�\0:+��\0�\0!;�\0:*�\0�\0,*�\0�\0%*�\0�\0<�\0M*�\0�\0*�\0�\0\n*�\0�\0<,��\0\0\0?\0V\0\0\0\0\0x\0�\0\0\0\0w\0\0\0F\0\0\0\0�\0\0�\0\0�\04\0�\0?\0�\0F\0�\0K\0�\0S\0�\0V\0�\0^\0�\0c\0�\0p\0�\0x\0�\0�\0�\0�\0�\0�\0�\0�\0�\0z\0\0\0\0�\0V\0�W\0��\0\0\0��\0\0�\0\0\0\0\0+\0\0�\0�\0\0v\0\0\0\0\0\0\0I*�\0=M�\0!�\0\"Y�\0#4�\0%*�\0&�\0\'>�\0%+�\0%�\0(�\0),+�\0?N�\0:�\0!A�\01��\0!-�\0)-�\0�\0��\0B-�\0C:�\0D�\0��\0E:�\0F�\0���\0!�\0\"Y�\0#G�\0%+�\0%H�\0%�\0%�\0(�\01I:�\0J7\0K�\0M�\0��\0\"Y�\0#N�\0%*�\0O�\0/P�\0%*�\0&�\0\'�\0(:	�\0\"Y�\0#Q�\0%*�\0O�\0/P�\0%*�\0&�\0\'R�\0%*�\0&�\0S�\0%T�\0%*�\0&�\0U�\0%V�\0%W�\0%+�\0%X�\0%�\0%Y�\0%�\0(:\n�\0ZY	\n�\0[:�\0\\���\0\0*\00\03\0@\0\0w\0\0\0j\0\Z\0\0\0�\0\0�\0*\0�\00\0�\03\0�\05\0�\0=\0�\0@\0�\0G\0�\0N\0�\0W\0�\0_\0�\0g\0�\0p\0�\0s\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�/\0�>\0�E\0�H\0�\0z\0\0\0-\0�\03\0\0{\0�\0�\0\0��\0\0��\0\0��\0\0��\0��\0\0�\0\0\0\0\0+\0\0�\0�\0\0v\0\0\0�\0\0	\0\0\0P]�\0^�\09��\0%2�\0_:�\0`�\0*�\0=2�\0_�\0a�*�\0=*�\0�\0a�*+,-�\0b�\0\0\0\0w\0\0\0&\0	\0\0\0�\0\n\0�\0\0�\0\0�\0!\0�\0/\0�\02\0�\0=\0�\0@\0�\0z\0\0\0\02\r\0�\0\0\0\0\0+\0�\0\0\0\0�\0\0�\0u\0\0v\0\0\0-\0\0\0\0\0\0c�\0d�\0!e�\0f�\0B�\0\0\0\0w\0\0\0\n\0\0\0\0 \0\0�\0\0�\0\0\0\0�'),('ru.bitel.bgbilling.modules.inet.dyn.device.terminal.TelnetServiceActivator',1433856492000,'����\0\0\04\0�\n\07\0a\n\07\0b	\05\0c\0d\0e\n\0f\0g	\05\0h\0i\n\0f\0j	\05\0k\n\07\0l\n\05\0m\0n	\05\0o\n\0\r\0p	\05\0q\n\0\r\0r	\05\0s\n\0\r\0t\0u\n\0\r\0v\n\0\r\0w	\05\0x\0y\n\0z\0{	\05\0|	\05\0}\n\0\r\0~\0\n\0�\0�	\05\0�\0�\n\07\0�\n\07\0�\0�\n\0#\0a\0�\n\0#\0�	\05\0�\n\0#\0�\n\0\r\0�\n\0\r\0�\0�\n\0z\0�\n\05\0�\0�\0�\n\01\0�\0�\n\0�\0�\0�\n\07\0�\0�\n\0z\0�\0�\0�\0logger\0Lorg/apache/log4j/Logger;\0endSequence\0Ljava/lang/String;\0session\00Lbitel/billing/server/util/telnet/TelnetSession;\0lazyConnect\0Z\0<init>\0()V\0Code\0LineNumberTable\0init\0�(Lru/bitel/bgbilling/server/util/Setup;ILru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceType;Lru/bitel/common/ParameterMap;)Ljava/lang/Object;\0\rStackMapTable\0�\0�\0�\0�\0�\0\nExceptions\0�\0destroy\0()Ljava/lang/Object;\0connect\0connectImpl\0n\0\ngetSession\02()Lbitel/billing/server/util/telnet/TelnetSession;\0\ndisconnect\0�\0executeCommand\0(Ljava/lang/String;)V\0getValue(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetServ;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;Ljava/util/Set;Ljava/lang/String;[Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;\0	Signature+(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetServ;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;Ljava/util/Set<Ljava/lang/Integer;>;Ljava/lang/String;[Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;\0<clinit>\0\nSourceFile\0TelnetServiceActivator.java\0A\0B\0E\0F\0�\0�\0sa.endSequence\0#\0�\0�\0�\0;\0<\0sa.lazyConnect\0�\0�\0?\0@\0O\0P\0R\0P\0.bitel/billing/server/util/telnet/TelnetSession\0�\0<\0A\0�\0�\0�\0�\0�\0�\0�\0�\0�\0:\0�\0Y\0Q\0�\09\0:\0	Connected\0�\0�\0�\0=\0>\0�\0<\0�\0�\0\rLogin entered\0�\0�\0�\0�\0<\0Password entered\0Q\0P\0V\0P\0java/lang/StringBuilder\0executeAsync: \0�\0�\0�\0<\0�\0�\0�\0Y\0V\0B\0Disconnected\0�\0�\0T\0U\0	execute: \0setEndSequence\0�\0�\0java/lang/String\0�\0�\0\0\0Z\0[\0Jru/bitel/bgbilling/modules/inet/dyn/device/terminal/TelnetServiceActivator\0�\0�\0Tru/bitel/bgbilling/modules/inet/dyn/device/terminal/AbstractTerminalServiceActivator\0:ru/bitel/bgbilling/modules/inet/access/sa/ServiceActivator\0$ru/bitel/bgbilling/server/util/Setup\0:ru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice\0>ru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceType\0ru/bitel/common/ParameterMap\0java/lang/Exception\0java/lang/Throwable\0port\0I\0get\08(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;\0getInt\0(Ljava/lang/String;I)I\0host\0(Ljava/lang/String;I)V\0timeout\0\nsetTimeout\0(I)V\0readWait\0J\0setReadWait\0(J)V\0setEndString\0()Ljava/lang/String;\0org/apache/log4j/Logger\0info\0(Ljava/lang/Object;)V\0username\0	doCommand\0&(Ljava/lang/String;)Ljava/lang/String;\0ru/bitel/common/Utils\0notBlankString\0(Ljava/lang/String;)Z\0password\0append\0-(Ljava/lang/String;)Ljava/lang/StringBuilder;\0exitCommand\0toString\0doCommandAsync\0debug\0equals\0(Ljava/lang/Object;)Z\0notEmptyString\0	getLogger\0,(Ljava/lang/Class;)Lorg/apache/log4j/Logger;\0!\05\07\0\08\0\0\Z\09\0:\0\0\0\0;\0<\0\0\0\0=\0>\0\0\0\0?\0@\0\0\0\n\0\0A\0B\0\0C\0\0\0\0\0\0\0\0*�\0�\0\0\0\0D\0\0\0\0\0\0\0\0\0E\0F\0\0C\0\0\0�\0\0\0\0\0<*+-�\0W*�\0�\0	*�\0*�\0�\0*�\0	�\0�\0�\0\n�\0\0\0\0D\0\0\0\Z\0\0\0\0&\0\0(\0\0*\0\0-\0&\0/\0:\01\0G\0\0\0\"\0\\\0H�\0\0\0\0H\0I\0J\0K\0L\0\0H\0M\0\0\0\0\0N\0\0O\0P\0\0C\0\0\0\0\0\0\0\0*�\0�\0\0\0\0D\0\0\0\0\0\0\08\0M\0\0\0\0\0N\0\0Q\0P\0\0C\0\0\07\0\0\0\0\0*�\0\n�\0�*�\0�\0\0\0\0D\0\0\0\0\0\0\0?\0\0A\0	\0D\0G\0\0\0\0	\0M\0\0\0\0\0N\0\0R\0P\0\0C\0\0\0�\0\0\0\0\0{�\0\rY*�\0*�\0�\0L+*�\0�\0+*�\0�\0+�\0+�\0W�\0�\0*+�\0\Z�\0+*�\0�\0�\0�\0�\0*�\0�\0�\0+*�\0�\0�\0+*�\0�\0�\0�\0 �\0*�\0!�\0\0\0\0D\0\0\0:\0\0\0\0J\0\0K\0\0L\0 \0N\0&\0P\0+\0Q\03\0S\08\0U\0F\0V\0N\0X\0X\0Z\0`\0]\0n\0^\0v\0c\0G\0\0\0\0�\0`\0S\0M\0\0\0\0\0N\0\0T\0U\0\0C\0\0\0C\0\0\0\0\0*�\0\Z�\0*�\0\Z�*�\0W*�\0\Z�\0\0\0\0D\0\0\0\0\0\0\0i\0\0k\0\0n\0\0p\0G\0\0\0\0\0M\0\0\0\0\0N\0\0V\0P\0\0C\0\0\0�\0\0\0\0\0c*�\0\Z�\0]*�\0\"W�\0�\0#Y�\0$%�\0&*�\0\'�\0&�\0(�\0*�\0\Z*�\0\'�\0)*�\0\Z�\0**�\0\Z�\0+�\0,�\0\ZL*�\0\Z�\0**�\0\Z�\0+�\0,+��\0\0\03\0J\0\0\0\0D\0\0\02\0\0\0\0w\0\0{\0\0}\0(\0~\03\0�\0:\0�\0?\0�\0G\0�\0J\0�\0R\0�\0W\0�\0a\0�\0G\0\0\0	\0�\0J\0W\0M\0\0\0\0\0N\0\0X\0Y\0\0C\0\0\0N\0\0\0\0\0**�\0-M�\0�\0#Y�\0$.�\0&+�\0&�\0(�\0�\0,+�\0�\0�\0\0\0\0D\0\0\0\0\0\0\0�\0\0�\0\0�\0)\0�\0M\0\0\0\0\0N\0\0Z\0[\0\0C\0\0\0�\0\0	\0\0\0P/�\00�\09��\0%2�\01:�\02�\0*�\0-2�\01�\03�*�\0-*�\0�\03�*+,-�\04�\0\0\0\0D\0\0\0&\0	\0\0\0�\0\n\0�\0\0�\0\0�\0!\0�\0/\0�\02\0�\0=\0�\0@\0�\0G\0\0\0\02\r\0M\0\0\0\0\0N\0\\\0\0\0\0]\0\0^\0B\0\0C\0\0\0!\0\0\0\0\0\0	5�\06�\0�\0\0\0\0D\0\0\0\0\0\0\0\Z\0\0_\0\0\0\0`'),('ru.bitel.bgbilling.modules.inet.dyn.device.wifi.WiFiServiceActivator',1433856492000,'����\0\0\04\0�\n\0+\0Q	\0-\0R	\0-\0S\n\0T\0U	\0-\0V\n\0T\0W\0X\0Y\0X\0Z\0[\n\0	\0\\\n\0]\0^	\0-\0_\n\0	\0`	\0-\0a\0b\n\0c\0d\0e\n\0c\0f\n\0g\0h\0i\n\0\0Q\n\0\0j\n\0\0k	\0-\0l\0m\n\0n\0o\n\0p\0q\0r\n\0\0Q\n\0\0s\n\0\0t\n\0u\0v\n\0w\0x\n\0y\0z\n\0\0{\n\0|\0}\n\0|\0~\n\0\0\n\0�\0�\0�\n\0p\0�\n\0-\0�\0�\n\0n\0�\0�\0�\0logger\0Lorg/apache/log4j/Logger;\0socket\0Ljava/net/DatagramSocket;\0device\0<Lru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice;\0host\0Ljava/lang/String;\0port\0I\0secret\0<init>\0()V\0Code\0LineNumberTable\0init\0�(Lru/bitel/bgbilling/server/util/Setup;ILru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice;Lru/bitel/bgbilling/modules/inet/api/common/bean/InetDeviceType;Lru/bitel/common/ParameterMap;)Ljava/lang/Object;\0\rStackMapTable\0\nExceptions\0�\0connect\0()Ljava/lang/Object;\0\ndisconnect\0connectionClose\0U(Lru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent;)Ljava/lang/Object;\0�\0�\0�\0�\0r\0connectionModify\0<clinit>\0\nSourceFile\0WiFiServiceActivator.java\0:\0;\01\02\03\04\0�\0�\0�\09\06\0�\0�\0�\0�\0�\0�\0�\0\Zjava/net/InetSocketAddress\0�\0�\0�\0�\0�\05\06\0�\0�\07\08\0sa.host\0�\0�\0�\0sa.port\0�\0�\0�\0�\0�\0java/net/DatagramSocket\0�\0�\0�\0;\0/\00\0connection close\0�\0�\0�\0�\0�\0�\00ru/bitel/bgbilling/kernel/wifi/common/WiFiPacket\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0�\0connection modify\0�\0�\0F\0G\0Aru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorAdapter\0�\0�\0Dru/bitel/bgbilling/modules/inet/dyn/device/wifi/WiFiServiceActivator\0:ru/bitel/bgbilling/modules/inet/access/sa/ServiceActivator\0java/lang/Exception\0?ru/bitel/bgbilling/modules/inet/access/sa/ServiceActivatorEvent\0>ru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection\06ru/bitel/bgbilling/kernel/wifi/common/WiFiPacketRecord\0:ru/bitel/bgbilling/modules/inet/api/common/bean/InetDevice\0	getSecret\0()Ljava/lang/String;\0getHosts\0()Ljava/util/List;\0java/util/List\0size\0()I\0get\0(I)Ljava/lang/Object;\0\ngetAddress\0()Ljava/net/InetAddress;\0java/net/InetAddress\0getHostAddress\0getPort\0ru/bitel/common/ParameterMap\08(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;\0getInt\0(Ljava/lang/String;I)I\0java/lang/Boolean\0valueOf\0(Z)Ljava/lang/Boolean;\0setSoTimeout\0(I)V\0close\0org/apache/log4j/Logger\0debug\0(Ljava/lang/Object;)V\0\rgetConnection\0B()Lru/bitel/bgbilling/modules/inet/api/common/bean/InetConnection;\0	setSecret\0(Ljava/lang/String;)V\0setType\0(B)V\0getInetAddressBytes\0()[B\0ru/bitel/common/inet/IpAddress\0toString\0([B)Ljava/lang/String;\0bitel/billing/common/IPUtils\0convertStringIPtoInt\0(Ljava/lang/String;)I\0add\0.ru/bitel/bgbilling/kernel/wifi/common/WiFiUtil\0\nsendPacket\0a(Ljava/net/DatagramSocket;Lru/bitel/bgbilling/kernel/wifi/common/WiFiPacket;Ljava/lang/String;I)V\0\rrecievePacket\0_(Ljava/net/DatagramSocket;Ljava/lang/String;)Lru/bitel/bgbilling/kernel/wifi/common/WiFiPacket;\0getFirstRecord\0:()Lru/bitel/bgbilling/kernel/wifi/common/WiFiPacketRecord;\0getIp\0getNewState\0	getLogger\0,(Ljava/lang/Class;)Lorg/apache/log4j/Logger;\0!\0-\0+\0\0.\0\0\n\0/\00\0\0\0\01\02\0\0\0\03\04\0\0\0\05\06\0\0\0\07\08\0\0\0\09\06\0\0\0\0\0:\0;\0\0<\0\0\0&\0\0\0\0\0\n*�\0*�\0�\0\0\0\0=\0\0\0\n\0\0\0\0\Z\0\0 \0\0>\0?\0\0<\0\0\0�\0\0\0\0\0`*-�\0*-�\0�\0-�\0�\0\0�\0\'-�\0�\0\0�\0	:*�\0\n�\0�\0*�\0\r�\0**�\0�\0�\0**�\0�\0�\0�\0�\0\0\0\0=\0\0\0&\0	\0\0\05\0\07\0\r\09\0\0;\0(\0<\04\0=\0=\0@\0L\0A\0[\0C\0@\0\0\0\0=\0A\0\0\0\0\0B\0\0C\0D\0\0<\0\0\0:\0\0\0\0\0\Z*�\0Y�\0�\0*�\0��\0�\0�\0\0\0\0=\0\0\0\0\0\0\0P\0\0Q\0\0S\0A\0\0\0\0\0B\0\0E\0D\0\0<\0\0\0(\0\0\0\0\0*�\0�\0�\0�\0\0\0\0=\0\0\0\n\0\0\0\0^\0\0_\0A\0\0\0\0\0B\0\0F\0G\0\0<\0\0\0�\0\0\0\0\0y�\0�\0\Z+�\0MN�\0Y�\0:*�\0�\0�\0,�\0 �\0!�\0\"6�\0#*�\0*�\0*�\0�\0$*�\0*�\0�\0%:�\0	�\0&N-�\0-�\0\'�\0�\0�\0�\0\0\0\0=\0\0\06\0\r\0\0\0m\0\0n\0\r\0p\0\0r\0\0s\0!\0t\0\'\0v\03\0x\0:\0y\0K\0{\0X\0|\0]\0~\0c\0�\0@\0\0\0\0�\0c\0\0H\0I\0J\0K\0L\0L\0\0@\0A\0\0\0\0\0B\0\0M\0G\0\0<\0\0\0G\0\0\0\0\0\Z�\0(�\0\Z+�\0)�\0	*+�\0*��\0�\0\0\0\0=\0\0\0\0\0\0\0�\0\0�\0\0�\0\0�\0@\0\0\0\0\0A\0\0\0\0\0B\0\0N\0;\0\0<\0\0\0!\0\0\0\0\0\0	+�\0,�\0�\0\0\0\0=\0\0\0\0\0\0\0\0\0O\0\0\0\0P'),('ru.provider.bgbilling.kernel.dyn.script.AdditionalAction',1433868293000,'����\0\0\04\0O\n\0\0%\0&\0\'\0(\n\0\0%\0)\n\0\0*\n\0+\0,\n\0-\0.\n\0\0/\n\0\00\01\n\0\00\02	\0\03\04\n\05\06\07\n\0\08\09\n\05\0:\0;\0logger\0Lorg/apache/log4j/Logger;\0<init>\0()V\0Code\0LineNumberTable\0onEvent\0s(Lru/bitel/bgbilling/kernel/event/Event;Lru/bitel/bgbilling/server/util/Setup;Lru/bitel/common/sql/ConnectionSet;)V\0\rStackMapTable\0\nExceptions\0<\0<clinit>\0\nSourceFile\0AdditionalAction.java\0\0\Z\0Fru/bitel/bgbilling/kernel/event/events/GetAdditionalWebActionListEvent\0$Какое-либо действие\0java/lang/StringBuilder\0�Данное действие тестовое, оно ничего не делает, обрабатывается динамическим классом \0=\0>\0?\0@\0A\0B\0C\0D\0E\0D\0F\0G\0Cru/bitel/bgbilling/kernel/event/events/GetAdditionalActionListEvent\0<ru/bitel/bgbilling/kernel/event/events/AdditionalActionEvent\0\0\0Do \0H\0I\0J\0Готово\0K\0L\08ru/provider/bgbilling/kernel/dyn/script/AdditionalAction\0M\0N\0;ru/bitel/bgbilling/kernel/script/server/dev/EventScriptBase\0java/lang/Exception\0append\0-(Ljava/lang/String;)Ljava/lang/StringBuilder;\0java/lang/Object\0getClass\0()Ljava/lang/Class;\0java/lang/Class\0getName\0()Ljava/lang/String;\0toString\0	addAction\0((ILjava/lang/String;Ljava/lang/String;)V\0org/apache/log4j/Logger\0info\0(Ljava/lang/Object;)V\0	addReport\0(Ljava/lang/String;)V\0	getLogger\0,(Ljava/lang/Class;)Lorg/apache/log4j/Logger;\0!\0\0\0\0\0\0\n\0\0\0\0\0\0\0\0\Z\0\0\0\0\0\0\0\0\0\0*�\0�\0\0\0\0\0\0\0\0\0\0\0\r\0\0\0\0\0\0\0\0�\0\0\0\0\0�+�\0�\0++�\0��\0Y�\0�\0*�\0�\0	�\0�\0\n�\0�\0a+�\0�\0++�\0��\0Y�\0�\0*�\0�\0	�\0�\0\n�\0\r�\02+�\0�\0+�\0�\0Y�\0�\0*�\0�\0	�\0�\0\n�\0+�\0�\0�\0\0\0\0\0\0\02\0\0\0\0\0\0\0\0\0)\0\0/\0\06\0\0L\0\0X\0\0^\0 \0e\0\"\0�\0$\0�\0&\0\0\0\0\0/..\0 \0\0\0\0\0!\0\0\"\0\Z\0\0\0\0\0!\0\0\0\0\0\0	�\0�\0�\0\0\0\0\0\0\0\0\0\0\0\0\0#\0\0\0\0$');
-/*!40000 ALTER TABLE `script_classes` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `script_classes_ifaces`
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `script_classes_ifaces` (
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `iface` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `iface` varchar(255) NOT NULL,
   PRIMARY KEY (`name`,`iface`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7455,12 +7447,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `script_event_queue` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `event` longblob NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7477,16 +7469,16 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `script_event_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `mid` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `mid` varchar(100) NOT NULL,
   `event_mode` tinyint(4) NOT NULL DEFAULT '1',
-  `event_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
-  `title` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `event_id` varchar(255) NOT NULL DEFAULT '0',
+  `title` varchar(200) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `mid_event` (`mid`,`event_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=156 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=156;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7504,17 +7496,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `script_function` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `script_id` int(11) NOT NULL DEFAULT '0',
-  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(100) NOT NULL DEFAULT '',
   `code` mediumtext COLLATE utf8_unicode_ci,
   `user_id` int(11) NOT NULL,
   `change_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `script_id` (`script_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7531,13 +7523,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `script_function_event_type` (
   `fid` int(11) NOT NULL DEFAULT '0',
-  `mid` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `event_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `mid` varchar(100) NOT NULL,
+  `event_id` varchar(255) NOT NULL DEFAULT '0',
   KEY `fid` (`fid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7554,17 +7546,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `script_lib` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `script` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `script` mediumtext NOT NULL,
   `user_id` int(11) NOT NULL,
   `change_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7581,12 +7573,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sequential_ids` (
-  `mid` varchar(8) COLLATE utf8_unicode_ci NOT NULL COMMENT 'ид модуля/плагина',
+  `mid` varchar(8) NOT NULL COMMENT 'ид модуля/плагина',
   `value` bigint(20) NOT NULL COMMENT 'значение идентификатора',
   PRIMARY KEY (`mid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7603,22 +7595,22 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `service` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(250) NOT NULL,
   `mid` int(11) NOT NULL DEFAULT '0',
   `parentId` int(11) NOT NULL DEFAULT '0',
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
-  `comment` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comment` varchar(255) NOT NULL DEFAULT '',
+  `description` varchar(255) NOT NULL DEFAULT '',
   `lm` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `isusing` tinyint(1) DEFAULT '1',
   `unit` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `mid` (`mid`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7636,12 +7628,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `setup` (
-  `id` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `value` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `id` varchar(100) NOT NULL DEFAULT '',
+  `value` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7659,25 +7651,25 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `source` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `mid` int(11) NOT NULL DEFAULT '0',
-  `title` varchar(20) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(20) NOT NULL DEFAULT '',
   `date1` date DEFAULT NULL,
   `date2` date DEFAULT NULL,
-  `comment` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comment` varchar(255) NOT NULL DEFAULT '',
   `source_type` tinyint(4) NOT NULL DEFAULT '0',
-  `host_or_dir` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
-  `user` varchar(15) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `pswd` varchar(15) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `config` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `host_or_dir` varchar(250) NOT NULL,
+  `user` varchar(15) NOT NULL DEFAULT '',
+  `pswd` varchar(15) NOT NULL DEFAULT '',
+  `config` mediumtext NOT NULL,
   `lm` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
   KEY `mid` (`mid`),
   KEY `date1` (`date1`),
   KEY `date2` (`date2`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7694,12 +7686,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sql_patches_history` (
-  `mid` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `mid` varchar(10) NOT NULL,
   `versions` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`mid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7717,14 +7709,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sql_template` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
-  `text` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(150) NOT NULL,
+  `text` mediumtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7741,7 +7733,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `status_log` (
   `from_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `to_date` datetime DEFAULT NULL,
@@ -7749,13 +7741,13 @@ CREATE TABLE `status_log` (
   `mid` int(10) unsigned NOT NULL DEFAULT '0',
   `status` tinyint(4) DEFAULT NULL,
   `uid` tinyint(4) NOT NULL DEFAULT '0',
-  `comment` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `comment` varchar(255) NOT NULL DEFAULT '',
   UNIQUE KEY `main_from_index` (`from_date`,`cid`,`mid`),
   UNIQUE KEY `main_to_index` (`to_date`,`cid`,`mid`),
   KEY `from_date_index` (`from_date`),
   KEY `to_date_index` (`to_date`),
   KEY `cid_index` (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7772,15 +7764,15 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `subscr_contact` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cid` int(11) NOT NULL DEFAULT '0',
-  `name` char(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `email` char(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `subject` char(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `name` char(50) NOT NULL DEFAULT '',
+  `email` char(50) NOT NULL DEFAULT '',
+  `subject` char(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7797,7 +7789,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tariff_change_task` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cid` int(11) NOT NULL DEFAULT '0',
@@ -7807,7 +7799,7 @@ CREATE TABLE `tariff_change_task` (
   PRIMARY KEY (`id`),
   KEY `cid` (`cid`),
   KEY `ex_time` (`ex_time`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7824,16 +7816,16 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tariff_group` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(200) NOT NULL DEFAULT '',
   `tm` tinyint(3) NOT NULL DEFAULT '0',
   `df` int(11) NOT NULL DEFAULT '0',
   `beh` int(11) NOT NULL DEFAULT '0',
   `pos` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7851,14 +7843,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tariff_group_tariff` (
   `tgid` int(11) NOT NULL DEFAULT '0',
   `tpid` int(11) NOT NULL DEFAULT '0',
   `date1` date DEFAULT NULL COMMENT 'начало периода видимости тарифа в группе тарифов',
   `date2` date DEFAULT NULL COMMENT 'конец периода видимости тарифа в группе тарифов',
   KEY `tgid` (`tgid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7876,13 +7868,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tariff_label` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) NOT NULL DEFAULT '0',
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7899,12 +7891,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tariff_label_link` (
   `tariff_id` int(11) NOT NULL DEFAULT '0',
   `label_id` int(11) NOT NULL DEFAULT '0',
   KEY `tariff_id` (`tariff_id`,`label_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7921,24 +7913,24 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tariff_option` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
-  `tariff_ids` mediumtext COLLATE utf8_unicode_ci NOT NULL,
-  `comment` mediumtext COLLATE utf8_unicode_ci NOT NULL,
-  `description` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(250) NOT NULL,
+  `tariff_ids` mediumtext NOT NULL,
+  `comment` mediumtext NOT NULL,
+  `description` mediumtext NOT NULL,
   `date1` date DEFAULT NULL,
   `date2` date DEFAULT NULL,
-  `depends` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `incompatible` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `depends` varchar(255) NOT NULL DEFAULT '',
+  `incompatible` varchar(255) NOT NULL DEFAULT '',
   `deactivation_mode` int(11) NOT NULL,
   `contract_groups` bigint(20) NOT NULL DEFAULT '0',
   `hideForWeb` smallint(6) NOT NULL DEFAULT '0',
   `hideForWebContractGroups` bigint(20) NOT NULL DEFAULT '0',
   `hideForWebContractGroupsMode` smallint(6) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7956,11 +7948,11 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tariff_option_activate_mode` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `option_id` int(11) NOT NULL,
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(255) NOT NULL DEFAULT '',
   `charge_type_id` int(11) NOT NULL,
   `charge_summa` decimal(10,2) NOT NULL,
   `period_mode` int(11) NOT NULL,
@@ -7973,7 +7965,7 @@ CREATE TABLE `tariff_option_activate_mode` (
   `delete_charge_mode` int(11) DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `option_id` (`option_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7991,19 +7983,19 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tariff_plan` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `title_web` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `title` varchar(200) NOT NULL DEFAULT '',
+  `title_web` varchar(255) DEFAULT NULL,
   `lm` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `actual` int(11) NOT NULL DEFAULT '0',
   `gr` bigint(20) NOT NULL,
-  `pattern` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `pattern` varchar(255) DEFAULT NULL,
   `face` tinyint(4) DEFAULT NULL,
   `tree_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8021,13 +8013,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tariff_tree` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `parent_tree` int(3) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `parent` (`parent_tree`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8045,12 +8037,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tariff_tree_config` (
-  `module` varchar(20) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
-  `data` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `module` varchar(20) NOT NULL DEFAULT '0',
+  `data` longtext NOT NULL,
   PRIMARY KEY (`module`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8067,17 +8059,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `task_load` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `title` char(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` char(200) NOT NULL DEFAULT '',
   `dt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `param` int(10) unsigned NOT NULL DEFAULT '0',
   `count` int(10) unsigned NOT NULL DEFAULT '0',
   `le` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
   KEY `le` (`le`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8094,17 +8086,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `task_proccess` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `mid` int(11) NOT NULL DEFAULT '0',
-  `title` char(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` char(200) NOT NULL DEFAULT '',
   `dt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `param` int(11) NOT NULL DEFAULT '0',
   `start_process_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `spt` (`start_process_time`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8121,13 +8113,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `time_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `data` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `data` mediumtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8144,27 +8136,27 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tv_account_4` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parentId` int(11) NOT NULL,
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(150) NOT NULL,
   `contractId` int(11) NOT NULL,
   `specId` int(11) NOT NULL,
   `deviceId` int(11) NOT NULL,
-  `login` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `password` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `pin` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `identifier` varchar(80) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `login` varchar(200) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
+  `pin` varchar(100) DEFAULT NULL,
+  `identifier` varchar(80) DEFAULT NULL,
   `macAddress` varbinary(64) DEFAULT NULL,
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
   `status` int(11) NOT NULL,
-  `comment` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `config` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `deviceAccountId` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `comment` varchar(255) NOT NULL,
+  `config` varchar(255) DEFAULT NULL,
+  `deviceAccountId` varchar(100) DEFAULT NULL,
   `deviceState` int(11) NOT NULL,
-  `deviceOptions` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `deviceOptions` varchar(200) NOT NULL,
   `accessCode` int(11) NOT NULL DEFAULT '-1',
   PRIMARY KEY (`id`),
   KEY `contract` (`contractId`),
@@ -8172,7 +8164,7 @@ CREATE TABLE `tv_account_4` (
   KEY `period` (`dateFrom`,`dateTo`),
   KEY `parent` (`parentId`),
   KEY `deviceAccountId` (`deviceAccountId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8189,7 +8181,7 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tv_account_detail_4_201304` (
   `contractId` int(11) NOT NULL,
   `accountId` int(11) NOT NULL,
@@ -8198,7 +8190,7 @@ CREATE TABLE `tv_account_detail_4_201304` (
   `day` int(11) NOT NULL,
   `account` decimal(10,5) NOT NULL,
   PRIMARY KEY (`contractId`,`accountId`,`productId`,`sid`,`day`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB
 /*!50100 PARTITION BY HASH (contractId)
 PARTITIONS 8 */;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -8217,11 +8209,11 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tv_account_spec_4` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
-  `parentTypeIds` varchar(45) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `title` varchar(150) NOT NULL,
+  `parentTypeIds` varchar(45) NOT NULL DEFAULT '',
   `needLogin` tinyint(4) NOT NULL,
   `needPassword` tinyint(4) NOT NULL,
   `needPin` tinyint(4) NOT NULL,
@@ -8230,7 +8222,7 @@ CREATE TABLE `tv_account_spec_4` (
   `needMacAddress` tinyint(4) NOT NULL DEFAULT '0',
   `config` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8247,14 +8239,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tv_account_spec_device_group_link_4` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tvAccountSpecId` int(11) NOT NULL,
   `deviceGroupId` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `tvAccountSpec` (`tvAccountSpecId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8271,14 +8263,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tv_account_spec_device_type_link_4` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tvAccountSpecId` int(11) NOT NULL,
   `deviceTypeId` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `tvAccountSpec` (`tvAccountSpecId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8295,20 +8287,20 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tv_channel_spec_4` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `entityId` int(11) NOT NULL,
-  `title` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(150) NOT NULL,
   `serviceSpecId` int(11) NOT NULL,
-  `identifier` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `identifier` varchar(150) NOT NULL,
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
-  `comment` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `comment` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `serviceSpec` (`serviceSpecId`),
   KEY `entity` (`entityId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8325,27 +8317,27 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tv_device_4` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `entityId` int(11) NOT NULL,
   `parentId` int(11) NOT NULL,
   `deviceTypeId` int(11) NOT NULL,
-  `title` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `host` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(200) NOT NULL,
+  `host` varchar(100) NOT NULL,
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
   `orderManagerDisabled` tinyint(4) NOT NULL DEFAULT '0',
-  `username` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `secret` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `config` text COLLATE utf8_unicode_ci NOT NULL,
-  `comment` text COLLATE utf8_unicode_ci NOT NULL,
-  `identifier` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
-  `uptime` text COLLATE utf8_unicode_ci NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `secret` varchar(100) NOT NULL,
+  `config` text NOT NULL,
+  `comment` text NOT NULL,
+  `identifier` varchar(150) NOT NULL,
+  `uptime` text NOT NULL,
   `uptimeTime` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8362,18 +8354,18 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tv_device_type_4` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(250) NOT NULL,
   `deviceEntitySpecId` int(11) NOT NULL,
-  `config` text COLLATE utf8_unicode_ci NOT NULL,
-  `protocolHandlerClass` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `saHandlerClass` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `deviceManagerClass` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `comment` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `config` text NOT NULL,
+  `protocolHandlerClass` varchar(250) DEFAULT NULL,
+  `saHandlerClass` varchar(250) DEFAULT NULL,
+  `deviceManagerClass` varchar(250) DEFAULT NULL,
+  `comment` varchar(250) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8390,18 +8382,18 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tv_service_spec_channel_link_4` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `serviceSpecId` int(11) NOT NULL,
   `deviceId` int(11) NOT NULL,
-  `channel` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `channel` varchar(255) NOT NULL,
   `dateFrom` date DEFAULT NULL,
   `dateTo` date DEFAULT NULL,
-  `comment` text COLLATE utf8_unicode_ci NOT NULL,
+  `comment` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `service` (`serviceSpecId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8418,29 +8410,29 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `login` char(15) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `name` char(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `email` char(50) COLLATE utf8_unicode_ci NOT NULL,
-  `descr` char(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `pswd` char(32) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `login` char(15) NOT NULL DEFAULT '',
+  `name` char(50) NOT NULL DEFAULT '',
+  `email` char(50) NOT NULL,
+  `descr` char(255) NOT NULL DEFAULT '',
+  `pswd` char(32) DEFAULT NULL,
   `dt` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `gr` bigint(20) NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT '0',
   `cgr` bigint(20) NOT NULL DEFAULT '0',
-  `pids` varchar(120) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `opids` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `pids` varchar(120) DEFAULT NULL,
+  `opids` varchar(255) DEFAULT NULL,
   `contract_pid` int(11) NOT NULL DEFAULT '0',
   `contract_cid` int(11) NOT NULL DEFAULT '0',
-  `config` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `config` mediumtext NOT NULL,
   `crm_user_id` int(11) NOT NULL,
   `cgr_mode` tinyint(4) NOT NULL DEFAULT '1',
   `ch_pswd` tinyint(2) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `login` (`login`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8458,12 +8450,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user_group` (
   `gr_code` smallint(3) unsigned NOT NULL AUTO_INCREMENT,
-  `gr_name` char(60) COLLATE utf8_unicode_ci DEFAULT '0',
+  `gr_name` char(60) DEFAULT '0',
   PRIMARY KEY (`gr_code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8480,12 +8472,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user_group_access` (
   `gr_code` smallint(3) unsigned NOT NULL DEFAULT '0',
   `ma_id` smallint(3) unsigned NOT NULL DEFAULT '0',
   KEY `gr_code` (`gr_code`,`ma_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8502,12 +8494,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user_group_entry` (
   `gr_code` smallint(3) unsigned NOT NULL DEFAULT '0',
   `parent_gr_code` smallint(3) unsigned NOT NULL DEFAULT '0',
   KEY `gr_code` (`gr_code`,`parent_gr_code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8524,12 +8516,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user_group_member` (
   `user_id` smallint(3) unsigned DEFAULT '0',
   `gr_code` smallint(3) unsigned DEFAULT '0',
   KEY `user_id` (`user_id`,`gr_code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8546,13 +8538,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user_menu` (
   `uid` int(11) NOT NULL,
-  `menu_id` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `menu_id` varchar(50) NOT NULL,
   `hidden` tinyint(2) NOT NULL,
   PRIMARY KEY (`uid`,`menu_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8569,16 +8561,16 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user_module_action` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `module` char(30) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `module` char(30) NOT NULL DEFAULT '0',
   `type` int(11) NOT NULL DEFAULT '0',
-  `action` char(40) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
-  `description` char(120) COLLATE utf8_unicode_ci DEFAULT '0',
+  `action` char(40) NOT NULL DEFAULT '0',
+  `description` char(120) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `module_action` (`module`,`action`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8595,17 +8587,17 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user_tables` (
   `userId` int(11) DEFAULT NULL,
-  `table_module` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `table_id` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `table_module` varchar(100) DEFAULT NULL,
+  `table_id` varchar(100) DEFAULT NULL,
   `widths` mediumtext COLLATE utf8_unicode_ci,
   `positions` mediumtext COLLATE utf8_unicode_ci,
   `hiddens` mediumtext COLLATE utf8_unicode_ci,
   KEY `userId` (`userId`),
   KEY `table_module` (`table_module`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8623,12 +8615,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user_user_access` (
   `user_id` smallint(3) unsigned NOT NULL DEFAULT '0',
   `ma_id` smallint(3) unsigned DEFAULT '0',
   KEY `user_id_2` (`user_id`,`ma_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8645,14 +8637,14 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `web_menu` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `default` tinyint(1) NOT NULL DEFAULT '0',
-  `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `data` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `data` mediumtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8669,13 +8661,13 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `web_request_count` (
   `cid` int(11) NOT NULL DEFAULT '0',
   `date` date NOT NULL DEFAULT '0000-00-00',
   `count` int(11) NOT NULL DEFAULT '0',
   UNIQUE KEY `cid` (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8692,12 +8684,12 @@ UNLOCK TABLES;
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!40101 SET character_set_client = utf8mb4 */;
 CREATE TABLE `web_request_limit` (
   `cid` int(11) NOT NULL DEFAULT '0',
   `lim` int(11) DEFAULT NULL,
   PRIMARY KEY (`cid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
