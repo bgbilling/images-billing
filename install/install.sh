@@ -126,12 +126,12 @@ fi
 
 if echo "$@" | grep -Eq '\bsetlimits\b'; then
   { \
-    echo 'root             soft    nofile           10240'; \
-    echo 'root             hard    nofile           10240'; \
-    echo 'mysql             soft    nofile           10240'; \
-    echo 'mysql             hard    nofile           10240'; \
-    echo 'bgbilling             soft    nofile           10240'; \
-    echo 'bgbilling             hard    nofile           10240'; \
+    echo 'root             soft    nofile           10000'; \
+    echo 'root             hard    nofile           10000'; \
+    echo 'mysql             soft    nofile           10000'; \
+    echo 'mysql             hard    nofile           10000'; \
+    echo 'bgbilling             soft    nofile           10000'; \
+    echo 'bgbilling             hard    nofile           10000'; \
   } >> /etc/security/limits.conf
 
   { \
