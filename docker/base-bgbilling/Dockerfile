@@ -11,7 +11,7 @@ ARG BGBILLING_INSTALL=/opt/bgbilling/BGBillingServer/.install
 ENV BGBILLING_ASSETS=card,bill,inet,tv,voice,reports,documents,cashcheck,mps,sberbank,yamoney,assist
 
 RUN set -x \
-  && [ ! -f $BGBILLING_HOME ]
+  && [ ! -f $BGBILLING_HOME ] \
   && mkdir -p /opt/bgbilling \
   && rm -fr /tmp/bgb-install && mkdir -p /tmp/bgb-install \
   \
