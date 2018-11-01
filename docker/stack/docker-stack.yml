@@ -52,6 +52,8 @@ services:
       - ./server/data.properties:/opt/bgbilling/BGBillingServer/data/data.properties:ro
       - ./server/log4j.xml:/opt/bgbilling/BGBillingServer/data/log4j.xml:ro
       - ./server/log/:/opt/bgbilling/BGBillingServer/log/
+      - ./server/dyn/:/opt/bgbilling/BGBillingServer/dyn/
+      - ./server/reports/:/opt/bgbilling/BGBillingServer/reports/
     deploy:
       restart_policy: { condition: on-failure, delay: 5s, max_attempts: 5, window: 180s}
     stop_grace_period: 30s

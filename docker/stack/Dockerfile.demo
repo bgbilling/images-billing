@@ -16,6 +16,8 @@ RUN set -x \
   && mkdir -p /bgbilling-docker/mysql/initdb.d \
   && mkdir -p /bgbilling-docker/activemq/data \
   && mkdir -p /bgbilling-docker/server/log \
+  && mkdir -p /bgbilling-docker/server/dyn \
+  && mkdir -p /bgbilling-docker/server/reports \
   && mkdir -p /bgbilling-docker/mybgbilling/log \
   && cp /opt/bgbilling/BGBillingServer/data/data.properties /bgbilling-docker/server/ \
   && cp /opt/bgbilling/BGBillingServer/data/log4j.xml /bgbilling-docker/server/
