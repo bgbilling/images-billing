@@ -3,8 +3,8 @@ FROM bgbilling/server:7.1 as packager
 ENV MYBGBILLING_VERSION=7.1
 ARG MYBGBILLING_FTP=ftp://bgbilling.ru/pub/bgbilling/$MYBGBILLING_VERSION
 
-WILDFLY_HOME=/opt/wildfly/current
-WILDFLY_DEPLOYMENTS=$WILDFLY_HOME/standalone/deployments
+ENV WILDFLY_HOME=/opt/wildfly/current
+ENV WILDFLY_DEPLOYMENTS=$WILDFLY_HOME/standalone/deployments
 
 RUN set -x \
   && echo "Checking what directory /opt/wildfly/current exists" \
