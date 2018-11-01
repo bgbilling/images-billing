@@ -28,6 +28,7 @@ function entrypoint() {
     
     echo "Installing modules and plugins"
     /opt/bgbilling/BGBillingServer/bg_installer.sh autoinstall "update,${BGBILLING_ASSETS}"
+    /opt/bgbilling/BGBillingServer/bg_installer.sh recompileDyn
 
     echo "Starting BGBillingServer"
     exec "$@" &
