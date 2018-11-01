@@ -7,10 +7,6 @@ ENV WILDFLY_HOME=/opt/wildfly/current
 ENV WILDFLY_DEPLOYMENTS=$WILDFLY_HOME/standalone/deployments
 
 RUN set -x \
-  && echo "Checking what directory /opt/wildfly/current exists" \
-  && [ -d /opt/wildfly/current ] \
-  && echo "Checking what directory $WILDFLY_DEPLOYMENTS/MyBGBilling.war does not exist" \
-  && [ ! -d $WILDFLY_DEPLOYMENTS/MyBGBilling.war ] \
   && rm -fr /tmp/bgb-install && mkdir -p /tmp/bgb-install \
   \
   && echo "Downloading MyBGBilling.zip..." \
