@@ -1,12 +1,12 @@
 FROM bgbilling/my:7.2 as my
 
-ARG JBOSS_STANDALONE=/opt/jboss/wildfly/standalone
+ARG WILDFLY_STANDALONE=/opt/wildfly/current/standalone
 
 RUN set -x \
   && mkdir -p /bgbilling-docker/mybgbilling/ \
-  && cp ${JBOSS_STANDALONE}/configuration/standalone.xml /bgbilling-docker/mybgbilling// \
-  && cp ${JBOSS_STANDALONE}/deployments/MyBGBilling.war/WEB-INF/jboss-web.xml /bgbilling-docker/mybgbilling// \
-  && cp ${JBOSS_STANDALONE}/deployments/MyBGBilling.war/WEB-INF/*.groovy /bgbilling-docker/mybgbilling/
+  && cp ${WILDFLY_STANDALONE}/configuration/standalone.xml /bgbilling-docker/mybgbilling// \
+  && cp ${WILDFLY_STANDALONE}/deployments/MyBGBilling.war/WEB-INF/jboss-web.xml /bgbilling-docker/mybgbilling// \
+  && cp ${WILDFLY_STANDALONE}/deployments/MyBGBilling.war/WEB-INF/*.groovy /bgbilling-docker/mybgbilling/
 
 
 FROM bgbilling/server:7.2 as packager
