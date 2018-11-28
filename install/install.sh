@@ -54,7 +54,7 @@ if echo "$@" | grep -Eq '\bjdk8\b'; then
     { \
       echo '#!/bin/sh'; \
       echo; \
-      echo 'JAVA_HOME=/opt/java/jdk8'; \
+      echo 'export JAVA_HOME=/opt/java/jdk8'; \
     } > /etc/profile.d/java_home.sh
   
   fi
