@@ -15,8 +15,8 @@ WILDFLY_HOME=/opt/wildfly/current
 WILDFLY_DEPLOYMENTS=$WILDFLY_HOME/standalone/deployments
 
 set -x \
-  && echo "Checking what directory /opt/wildfly/current exists" \
-  && [ -d /opt/wildfly/current ] \
+  && echo "Checking what directory $WILDFLY_HOME exists" \
+  && [ -d $WILDFLY_HOME ] \
   && echo "Checking what directory $WILDFLY_DEPLOYMENTS/MyBGBilling.war does not exist" \
   && [ ! -d $WILDFLY_DEPLOYMENTS/MyBGBilling.war ] \
   && rm -fr /tmp/bgb-install && mkdir -p /tmp/bgb-install \
@@ -33,8 +33,8 @@ set -x \
     echo '#!/bin/sh'; \
     echo; \
     echo '#JAVA_HOME='; \
-    echo 'MYBGBILLING_HOME=/opt/wildfly/current/standalone/deployments/MyBGBilling.war'; \
-  } >> /tmp/bgb-install/MyBGBilling.war/WEB-INF/script/files/setenv.sh \
+    echo 'MYBGBILLING_HOME=$WILDFLY_HOME/standalone/deployments/MyBGBilling.war'; \
+  } > /tmp/bgb-install/MyBGBilling.war/WEB-INF/script/files/setenv.sh \
   && chmod +x /tmp/bgb-install/MyBGBilling.war/WEB-INF/script/files/*.sh \
   && cp /tmp/bgb-install/MyBGBilling.war/WEB-INF/script/files/*.* $WILDFLY_HOME/bin \
   \
@@ -43,12 +43,12 @@ set -x \
   && echo "Waiting for port 9990" \
   && /tmp/bgb-install/MyBGBilling.war/WEB-INF/script/files/wait-for.sh 127.0.0.1:9990 -t 120 \
   && echo "Changing HTTP port to 8085" \
-  && /opt/wildfly/current/bin/jboss-cli.sh --connect --commands="/socket-binding-group=standard-sockets/socket-binding=http:write-attribute(name=port,value=\${jboss.http.port:8085})" \
-  && /opt/wildfly/current/bin/jboss-cli.sh --connect --commands="/socket-binding-group=standard-sockets/socket-binding=https:write-attribute(name=port,value=\${jboss.https.port:8448})" \
+  && $WILDFLY_HOME/bin/jboss-cli.sh --connect --commands="/socket-binding-group=standard-sockets/socket-binding=http:write-attribute(name=port,value=\${jboss.http.port:8085})" \
+  && $WILDFLY_HOME/bin/jboss-cli.sh --connect --commands="/socket-binding-group=standard-sockets/socket-binding=https:write-attribute(name=port,value=\${jboss.https.port:8448})" \
   && echo "Executing configure-security-domain.cli" \
   && cp /tmp/bgb-install/MyBGBilling.war/WEB-INF/defaults/configure-security-domain.cli /tmp/bgb-install/ \
   && sed -i "s@:reload@@" /tmp/bgb-install/configure-security-domain.cli \
-  && /opt/wildfly/current/bin/jboss-cli.sh --connect --file=/tmp/bgb-install/configure-security-domain.cli \
+  && $WILDFLY_HOME/bin/jboss-cli.sh --connect --file=/tmp/bgb-install/configure-security-domain.cli \
   && echo "Stopping Wildfly" \
   && systemctl stop wildfly \
   && echo "Copying MyBGBilling.war" \
