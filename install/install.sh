@@ -73,7 +73,7 @@ fi
 if echo "$@" | grep -Eq '\bwildfly\b'; then
   echo "Installing Wildfly"
   mkdir -p /tmp/bgb-install-script
-  curl -fsSL $URL_BASE/wildfly/11.0.0/wildfly.sh -o /tmp/bgb-install-script/wildfly.sh
+  curl -fsSL $URL_BASE/wildfly/14.0.1/wildfly.sh -o /tmp/bgb-install-script/wildfly.sh
   sh -eux /tmp/bgb-install-script/wildfly.sh
 fi
 
