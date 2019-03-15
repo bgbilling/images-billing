@@ -1,11 +1,12 @@
 #!/bin/sh -eux
 
-echo "Checking prerequisite utilities (nc,wget,curl,unzip,sed)"
+echo "Checking prerequisite utilities (nc,wget,curl,unzip,sed,dirmngr)"
 [ -n "`which nc`" ]
 [ -n "`which wget`" ]
 [ -n "`which curl`" ]
 [ -n "`which unzip`" ]
 [ -n "`which sed`" ]
+[ -n "`which dirmngr`" ]
 
 
 VERSION=7.2
