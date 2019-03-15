@@ -33,7 +33,7 @@ set -x \
     echo '#!/bin/sh'; \
     echo; \
     echo '#JAVA_HOME='; \
-    echo 'MYBGBILLING_HOME=$WILDFLY_HOME/standalone/deployments/MyBGBilling.war'; \
+    echo "MYBGBILLING_HOME=$WILDFLY_HOME/standalone/deployments/MyBGBilling.war"; \
   } > /tmp/bgb-install/MyBGBilling.war/WEB-INF/script/files/setenv.sh \
   && chmod +x /tmp/bgb-install/MyBGBilling.war/WEB-INF/script/files/*.sh \
   && cp /tmp/bgb-install/MyBGBilling.war/WEB-INF/script/files/*.* $WILDFLY_HOME/bin \
