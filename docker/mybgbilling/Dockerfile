@@ -23,7 +23,7 @@ RUN set -x \
   && sed -i 's@MYBGBILLING_HOME=@#MYBGBILLING_HOME=@' /tmp/bgb-install/MyBGBilling.war/WEB-INF/script/files/setenv.sh
 
 
-FROM bgbilling/base-wildfly:11
+FROM bgbilling/base-wildfly:14
 
 ENV MYBGBILLING_VERSION=7.2
 ENV MYBGBILLING_HOME=$JBOSS_HOME/standalone/deployments/MyBGBilling.war
