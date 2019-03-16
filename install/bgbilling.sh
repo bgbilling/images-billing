@@ -92,7 +92,7 @@ set -x \
   && wget -q --directory $BGBILLING_INSTALL $BGBILLING_FTP/yamoney_${BGBILLING_VERSION}_*.zip \
   \
   && sed -i 's@#JAVA_HOME=@JAVA_HOME=@' $BGBILLING_HOME/setenv.sh \
-  && sed -i 's@JAVA_HOME=@JAVA_HOME=/opt/java/jdk8@' $BGBILLING_HOME/setenv.sh \
+#  && sed -i 's@JAVA_HOME=@JAVA_HOME=/opt/java/jdk8@' $BGBILLING_HOME/setenv.sh \
   && sed -i 's@BGBILLING_SERVER_DIR=.@BGBILLING_SERVER_DIR='"$BGBILLING_HOME"'@' $BGBILLING_HOME/setenv.sh \
   && sed -i 's@\/usr\/local\/BGBillingServer@'"$BGBILLING_HOME"'@' $BGBILLING_HOME/script/bgcommonrc \
   \
