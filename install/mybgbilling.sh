@@ -18,7 +18,7 @@ if [ -z "$JAVA_HOME" ]; then
   export JAVA_HOME='/opt/java/jdk8'
 fi
 
-set -x \
+set -ux \
   && echo "Checking what directory $WILDFLY_HOME exists" \
   && [ -d $WILDFLY_HOME ] \
   && echo "Checking what directory $WILDFLY_DEPLOYMENTS/MyBGBilling.war does not exist" \

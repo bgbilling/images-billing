@@ -83,7 +83,7 @@ if echo "$@" | grep -Eq '\bbgbilling\b'; then
   echo "Installing BGBillingServer"
   mkdir -p /tmp/bgb-install-script
   curl -fsSL $URL_BILLING/bgbilling.sh -o /tmp/bgb-install-script/bgbilling.sh
-  sh -eux /tmp/bgb-install-script/bgbilling.sh
+  sh -ex /tmp/bgb-install-script/bgbilling.sh
 fi
 
 
@@ -91,7 +91,7 @@ if echo "$@" | grep -Eq '\bmy\b'; then
   echo "Installing MyBGBilling"
   mkdir -p /tmp/bgb-install-script
   curl -fsSL $URL_BILLING/mybgbilling.sh -o /tmp/bgb-install-script/mybgbilling.sh
-  sh -eux /tmp/bgb-install-script/mybgbilling.sh
+  sh -ex /tmp/bgb-install-script/mybgbilling.sh
 fi
 
 

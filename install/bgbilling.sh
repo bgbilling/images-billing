@@ -20,7 +20,7 @@ if [ -z "$JAVA_HOME" ]; then
   export JAVA_HOME='/opt/java/jdk8'
 fi
 
-set -x \
+set -ux \
   && [ ! -d $BGBILLING_HOME ] \
   && mkdir -p /opt/bgbilling \
   && rm -fr /tmp/bgb-install && mkdir -p /tmp/bgb-install \
