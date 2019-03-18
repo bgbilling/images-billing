@@ -14,14 +14,16 @@ MYBGBILLING_FTP=ftp://bgbilling.ru/pub/bgbilling/$MYBGBILLING_VERSION
 WILDFLY_HOME=/opt/wildfly/current
 WILDFLY_DEPLOYMENTS=$WILDFLY_HOME/standalone/deployments
 
+if [ -z "$JAVA_HOME" ]; then
+  export JAVA_HOME='/opt/java/jdk8'
+fi
+
 set -x \
   && echo "Checking what directory $WILDFLY_HOME exists" \
   && [ -d $WILDFLY_HOME ] \
   && echo "Checking what directory $WILDFLY_DEPLOYMENTS/MyBGBilling.war does not exist" \
   && [ ! -d $WILDFLY_DEPLOYMENTS/MyBGBilling.war ] \
   && rm -fr /tmp/bgb-install && mkdir -p /tmp/bgb-install \
-  && echo "Checking JAVA_HOME" \
-  && echo "JAVA_HOME=$JAVA_HOME" \
   \
   && echo "Downloading MyBGBilling.zip..." \
   && wget -nv $MYBGBILLING_FTP/MyBGBilling_${MYBGBILLING_VERSION}_*.zip -O /tmp/bgb-install/MyBGBilling.zip \

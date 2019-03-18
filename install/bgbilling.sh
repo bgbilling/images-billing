@@ -16,6 +16,9 @@ BGBILLING_INSTALL=/opt/bgbilling/BGBillingServer/.install
 
 BGBILLING_ASSETS=card,bill,inet,tv,voice,reports,documents,cashcheck,mps,sberbank,yamoney,assist
 
+if [ -z "$JAVA_HOME" ]; then
+  export JAVA_HOME='/opt/java/jdk8'
+fi
 
 set -x \
   && [ ! -d $BGBILLING_HOME ] \
