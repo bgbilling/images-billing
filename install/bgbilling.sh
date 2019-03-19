@@ -100,5 +100,6 @@ set -ux \
   \
   && cp $BGBILLING_HOME/script/bgbilling.service /lib/systemd/system/ \
   && cp $BGBILLING_HOME/script/bgscheduler.service /lib/systemd/system/ \
-  && mysql < $BGBILLING_INSTALL/dump.sql
+  && mysql < $BGBILLING_INSTALL/dump.sql \
+  && $BGBILLING_HOME/bg_installer.sh autoinstall-libs "update"
 
