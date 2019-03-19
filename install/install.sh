@@ -1,12 +1,18 @@
 #!/bin/sh -eux
 
-echo "Checking prerequisite utilities (nc,wget,curl,unzip,sed,dirmngr)"
+echo "Checking prerequisite utilities (nc,wget,curl,unzip,sed)"
 [ -n "`which nc`" ]
 [ -n "`which wget`" ]
 [ -n "`which curl`" ]
 [ -n "`which unzip`" ]
 [ -n "`which sed`" ]
-[ -n "`which dirmngr`" ]
+
+if cat /etc/os-release | grep -Eq '\bDebian\b'; then
+	
+  echo "Checking prerequisite utilities (dirmngr)"
+  [ -n "`which dirmngr`" ]
+  
+fi
 
 
 VERSION=7.2
