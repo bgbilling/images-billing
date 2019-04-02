@@ -1,11 +1,12 @@
 #!/bin/sh -eux
 
-echo "Checking prerequisite utilities (nc,wget,curl,unzip,sed)"
+echo "Checking prerequisite utilities (nc,wget,curl,unzip,sed,sudo)"
 [ -n "`which nc`" ]
 [ -n "`which wget`" ]
 [ -n "`which curl`" ]
 [ -n "`which unzip`" ]
 [ -n "`which sed`" ]
+[ -n "`which sudo`" ]
 
 if cat /etc/os-release | grep -Eq '\bDebian\b'; then
 	
