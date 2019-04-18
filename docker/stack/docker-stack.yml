@@ -39,7 +39,7 @@ services:
     stop_grace_period: 30s
 
   server:
-    image: bgbilling/server:7.2
+    image: bgbilling/server:8.0
     environment:
       TZ: 'Europe/Moscow'
       BGBILLING_MEMORY: '-Xmx256m'
@@ -59,7 +59,7 @@ services:
     stop_grace_period: 30s
 
   scheduler:
-    image: bgbilling/scheduler:7.2
+    image: bgbilling/scheduler:8.0
     environment:
       TZ: 'Europe/Moscow'
       BGBILLING_MEMORY: '-Xmx256m'
@@ -74,7 +74,7 @@ services:
     stop_grace_period: 30s
 
   my:
-    image: bgbilling/my:7.2
+    image: bgbilling/my:8.0
     environment:
       TZ: 'Europe/Moscow'
     ports:

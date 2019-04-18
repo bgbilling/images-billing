@@ -1,4 +1,4 @@
-FROM bgbilling/my:7.2 as my
+FROM bgbilling/my:8.0 as my
 
 ARG WILDFLY_STANDALONE=/opt/wildfly/current/standalone
 
@@ -9,7 +9,7 @@ RUN set -x \
   && cp ${WILDFLY_STANDALONE}/deployments/MyBGBilling.war/WEB-INF/*.groovy /bgbilling-docker/mybgbilling/
 
 
-FROM bgbilling/server:7.2 as packager
+FROM bgbilling/server:8.0 as packager
 
 RUN set -x \
   && mkdir -p /bgbilling-docker/mysql/data \
@@ -24,7 +24,7 @@ RUN set -x \
   && cp /opt/bgbilling/BGBillingServer/.install/dump.sql /bgbilling-docker/mysql/initdb.d/
 
 COPY mysql/my.cnf /bgbilling-docker/mysql
-ADD https://raw.githubusercontent.com/bgbilling/images-billing/7.2/install/dump/user.sql /bgbilling-docker/mysql/initdb.d
+ADD https://raw.githubusercontent.com/bgbilling/images-billing/8.0/install/dump/user.sql /bgbilling-docker/mysql/initdb.d
 COPY activemq /bgbilling-docker/activemq
 COPY docker-stack.yml init.sh start.sh stop.sh destroy.sh /bgbilling-docker/
 COPY init.sh /bgbilling-docker/

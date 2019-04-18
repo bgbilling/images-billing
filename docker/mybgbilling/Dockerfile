@@ -1,6 +1,6 @@
-FROM bgbilling/base-bgbilling:7.2 as packager
+FROM bgbilling/base-bgbilling:8.0 as packager
 
-ENV MYBGBILLING_VERSION=7.2
+ENV MYBGBILLING_VERSION=8.0
 ARG MYBGBILLING_FTP=ftp://bgbilling.ru/pub/bgbilling/$MYBGBILLING_VERSION
 
 ENV WILDFLY_HOME=/opt/wildfly/current
@@ -25,7 +25,7 @@ RUN set -x \
 
 FROM bgbilling/base-wildfly:14
 
-ENV MYBGBILLING_VERSION=7.2
+ENV MYBGBILLING_VERSION=8.0
 ENV MYBGBILLING_HOME=$JBOSS_HOME/standalone/deployments/MyBGBilling.war
 
 COPY --from=packager /tmp/bgb-install/MyBGBilling.war $MYBGBILLING_HOME

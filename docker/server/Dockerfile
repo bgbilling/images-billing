@@ -1,4 +1,4 @@
-FROM bgbilling/base-bgbilling:7.2
+FROM bgbilling/base-bgbilling:8.0
 
 COPY entrypoint.sh /usr/local/bin/
 

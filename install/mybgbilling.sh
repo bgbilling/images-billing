@@ -8,7 +8,7 @@ echo "Checking prerequisite utilities (nc,wget,unzip,sed,systemctl)"
 [ -n "`which systemctl`" ]
 
 
-MYBGBILLING_VERSION=7.2
+MYBGBILLING_VERSION=8.0
 MYBGBILLING_FTP=ftp://bgbilling.ru/pub/bgbilling/$MYBGBILLING_VERSION
 
 WILDFLY_HOME=/opt/wildfly/current

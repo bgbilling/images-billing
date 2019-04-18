@@ -1,8 +1,8 @@
 #!/bin/sh
 
 echo "Downloading BGBillingServer image"
-docker pull bgbilling/server:7.2
-docker pull bgbilling/scheduler:7.2
+docker pull bgbilling/server:8.0
+docker pull bgbilling/scheduler:8.0
 echo "Downloading ActiveMQ image"
 docker pull bgbilling/activemq
 echo "Downloading MySQL image"
