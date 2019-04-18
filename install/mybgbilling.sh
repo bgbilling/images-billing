@@ -24,7 +24,6 @@ set -ux \
   && echo "Checking what directory $WILDFLY_DEPLOYMENTS/MyBGBilling.war does not exist" \
   && [ ! -d $WILDFLY_DEPLOYMENTS/MyBGBilling.war ] \
   && rm -fr /tmp/bgb-install && mkdir -p /tmp/bgb-install \
-  && echo "JAVA_HOME=$JAVA_HOME"
   \
   && echo "Downloading MyBGBilling.zip..." \
   && wget -nv $MYBGBILLING_FTP/MyBGBilling_${MYBGBILLING_VERSION}_*.zip -O /tmp/bgb-install/MyBGBilling.zip \
