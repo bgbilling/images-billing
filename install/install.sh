@@ -15,7 +15,7 @@ if cat /etc/os-release | grep -Eq '\bDebian\b'; then
   
 fi
 
-VERSION=7.2
+VERSION=8.0
 URL=https://raw.githubusercontent.com/bgbilling
 URL_BASE=$URL/images-base/master/install
 URL_BILLING=$URL/images-billing/${VERSION}/install
