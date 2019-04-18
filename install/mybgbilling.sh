@@ -14,7 +14,11 @@ MYBGBILLING_FTP=ftp://bgbilling.ru/pub/bgbilling/$MYBGBILLING_VERSION
 WILDFLY_HOME=/opt/wildfly/current
 WILDFLY_DEPLOYMENTS=$WILDFLY_HOME/standalone/deployments
 
-set -x \
+if [ -z "$JAVA_HOME" ]; then
+  export JAVA_HOME='/opt/java/jdk8'
+fi
+
+set -ux \
   && echo "Checking what directory $WILDFLY_HOME exists" \
   && [ -d $WILDFLY_HOME ] \
   && echo "Checking what directory $WILDFLY_DEPLOYMENTS/MyBGBilling.war does not exist" \
@@ -33,7 +37,7 @@ set -x \
   && { \
     echo '#!/bin/sh'; \
     echo; \
-    echo '#JAVA_HOME='; \
+    echo "JAVA_HOME=$JAVA_HOME"; \
     echo "MYBGBILLING_HOME=$WILDFLY_HOME/standalone/deployments/MyBGBilling.war"; \
   } > /tmp/bgb-install/MyBGBilling.war/WEB-INF/script/files/setenv.sh \
   && chmod +x /tmp/bgb-install/MyBGBilling.war/WEB-INF/script/files/*.sh \

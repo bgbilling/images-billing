@@ -1,13 +1,19 @@
 #!/bin/sh -eux
 
-echo "Checking prerequisite utilities (nc,wget,curl,unzip,sed,dirmngr)"
+echo "Checking prerequisite utilities (nc,wget,curl,unzip,sed,sudo)"
 [ -n "`which nc`" ]
 [ -n "`which wget`" ]
 [ -n "`which curl`" ]
 [ -n "`which unzip`" ]
 [ -n "`which sed`" ]
-[ -n "`which dirmngr`" ]
+[ -n "`which sudo`" ]
 
+if cat /etc/os-release | grep -Eq '\bDebian\b'; then
+	
+  echo "Checking prerequisite utilities (dirmngr)"
+  [ -n "`which dirmngr`" ]
+  
+fi
 
 VERSION=7.2
 URL=https://raw.githubusercontent.com/bgbilling
@@ -57,6 +63,10 @@ if echo "$@" | grep -Eq '\bjdk8\b'; then
       echo; \
       echo 'export JAVA_HOME=/opt/java/jdk8'; \
     } > /etc/profile.d/java_home.sh
+    
+    { \
+      echo 'Defaults        env_keep +="JAVA_HOME"'; \
+    } > /etc/sudoers.d/javahome
   
   fi
   
@@ -83,7 +93,7 @@ if echo "$@" | grep -Eq '\bbgbilling\b'; then
   echo "Installing BGBillingServer"
   mkdir -p /tmp/bgb-install-script
   curl -fsSL $URL_BILLING/bgbilling.sh -o /tmp/bgb-install-script/bgbilling.sh
-  sh -eux /tmp/bgb-install-script/bgbilling.sh
+  sh -ex /tmp/bgb-install-script/bgbilling.sh
 fi
 
 
@@ -91,7 +101,7 @@ if echo "$@" | grep -Eq '\bmy\b'; then
   echo "Installing MyBGBilling"
   mkdir -p /tmp/bgb-install-script
   curl -fsSL $URL_BILLING/mybgbilling.sh -o /tmp/bgb-install-script/mybgbilling.sh
-  sh -eux /tmp/bgb-install-script/mybgbilling.sh
+  sh -ex /tmp/bgb-install-script/mybgbilling.sh
 fi
 
 

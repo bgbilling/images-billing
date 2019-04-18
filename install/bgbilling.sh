@@ -16,8 +16,11 @@ BGBILLING_INSTALL=/opt/bgbilling/BGBillingServer/.install
 
 BGBILLING_ASSETS=card,bill,inet,tv,voice,reports,documents,cashcheck,mps,sberbank,yamoney,assist
 
+if [ -z "$JAVA_HOME" ]; then
+  export JAVA_HOME='/opt/java/jdk8'
+fi
 
-set -x \
+set -ux \
   && [ ! -d $BGBILLING_HOME ] \
   && mkdir -p /opt/bgbilling \
   && rm -fr /tmp/bgb-install && mkdir -p /tmp/bgb-install \
@@ -91,12 +94,11 @@ set -x \
   && wget -q --directory $BGBILLING_INSTALL $BGBILLING_FTP/wm_${BGBILLING_VERSION}_*.zip \
   && wget -q --directory $BGBILLING_INSTALL $BGBILLING_FTP/yamoney_${BGBILLING_VERSION}_*.zip \
   \
-  && sed -i 's@#JAVA_HOME=@JAVA_HOME=@' $BGBILLING_HOME/setenv.sh \
-  && sed -i 's@JAVA_HOME=@JAVA_HOME=/opt/java/jdk8@' $BGBILLING_HOME/setenv.sh \
+  && sed -i "s@#JAVA_HOME=@JAVA_HOME=$JAVA_HOME@" $BGBILLING_HOME/setenv.sh \
   && sed -i 's@BGBILLING_SERVER_DIR=.@BGBILLING_SERVER_DIR='"$BGBILLING_HOME"'@' $BGBILLING_HOME/setenv.sh \
   && sed -i 's@\/usr\/local\/BGBillingServer@'"$BGBILLING_HOME"'@' $BGBILLING_HOME/script/bgcommonrc \
   \
   && cp $BGBILLING_HOME/script/bgbilling.service /lib/systemd/system/ \
   && cp $BGBILLING_HOME/script/bgscheduler.service /lib/systemd/system/ \
-  && mysql < $BGBILLING_INSTALL/dump.sql
-
+  && mysql < $BGBILLING_INSTALL/dump.sql \
+  && ([ -z "`which systemctl`" ] || $BGBILLING_HOME/bg_installer.sh autoinstall-libs "update")

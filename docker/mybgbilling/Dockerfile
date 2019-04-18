@@ -1,4 +1,4 @@
-FROM bgbilling/server:7.2 as packager
+FROM bgbilling/base-bgbilling:7.2 as packager
 
 ENV MYBGBILLING_VERSION=7.2
 ARG MYBGBILLING_FTP=ftp://bgbilling.ru/pub/bgbilling/$MYBGBILLING_VERSION
@@ -37,4 +37,4 @@ COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/bin/bash", "entrypoint.sh"]
 # Set the default command to run on boot
 # This will boot WildFly in the standalone mode and bind to all interface
-CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0"]
+CMD ["/opt/wildfly/current/bin/standalone.sh", "-b", "0.0.0.0"]
