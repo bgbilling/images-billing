@@ -8,7 +8,7 @@ echo "Checking prerequisite utilities (nc,wget,unzip,sed)"
 
 
 BGBILLING_VERSION=8.0
-BGBILLING_FTP=ftp://bgbilling.ru/pub/bgbilling/$BGBILLING_VERSION
+BGBILLING_FTP=ftp://ftp.bgbilling.ru/pub/bgbilling/$BGBILLING_VERSION
 
 ACCESS_HOME=/opt/bgbilling/BGInetAccess
 ACCOUNTING_HOME=/opt/bgbilling/BGInetAccounting

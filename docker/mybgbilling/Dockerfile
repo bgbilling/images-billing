@@ -1,7 +1,7 @@
 FROM bgbilling/base-bgbilling:8.0 as packager
 
 ENV MYBGBILLING_VERSION=8.0
-ARG MYBGBILLING_FTP=ftp://bgbilling.ru/pub/bgbilling/$MYBGBILLING_VERSION
+ARG MYBGBILLING_FTP=ftp://ftp.bgbilling.ru/pub/bgbilling/$MYBGBILLING_VERSION
 
 ENV WILDFLY_HOME=/opt/wildfly/current
 ENV WILDFLY_DEPLOYMENTS=$WILDFLY_HOME/standalone/deployments
